@@ -5,9 +5,9 @@
         <header class="entry-header">
             <h1 class="entry-title">{{ post.title }}</h1>
             <div class="entry-meta">
-                <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
-                <span class="post-date"><a href="#"><time class="entry-date"
-                                                            datetime="{{ post.create_time }}">{{ post.create_time }}</time></a></span>
+                <span class="post-category" style="color:black">{{ post.category.name }}</span>
+                <span class="post-date" style="color:black"><time class="entry-date"
+                                                            datetime="{{ post.create_time }}">{{ post.create_time }}</time></span>
                 <span class="post-author"><a href="#">{{ post.author }}</a></span>
                 <span class="comments-link" style="color:black">{{ post.comment_set.count }} 评论</span>
                 <span class="views-count" style="color:black">588 阅读</span>
@@ -47,7 +47,7 @@
             </div>    <!-- row -->
         </form>
         <div class="comment-list-panel">
-            <h3>评论列表，共 <span>4</span> 条评论</h3>
+            <h3>评论列表，共 <span>{{ post.comment_set.count }}</span> 条评论</h3>
             <ul class="comment-list list-unstyled">
                 {% for comment in comment_list %}
                 <li class="comment-item">
@@ -67,22 +67,6 @@
 {% block toc %}            
     <div class="widget widget-content">
         <h3 class="widget-title">文章目录</h3>
-        <ul>
-            <li>
-                <a href="#">教程特点</a>
-            </li>
-            <li>
-                <a href="#">谁适合这个教程</a>
-            </li>
-            <li>
-                <a href="#">在线预览</a>
-            </li>
-            <li>
-                <a href="#">资源列表</a>
-            </li>
-            <li>
-                <a href="#">获取帮助</a>
-            </li>
-        </ul>
+        <aside>{{ toc|safe }}</aside>
     </div>
 {% endblock toc %}
