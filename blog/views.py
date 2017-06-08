@@ -6,6 +6,7 @@ from markdown.extensions.toc import TocExtension
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.utils.text import slugify
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from comments.forms import CommentForm
 import models
 
@@ -15,6 +16,23 @@ def index(request):
     """
     # 排序依据的字段是created_time,即文章的创建时间,'-'号表示逆序.
     post_list = models.Post.objects.all().order_by("-create_time")
+    # 对post_list进行分页,每页5篇文章
+    paginator = Paginator(post_list, 5)
+    # 获取用户请求页的页码.给页码设置的URL类似于http://www.baidu.com/?page=2
+    # 其中?号后面的page=2表示用户请求的页码数.
+    # Django会将问号后面的请求参数保存到request.GET属性里,这是一个类字典的属性.
+    # 例如这里page作为键被保存,其值为2.
+    page = request.GET.get("page")
+    try:
+        # 获取用户请求页面的文章列表,比如说page=2,就获取第二页的文章列表
+        post_list = paginator.page(page)
+    except PageNotAnInteger:
+        # 用户可能请求http://zmrenwu.com/?page=xyz这样的URL,就将第一页数据返回给用户.
+        # 还有一种情况就是http://zmrenwu.com这种访问页是抛出这个异常
+        post_list = paginator.page(1)
+    except EmptyPage:
+        # page的数目超过了最大页数,遇到这种情况会返回最后一页的数据给用户
+        post_list = paginator.page(paginator.num_pages)
     return render(request, "blog/index.html", context={"post_list":post_list})
 
 def detail(request, pk):
