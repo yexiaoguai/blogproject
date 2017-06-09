@@ -1,0 +1,9 @@
+ul{  list-style-type:none; padding-left:0px;}
+#pagination-flickr li { border:0; margin:0; padding:0; font-size:16px; list-style:none; /* savers */ float:left; display:inline-block;}
+#pagination-flickr a { border:solid 1px #DDDDDD; margin-right:5px; }
+#pagination-flickr .previous-off,#pagination-flickr .next-off { color:#666666; display:block; float:left; font-weight:bold; padding:3px 4px; }
+#pagination-flickr .next a,#pagination-flickr .previous a { font-weight:bold; border:solid 1px #FFFFFF; }	
+#pagination-flickr .active { color:#ff0084; font-weight:bold; display:block; float:left; padding:4px 6px; }
+#pagination-flickr a:link, 
+#pagination-flickr a:visited { color:#000000; display:block; float:left; padding:3px 6px; text-decoration:none; }
+#pagination-flickr a:hover { border:solid 1px #000; background:#000000; color:#FFF; }

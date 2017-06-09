@@ -8,7 +8,7 @@
                     <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                 </h1>
                 <div class="entry-meta">
-                    <span class="post-category" style="color:black">{{ post.category.name }}</span>
+                    <span class="post-category" style="color:#000000">{{ post.category.name }}</span>
                     <span class="post-date" style="color:black"><time class="entry-date"
                                                                 datetime="{{ post.create_time }}">{{ post.create_time }}</time></span>
                     <span class="post-author"><a href="#">{{ post.author }}</a></span>
@@ -27,26 +27,39 @@
         <div class="no-post">暂时还没有发布的文章!</div>
     {% endfor %}    
 
-        <!-- 简单分页效果
-        <div class="pagination-simple">
-            <a href="#">上一页</a>
-            <span class="current">第 6 页 / 共 11 页</span>
-            <a href="#">下一页</a>
-        </div>
-        -->
-        <div class="pagination">
-            {% if post_list.has_previous %}
-                <!-- 如果当前页还有上一页,显示一个上一页的按钮 -->
-                <a href="?page={{ post_list.previous_page_number }}">上一页</a>
+    {% if is_paginated %}
+        <ul id="pagination-flickr">
+            <li class="next"><a href="?page={{ page_obj.number }}">上一页</a></li>
+            {% if first %}
+                <!-- 判断是否显示第一页的页码号 -->
+                <li><a href="?page=1">1</a></li>
             {% endif %}
-            <span class="current">
-                <!-- 显示当前页面信息 -->
-                第 {{ post_list.number }} 页 / 共 {{ post_list.paginator.num_pages }} 页
-            </span>
-            {% if post_list.has_next %}
-                <!-- 如果当前页还有下一页,显示一个下一页的按钮 -->
-                <a href="?page={{ post_list.next_page_number }}">下一页</a>
+            {% if left %}
+                {% if left_has_more %}
+                    <!-- 判断是否显示第一页前的省略号 -->
+                    <li>... &nbsp</li>
+                {% endif %}
+                {% for i in left %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endfor %}
             {% endif %}
-        </div>
+            <!-- 当前页用红色标记 -->
+            <li class="active">{{ page_obj.number }}</li>
+            {% if right %}
+                {% for i in right %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endfor %}
+                {% if right_has_more %}
+                    <!-- 判断是否显示最后一页前的省略号 -->
+                    <li>... &nbsp</li>
+                {% endif %}
+            {% endif %}
+            {% if last %}
+                <!-- 判断是否显示最后一页的页码号 -->
+                <li><a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a></li>
+            {% endif %}
+            <li class="next"><a href="?page={{ page_obj.number }}">下一页</a></li>
+        </ul>
+    {% endif %}
 {% endblock main %}
     
