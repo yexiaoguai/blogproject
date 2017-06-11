@@ -13,7 +13,7 @@
                                                                 datetime="{{ post.create_time }}">{{ post.create_time }}</time></span>
                     <span class="post-author"><a href="#">{{ post.author }}</a></span>
                     <span class="comments-link" style="color:black">{{ post.comment_set.count }} 评论</span>
-                    <span class="views-count" style="color:black">588 阅读</span>
+                    <span class="views-count" style="color:black">{{ post.views }} 阅读</span>
                 </div>
             </header>
             <div class="entry-content clearfix">
@@ -29,7 +29,7 @@
 
     {% if is_paginated %}
         <ul id="pagination-flickr">
-            <li class="next"><a href="?page={{ page_obj.number }}">上一页</a></li>
+            <li class="next"><a href="?page={{ previous_page }}">上一页</a></li>
             {% if first %}
                 <!-- 判断是否显示第一页的页码号 -->
                 <li><a href="?page=1">1</a></li>
@@ -58,7 +58,7 @@
                 <!-- 判断是否显示最后一页的页码号 -->
                 <li><a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a></li>
             {% endif %}
-            <li class="next"><a href="?page={{ page_obj.number }}">下一页</a></li>
+            <li class="next"><a href="?page={{ next_page }}">下一页</a></li>
         </ul>
     {% endif %}
 {% endblock main %}
