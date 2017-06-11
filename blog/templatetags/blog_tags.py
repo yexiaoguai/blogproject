@@ -3,7 +3,9 @@
 模板标签
 """
 from django import template
-from ..models import Post, Category
+from django.db.models.aggregates import Count
+
+from ..models import Post, Category, Tag
 
 register = template.Library()
 
@@ -34,4 +36,13 @@ def get_categories():
     分类模板标签
     """
     return Category.objects.all()
-    
+    # 获取到文章数大于0的分类列表.
+    #return Category.objects.annotate(num_posts=Count("post")).filter(num_posts__gt=0)
+
+@register.simple_tag
+def get_tags():
+    """
+    Tag模板标签
+    """
+    # 获取到标签数大于0的文章分类列表.
+    return Tag.objects.annotate(num_posts=Count("post")).filter(num_posts__gt=0)

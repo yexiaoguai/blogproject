@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils.html import strip_tags
 import markdown
 
 class Category(models.Model):
@@ -69,3 +70,19 @@ class Post(models.Model):
     # 文章根据创作时间倒序进行排序.
     class Meta:
         ordering = ["-create_time"]
+
+    # 自动生成文章摘要
+    def save(self, *args, **kwargs):
+        # 如果没有填写摘要
+        if not self.excerpt:
+            #实例化Markdown类,用于渲染content
+            md = markdown.Markdown(extensions=[
+                "markdown.extensions.extra",
+                "markdown.extensions.codehilite",
+            ])
+            # 现将markdown文本渲染成HTML文本
+            # strip_tags去除掉HTML文本内全部HTML标签
+            # 从文本摘取前54个字符赋值给excerpt
+            self.excerpt = strip_tags(md.convert(self.content))[:54]
+        # 调用父类的save方法将数据保存到数据库中
+        super(Post, self).save(*args, **kwargs)

@@ -148,6 +148,14 @@ class ArchivesView(IndexView):
         return super(ArchivesView, self).get_queryset().filter(create_time__year=year,
                                                                create_time__month=month)
 
+class TagViews(IndexView):
+    """
+    标签的视图类
+    """
+    def get_queryset(self):
+        tag = get_object_or_404(models.Tag, pk=self.kwargs.get("pk"))
+        return super(TagViews, self).get_queryset().filter(tags=tag)
+
 class PostDetailView(DetailView):
     """
     文章详情的视图类
@@ -155,15 +163,6 @@ class PostDetailView(DetailView):
     model = models.Post
     template_name = "blog/detail.html"
     context_object_name = "post"
-
-    def __init__(self, *args, **kwargs):
-        super(PostDetailView, self).__init__(*args, **kwargs)
-        global md
-        md = markdown.Markdown(extensions=[
-                                         "markdown.extensions.extra",
-                                         "markdown.extensions.codehilite",
-                                         TocExtension(slugify=slugify),
-                                      ])
 
     def get(self, request, *args, **kwargs):
         # 先调用父类的get方法,是因为只有当get方法被调用后,才能有self.object属性.
@@ -180,7 +179,12 @@ class PostDetailView(DetailView):
         # 获取到父类返回的post对象
         post = super(PostDetailView, self).get_object(queryset=None)
         # 修改下post.content
+        md = markdown.Markdown(extensions=["markdown.extensions.extra",
+                                           "markdown.extensions.codehilite",
+                                           TocExtension(slugify=slugify),
+                                      ])
         post.content = md.convert(post.content)
+        post.toc = md.toc
         return post
 
     def get_context_data(self, **kwargs):
@@ -188,10 +192,9 @@ class PostDetailView(DetailView):
         # 还要把md.toc(自动生成目录),评论表单,post下的评论列表传递给模板.
         context = super(PostDetailView, self).get_context_data(**kwargs)
         form = CommentForm()
-        md.convert(super(PostDetailView, self).get_object(queryset=None).content)
         comment_list = self.object.comment_set.all()
         # 将参数更新.
-        context.update({"toc":md.toc,
+        context.update({
                         "form":form,
                         "comment_list":comment_list,
                         })
