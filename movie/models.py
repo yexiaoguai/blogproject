@@ -54,7 +54,7 @@ class Movie(models.Model):
     # 1:表示通过 0:表示未通过 2:表示审核中
     status = models.IntegerField(null=True, blank=True)
     # 图片保存地址
-    image = models.ImageField(upload_to="movie/static/movie/img", null=True, blank=True)
+    image = models.CharField(max_length=256, null=True, blank=True)
     # 爬取电影入库时间
     spidertime = models.DateTimeField(auto_now_add=True, null=True)
     # 关于电影
