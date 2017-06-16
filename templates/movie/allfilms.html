@@ -81,12 +81,12 @@
                 <div class="col-md-8">
                     <div class="movieList">
                         <ul class="movieList_tab">
-                            <li role="presentation" {% if type == 'suggest' %} class="current" {% endif %}>
-                                <a href="" class="currentmovietype"> {% trans '推荐' %}</a></li>
+                            <li {% if type == 'suggest' %} class="current" {% endif %}>
+                                <a href="{% url 'movie:getmovielist' %}"> {% trans '推荐' %}</a></li>
                             <li {% if type == 'festival' %} class="current" {% endif %} >
-                                <a href="" class="currentmovietype">电影节</a></li>
+                                <a href="{% url 'movie:getfilmfestlist' %}">电影节</a></li>
                             <li {% if type == 'latest' %} class="current" {% endif %}>
-                                <a href="" class="currentmovietype">最新</a></li>
+                                <a href="{% url 'movie:getlatestmovielist' %}">最新</a></li>
                         </ul>
 
                         <ul class="movieTab_con">
@@ -99,12 +99,11 @@
                                             <div class="thumbnail movieList_con_cell_info">
                                                 <span class="glyphicon glyphicon-star havesee"></span>
                                                 <div class="post-thumbnail">
-                                                <a href="#" class="inimg" target="_blank" title="{{ movie.movie_name }}">
+                                                <a href="{{ movie.douban_link }}" class="inimg" target="_blank" title="{{ movie.movie_name }}">
                                                     <img src="{{ movie.image }}" alt="{{ movie.movie_name }}"/>
                                                 </a>
                                                     <div class="img_title" style="display:none">
                                                         <small class="imdbscore">{{ movie.style }}</small><br>
-                                                        <small class="imdbscore">{{ movie.country }}</small>
                                                         <small class="imdbscore">{{ movie.dateyear }}</small>
                                                     </div>
                                                 </div>
@@ -118,16 +117,11 @@
                                                         <a href="" target="_blank" class="btn btn-primary btn-sm" role="button">下载</a>
                                                         {% endif %}
                                                     </ul>
-                                                    <ul class="others">
-                                                        <li class="in_category">
-                                                            {% ifequal movie.country '' %}top250{% endifequal %}{{ movie.country }}
-                                                        </li>
-                                                        <li class="play">
-                                                            <span class="wpfp-span">{{ movie.douban_counter }}</span>
-                                                        </li>
-                                                        <li class="score">
-                                                            <span class="wpfp-span">{{ movie.douban_score }}</span>
-                                                        </li>
+                                                    <ul class="title">
+                                                        <li>
+                                                            {% ifequal movie.country '' %}top250{% endifequal %}{{ movie.country }}<br>
+                                                            <span class="wpfp-span">豆瓣评分:{{ movie.douban_score }}</span>
+                                                        </li>                                          
                                                     </ul>
                                                 </div>
                                             </div>
@@ -145,18 +139,17 @@
                         <nav class="movieList_page">
                             <!--前一页存在返回True-->
                             {% if movielist.has_previous %}
-                                <a href="?page={{ movielist.pervious_page_number }}&
-                                filtertype={{ filtertype }}&filterparam={{ filterparam }}" title="上一页">上一页</a>&nbsp;
+                                <a href="?page={{ movielist.previous_page_number }}&filtertype={{ filtertype }}&filterparam={{ filterparam }}" title="上一页">上一页</a>&nbsp;
                             {% endif %}
                             {% for p in page_range %}
                                 {% ifequal p movielist.number %}
                                 <span>{{ p }}</span>
                                 {% else %}
-                                <a href="#" title="第{{ p }}页">{{p}}</a>
+                                <a href="?page={{ p }}&filtertype={{ filtertype }}&filterparam={{ filterparam }}" title="第{{ p }}页">{{p}}</a>
                                 {% endifequal %}
                             {% endfor %}
                             {% if movielist.has_next %}
-                                <a href="#" title="下一页">下一页</a>;
+                                <a href="?page={{ movielist.next_page_number }}&filtertype={{ filtertype }}&filterparam={{ filterparam }}" title="下一页">下一页</a>
                             {% endif %}
                         </nav>
                         <!--分页符结束-->
