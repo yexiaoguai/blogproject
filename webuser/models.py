@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 import urllib
 
 class Webuser(models.Model):
+    """
+    该数据库表格保存了用户个人的信息以及是否在线等数据
+    """
     user = models.OneToOneField(User)
     location = models.CharField(max_length=50, null=True, blank=True)
     url = models.CharField(max_length=50, null=True, blank=True)

@@ -59,15 +59,15 @@
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">{{request.user}}<span class="caret"></span> </a>
                             <ul class="dropdown-menu">
-                                    <li><a href="" class="glyphicon glyphicon-user">个人中心</a> </li>
+                                    <li><a href="{% url 'webuser:webuser_settings' %}" class="glyphicon glyphicon-user">个人中心</a> </li>
                                     <li><a href="" class="glyphicon glyphicon-edit">修改密码</a> </li>
                                     <li><a href="" class="glyphicon glyphicon-th">修改邮箱</a> </li>
-                                    <li><a href="" class="glyphicon glyphicon-off">退出登录</a> </li>
+                                    <li><a href="{% url 'webuser:webuser_logout' %}" class="glyphicon glyphicon-off">退出登录</a> </li>
                             </ul>
                         </li>
                         {% else %}
-                        <li><a href="">登录</a></li>
-                        <li><a href="">注册</a></li>
+                        <li><a href="{% url 'webuser:webuser_login' %}">登录</a></li>
+                        <li><a href="{% url 'webuser:webuser_register' %}">注册</a></li>
                         {% endif %}
                     </ul>
                 </div>

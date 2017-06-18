@@ -1,0 +1,12 @@
+{% extends "webuserbase.html" %}
+
+{% block title %} 登录后跳转到个人资料页面 {% endblock title %}
+
+{% block page_content %}
+    <div class="jumbotron">
+        <h3 style="text-align:center">您好，{{ user.username }}，你是我们网站的第{{ user.id }}个用户.</h3>
+        <p style="text-align:center">登录后，我们不再推荐已看完的电影，但是你可以在历史记录中重温.</p>
+        <p style="text-align:center">完善资料后，我们可以为你提供更好的推荐电影服务.</p>
+        <p style="text-align:center"><a class="btn btn-primary btn-lg" href="{% url 'webuser:webuser_settings' %}" role="button">完善个人资料</a></p>
+    </div> 
+{% endblock page_content %}
