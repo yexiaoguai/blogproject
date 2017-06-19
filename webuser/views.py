@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.conf import settings as django_settings
 
 from forms import LoginForm, SignUpForm, ProfileForm, ChangePasswordForm, ChangeEmailForm
 from models import Webuser
@@ -69,6 +70,9 @@ def register(request):
 
 @login_required
 def settings(request):
+    """
+    个人资料视图函数.
+    """
     # 获取用户
     user = request.user
     if request.method == "POST":
@@ -134,4 +138,13 @@ def change_email(request):
     else:
         form = ChangeEmailForm(instance=user)
     return render(request, "webuser/change_email.html", {"form":form})
+
+@login_required
+def picture(request):
+    uploaded_pictuer= False
+    if request.GET.get("upload_picture") == "uploaded":
+        uploaded_pictuer= True
+    context = {"uploaded_pictuer":uploaded_pictuer,
+               "MEDIA_URL":django_settings.MEDIA_URL}
+    return render(request, "webuser/picture.html", context=context)
 

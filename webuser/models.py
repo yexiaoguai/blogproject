@@ -3,8 +3,9 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings as django_settings
 
-import urllib
+import urllib, os
 
 class Webuser(models.Model):
     """
@@ -22,3 +23,21 @@ class Webuser(models.Model):
 
     def __unicode__(self):
         return self.user.username
+
+    def get_picture(self):
+        """
+        获取到该用户的头像
+        """
+        # 默认头像
+        no_picture = django_settings.MEDIA_URL+"webuser_pictures/user.png"
+        try:
+            # 获取到头像的路径以及文件名
+            filename = django_settings.MEDIA_ROOT+"/webuser_pictures/"+self.user.username+".jpg"
+            # 获取到头像的url
+            picture_url = django_settings.MEDIA_URL+"webuser_pictures/"+self.user.username+".jpg"
+            if os.path.isfile(filename):
+                return picture_url
+            else:
+                return no_picture
+        except Exception as e:
+            return no_picture

@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^weblogin/$', views.web_login, name="webuser_login"),
     url(r'^register/$', views.register, name="webuser_register"),
     url(r'^settings/$', views.settings, name="webuser_settings"),
+    url(r'^settings/picture/$', views.picture, name="webuser_picture"),
     url(r'^webuser/changepassword/$', views.change_password, name="webuser_password"),
     url(r'^webuser/changeemail/$', views.change_email, name="webuser_email"),
     url(r'^weblogout/$', auth_views.logout, {"next_page":"/webuser"}, name="webuser_logout"),

@@ -114,7 +114,7 @@
                                                         <a href="{{ movie.movie_address }}" target="_blank" class="btn btn-primary btn-sm btn-movie" role="button" id="{{ movie.id }}">播放</a>
                                                         {% endif %}
                                                         {% if movie.download_link %}
-                                                        <a href="" target="_blank" class="btn btn-primary btn-sm" role="button">下载</a>
+                                                        <a href="{{ movie.download_link }}" target="_blank" class="btn btn-primary btn-sm" role="button">下载</a>
                                                         {% endif %}
                                                     </ul>
                                                     <ul class="title">
