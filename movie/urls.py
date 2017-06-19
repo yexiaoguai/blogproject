@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^getmovielist/$', views.get_movie_list, name="getmovielist"),
     url(r'^getlatestmovielist/$', views.get_latest_movielist, name="getlatestmovielist"),
     url(r'^getfilmfestlist/$', views.get_filmfest_list, name="getfilmfestlist"),
+    url(r'^searchmovie/$', views.search_movie, name="searchmovie"),
 ]

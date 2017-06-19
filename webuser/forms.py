@@ -174,3 +174,63 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ["url", "location", "job_title", "sex", "likestyle"]
+
+class ChangePasswordForm(forms.ModelForm):
+    """
+    用户更改密码表单
+    """
+    id = forms.CharField(widget=forms.HiddenInput())
+    old_password = forms.CharField(widget=forms.PasswordInput(attrs={"class":"form-control"}),
+                                   required=True,
+                                   label="旧密码")
+    new_password = forms.CharField(widget=forms.PasswordInput(attrs={"class":"form-control"}),
+                                   required=True,
+                                   label="新密码")
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={"class":"form-control"}),
+                                       required=True,
+                                       label="确认新密码")
+    
+    class Meta:
+        model = User
+        fields = ["id", "old_password", "new_password", "confirm_password"]
+
+    def clean(self):
+        super(ChangePasswordForm, self).clean()
+        old_password = self.cleaned_data.get("old_password")
+        new_password = self.cleaned_data.get("new_password")
+        confirm_password = self.cleaned_data.get("confirm_password")
+        id = self.cleaned_data.get("id")
+        user = User.objects.get(pk=id)
+        # 检查就密码是否正确
+        if not user.check_password(old_password):
+            self._errors["old_password"] = self.error_class(["旧密码错误."])
+        if new_password and new_password != confirm_password:
+            self._errors["new_password"] = self.error_class(["密码不一致,请重新输入."])
+        return self.cleaned_data
+
+class ChangeEmailForm(forms.ModelForm):
+    """
+    修改用户邮箱表单
+    """
+    id = forms.CharField(widget=forms.HiddenInput())
+    old_email = forms.CharField(widget=forms.EmailInput(attrs={"class":"form-control"}),
+                                required=True,
+                                label="旧邮箱")
+    new_email = forms.CharField(widget=forms.EmailInput(attrs={"class":"form-control"}),
+                                required=True,
+                                label="新邮箱")
+    
+    class Meta:
+        model = User
+        fields = ["id", "old_email", "new_email"]
+
+    def clean(self):
+        super(ChangeEmailForm, self).clean()
+        old_email = self.cleaned_data.get("old_email")
+        new_email = self.cleaned_data.get("new_email")
+        id = self.cleaned_data.get("id")
+        user = User.objects.get(pk=id)
+        # 检查旧邮箱是否是用户的邮箱,不是用户邮箱则提示错误.
+        if old_email != user.email:
+            self._errors["old_email"] = self.error_class(["旧邮箱错误,请输入您原有的邮箱."])
+        return self.cleaned_data

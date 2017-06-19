@@ -5,6 +5,7 @@
 {% block person_home_content %}
 <div class="col-md-6 container">
     <h1 class="page-header"><small>个人资料</small></h1>
+    <h5>姓名: {{ user.username }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱: {{ user.email }}</h5>
     {% if messages %}
         {% for message in messages %}
             <div class="alert alert-success alert-dismissable">
@@ -31,7 +32,7 @@
             {% endfor %}
         </fieldset>
         <div class="form-group">
-            <div  class="form-group-left">
+            <div class="form-group-left">
                 <button type="submit" class="btn btn-large btn-primary">提交资料</button>
             </div>
         </div>

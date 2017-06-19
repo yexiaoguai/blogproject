@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from forms import LoginForm, SignUpForm, ProfileForm
+from forms import LoginForm, SignUpForm, ProfileForm, ChangePasswordForm, ChangeEmailForm
 from models import Webuser
 
 def index(request):
@@ -30,7 +30,6 @@ def web_login(request):
         # 用户提交的数据存在request.POST中,这是一个类字典对象.
         # 我们利用这些数据构造了LoginForm的实例,这样Django的表单就生成了.
         form = LoginForm(request.POST)
-        print "form is :", form
         if form.is_valid():
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
@@ -96,3 +95,41 @@ def settings(request):
                                "likestyle":user.webuser.likesstyle
                            })
     return render(request, "webuser/person_home_page_info.html", {"form":form})
+
+@login_required
+def change_password(request):
+    """
+    用户修改密码的视图函数
+    """
+    user = request.user
+    if request.method == "POST":
+        form = ChangePasswordForm(request.POST)
+        if form.is_valid():
+            new_password = form.cleaned_data.get("new_password")
+            # 设置新密码
+            user.set_password(new_password)
+            user.save()
+            messages.add_message(request, messages.SUCCESS, "您的密码修改成功.")
+    else:
+        form = ChangePasswordForm(instance=user)
+    return render(request, "webuser/change_password.html", {"form":form})
+
+@login_required
+def change_email(request):
+    """
+    用户修改邮箱的视图函数.
+    """
+    user = request.user
+    if request.method == "POST":
+        form = ChangeEmailForm(request.POST)
+        if form.is_valid():
+            new_email = form.cleaned_data.get("new_email")
+            # 设置新邮箱
+            user.email = new_email
+            # 只更新email字段
+            user.save(update_fields=["email"])
+            messages.add_message(request, messages.SUCCESS, "您的邮箱修改成功.")
+    else:
+        form = ChangeEmailForm(instance=user)
+    return render(request, "webuser/change_email.html", {"form":form})
+

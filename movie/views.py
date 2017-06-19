@@ -3,13 +3,13 @@ from __future__ import unicode_literals
 import random
 
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.views.generic import ListView
 
 from models import Movie, MovieHistory
 
-movie_area = ["阿根廷","巴西","澳大利亚","西班牙",]
+movie_area = ["阿根廷","巴西","澳大利亚","西班牙","南非","爱尔兰",]
 
 def get_movie_list(request):
     """
@@ -204,6 +204,24 @@ def get_filmfest_list(request):
         page_range = page_range[0:page+before_range_num]
     #  locals()返回一个包含当前作用域里面的所有变量和它们的值的字典.
     return render(request, "movie/allfilms.html", locals())
+
+def search_movie(request):
+    """
+    搜索电影
+    """
+    random_num = random.randint(0, 99)
+    imdbmovie_list = Movie.objects.order_by("douban_score")[random_num:random_num+6]
+    usamovie_list = Movie.objects.filter(country__contains="美").order_by("douban_score")[random_num:random_num+6]
+    # /webuser/?q=aaaa
+    if "q" in request.GET:
+        # 去除左右空格,有的时候用户会添加空格
+        query_string = request.GET.get("q").strip()
+        if len(query_string) == 0:
+            return redirect("/getmovielist")
+        else:
+            movielist = Movie.objects.filter(movie_name__contains=query_string)
+    return render(request, "movie/allfilms.html", locals())
+
 
         
         

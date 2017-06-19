@@ -46,7 +46,7 @@
                     <li><a href="">问答园</a></li>
                     <li><a href="">聊电影</a></li>
                 </ul>
-                <form action="" class="navbar-form navbar-left">
+                <form action="{% url 'movie:searchmovie' %}" class="navbar-form navbar-left">
                     <input type="text" placeholder="电影搜索" class="form-control movie-search" name="q">
                     <button type="submit">
                         <span class="glyphicon glyphicon-search"></span>
@@ -60,8 +60,8 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown">{{request.user}}<span class="caret"></span> </a>
                             <ul class="dropdown-menu">
                                     <li><a href="{% url 'webuser:webuser_settings' %}" class="glyphicon glyphicon-user">个人中心</a> </li>
-                                    <li><a href="" class="glyphicon glyphicon-edit">修改密码</a> </li>
-                                    <li><a href="" class="glyphicon glyphicon-th">修改邮箱</a> </li>
+                                    <li><a href="{% url 'webuser:webuser_password' %}" class="glyphicon glyphicon-edit">修改密码</a> </li>
+                                    <li><a href="{% url 'webuser:webuser_email' %}" class="glyphicon glyphicon-th">修改邮箱</a> </li>
                                     <li><a href="{% url 'webuser:webuser_logout' %}" class="glyphicon glyphicon-off">退出登录</a> </li>
                             </ul>
                         </li>
