@@ -23,13 +23,13 @@
     {% endif %}
     <h1 style="margin-top:0"><small>更改头像</small></h1>
     <img src="{{ user.webuser.get_picture }}" style="width:150px;border-radius:5px;margin-bottom:lem;">
-    <form enctype="multipart/form-data" method="post" action="" id="picture-upload-form">
+    <form enctype="multipart/form-data" method="post" action="{% url 'webuser:upload_picture' %}" id="picture-upload-form">
         {% csrf_token%}
         <input type="file" name="picture" style="display:none"><br>
         <button type="button" class="btn btn-primary" id="btn-upload-picture">上传照片</button>
     </form>
     {% if uploaded_picture %}
-        <form method="post" action="">
+        <form method="post" action="{% url 'webuser:save_uploaded_picture' %}">
             {%csrf_token%}
             <div class="modal fade" id="modal-upload-picture">
                 <div class="modal-dialog">
@@ -56,7 +56,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="submit" class="btn btn-primary">保存更改</button>
+                            <button type="submit" class="btn btn-primary">保存图片</button>
                         </div>
                     </div>
                 </div>

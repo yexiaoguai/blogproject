@@ -10,6 +10,8 @@ from django.conf import settings as django_settings
 
 from forms import LoginForm, SignUpForm, ProfileForm, ChangePasswordForm, ChangeEmailForm
 from models import Webuser
+from PIL import Image
+import os
 
 def index(request):
     """
@@ -141,10 +143,66 @@ def change_email(request):
 
 @login_required
 def picture(request):
-    uploaded_pictuer= False
+    uploaded_picture= False
+    # 说明头像已经上传到了服务器
     if request.GET.get("upload_picture") == "uploaded":
-        uploaded_pictuer= True
-    context = {"uploaded_pictuer":uploaded_pictuer,
+        uploaded_picture= True
+    context = {"uploaded_picture":uploaded_picture,
                "MEDIA_URL":django_settings.MEDIA_URL}
     return render(request, "webuser/picture.html", context=context)
 
+@login_required
+def upload_picture(request):
+    """
+    上传头像的视图函数
+    """
+    try:
+        # 获取到头像存放目录的路径
+        webuser_picture = django_settings.MEDIA_ROOT+"/webuser_pictures/"
+        # 上传的文件
+        f = request.FILES["picture"]
+        # 文件名
+        filename = webuser_picture+request.user.username+"_tmp.jpg"
+        # 写入到filename,把上传的文件用二进制的方式写入
+        with open(filename, "wb+") as destination:
+            for chunk in f.chunks():
+                destination.write(chunk)
+        # 打开图片
+        im = Image.open(filename)
+        width,height = im.size
+        if width > 350:
+            new_width = 350
+            new_height = (height*350)/width
+            new_size = new_width,new_height
+            # 重新设定号新的头像(抗锯齿)
+            im.thumbnail(new_size, Image.ANTIALIAS)
+            im.save(filename)
+        # 最后重定向到头像页面,给一个参数说明头像已经上传.
+        return redirect("/settings/picture/?upload_picture=uploaded")
+    except Exception as e:
+        return redirect("/settings/picture/")
+
+@login_required
+def save_uploaded_picture(request):
+    """
+    保存用户上传的头像,用户可以根据上传的头像裁剪自己想要的头像.
+    """
+    try:
+        # 获取宽高参数
+        x = int(request.POST.get("x"))
+        y = int(request.POST.get("y"))
+        w = int(request.POST.get("w"))
+        h = int(request.POST.get("h"))
+        tmp_filename = django_settings.MEDIA_ROOT+"/webuser_pictures/"+request.user.username+"_tmp.jpg"
+        filename = django_settings.MEDIA_ROOT+"/webuser_pictures/"+request.user.username+".jpg"
+        im = Image.open(tmp_filename)
+        # 根据参数裁剪头像
+        cropped_im = im.crop((x, y, w+x, h+y))
+        # 缩放头像
+        cropped_im.thumbnail((200, 200), Image.ANTIALIAS)
+        cropped_im.save(filename)
+        # 删除临时头像文件
+        os.remove(tmp_filename)
+    except Exception as e:
+        pass
+    return redirect("/settings/picture")
