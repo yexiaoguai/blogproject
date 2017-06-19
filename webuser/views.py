@@ -109,6 +109,8 @@ def change_password(request):
             # 设置新密码
             user.set_password(new_password)
             user.save()
+            # 更改密码后,需要用户再次登录
+            login(request, user)
             messages.add_message(request, messages.SUCCESS, "您的密码修改成功.")
     else:
         form = ChangePasswordForm(instance=user)
