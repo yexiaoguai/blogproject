@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -11,7 +12,7 @@ from django.conf import settings as django_settings
 from forms import LoginForm, SignUpForm, ProfileForm, ChangePasswordForm, ChangeEmailForm
 from models import Webuser
 from PIL import Image
-import os
+import os, json
 
 def index(request):
     """
@@ -206,3 +207,39 @@ def save_uploaded_picture(request):
     except Exception as e:
         pass
     return redirect("/settings/picture")
+
+@login_required
+def getuserinfo(request, userid):
+    JOB_CHOICE = {0:"学生", 1:"工程师", 2:"个体户", 3:"公务员", 4:"其他"}
+
+    user = User.objects.get(pk=userid)
+    job = JOB_CHOICE[int(user.webuser.job_title)]
+    print "朋友数据:",user.webuser.friends.all()
+    for friend in user.webuser.friends.all():
+        print "姓名:",friend.user
+        print "图片",friend.get_picture
+    friends = user.webuser.friends.all()
+    return render(request, "webuser/userinfo.html", {"user":user, "job":job, "friends":friends})
+
+@login_required
+def addfriends(request):
+    """
+    添加好友
+    """
+    if request.method == "POST":
+        data = json.loads(request.POST.get("data"))
+        friendid = data["friendid"]
+        actiontype = data["actiontype"]
+        print "添加好友的数据:", data
+        if actiontype == "friend":
+            # 获取当前用户的webuser
+            webuser = request.user.webuser
+            if webuser.id == int(friendid):
+                return HttpResponse("error")
+            # 根据friendid获取到用户webuser
+            friend = Webuser.objects.get(pk=friendid)
+            # 将friend添加到该用户的好友里
+            webuser.friends.add(friend)
+        return HttpResponse("success")
+    else:
+        return HttpResponse("error")

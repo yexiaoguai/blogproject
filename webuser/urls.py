@@ -16,7 +16,9 @@ urlpatterns = [
     url(r'^settings/picture/$', views.picture, name="webuser_picture"),
     url(r'^settings/upload_picture/$', views.upload_picture, name="upload_picture"),
     url(r'^settings/save_uploaded_picture/$', views.save_uploaded_picture, name="save_uploaded_picture"),
+    url(r'^settings/addfriends/$', views.addfriends, name="addfriends"),
     url(r'^webuser/changepassword/$', views.change_password, name="webuser_password"),
     url(r'^webuser/changeemail/$', views.change_email, name="webuser_email"),
+    url(r'^webuser/getuserinfo/(?P<userid>[0-9]+)/$', views.getuserinfo, name="getuserinfo"),
     url(r'^weblogout/$', auth_views.logout, {"next_page":"/webuser"}, name="webuser_logout"),
 ]
