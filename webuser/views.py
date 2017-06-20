@@ -226,7 +226,6 @@ def addfriends(request):
         data = json.loads(request.POST.get("data"))
         friendid = data["friendid"]
         actiontype = data["actiontype"]
-        print "添加好友的数据:", data
         if actiontype == "friend":
             # 获取当前用户的webuser
             webuser = request.user.webuser
