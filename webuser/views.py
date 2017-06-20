@@ -214,10 +214,6 @@ def getuserinfo(request, userid):
 
     user = User.objects.get(pk=userid)
     job = JOB_CHOICE[int(user.webuser.job_title)]
-    print "朋友数据:",user.webuser.friends.all()
-    for friend in user.webuser.friends.all():
-        print "姓名:",friend.user
-        print "图片",friend.get_picture
     friends = user.webuser.friends.all()
     return render(request, "webuser/userinfo.html", {"user":user, "job":job, "friends":friends})
 
