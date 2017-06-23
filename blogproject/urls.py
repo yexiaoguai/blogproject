@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'', include('comments.urls')),
     url(r'', include('webuser.urls')),
     url(r'', include('movie.urls')),
+    url(r'', include('questions.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

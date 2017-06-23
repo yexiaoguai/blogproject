@@ -42,8 +42,12 @@ function GetCsrfToken(){
             </div>
             <div class="col-md-4 col-sm-4 userinfo">
                 <h3>{{ user.username }}</h3>
-                <h5>{{ user.email }}</h5>
-                <h5>职业: {{ job }}</h5>               
+                <h5>邮箱: {{ user.email }}</h5>
+                <h5>职业: {{ job }}</h5>
+                <h5>喜欢电影的类型:</h5>
+                {% for likestyle in likestyle_list %}
+                      <a>{{ likestyle }}</a>
+                {% endfor %}             
             </div>
             <div class="col-md-2 col-sm-2">
                 <p><button type="button" class="btn btn-primary action disabled" friendid="{{user.webuser.id}}" actiontype="view"><span class="glyphicon glyphicon-leaf">关注此人</span> </button></p>
@@ -55,7 +59,7 @@ function GetCsrfToken(){
             <div class="col-md-4 col-sm-4 userinfo">
                 <ul class="nav navbar-nav">
                 {% for friend in friends %}
-                    <li >
+                    <li>
                         <p><h5 style="text-align:center" href="{% url 'webuser:getuserinfo' friend.user.id %}">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="{% url 'webuser:getuserinfo' friend.user.id %}">

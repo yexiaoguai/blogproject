@@ -147,9 +147,9 @@ class ProfileForm(forms.ModelForm):
     """
     用户资料表单
     """
-    LIKE_STYLE_CHOICE = (("0", "动作"), ("1", "悬疑"), ("2", "爱情"), ("3", "科幻"), 
-                         ("4", "恐怖"), ("5", "犯罪"), ("6", "其他"))
-    JOB_CHOICE = (("0", "学生"), ("1", "工程师"), ("2", "个体户"), ("3", "公务员"), ("4", "其他"))
+    LIKE_STYLE_CHOICE = ((u"0", u"动作"), (u"1", u"悬疑"), (u"2", u"爱情"), (u"3", u"科幻"), 
+                         (u"4", "恐怖"), (u"5", "犯罪"), (u"6", u"其他"))
+    JOB_CHOICE = ((u"0", "学生"), (u"1", "工程师"), (u"2", "个体户"), (u"3", "公务员"), (u"4", "其他"))
     url = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control"}),
                           max_length=50,
                           required=False,
@@ -165,7 +165,7 @@ class ProfileForm(forms.ModelForm):
     job_title = forms.IntegerField(widget=forms.RadioSelect(choices=JOB_CHOICE, attrs={"class":"radio-inline"}),
                                    required=False,
                                    label="职业")
-    sex = forms.IntegerField(widget=forms.RadioSelect(choices=((0, "男"), (1, "女")), attrs={"class":"radio-inline"}),
+    sex = forms.IntegerField(widget=forms.RadioSelect(choices=((0, u"男"), (1, u"女")), attrs={"class":"radio-inline"}),
                              label="性别")
     likestyle = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple(),
                                           choices=LIKE_STYLE_CHOICE,

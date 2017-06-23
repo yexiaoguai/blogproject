@@ -12,7 +12,7 @@ from django.conf import settings as django_settings
 from forms import LoginForm, SignUpForm, ProfileForm, ChangePasswordForm, ChangeEmailForm
 from models import Webuser
 from PIL import Image
-import os, json
+import os, json, re
 
 def index(request):
     """
@@ -211,11 +211,15 @@ def save_uploaded_picture(request):
 @login_required
 def getuserinfo(request, userid):
     JOB_CHOICE = {0:"学生", 1:"工程师", 2:"个体户", 3:"公务员", 4:"其他"}
+    LIKE_STYLE_CHOICE = {0:"动作", 1:"悬疑", 2:"爱情", 3:"科幻", 4:"恐怖", 5:"犯罪", 6:"其他"}
 
     user = User.objects.get(pk=userid)
     job = JOB_CHOICE[int(user.webuser.job_title)]
+    likestyle_list = []
+    for likestyle in user.webuser.likesstyle[1:-1].split(","):
+        likestyle_list.append(LIKE_STYLE_CHOICE[int(likestyle.strip()[2])])
     friends = user.webuser.friends.all()
-    return render(request, "webuser/userinfo.html", {"user":user, "job":job, "friends":friends})
+    return render(request, "webuser/userinfo.html", {"user":user, "job":job, "friends":friends, "likestyle_list":likestyle_list})
 
 @login_required
 def addfriends(request):
