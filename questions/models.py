@@ -56,3 +56,16 @@ class Question(models.Model):
         """
         return markdown.markdown(self.get_description_preview(), safe_mode="escape")
 
+    @staticmethod
+    def get_unanswered():
+        """
+        返回未采纳的问题列表.
+        """
+        return Question.objects.filter(has_accepted_answer=False)
+
+    @staticmethod
+    def get_answered():
+        """
+        返回采纳的问题列表.
+        """
+        return Question.objects.filter(has_accepted_answer=True)
