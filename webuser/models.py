@@ -5,6 +5,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings as django_settings
 
+from questions.models import Notification
+
 import urllib, os
 
 class Webuser(models.Model):
@@ -41,3 +43,14 @@ class Webuser(models.Model):
                 return no_picture
         except Exception as e:
             return no_picture
+
+    def notify_answered(self, question):
+        """
+        """
+        if self.user != question.user:
+            Notification(
+                notification_type=Notification.ANSWERED,
+                from_user=self.user,
+                to_user=question.user,
+                question=question
+            ).save()

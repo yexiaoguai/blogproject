@@ -6,11 +6,9 @@ $(function () {
 
   $(".accept").click(function () {
     var span = $(this);
-    alert($(this))
     var question = $(".question").attr("question-id");
     var answer = $(this).closest(".answer").attr("answer-id");
     var csrf = $("input[name='csrfmiddlewaretoken']", $(this).closest(".answer")).val();
-    alert(csrf)
     $.ajax({
       url: '/questions/answer/accept/',
       data: {
