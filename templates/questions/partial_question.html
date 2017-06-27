@@ -1,12 +1,12 @@
 {% load humanize %}
 
-<div class="panel panel-default question" question-id="{{ question.id }}">
+<div class="panel panel-default question" question-id="{{ question.id }}" source="{{ source }}">
     <div class="panel-heading">
         <h3 class="panel-title">
         {% if question.has_accepted_answer %}
             <span class="glyphicon glyphicon-ok"></span>
         {% endif %}
-        <a href="">{{ question.title }}</a>
+        <a>{{ question.title }}</a>
         </h3>
     </div>
     <div class="panel-body clearfix">

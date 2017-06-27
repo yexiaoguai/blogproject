@@ -14,8 +14,14 @@
 <div id="mainbody">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="{% url 'questions:questions' %}">{% trans "找电影" %}</a></li>
-            <li class="active">{% trans "回答" %}</li>
+            {% if source == 'concern_issues' %}
+                <li><a href="{% url 'webuser:webuser_settings' %}">{% trans "我的主页" %}</a></li>
+                <li><a href="{% url 'webuser:concern_issues' %}">{% trans "我关注的问题" %}</a></li>
+                <li class="active">{% trans "回答" %}</li>
+            {% elif source == 'questions_list' %}
+                <li><a href="{% url 'questions:questions' %}">{% trans "找电影" %}</a></li>
+                <li class="active">{% trans "回答" %}</li>
+            {% endif %}
         </ol>
         <div class="row question" question-id="{{ question.id }}">
         {% csrf_token %}

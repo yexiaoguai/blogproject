@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^questions/answer/(?P<questionid>[0-9]+)/$', views.answer, name="answer"),
     url(r'^questions/answer/accept/$', views.accept, name="accept"),
     url(r'^questions/answer/vote/$', views.vote, name="vote"),
+    url(r'^questions/favorite/$', views.favorite, name="favorite"),
 ]

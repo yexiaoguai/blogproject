@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %} 问答园 {% endblock title %}
+{% block title %} 找电影 {% endblock title %}
 {% block head %}
     <link href="{% static 'questions/css/questions.css' %}" rel="stylesheet">
     <script src="{% static 'questions/js/questions.js' %}"></script>
@@ -27,10 +27,11 @@
             </ul>
 
             {% for question in questions %}
-                {% include 'questions/partial_question.html' with question=question %}
+                {% include 'questions/partial_question.html' with question=question source=source %}
             {% empty %}
                 <h4 class="no-data">{% trans "目前没有问题." %}</h4>
             {% endfor %}
+            {% include 'questions/paginator.html' with paginator=questions %}
         </div>
     </div>
 </div>

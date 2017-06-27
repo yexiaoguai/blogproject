@@ -1,7 +1,8 @@
 $(function () {
   $(".question .panel-body").click(function () {
     var question_id = $(this).closest(".question").attr("question-id");
-    location.href = "/questions/" + question_id;
+    var source = $(this).closest(".question").attr("source");
+    location.href = "/questions/" + question_id + "?source=" + source;
   });
 
   $(".accept").click(function () {

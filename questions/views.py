@@ -9,6 +9,7 @@ from django.db.models import Q
 
 from .models import Question, Tag, Answer, Activity
 from .forms import QuestionForm, AnswerForm
+from blog.utils import pagination_data
 
 import sys
 
@@ -23,11 +24,15 @@ def question(request, questionid):
     单个问题的视图函数.
     """
     action = "questions"
+    source = request.GET.get("source")
+    print source
+
     question = get_object_or_404(Question, pk=questionid)
     form = AnswerForm(instance=question)
     context = {"question":question,
                "action":action,
-               "form":form}
+               "form":form,
+               "source":source}
     return render(request, "questions/question.html", context=context)
     
 def all(request):
@@ -53,6 +58,8 @@ def answered_questions(request):
 
 def _questions(request, questions, active):
     action = "questions"
+    source = "questions_list"
+
     paginator = Paginator(questions, 10)
     page = request.GET.get("page")
     if page is not None:
@@ -66,9 +73,26 @@ def _questions(request, questions, active):
     except EmptyPage:
         # page的数目超过了最大页数,遇到这种情况会返回最后一页的数据给用户
         questions = paginator.page(paginator.num_pages)
+
     context = {"questions":questions,
                "active":active,
-               "action":action} 
+               "action":action,
+               "source":source}
+    
+    # 默认不分页.
+    is_paginated = False
+    # 总页码数量大于2的情况下,需要分页.
+    if paginator.num_pages > 1:
+        is_paginated = True
+    # 当前页码.
+    page_number = questions.number
+    # 获取到整个分页页码列表,比如分了4页,那么就是[1,2,3,4]
+    page_range = paginator.page_range
+    total_pages = paginator.num_pages
+    # 获取了各种参数.
+    data = pagination_data(page_number, page_range, total_pages, is_paginated)
+    # 更新参数字典. 
+    context.update(data)
     return render(request, "questions/questions.html", context=context)
 
 @login_required
@@ -114,7 +138,7 @@ def answer(request, questionid):
             answer.save()
             #
             answer.user.webuser.notify_answered(answer.question)
-            return redirect(u"/questions/{0}".format(answer.question.pk))
+            return redirect(u"/questions/{0}/?source=questions_list".format(answer.question.pk))
         else:
             return render(request, "questions/question.html", {"question":question, "form":form})
     else:
@@ -160,3 +184,21 @@ def vote(request):
         activity = Activity(activity_type=vote, user=user, answer=answer_id)
         activity.save()
     return HttpResponse(answer.calculate_votes())
+
+@login_required
+def favorite(request):
+    """
+    用户关注问题的视图函数.
+    """
+    question_id = request.POST["question"]
+    question = Question.objects.get(pk=question_id)
+    user = request.user
+    # 获取该用户关注的行为.
+    activity = Activity.objects.filter(activity_type=Activity.FAVORITE, user=user, question=question_id)
+    if activity:
+        activity.delete()
+    else:
+        # 没有该行为就创建该行为.
+        activity = Activity(activity_type=Activity.FAVORITE, user=user, question=question_id)
+        activity.save()
+    return HttpResponse(question.calculate_favorite())

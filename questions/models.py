@@ -100,6 +100,15 @@ class Question(models.Model):
         """
         return Answer.objects.filter(question=self)
 
+    def calculate_favorite(self):
+        """
+        计算问题的关注数量.
+        """
+        favorites = Activity.objects.filter(activity_type=Activity.FAVORITE, question=self.pk).count()
+        self.favorites = favorites
+        self.save(update_fields=["favorites"])
+        return self.favorites
+
     @staticmethod
     def get_unanswered():
         """

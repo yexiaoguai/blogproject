@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -10,6 +11,8 @@ from django.contrib import messages
 from django.conf import settings as django_settings
 
 from forms import LoginForm, SignUpForm, ProfileForm, ChangePasswordForm, ChangeEmailForm
+from questions.models import Activity, Question
+from blog.utils import pagination_data
 from models import Webuser
 from PIL import Image
 import os, json, re
@@ -242,3 +245,48 @@ def addfriends(request):
         return HttpResponse("success")
     else:
         return HttpResponse("error")
+
+@login_required
+def concern_issues(request):
+    """
+    当前用户关注问题的视图函数.
+    """
+    source = "concern_issues"
+    user = request.user
+    activites = Activity.objects.filter(activity_type=Activity.FAVORITE, user=user)
+    questions = []
+    for activity in activites:
+        question = get_object_or_404(Question, pk=activity.question)
+        questions.append(question)
+    # 对关注的问题进行分页
+    paginator = Paginator(questions, 10)
+    page = request.GET.get("page")
+    if page is not None:
+        page = int(page)
+    else:
+        page = 1
+    try:
+        questions = paginator.page(page)
+    except PageNotAnInteger:
+        questions = paginator.page(1)
+    except EmptyPage:
+        # page的数目超过了最大页数,遇到这种情况会返回最后一页的数据给用户
+        questions = paginator.page(paginator.num_pages)
+
+    context = {"questions":questions, "source":source}
+
+    # 默认不分页.
+    is_paginated = False
+    # 总页码数量大于2的情况下,需要分页.
+    if paginator.num_pages > 1:
+        is_paginated = True
+    # 当前页码.
+    page_number = questions.number
+    # 获取到整个分页页码列表,比如分了4页,那么就是[1,2,3,4]
+    page_range = paginator.page_range
+    total_pages = paginator.num_pages
+    # 获取了各种参数.
+    data = pagination_data(page_number, page_range, total_pages, is_paginated)
+    # 更新参数字典. 
+    context.update(data)
+    return render(request, "webuser/concern_issues.html", context=context)

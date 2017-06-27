@@ -1,0 +1,42 @@
+<ul class="pagination">
+    {% if paginator.has_previous %}
+        <li><a href="?page={{ paginator.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    
+    {% if first %}
+        <!-- 判断是否显示第一页的页码号 -->
+        <li><a href="?page=1">1</a></li>
+    {% endif %}
+    {% if left %}
+        {% if left_has_more %}
+            <!-- 判断是否显示第一页前的省略号 -->
+            <li>... &nbsp</li>
+        {% endif %}
+        {% for i in left %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endfor %}
+    {% endif %}
+    <!-- 当前页 -->
+    <li class="active"><span>{{ paginator.number }} <span class="sr-only">(current)</span></span></li>
+    {% if right %}
+        {% for i in right %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endfor %}
+        {% if right_has_more %}
+            <!-- 判断是否显示最后一页前的省略号 -->
+            <li>... &nbsp</li>
+        {% endif %}
+    {% endif %}
+    {% if last %}
+        <!-- 判断是否显示最后一页的页码号 -->
+        <li><a href="?page={{ paginator.paginator.num_pages }}">{{ paginator.paginator.num_pages }}</a></li>
+    {% endif %}
+
+    {% if paginator.has_next %}
+        <li><a href="?page={{ paginator.next_page_number }}">&raquo;</a></li>
+    {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+</ul>
