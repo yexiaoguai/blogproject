@@ -25,10 +25,11 @@ def question(request, questionid):
     """
     action = "questions"
     source = request.GET.get("source")
-    print source
-
+    if source == None:
+        source = "my_answer"
     question = get_object_or_404(Question, pk=questionid)
     form = AnswerForm(instance=question)
+    
     context = {"question":question,
                "action":action,
                "form":form,

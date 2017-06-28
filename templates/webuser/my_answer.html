@@ -1,0 +1,33 @@
+{% extends "webuserbase.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load static %}
+
+{% block title %} 我的回答 {% endblock title %}
+{% block head %}
+    <link href="{% static 'questions/css/questions.css' %}" rel="stylesheet">
+    <script src="{% static 'questions/js/questions.js' %}"></script>
+{% endblock %}
+
+{% block page_content %}
+<div id="mainbody">
+    <div class="container">
+        <div class="header">
+            <ol class="breadcrumb">
+                <li><a href="{% url 'webuser:webuser_settings' %}">{% trans "我的主页" %}</a></li>
+                <li class="active">{% trans "我的回答" %}</li>
+            </ol>
+        </div>
+
+        <div class="questions">
+            {% for answer in answer_list %}
+                {% include 'webuser/partial_my_answer.html' with answer=answer %}
+            {% empty %}
+            <h4 class="no-data">{% trans "你目前没有回答的答案." %}</h4>
+            {% endfor %}
+
+            {% include 'questions/paginator.html' with paginator=answer_list %}
+        </div>
+    </div>
+</div>
+{% endblock page_content %}

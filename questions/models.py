@@ -185,6 +185,9 @@ class Answer(models.Model):
         return voters
 
     def get_down_voters(self):
+        """
+        返回给这个问题投反对票的用户列表.
+        """
         votes = Activity.objects.filter(activity_type=Activity.DOWN_VOTE, answer=self.pk)
         voters = []
         for vote in votes:
@@ -196,6 +199,13 @@ class Answer(models.Model):
         返回回答内容markdown.
         """
         return markdown.markdown(self.answer_content, safe_mode="escape")
+
+    def get_question_title(self): 
+        """
+        返回该答案的问题题目.
+        """      
+        question = Question.objects.get(pk=self.question.pk)
+        return question.title
 
 class Notification(models.Model):
     _FAVORITED_TEMPLATE = u'<a href="/{0}/">{1}</a> favorited your question: <a href="/questions/{2}/">{3}</a>'

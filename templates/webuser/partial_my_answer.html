@@ -1,0 +1,29 @@
+{% load i18n %}
+{% load humanize %}
+
+<div class="row answer" answer-id="{{ answer.id }}">
+{% csrf_token %}
+    <div class="panel-heading">
+        <h3 class="panel-title">
+        {% if answer.question.has_accepted_answer %}
+            <span class="glyphicon glyphicon-ok"></span>
+        {% endif %}
+        <a href="{% url 'questions:question' answer.question.pk %}">{{ answer.get_question_title|safe }}</a>
+        </h3>
+    </div>
+    <div class="col-md-1 options">
+        <span class="glyphicon glyphicon-chevron-up vote up-vote{% if user in answer.get_up_voters %} voted{% endif %}" title="{% trans '赞成' %}"></span>
+        <span class="votes">{{ answer.votes }}</span>
+        <span class="glyphicon glyphicon-chevron-down vote down-vote{% if user in answer.get_down_voters %} voted{% endif %}" title="{% trans '反对' %}"></span>
+    </div>
+    <div class="col-md-11">
+        <div class="answer-user">
+            <a><img src="{{ answer.user.webuser.get_picture }}" class="media-object img-circle" style='max-width:40px;'></a>
+            <a href="{% url 'webuser:getuserinfo' answer.user.id %}" class="username">{{ answer.user.username }}</a>
+            <small class="answered">{% trans "在" %} {{ answer.create_date|naturaltime }}{% trans "回答" %}</small>
+        </div>
+        <div class="answer-description">
+            {{ answer.get_answercontent_as_markdown|safe }}
+        </div>
+    </div>
+</div>

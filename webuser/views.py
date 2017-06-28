@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.conf import settings as django_settings
 
 from forms import LoginForm, SignUpForm, ProfileForm, ChangePasswordForm, ChangeEmailForm
-from questions.models import Activity, Question
+from questions.models import Activity, Question, Answer
 from blog.utils import pagination_data
 from models import Webuser
 from PIL import Image
@@ -272,7 +272,6 @@ def concern_issues(request):
     except EmptyPage:
         # page的数目超过了最大页数,遇到这种情况会返回最后一页的数据给用户
         questions = paginator.page(paginator.num_pages)
-
     context = {"questions":questions, "source":source}
 
     # 默认不分页.
@@ -290,3 +289,79 @@ def concern_issues(request):
     # 更新参数字典. 
     context.update(data)
     return render(request, "webuser/concern_issues.html", context=context)
+
+@login_required
+def my_questions(request):
+    """
+    当前用户提出问题的视图函数.
+    """
+    source = "my_questions"
+    user = request.user
+    # 获取该用户的问题列表.
+    questions = Question.objects.filter(user=user)
+    # 对用户提的问题进行分页
+    paginator = Paginator(questions, 10)
+    page = request.GET.get("page")
+    if page is not None:
+        page = int(page)
+    else:
+        page = 1
+    try:
+        questions = paginator.page(page)
+    except PageNotAnInteger:
+        questions = paginator.page(1)
+    except EmptyPage:
+        # page的数目超过了最大页数,遇到这种情况会返回最后一页的数据给用户
+        questions = paginator.page(paginator.num_pages)
+    context = {"questions":questions, "source":source}
+
+    # 默认不分页.
+    is_paginated = False
+    # 总页码数量大于2的情况下,需要分页.
+    if paginator.num_pages > 1:
+        is_paginated = True
+    # 当前页码.
+    page_number = questions.number
+    # 获取到整个分页页码列表,比如分了4页,那么就是[1,2,3,4]
+    page_range = paginator.page_range
+    total_pages = paginator.num_pages
+    # 获取了各种参数.
+    data = pagination_data(page_number, page_range, total_pages, is_paginated)
+    # 更新参数字典. 
+    context.update(data)
+    return render(request, "webuser/my_questions.html", context=context)
+
+@login_required
+def my_answer(request):
+    user = request.user
+    # 获取当前用户回答的答案
+    answer_list = Answer.objects.filter(user=user)
+    paginator = Paginator(answer_list, 10)
+    page = request.GET.get("page")
+    if page is not None:
+        page = int(page)
+    else:
+        page = 1
+    try:
+        answer_list = paginator.page(page)
+    except PageNotAnInteger:
+        answer_list = paginator.page(1)
+    except EmptyPage:
+        # page的数目超过了最大页数,遇到这种情况会返回最后一页的数据给用户
+        answer_list = paginator.page(paginator.num_pages)
+    context = {"answer_list":answer_list}
+
+    is_paginated = False
+    # 总页码数量大于2的情况下,需要分页.
+    if paginator.num_pages > 1:
+        is_paginated = True
+    # 当前页码.
+    page_number = answer_list.number
+    # 获取到整个分页页码列表,比如分了4页,那么就是[1,2,3,4]
+    page_range = paginator.page_range
+    total_pages = paginator.num_pages
+    # 获取了各种参数.
+    data = pagination_data(page_number, page_range, total_pages, is_paginated)
+    # 更新参数字典. 
+    context.update(data)
+    return render(request, "webuser/my_answer.html", context=context)
