@@ -44,7 +44,7 @@
                     <li {% if action == 'getmovielist' %} class="active" {% endif %}><a href="{% url 'movie:getmovielist' %}">电影池</a></li>
                     <li><a href="">排行榜</a></li>
                     <li {% if action == 'questions' %} class="active" {% endif %}><a href="{% url 'questions:questions' %}">找电影</a></li>
-                    <li><a href="">聊电影</a></li>
+                    <li {% if action == 'webchat' %} class="active" {% endif %}><a href="{% url 'webchat:webchat' %}">聊电影</a></li>
                 </ul>
                 <form action="{% url 'movie:searchmovie' %}" class="navbar-form navbar-left">
                     <input type="text" placeholder="电影搜索" class="form-control movie-search" name="q">

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'movie', 
     'webuser',
     'questions',
+    'webchat',
 ]
 
 MIDDLEWARE = [
