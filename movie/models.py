@@ -8,6 +8,14 @@ from django.contrib.auth.models import User
 
 from datetime import datetime
 
+class MovieRankings(models.Model):
+    """
+    各种电影排行榜.
+    """
+    name = models.CharField(max_length=100)
+    def __unicode__(self):
+        return self.name
+
 class Movie(models.Model):
     """
     电影的数据库表格
@@ -65,6 +73,7 @@ class Movie(models.Model):
     dyttsearch = models.CharField(max_length=256, null=True, blank=True)
     # 电影天堂搜索电影详情页面
     dyttdetail = models.CharField(max_length=256, null=True, blank=True)
+    movierankings = models.ForeignKey(MovieRankings, null=True, blank=True)
 
     def __unicode__(self):
         return self.movie_name

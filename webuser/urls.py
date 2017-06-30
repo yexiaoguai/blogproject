@@ -9,7 +9,7 @@ import views
 app_name = "webuser"
 # ^$代表了空字符串
 urlpatterns = [
-    url(r'^webuser/$', views.index, name="webuser_index"),
+    url(r'^$', views.index, name="webuser_index"),
     url(r'^weblogin/$', views.web_login, name="webuser_login"),
     url(r'^register/$', views.register, name="webuser_register"),
     url(r'^settings/$', views.settings, name="webuser_settings"),
@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'^webuser/changepassword/$', views.change_password, name="webuser_password"),
     url(r'^webuser/changeemail/$', views.change_email, name="webuser_email"),
     url(r'^webuser/getuserinfo/(?P<userid>[0-9]+)/$', views.getuserinfo, name="getuserinfo"),
-    url(r'^weblogout/$', auth_views.logout, {"next_page":"/webuser"}, name="webuser_logout"),
+    url(r'^weblogout/$', auth_views.logout, {"next_page":"/"}, name="webuser_logout"),
 ]

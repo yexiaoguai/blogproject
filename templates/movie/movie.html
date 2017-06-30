@@ -1,0 +1,115 @@
+{% extends "webuserbase.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load movie_tags %}
+
+{% block title %} 电影池 {% endblock title %}
+{% block head %}
+    <link href="{% static 'movie/css/index.css' %}" rel="stylesheet" xmlns="http://www.w3.org/1999/html">
+    <script src="{% static 'movie/js/movies.js' %}"></script>
+{% endblock head %}
+
+{% block page_content %}
+    <div id="mainbody" class="moviebody">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="movieList">
+
+                        <ul class="movieList_tab">
+                            <li {% if type == 'suggest' %} class="current" {% endif %}>
+                                <a href="{% url 'movie:getmovielist' %}"> {% trans '热播电影' %}</a></li>
+                            <li {% if type == 'festival' %} class="current" {% endif %} >
+                                <a href="{% url 'movie:getfilmfestlist' %}">本周口碑榜</a></li>
+                            <li {% if type == 'latest' %} class="current" {% endif %}>
+                                <a href="{% url 'movie:getlatestmovielist' %}">北美票房榜</a></li>
+                        </ul>
+
+                        <ul class="movieTab_con">
+                            <!--选项卡切换之最新-->
+                            <li class="current">
+                               <div class="movieList_con row">
+                                    <div class="col-md-4">
+                                        <div class="movieList_con_cell">
+                                            <div class="thumbnail movieList_con_cell_info">
+                                                <span class="glyphicon glyphicon-star havesee"></span>
+                                                <div class="post-thumbnail">
+                                                <a href="{{ movie.douban_link }}" class="inimg" target="_blank" title="{{ movie.movie_name }}">
+                                                    <img src="{{ movie.image }}" alt="{{ movie.movie_name }}"/>
+                                                </a>
+                                                    <div class="img_title" style="display:none">
+                                                        <small class="imdbscore">{{ movie.style }}</small><br>
+                                                        <small class="imdbscore">{{ movie.dateyear }}</small>
+                                                    </div>
+                                                </div>
+                                                <div class="caption movie-info">
+                                                    <ul class="title"><a target="_blank" href="http://baike.baidu.com/item/{{ movie.movie_name }}">{{ movie.movie_name|slice:"13" }}</a></ul>
+                                                    <ul>
+                                                        {% if movie.movie_address %}
+                                                        <a href="{{ movie.movie_address }}" target="_blank" class="btn btn-primary btn-sm btn-movie" role="button" id="{{ movie.id }}">播放</a>
+                                                        {% endif %}
+                                                        {% if movie.download_link %}
+                                                        <a href="{{ movie.download_link }}" target="_blank" class="btn btn-primary btn-sm" role="button">下载</a>
+                                                        {% endif %}
+                                                    </ul>
+                                                    <ul class="title">
+                                                        <li>
+                                                            {% ifequal movie.country '' %}top250{% endifequal %}{{ movie.country }}<br>
+                                                            <span class="wpfp-span">豆瓣评分:{{ movie.douban_score }}</span>
+                                                        </li>                                          
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>           
+                </div>
+                <!--排行榜开始-->
+                <div class="col-md-2">
+                    <div class="rankBar">
+                        <h5 class="rankBar_title">
+                            热播电影
+                        </h5>
+                        {% get_play_most_movies as play_most_movies %}
+                        <ul class="rankBar_list">
+                            {% for movie in play_most_movies %}
+                                <li><a href="{% url 'movie:movie' movie.pk %}">{{ movie.movie_name }}</a></li>
+                            {% empty %}
+                            暂时没有电影
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="rankBar">
+                        <h5 class="rankBar_title">
+                            本周口碑榜
+                        </h5>
+                        {% get_good_evaluation_movies as good_evaluation_movies %}
+                        <ul class="rankBar_list">
+                            {% for movie in good_evaluation_movies %}
+                                <li><a href="{% url 'movie:movie' movie.pk %}">{{ movie.movie_name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="rankBar">
+                        <h5 class="rankBar_title">
+                            北美票房榜
+                        </h5>
+                        {% get_box_office_movies as box_office_movies %}
+                        <ul class="rankBar_list">
+                            {% for movie in box_office_movies %}
+                                <li><a href="{% url 'movie:movie' movie.pk %}">{{ movie.movie_name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <!--排行榜结束-->
+            </div>
+        </div>
+    </div>
+{% endblock page_content %}
+
+
+ 

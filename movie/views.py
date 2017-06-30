@@ -3,11 +3,12 @@ from __future__ import unicode_literals
 import random
 
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.views.generic import ListView
 
 from models import Movie, MovieHistory
+from templatetags.movie_tags import get_play_most_movies, get_good_evaluation_movies, get_box_office_movies
 
 movie_area = ["阿根廷","巴西","澳大利亚","西班牙","南非","爱尔兰",]
 
@@ -67,9 +68,7 @@ def get_movie_list(request):
                 movie_list = moviequery.filter(dateyear__lte="2002-12-30").order_by("-douban_score", "-douban_counter")
             else:
                 movie_list = moviequery.filter(dateyear__contains=filterparam).order_by("-douban_score", "-douban_counter")
-    random_num = random.randint(0, 99)
-    imdbmovie_list = Movie.objects.order_by("douban_score")[random_num:random_num+6]
-    usamovie_list = Movie.objects.filter(country__contains="美").order_by("douban_score")[random_num:random_num+6]
+
     # 进行分页,每页12个Movie实例
     paginator = Paginator(movie_list, 12)
     try:
@@ -80,7 +79,7 @@ def get_movie_list(request):
 
     page_range = []
     for p in paginator.page_range:
-            page_range.append(p)
+        page_range.append(p)
     if page >= after_range_num:
         # 获取到整个分页页码列表,比如分了4页,那么就是[1,2,3,4].
         page_range = page_range[page-after_range_num:page+before_range_num]
@@ -127,9 +126,7 @@ def get_latest_movielist(request):
     else:
         # 默认什么选项都没有的情况下,电影列表就是按照时间排序
         movie_list = Movie.objects.filter(movie_address__isnull=False).order_by("-dateyear")
-    random_num = random.randint(0, 99)
-    imdbmovie_list = Movie.objects.order_by("douban_score")[random_num:random_num+6]
-    usamovie_list = Movie.objects.filter(country__contains="美").order_by("douban_score")[random_num:random_num+6]
+    
     # 进行分页,每页12个Movie实例
     paginator = Paginator(movie_list, 12)
     try:
@@ -183,9 +180,7 @@ def get_filmfest_list(request):
     else:
         # 默认什么选项都没有的情况下,电影列表就是按照字段带有'节'的电影列表
         movie_list = moviequery.order_by("-douban_score", "-douban_counter")
-    random_num = random.randint(0, 99)
-    imdbmovie_list = Movie.objects.order_by("douban_score")[random_num:random_num+6]
-    usamovie_list = Movie.objects.filter(country__contains="美").order_by("douban_score")[random_num:random_num+6]
+    
     # 进行分页,每页12个Movie实例
     paginator = Paginator(movie_list, 12)
     try:
@@ -207,11 +202,8 @@ def get_filmfest_list(request):
 
 def search_movie(request):
     """
-    搜索电影
+    搜索电影.
     """
-    random_num = random.randint(0, 99)
-    imdbmovie_list = Movie.objects.order_by("douban_score")[random_num:random_num+6]
-    usamovie_list = Movie.objects.filter(country__contains="美").order_by("douban_score")[random_num:random_num+6]
     # /webuser/?q=aaaa
     if "q" in request.GET:
         # 去除左右空格,有的时候用户会添加空格
@@ -222,19 +214,36 @@ def search_movie(request):
             movielist = Movie.objects.filter(movie_name__contains=query_string)
     return render(request, "movie/allfilms.html", locals())
 
+def movie(request, movie_id):
+    """
+    电影视图函数.
+    """
+    movie = get_object_or_404(Movie, pk=movie_id)
+    return render(request, "movie/movie.html", locals())
 
-        
-        
-        
+def get_playmostmovies(request):
+    """
+    热播电影的视图函数.
+    """
+    action = "rankinglist"
+    type = "playmostmovies"
+    movielist = get_play_most_movies()
+    return render(request, "movie/ranking_list.html", locals())
 
-        
-    
-    
+def get_good_evaluationmovies(request):
+    """
+    口碑榜电影的视图函数.
+    """
+    action = "rankinglist"
+    type = "good_evaluationmovies"
+    movielist = get_good_evaluation_movies()
+    return render(request, "movie/ranking_list.html", locals())
 
-
-
-
-
-
-    
-
+def get_box_officemovies(request):
+    """
+    北美票房电影的视图函数.
+    """
+    action = "rankinglist"
+    type = "box_officemovies"
+    movielist = get_box_office_movies()
+    return render(request, "movie/ranking_list.html", locals())

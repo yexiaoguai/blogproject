@@ -1,6 +1,7 @@
 {% extends "webuserbase.html" %}
 {% load staticfiles %}
 {% load i18n %}
+{% load movie_tags %}
 
 {% block title %} 电影池 {% endblock title %}
 {% block head %}
@@ -108,7 +109,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="caption movie-info">
-                                                    <ul class="title"><a href="http://baike.baidu.com/item/{{ movie.movie_name }}">{{ movie.movie_name|slice:"13" }}</a></ul>
+                                                    <ul class="title"><a target="_blank" href="http://baike.baidu.com/item/{{ movie.movie_name }}">{{ movie.movie_name|slice:"13" }}</a></ul>
                                                     <ul>
                                                         {% if movie.movie_address %}
                                                         <a href="{{ movie.movie_address }}" target="_blank" class="btn btn-primary btn-sm btn-movie" role="button" id="{{ movie.id }}">播放</a>
@@ -164,32 +165,36 @@
                         <h5 class="rankBar_title">
                             热播电影
                         </h5>
+                        {% get_play_most_movies as play_most_movies %}
                         <ul class="rankBar_list">
-                            <li><a target="_blank" href="">美人鱼</a></li>
-                            <li><a target="_blank" href="">功夫熊猫3</a></li>
-                            <li><a target="_blank" href="">叶问3</a></li>
-                            <li><a target="_blank" href="">西游记之三打白骨精</a></li>
-                            <li><a target="_blank" href="">星球大战7</a></li>
-                            <li><a target="_blank" href="">唐人街探案</a></li>
+                            {% for movie in play_most_movies %}
+                                <li><a href="{% url 'movie:movie' movie.pk %}">{{ movie.movie_name }}</a></li>
+                            {% empty %}
+                            暂时没有电影
+                            {% endfor %}
                         </ul>
                     </div>
+
                     <div class="rankBar">
                         <h5 class="rankBar_title">
                             本周口碑榜
                         </h5>
+                        {% get_good_evaluation_movies as good_evaluation_movies %}
                         <ul class="rankBar_list">
-                            {% for sidemovie in imdbmovie_list %}
-                            <li class="sider-movie"><a href="{{ sidemovie.movie_address }}" target="_blank" >{{ sidemovie.movie_name }}</a></li>
+                            {% for movie in good_evaluation_movies %}
+                                <li><a href="{% url 'movie:movie' movie.pk %}">{{ movie.movie_name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
+
                     <div class="rankBar">
                         <h5 class="rankBar_title">
                             北美票房榜
                         </h5>
+                        {% get_box_office_movies as box_office_movies %}
                         <ul class="rankBar_list">
-                            {% for usamovie in usamovie_list %}
-                            <li class="sider-movie"><a href="{{ usamovie.movie_address }}" target="_blank">{{ usamovie.movie_name }}</a></li>
+                            {% for movie in box_office_movies %}
+                                <li><a href="{% url 'movie:movie' movie.pk %}">{{ movie.movie_name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
