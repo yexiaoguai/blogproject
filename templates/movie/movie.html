@@ -18,11 +18,11 @@
 
                         <ul class="movieList_tab">
                             <li {% if type == 'suggest' %} class="current" {% endif %}>
-                                <a href="{% url 'movie:getmovielist' %}"> {% trans '热播电影' %}</a></li>
+                                <a href="{% url 'movie:playmostmovies' %}"> {% trans '热播电影' %}</a></li>
                             <li {% if type == 'festival' %} class="current" {% endif %} >
-                                <a href="{% url 'movie:getfilmfestlist' %}">本周口碑榜</a></li>
+                                <a href="{% url 'movie:good_evaluationmovies' %}">本周口碑榜</a></li>
                             <li {% if type == 'latest' %} class="current" {% endif %}>
-                                <a href="{% url 'movie:getlatestmovielist' %}">北美票房榜</a></li>
+                                <a href="{% url 'movie:box_officemovies' %}">北美票房榜</a></li>
                         </ul>
 
                         <ul class="movieTab_con">

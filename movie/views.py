@@ -7,10 +7,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.views.generic import ListView
 
+from blog.utils import pagination_data
 from models import Movie, MovieHistory
 from templatetags.movie_tags import get_play_most_movies, get_good_evaluation_movies, get_box_office_movies
 
-movie_area = ["阿根廷","巴西","澳大利亚","西班牙","南非","爱尔兰",]
+movie_area = ["阿根廷","巴西","澳大利亚","西班牙","南非","爱尔兰","伊朗"]
 
 def get_movie_list(request):
     """
@@ -19,8 +20,6 @@ def get_movie_list(request):
     # 为了区别网页上用户选择的选项块.
     action = "getmovielist"
     type = "suggest"
-    after_range_num = 5
-    before_range_num = 4
     # 获取用户请求页的页码,例如:?page=12.
     page = request.GET.get("page")
     if page is not None:
@@ -77,16 +76,27 @@ def get_movie_list(request):
     except (EmptyPage, InvalidPage, PageNotAnInteger):
         movielist = paginator.page(1)
 
-    page_range = []
-    for p in paginator.page_range:
-        page_range.append(p)
-    if page >= after_range_num:
-        # 获取到整个分页页码列表,比如分了4页,那么就是[1,2,3,4].
-        page_range = page_range[page-after_range_num:page+before_range_num]
-    else:
-        page_range = page_range[0:page+before_range_num]
-    #  locals()返回一个包含当前作用域里面的所有变量和它们的值的字典.
-    return render(request, "movie/allfilms.html", locals())
+    context = {"movielist":movielist,
+               "type":type,
+               "action":action,
+               "filtertype":filtertype,
+               "filterparam":filterparam,}
+    
+    # 默认不分页.
+    is_paginated = False
+    # 总页码数量大于2的情况下,需要分页.
+    if paginator.num_pages > 1:
+        is_paginated = True
+    # 当前页码.
+    page_number = movielist.number
+    # 获取到整个分页页码列表,比如分了4页,那么就是[1,2,3,4]
+    page_range = paginator.page_range
+    total_pages = paginator.num_pages
+    # 获取了各种参数.
+    data = pagination_data(page_number, page_range, total_pages, is_paginated)
+    # 更新参数字典. 
+    context.update(data)
+    return render(request, "movie/allfilms.html", context=context)
 
 def get_latest_movielist(request):
     """
@@ -95,8 +105,6 @@ def get_latest_movielist(request):
     # 为了区别网页上用户选择的选项块.
     action = "getmovielist"
     type = "latest"
-    after_range_num = 5
-    before_range_num = 4
     # 获取用户请求页的页码,例如:?page=12.
     page = request.GET.get("page")
     if page is not None:
@@ -135,16 +143,27 @@ def get_latest_movielist(request):
     except (EmptyPage, InvalidPage, PageNotAnInteger):
         movielist = paginator.page(1)
 
-    page_range = []
-    for p in paginator.page_range:
-        page_range.append(p)
-    if page >= after_range_num:
-        # 获取到整个分页页码列表,比如分了4页,那么就是[1,2,3,4].
-        page_range = page_range[page-after_range_num:page+before_range_num]
-    else:
-        page_range = page_range[0:page+before_range_num]
-    #  locals()返回一个包含当前作用域里面的所有变量和它们的值的字典.
-    return render(request, "movie/allfilms.html", locals())
+    context = {"movielist":movielist,
+               "type":type,
+               "action":action,
+               "filtertype":filtertype,
+               "filterparam":filterparam,}
+    
+    # 默认不分页.
+    is_paginated = False
+    # 总页码数量大于2的情况下,需要分页.
+    if paginator.num_pages > 1:
+        is_paginated = True
+    # 当前页码.
+    page_number = movielist.number
+    # 获取到整个分页页码列表,比如分了4页,那么就是[1,2,3,4]
+    page_range = paginator.page_range
+    total_pages = paginator.num_pages
+    # 获取了各种参数.
+    data = pagination_data(page_number, page_range, total_pages, is_paginated)
+    # 更新参数字典. 
+    context.update(data)
+    return render(request, "movie/allfilms.html", context=context)
 
 def get_filmfest_list(request):
     """
@@ -153,8 +172,6 @@ def get_filmfest_list(request):
     # 为了区别网页上用户选择的选项块.
     action = "getmovielist"
     type = "festival"
-    after_range_num = 5
-    before_range_num = 4
     # 获取用户请求页的页码,例如:?page=12.
     page = request.GET.get("page")
     if page is not None:
@@ -189,16 +206,27 @@ def get_filmfest_list(request):
     except (EmptyPage, InvalidPage, PageNotAnInteger):
         movielist = paginator.page(1)
 
-    page_range = []
-    for p in paginator.page_range:
-        page_range.append(p)
-    if page >= after_range_num:
-        # 获取到整个分页页码列表,比如分了4页,那么就是[1,2,3,4].
-        page_range = page_range[page-after_range_num:page+before_range_num]
-    else:
-        page_range = page_range[0:page+before_range_num]
-    #  locals()返回一个包含当前作用域里面的所有变量和它们的值的字典.
-    return render(request, "movie/allfilms.html", locals())
+    context = {"movielist":movielist,
+               "type":type,
+               "action":action,
+               "filtertype":filtertype,
+               "filterparam":filterparam,}
+    
+    # 默认不分页.
+    is_paginated = False
+    # 总页码数量大于2的情况下,需要分页.
+    if paginator.num_pages > 1:
+        is_paginated = True
+    # 当前页码.
+    page_number = movielist.number
+    # 获取到整个分页页码列表,比如分了4页,那么就是[1,2,3,4]
+    page_range = paginator.page_range
+    total_pages = paginator.num_pages
+    # 获取了各种参数.
+    data = pagination_data(page_number, page_range, total_pages, is_paginated)
+    # 更新参数字典. 
+    context.update(data)
+    return render(request, "movie/allfilms.html", context=context)
 
 def search_movie(request):
     """

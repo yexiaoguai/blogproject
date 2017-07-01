@@ -136,26 +136,49 @@
                             </li>
                             <!--最新电影结束-->
                         </ul>
-                        <!--分页符开始-->
-                        <nav class="movieList_page">
-                            <!--前一页存在返回True-->
+
+                        <ul class="pagination">
                             {% if movielist.has_previous %}
-                                <a href="?page={{ movielist.previous_page_number }}&filtertype={{ filtertype }}&filterparam={{ filterparam }}" title="上一页">上一页</a>&nbsp;
+                                <li><a href="?page={{ movielist.previous_page_number }}&filtertype={{ filtertype }}&filterparam={{ filterparam }}" title="上一页">上一页</a></li>
+                            {% else %}
+                                <li class="disabled"><span>上一页</span></li>
+                            {% endif %}
+                            
+                            {% if first %}
+                                <!-- 判断是否显示第一页的页码号 -->
+                                <li><a href="?page=1&filtertype={{ filtertype }}&filterparam={{ filterparam }}">1</a></li>
+                            {% endif %}
+                            {% if left %}
+                                {% if left_has_more %}
+                                    <!-- 判断是否显示第一页前的省略号 -->
+                                    <li><a>.....</a></li>
+                                {% endif %}
+                                {% for i in left %}
+                                    <li><a href="?page={{ i }}&filtertype={{ filtertype }}&filterparam={{ filterparam }}">{{ i }}</a></li>
+                                {% endfor %}
+                            {% endif %}
+                            <!-- 当前页 -->
+                            <li class="active"><span>{{ movielist.number }} <span class="sr-only">(current)</span></span></li>
+                            {% if right %}
+                                {% for i in right %}
+                                    <li><a href="?page={{ i }}&filtertype={{ filtertype }}&filterparam={{ filterparam }}">{{ i }}</a></li>
+                                {% endfor %}
+                                {% if right_has_more %}
+                                    <!-- 判断是否显示最后一页前的省略号 -->
+                                    <li><a>.....</a></li>
+                                {% endif %}
+                            {% endif %}
+                            {% if last %}
+                                <!-- 判断是否显示最后一页的页码号 -->
+                                <li><a href="?page={{ movielist.paginator.num_pages }}">{{ movielist.paginator.num_pages }}</a></li>
                             {% endif %}
 
-                            {% for p in page_range %}
-                                {% ifequal p movielist.number %}
-                                <span>{{ p }}</span>
-                                {% else %}
-                                <a href="?page={{ p }}&filtertype={{ filtertype }}&filterparam={{ filterparam }}" title="第{{ p }}页">{{p}}</a>
-                                {% endifequal %}
-                            {% endfor %}
-                            
                             {% if movielist.has_next %}
-                                <a href="?page={{ movielist.next_page_number }}&filtertype={{ filtertype }}&filterparam={{ filterparam }}" title="下一页">下一页</a>
+                                <li><a href="?page={{ movielist.next_page_number }}&filtertype={{ filtertype }}&filterparam={{ filterparam }}" title="下一页">下一页</a></li>
+                            {% else %}
+                                <li class="disabled"><span>下一页</span></li>
                             {% endif %}
-                        </nav>
-                        <!--分页符结束-->
+                        </ul>
                     </div>           
                 </div>
 
