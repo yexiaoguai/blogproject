@@ -70,7 +70,7 @@ def register(request):
             webuser.save()
             # 用户登录
             login(request, user)
-            return redirect("/webuser")
+            return redirect("/")
     else:
         return render(request, "webuser/register.html", {"form":SignUpForm()})
 
@@ -217,6 +217,19 @@ def getuserinfo(request, userid):
     LIKE_STYLE_CHOICE = {0:"动作", 1:"悬疑", 2:"爱情", 3:"科幻", 4:"恐怖", 5:"犯罪", 6:"其他"}
 
     user = User.objects.get(pk=userid)
+    # 如果用户没有填写资料
+    if user.webuser.job_title == None:
+        messages.add_message(request, messages.ERROR, "您要完善个人信息，才能进入个人信息页面")
+        form = ProfileForm(instance=user,
+                           initial={
+                               "job_title":user.webuser.job_title,
+                               "url":user.webuser.url,
+                               "location":user.webuser.location,
+                               "sex":user.webuser.sex,
+                               "likestyle":user.webuser.likesstyle
+                           })
+        return render(request, "webuser/person_home_page_info.html", {"form":form})
+
     job = JOB_CHOICE[int(user.webuser.job_title)]
     likestyle_list = []
     for likestyle in user.webuser.likesstyle[1:-1].split(","):

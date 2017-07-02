@@ -188,7 +188,7 @@
                         <h5 class="rankBar_title">
                             热播电影
                         </h5>
-                        {% get_play_most_movies as play_most_movies %}
+                        {% get_play_most_movies_5 as play_most_movies %}
                         <ul class="rankBar_list">
                             {% for movie in play_most_movies %}
                                 <li><a href="{% url 'movie:movie' movie.pk %}">{{ movie.movie_name }}</a></li>
@@ -196,30 +196,39 @@
                             暂时没有电影
                             {% endfor %}
                         </ul>
+                        <h5>
+                            <a href="{% url 'movie:playmostmovies' %}">完整榜单</a>
+                        </h5>
                     </div>
 
                     <div class="rankBar">
                         <h5 class="rankBar_title">
                             本周口碑榜
                         </h5>
-                        {% get_good_evaluation_movies as good_evaluation_movies %}
+                        {% get_good_evaluation_movies_5 as good_evaluation_movies %}
                         <ul class="rankBar_list">
                             {% for movie in good_evaluation_movies %}
                                 <li><a href="{% url 'movie:movie' movie.pk %}">{{ movie.movie_name }}</a></li>
                             {% endfor %}
                         </ul>
+                        <h5>
+                            <a href="{% url 'movie:good_evaluationmovies' %}">完整榜单</a>
+                        </h5>
                     </div>
 
                     <div class="rankBar">
                         <h5 class="rankBar_title">
                             北美票房榜
                         </h5>
-                        {% get_box_office_movies as box_office_movies %}
+                        {% get_box_office_movies_5 as box_office_movies %}
                         <ul class="rankBar_list">
                             {% for movie in box_office_movies %}
                                 <li><a href="{% url 'movie:movie' movie.pk %}">{{ movie.movie_name }}</a></li>
                             {% endfor %}
                         </ul>
+                        <h5>
+                            <a href="{% url 'movie:box_officemovies' %}">完整榜单</a>
+                        </h5>
                     </div>
                 </div>
                 <!--排行榜结束-->
