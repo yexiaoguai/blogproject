@@ -111,10 +111,10 @@
                                                 <div class="caption movie-info">
                                                     <ul class="title"><a target="_blank" href="http://baike.baidu.com/item/{{ movie.movie_name }}">{{ movie.movie_name|slice:"13" }}</a></ul>
                                                     <ul>
-                                                        {% if movie.movie_address %}
+                                                        {% if movie.movie_address != 'NULL' and movie.movie_address != '' %}
                                                         <a href="{{ movie.movie_address }}" target="_blank" class="btn btn-primary btn-sm btn-movie" role="button" id="{{ movie.id }}">播放</a>
                                                         {% endif %}
-                                                        {% if movie.download_link %}
+                                                        {% if movie.download_link != 'NULL' and movie.download_link != '' %}
                                                         <a href="{{ movie.download_link }}" target="_blank" class="btn btn-primary btn-sm" role="button">下载</a>
                                                         {% endif %}
                                                     </ul>

@@ -220,13 +220,14 @@ def getuserinfo(request, userid):
     # 如果用户没有填写资料
     if user.webuser.job_title == None:
         messages.add_message(request, messages.ERROR, "您要完善个人信息，才能进入个人信息页面")
-        form = ProfileForm(instance=user,
+        # 有一种可能性其他人访问该用户的userinfo,所以必须是当前用户.
+        form = ProfileForm(instance=request.user,
                            initial={
-                               "job_title":user.webuser.job_title,
-                               "url":user.webuser.url,
-                               "location":user.webuser.location,
-                               "sex":user.webuser.sex,
-                               "likestyle":user.webuser.likesstyle
+                               "job_title":request.user.webuser.job_title,
+                               "url":request.user.webuser.url,
+                               "location":request.user.webuser.location,
+                               "sex":request.user.webuser.sex,
+                               "likestyle":request.user.webuser.likesstyle
                            })
         return render(request, "webuser/person_home_page_info.html", {"form":form})
 

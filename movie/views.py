@@ -14,7 +14,7 @@ from models import Movie, MovieHistory
 from templatetags.movie_tags import get_play_most_movies, get_good_evaluation_movies, get_box_office_movies
 
 movie_area = ["阿根廷","巴西","澳大利亚","西班牙","南非","爱尔兰","伊朗","不丹","奥地利",
-              "卢森堡","比利时",]
+              "卢森堡","比利时","丹麦"]
 
 def get_movie_list(request):
     """
