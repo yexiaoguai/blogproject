@@ -12,7 +12,7 @@ movies = [
 'http://www.imdb.com/title/tt0212712','NULL','NULL','NULL','NULL','NULL','香港 / 中国大陆 / 法国 / 意大利 / 德国','2004-05-20(戛纳电影节)',
 '梁朝伟 章子怡 王菲 木村拓哉 巩俐 刘嘉玲 张震 张曼玉 董洁 Thongchai McIntyre 萧炳林 吴廷烨 张睿羚','王家卫','剧情 爱情 科幻 奇幻',
 'http://www.acfun.cn/v/ac3317394',
-'magnet:?xt=urn:btih:37a83b90c7a500f89c1c327e5f9b7a8432448379','NULL','4',1,'/static/movie/img/p1910826918.jpg','NULL','NULL','NULL','NULL','NULL','NULL')
+'magnet:?xt=urn:btih:37a83b90c7a500f89c1c327e5f9b7a8432448379','NULL','4',1,'/static/movie/img/p1910826918.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
 (247,'苏州河','https://movie.douban.com/subject/1299661/','7.8',88029,
 'http://www.imdb.com/title/tt0234837','NULL','NULL','NULL','NULL','NULL','中国 / 德国','2000-09-07(香港)',
 '周迅 贾宏声 华仲凯 姚安濂 耐安 ','娄烨','剧情 爱情',
