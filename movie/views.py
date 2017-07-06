@@ -177,6 +177,15 @@ def get_latest_movielist(request):
     else:
         # 默认什么选项都没有的情况下,电影列表就是按照时间排序
         movie_list = Movie.objects.filter(movie_address__isnull=False).order_by("-dateyear")
+        # 查询url代码,留住备用.
+        # lista = list(Movie.objects.values("douban_link"))
+        # listc = []
+        # for listb in lista:
+        #     listc.append(listb["douban_link"])
+        # list_str = "\n".join(listc)
+        # print "List is : ", list_str
+        # with open("/home/yeliang/urls.txt", "w") as f:
+        #     f.write(list_str)
     
     # 进行分页,每页12个Movie实例
     paginator = Paginator(movie_list, 12)
