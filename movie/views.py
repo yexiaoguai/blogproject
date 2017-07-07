@@ -98,7 +98,7 @@ def get_movie_list(request):
                     movie_list = movie_list | movie_list_area
                 movie_list = movie_list.order_by("-douban_score", "-douban_counter")
             else:
-                movie_list = moviequery.filter(country__contains=filterparam).order_by("-douban_score", "-douban_counter")
+                movie_list = Movie.objects.filter(country__contains=filterparam).order_by("-douban_score", "-douban_counter")
         elif filtertype == "year":
             # 过滤上映日期
             if filterparam == "20":
