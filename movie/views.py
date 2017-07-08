@@ -184,7 +184,7 @@ def get_latest_movielist(request):
         #     listc.append(listb["douban_link"])
         # list_str = "\n".join(listc)
         # print "List is : ", list_str
-        # with open("/home/yeliang/urls.txt", "w") as f:
+        # with open("/home/xiaoguai/urls.txt", "w") as f:
         #     f.write(list_str)
     
     # 进行分页,每页12个Movie实例
