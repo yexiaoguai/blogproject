@@ -8,8 +8,9 @@ class QuestionForm(forms.ModelForm):
     """
     提问题的表单.
     """
-    choices=[(t.id, t.name) for t in Tag.objects.all()]
-    tag = forms.MultipleChoiceField(choices=choices,
+    STYLE_CHOICE = ((u"1", u"动作"), (u"2", u"悬疑"), (u"3", u"爱情"), (u"4", u"科幻"), 
+                    (u"5", "恐怖"), (u"6", "喜剧"), (u"7", u"其它"))
+    tag = forms.MultipleChoiceField(choices=STYLE_CHOICE,
                                     widget=forms.CheckboxSelectMultiple(),
                                     required=False,
                                     label="标签")
