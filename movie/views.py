@@ -177,6 +177,15 @@ def get_latest_movielist(request):
     else:
         # 默认什么选项都没有的情况下,电影列表就是按照时间排序
         movie_list = Movie.objects.filter(movie_address__isnull=False).order_by("-dateyear")
+        # 查询没有download_link的电影名称.
+        # listc = []
+        # movie_list = Movie.objects.filter(download_link="NULL")
+        # for listb in movie_list: 
+        #     listc.append(listb.movie_name)
+        # list_str = "\n".join(listc)
+        # print "List is : ", list_str
+        # with open("/home/xiaoguai/movie_name.txt", "w") as f:
+        #     f.write(list_str.encode("utf-8"))
     
     # 进行分页,每页12个Movie实例
     paginator = Paginator(movie_list, 12)

@@ -7,7516 +7,2526 @@ conn = sqlite3.connect("db.sqlite3")
 conn.text_factory = str
 cur = conn.cursor()
 
-movies = [
-(9020,'真实','https://movie.douban.com/subject/26362764/','6.6',860,
-'http://www.imdb.com/title/tt6904062','NULL','NULL','NULL','NULL','NULL','韩国','2017-06-28(韩国)',
-'金秀贤 成东日 李圣旻 李璟荣 赵宇镇 韩智恩 崔雪莉','이사랑','剧情 动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML-jAr-s78MAPyNQ4GUlkww',
-'magnet:?xt=urn:btih:2579afd09b23ed682237100a957b77537a07cce7','NULL','4',1,'/static/movie/img/p2460120818.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9021,'缉枪','https://movie.douban.com/subject/26801782/','6.7',1035,
-'http://www.imdb.com/title/tt6096894','NULL','NULL','NULL','NULL','NULL','中国大陆','2017-06-23(中国大陆)',
-'白举纲 连奕名 热依扎 洪剑涛 王泷正 童苡宣 戚云鹏 陈启杰 任东霖','徐兵','剧情 动作 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2461747793.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9022,'有迹可循','https://movie.douban.com/subject/26869265/','3.0',145,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-12-23(中国大陆)',
-'张雅玫 董博睿 颜玮良 王程 崔靖','石英杰','爱情 悬疑 犯罪',
-'http://www.iqiyi.com/v_19rraepdzo.html',
-'NULL','NULL','4',1,'/static/movie/img/p2403079835.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9023,'中国推销员','https://movie.douban.com/subject/26266924/','4.2',1201,
-'http://www.imdb.com/title/tt6015706','NULL','NULL','NULL','NULL','NULL','中国大陆','2017-06-16(中国大陆)',
-'李东学 迈克·泰森 史蒂文·席格 李艾 王自健 安妮克·阿斯克渥德 克罗维斯·弗昂 艾瑞克·艾伯纳尼','檀冰','剧情 动作 爱情 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2461964183.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9024,'钢刀','https://movie.douban.com/subject/21264283/','4.0',2904,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-05-20(中国大陆)',
-'何润东 李东学 夏梓桐 杨奇鸣 田原 赫子铭 宋宁 王往 黄天元','阿甘','剧情 动作',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8BDhJW4urKgQIHz85YBHppnPhQ015alGVjCAgqKcUlwBDdaKMQ5kyMmOvr2jRdM-Zg==',
-'magnet:?xt=urn:btih:bbbc135514ee70c4f002661a732a919aa48ad19d','NULL','4',1,'/static/movie/img/p2325714098.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9025,'破茧','https://movie.douban.com/subject/25810880/','3.2',61,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-05',
-'孙易铖 张春龙 张学虎','殷德义','剧情 动作 悬疑 犯罪',
-'http://www.iqiyi.com/v_19rro4eugo.html',
-'NULL','NULL','4',1,'/static/movie/img/p2224432528.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9026,'守梦者','https://movie.douban.com/subject/25845982/','5.5',203,
-'http://www.imdb.com/title/tt4880646','NULL','NULL','NULL','NULL','NULL','中国大陆','2015-07-24(中国大陆)',
-'温兆伦 连晋 张潮 林鹏 张欢 吴谨西 康俊龙 董妮娜 韩舒洱 于嘉璐 杜珺 赵炬 杨猛 孙率航 高德军','张力','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2256143578.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9027,'判我有罪','https://movie.douban.com/subject/25859593/','5.3',2871,
-'http://www.imdb.com/title/tt5819500','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-05-06(中国大陆)',
-'李昕芸 吴镇宇 戴立忍 田小洁 李至正','孙亮','剧情 悬疑',
-'http://so.iqiyi.com/links/Y1t4eAa0mLAVDBoVzSYwML0aIS_f5fKlIkSsuHWJSeHN2eCMi0a8w8W1HQFIprHYrD3sjQaX1_tg_zM3uQXGOA==',
-'magnet:?xt=urn:btih:1119a4f2ed7833a1ccd1f017815ba4809fa0c221','NULL','4',1,'/static/movie/img/p2345473794.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9028,'真相禁区','https://movie.douban.com/subject/26348798/','4.5',6005,
-'http://www.imdb.com/title/tt4828680','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-01-22(中国大陆)',
-'任达华 霍建华 张赫 热依扎 车晓 千田爱纱 连凯 韩志硕 高捷','麦咏麟','悬疑 犯罪',
-'http://www.iqiyi.com/v_19rr74xnm8.html',
-'magnet:?xt=urn:btih:c36537f2d9b6d66f7dd72a06c6c58e198d3d58ad','NULL','4',1,'/static/movie/img/p2312467173.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9029,'清淤','https://movie.douban.com/subject/25845384/','6.3',147,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'李威 翟小兴','方军亮','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGZPW_qjKXJW-dTvJy8OTuFv4nY61YBNKS90Lmt9FMz_1',
-'NULL','NULL','4',1,'/static/movie/img/p2271316556.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9030,'隐秘而伟大','https://movie.douban.com/subject/6057942/','7.7',99516,
-'http://www.imdb.com/title/tt2967578','NULL','NULL','NULL','NULL','NULL','韩国','2013-06-05(韩国)',
-'金秀贤 李玹雨 朴基雄 李彩英 孙贤周 高昌锡 金成钧 张光 朴恩彬','千丙哲','喜剧 动作',
-'http://www.iqiyi.com/v_19rrgyaris.html',
-'NULL','NULL','4',1,'/static/movie/img/p1947401961.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9031,'记忆碎片','https://movie.douban.com/subject/24826968/','3.7',1350,
-'http://www.imdb.com/title/tt5904956','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-06-03(中国大陆)',
-'雷佳音 夏梓桐 李菁 孙宁 何云伟','朴裕焕','喜剧 悬疑',
-'http://www.iqiyi.com/v_19rrm97w9w.html',
-'magnet:?xt=urn:btih:8317a64db783a06921047ede25cbb7898957b73f','NULL','4',1,'/static/movie/img/p2355447952.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9032,'冒牌卧底','https://movie.douban.com/subject/26743534/','3.8',935,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-12-29(中国大陆)',
-'潘粤明 高圣远 常远 吴樾 谭凯 林鹏 金士杰','唐旭','喜剧 犯罪 冒险',
-'http://www.iqiyi.com/v_19rr9w11jw.html',
-'NULL','NULL','4',1,'/static/movie/img/p2402859930.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9033,'不汗党','https://movie.douban.com/subject/26770698/','6.8',1189,
-'http://www.imdb.com/title/tt6777370','NULL','NULL','NULL','NULL','NULL','韩国','2017-05-17(韩国)',
-'薛耿求 任时完','卞成贤','剧情 动作 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2458689163.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9034,'开心家族','https://movie.douban.com/subject/6019180/','8.5',123147,
-'http://www.imdb.com/title/tt1848926','NULL','NULL','NULL','NULL','NULL','韩国','2011-11-29(中国大陆)',
-'车太贤 高昌锡 张荣男 姜艺媛 千宝根 李文秀','金永卓','剧情 喜剧 家庭',
-'http://www.iqiyi.com/dianying/20120305/9a5590e4fabaa76c.html',
-'magnet:?xt=urn:btih:7f2d7ee770d550934c9014e36203d2387b18ffbc','NULL','4',1,'/static/movie/img/p892692364.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9035,'海上毒战','https://movie.douban.com/subject/21326718/','6.1',254,
-'http://www.imdb.com/title/tt2093990','NULL','NULL','NULL','NULL','NULL','西班牙','2014-08-29(西班牙)',
-'塞吉·洛佩兹 路伊斯·托沙 芭芭拉·蓝妮','Daniel Monzón','剧情',
-'http://www.iqiyi.com/v_19rr9b0pjw.html',
-'magnet:?xt=urn:btih:56e1c9621a75a61d1f45543044216d03a3e41f62','NULL','4',1,'/static/movie/img/p2219607253.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9036,'全城通缉','https://movie.douban.com/subject/25849599/','4.5',12976,
-'http://www.imdb.com/title/tt4514606','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-11-06(中国大陆)',
-'刘烨 赵文卓 秋瓷炫 古力娜扎 薛皓文 辉灿 马浴柯 吴佩柔','汪涛','剧情 悬疑',
-'http://www.iqiyi.com/v_19rrn840p0.html',
-'NULL','NULL','4',1,'/static/movie/img/p2208596562.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9037,'捉迷藏','https://movie.douban.com/subject/26757373/','5.4',21820,
-'http://www.imdb.com/title/tt5662906','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-11-04(中国大陆)',
-'霍建华 秦海璐 万茜 春夏 董子健','刘杰','悬疑 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rra1tinw.html',
-'magnet:?xt=urn:btih:4056efdffe7567cc5a4bf0809b5caa9a61c64c75','NULL','4',1,'/static/movie/img/p2392969596.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9038,'玩命剧组','https://movie.douban.com/subject/26854366/','2.7',165,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-09-02(中国大陆)',
-'王小虎 梅雪 孙博 白贺珍 白杨 杨俊 李素云','李德威','悬疑 惊悚 恐怖',
-'NULL',
-'magnet:?xt=urn:btih:71c04a93455afd699739aedd8986b7255cb28baa','NULL','4',1,'/static/movie/img/p2373210021.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9039,'盗墓迷情之千年王妃','https://movie.douban.com/subject/26857684/','3.3',79,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2017-01-13(中国大陆)',
-'程媛媛 陈锦昀 王萧寒','秦教授','爱情 悬疑',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8I79Xypqizgt9wnl0lq4szXiffB9OaQbswbcdJaCYFscE3ESoy6xmi4b1gQK6M0vrA==',
-'NULL','NULL','4',1,'/static/movie/img/p2374557026.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9040,'少女龙婆','https://movie.douban.com/subject/26901404/','2.4',235,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-10-30',
-'邵音音 郭奕芯 李玉洁 李曼筠 孙宏胤 谢爕隽','毕基','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rr97hrhk.html',
-'NULL','NULL','4',1,'/static/movie/img/p2392796289.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9041,'催命符之劫后重生','https://movie.douban.com/subject/26418060/','2.6',451,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-07-29(中国大陆)',
-'郑强 卢蒽洁 姜怡伊 陈伟栋 于朦胧 刘真佑 王岗 李耀景','周晓鹏','悬疑 惊悚',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1VhgDeqVZNtEBvxaeGEwuH9Ka3ZBdWwtv4i8gfpusxoIE-vnZeWNt0tKMfWiTldPqkHl_NcOnBWckCZYiVZmjFE=',
-'magnet:?xt=urn:btih:dabfb41b8e8d06a4128d08703789412a33b14e40','NULL','4',1,'/static/movie/img/p2369408297.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9042,'隔壁惊魂','https://movie.douban.com/subject/26745066/','2.9',382,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-04-08(中国大陆)',
-'李左飞 曹子辰 石雨晴 陈文倩 徐仕龙 孙家文 王鼎迪','邢博','惊悚',
-'http://www.iqiyi.com/v_19rrlevmjk.html',
-'NULL','NULL','4',1,'/static/movie/img/p2328745784.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9043,'破局','https://movie.douban.com/subject/25746423/','4.7',639,
-'http://www.imdb.com/title/tt4041844','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-07-11(中国大陆)',
-'林保怡 车晓 李强 郭威 贺镪','李作楠','剧情 爱情 悬疑 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1bPicSESahiJAefGlwodtQuMR2oiG_OryV0n7PB7FANkkhmt9HzAHSnZACq8o9gbAw==',
-'NULL','NULL','4',1,'/static/movie/img/p2188858960.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9044,'决不姑息','https://movie.douban.com/subject/26782678/','7.4',88,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'侯勇 成泰燊','黄河','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2442121012.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9045,'危情营救','https://movie.douban.com/subject/6999296/','2.7',1457,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2013-01-12(中国大陆)',
-'翁家明 王姬 高丽雯 石兆琪','段国云','动作 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1WnSlOhrQYcKRetIYMHBDSg85Stitd_hEv7cxgo4986Op86VDwCvImww7cgwNDAcPQ==',
-'NULL','NULL','4',1,'/static/movie/img/p1830932971.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9046,'凄灵室','https://movie.douban.com/subject/26667083/','3.6',754,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-12-09(中国大陆)',
-'苏小明 张一山 付枚 孙岩','刘殊巧','剧情 爱情 悬疑 惊悚',
-'http://www.iqiyi.com/v_19rr9z6o38.html',
-'NULL','NULL','4',1,'/static/movie/img/p2392442303.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9047,'聊斋新编之画皮新娘','https://movie.douban.com/subject/26770773/','2.9',646,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-11-11(中国大陆)',
-'丁汇宇 殷果儿 徐千京 刘小奇 叶豪 陈嘉敏 冯翰 郭亚菲 王笑天 蔡翱骏 冯桀','摩撒利','惊悚 恐怖',
-'http://www.iqiyi.com/v_19rra0wmo0.html',
-'NULL','NULL','4',1,'/static/movie/img/p2395925040.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9048,'自我救赎','https://movie.douban.com/subject/26793348/','3.1',135,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-05-25(中国大陆)',
-'孙渤洋 陈美行 陈铮 王庆祥 彭波 王磊 任希鸿 紫曦','朱江华','剧情',
-'http://www.iqiyi.com/v_19rrljc7d8.html',
-'magnet:?xt=urn:btih:489c77190ec637bf5d2a6a384e2e42d62ae43870','NULL','4',1,'/static/movie/img/p2352076326.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9049,'魔鬼的细节','https://movie.douban.com/subject/22993451/','4.6',57,
-'http://www.imdb.com/title/tt2137359','NULL','NULL','NULL','NULL','NULL','美国','2013-03-12',
-'Joel Mathews Ray Liotta Emilio Rivera','Waymon Boone','剧情 动作 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLpL0AJGCjVJ1Fb-Og3UlQw',
-'NULL','NULL','4',1,'/static/movie/img/p1916280827.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9050,'入侵华尔街','https://movie.douban.com/subject/10774666/','6.5',9193,
-'http://www.imdb.com/title/tt2368553','NULL','NULL','NULL','NULL','NULL','加拿大 Canada','2013-05-10(美国)',
-'爱德华·福隆 多米尼克·珀塞尔 埃里克·罗伯茨 艾琳·卡普拉克 凯斯·大卫 迈克尔·帕尔 约翰·赫德','乌维·鲍尔','剧情 惊悚',
-'http://www.iqiyi.com/v_19rrh6ymek.html',
-'magnet:?xt=urn:btih:9dd64d1d4a3f1f29d054769a12fe3b1c5ec6cf80','NULL','4',1,'/static/movie/img/p1942572481.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9051,'死亡游戏','https://movie.douban.com/subject/26756911/','3.0',430,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-06-03(中国大陆)',
-'徐洁儿 陈欢 陈炳强 吕平滢 郭子溪 杨珑 刘宇珽 蒋瑞琪 李曼铱','麦子','惊悚 恐怖',
-'http://www.iqiyi.com/v_19rrm7xgfo.html',
-'magnet:?xt=urn:btih:41b9ccbbdfd69773f8820493e5047d27111986c8','NULL','4',1,'/static/movie/img/p2355446927.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9052,'温柔女子','https://movie.douban.com/subject/26683283/','5.9',46,
-'http://www.imdb.com/title/tt5618752','NULL','NULL','NULL','NULL','NULL','法国','2017-05-25(戛纳电影节)',
-'Vasilina Makovtseva Valeriu Andriuta 谢尔盖·科列索夫 Dimitry Bykovsky','谢尔盖·洛兹尼萨','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2459651623.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9053,'左轮女煞星','https://movie.douban.com/subject/25737420/','2.9',107,
-'http://www.imdb.com/title/tt2506748','NULL','NULL','NULL','NULL','NULL','美国','2013-04-06',
-'Laurie Love 布赖恩·艾姆斯 弗雷德·威廉森','Brian Skiba','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2162496258.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9054,'弥天之谎','https://movie.douban.com/subject/26888771/','5.7',203,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'郭晓峰 王翊丹 孙磊 孙锡堃 耿懿 张宛庭','周伟','剧情 犯罪',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqYU65CCZ799n4C4SpMHF6Fn-fVMLizBnOx0fybSwtQ13',
-'NULL','NULL','4',1,'/static/movie/img/p2387557501.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9055,'执法悍将','https://movie.douban.com/subject/6874158/','5.5',101,
-'http://www.imdb.com/title/tt1861439','NULL','NULL','NULL','NULL','NULL','美国','2012-03-30(美国)',
-'方·基默 肖恩·罗伯茨 马特·达拉斯 丹尼尔·博克 Scott Whyte','迈克尔·费法','剧情',
-'http://www.iqiyi.com/dianying/20120521/e26d4533c8c17a81.html',
-'NULL','NULL','4',1,'/static/movie/img/s7665421.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9056,'沉默的较量','https://movie.douban.com/subject/2228239/','5.5',312,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2007',
-'廖凡 彭婧 李晨','李威','剧情 犯罪',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqW6V0C6wMKawNFjPiceNnlu8Q87wAQkkPTocdoCXRmxf',
-'NULL','NULL','4',1,'/static/movie/img/s2671321.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9057,'告密者','https://movie.douban.com/subject/3008068/','6.0',6352,
-'http://www.imdb.com/title/tt0882977','NULL','NULL','NULL','NULL','NULL','美国','2013-02-22(美国)',
-'道恩·强森 巴里·佩珀 乔·博恩瑟 苏珊·萨兰登 迈克尔·肯尼斯·威廉姆斯 拉菲·格拉沃恩','里克·罗曼·沃夫','剧情 动作 惊悚',
-'http://www.iqiyi.com/v_19rra05s3g.html',
-'magnet:?xt=urn:btih:2bf4a3281d7119207d4d7cdd1896e473db25e237','NULL','4',1,'/static/movie/img/p1953381566.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9058,'危机行动','https://movie.douban.com/subject/6874160/','4.8',118,
-'http://www.imdb.com/title/tt1876263','NULL','NULL','NULL','NULL','NULL','意大利','2015-07-27(中国大陆)',
-'圭多·卡普里诺 卡洛琳娜·克雷仙蒂尼 玛雅·珊萨 弗洛拉·马丁内斯 菲利普·勒鲁瓦 米凯·维尼图奇 弗兰科·拉韦拉 加埃塔诺·布鲁诺 埃尼奥·凡塔斯蒂奇尼 保罗·卡拉布雷西 塞尔瓦托·巴齐尔 尼诺·弗拉西卡 玛丽娜·罗科 弗朗西斯科·潘诺菲诺 安娜·阿美拉蒂 尹·C·乔伊斯 马切罗·马扎雷拉','达维德·马伦戈','剧情 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2412517517.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9059,'零点杀机','https://movie.douban.com/subject/26564953/','4.4',165,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2015-10-16(中国大陆)',
-'周杰 吴启华 成琪 郭超 王煜 荆民强','王择谚','悬疑 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2274667838.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9060,'无敌铁砂掌','https://movie.douban.com/subject/1476925/','4.2',49,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国','0000-00-00',
-'洪天明 李子雄 袁文霆','罗其','动作',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb1WIaJaXY_bMLpjDiZXkZ60LAxyGX8cAuTzDxgFOjsIX',
-'NULL','NULL','4',1,'/static/movie/img/s1494565.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9061,'暴走神探','https://movie.douban.com/subject/25746414/','5.3',11417,
-'http://www.imdb.com/title/tt3976070','NULL','NULL','NULL','NULL','NULL','中国大陆 / 香港','2015-01-16(中国大陆)',
-'阮经天 周冬雨 杨子姗 杨洋 高捷 赵立新 晋松 张静静 刘仪伟 杜海涛 郭秋成','罗卓瑶','喜剧 动作 爱情 悬疑',
-'http://www.iqiyi.com/v_19rrnzliqk.html',
-'magnet:?xt=urn:btih:57d07f10c80727225a8065293fac058674b117a3','NULL','4',1,'/static/movie/img/p2213543723.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9062,'谋杀似水年华','https://movie.douban.com/subject/26263919/','3.8',10542,
-'http://www.imdb.com/title/tt5541542','NULL','NULL','NULL','NULL','NULL','中国大陆 / 香港','2016-02-14(中国大陆)',
-'杨颖 阮经天 张超 热依扎 郝蕾 黄觉 尹铸胜 潘虹 寇振海 林雪 宋宁','陈果','爱情 悬疑',
-'http://www.iqiyi.com/v_19rrkwoev0.html',
-'magnet:?xt=urn:btih:367ff1515af6fc9be8554e004cf52d0333c60da7','NULL','4',1,'/static/movie/img/p2318807517.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9063,'赤色危机','https://movie.douban.com/subject/4067237/','3.1',415,
-'http://www.imdb.com/title/tt1520399','NULL','NULL','NULL','NULL','NULL','美国 / 中国大陆','0000-00-00',
-'迈克尔·比恩 任达华 Phoenix V','迈克尔·比恩','动作 惊悚',
-'http://so.iqiyi.com/links/wv9kivRX33_g_Ymf8pA3qY4tkzXJ4wROecyh1nEvWijAsOaUKES0L3Y0qvNPyT3d',
-'magnet:?xt=urn:btih:fcd1324c68cd76d2e91cfba2089f919a933fa502','NULL','4',1,'/static/movie/img/p1220487185.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9064,'神探驾到','https://movie.douban.com/subject/26263437/','4.4',10663,
-'http://www.imdb.com/title/tt4296186','NULL','NULL','NULL','NULL','NULL','香港 / 中国大陆','2015-02-06(中国大陆)',
-'古天乐 张翰 曾志伟 毛舜筠 柳岩 林家栋 周秀娜 吴千语 黄百鸣 甄子丹 陈慧琳','黄百鸣','喜剧 爱情 悬疑 奇幻',
-'http://www.iqiyi.com/v_19rrnxq8dc.html',
-'magnet:?xt=urn:btih:b5397e168611af026714d6229e324f2b4159c6fd','NULL','4',1,'/static/movie/img/p2221880001.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9065,'黑暗中的救赎','https://movie.douban.com/subject/7055386/','4.3',177,
-'http://www.imdb.com/title/tt3437334','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-06-21(中国大陆)',
-'果静林 任泉 刘敏涛 郝平 孙一理','安战军','悬疑',
-'http://www.iqiyi.com/v_19rrlukgy8.html',
-'NULL','NULL','4',1,'/static/movie/img/p1567633137.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9066,'和声','https://movie.douban.com/subject/4861627/','8.5',36968,
-'http://www.imdb.com/title/tt1588356','NULL','NULL','NULL','NULL','NULL','韩国','2010-01-28',
-'金允珍 罗文姬 郑秀英 张荣男 姜艺媛 池成媛','康大奎','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1YHIE_UmbIaKjsokiXiUGwEJ3eTwgI6XcjrUWMXwqYlcjjT2kkYbopA4gV7a1ag5dA==',
-'NULL','NULL','4',1,'/static/movie/img/p543621113.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9067,'恐怖将映','https://movie.douban.com/subject/26370966/','3.6',614,
-'http://www.imdb.com/title/tt5763398','NULL','NULL','NULL','NULL','NULL','中国大陆 / 泰国','2016-03-25(中国大陆)',
-'谢容儿 Mik Thongraya 杨杏 游乐儿 李萌萌 周亚平 雁子 郭中友 杨梓邑 彭艺博 常笑笑 徐玺涵 于雷 刘宝乐 任娇 江浩桐 车静子 孙曼龄','张洋','惊悚 恐怖',
-'http://www.iqiyi.com/v_19rrlvusvw.html',
-'magnet:?xt=urn:btih:806c3eea08db0272327606314d78448a8601884f','NULL','4',1,'/static/movie/img/p2326393841.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9068,'真正正义之死亡降临','https://movie.douban.com/subject/21323710/','3.5',118,
-'http://www.imdb.com/title/tt2240966','NULL','NULL','NULL','NULL','NULL','美国','0000-00-00',
-'鲁克·高斯 科尔·豪瑟 Nestor Carbonell','R. Ellis Frazier','剧情 动作 犯罪',
-'http://www.iqiyi.com/v_19rrh2r6vo.html',
-'magnet:?xt=urn:btih:172f93c0bad12a345cef152d83b7d8b14152d34a','NULL','4',1,'/static/movie/img/p2012456452.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9069,'心跳戈壁','https://movie.douban.com/subject/26005668/','3.9',856,
-'http://www.imdb.com/title/tt5246410','NULL','NULL','NULL','NULL','NULL','中国大陆','2015-08-27(中国大陆)',
-'邵兵 董璇 彭波 陈正华 伊利亚尔·阿不力米提 李明 杨海超 那临 谢宜 地曼·阿巴克夫 李酷娜','甄人','动作 冒险',
-'http://www.iqiyi.com/v_19rrkqzmws.html',
-'magnet:?xt=urn:btih:00a4a5cc4f8d518f11d0de34be232ee65cc2b873','NULL','4',1,'/static/movie/img/p2261006463.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9070,'王牌','https://movie.douban.com/subject/25743807/','4.6',7449,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-12-31(中国大陆)',
-'林志玲 梁家辉 钟欣潼 蒙亭宜 邬君梅 李铭顺 郑则仕 苏瑾 刘璐佳 吕聿来','范建浍','剧情 悬疑',
-'http://www.iqiyi.com/v_19rro3sihs.html',
-'NULL','NULL','4',1,'/static/movie/img/p2213350249.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9071,'无惧神明','https://movie.douban.com/subject/20470030/','4.7',469,
-'http://www.imdb.com/title/tt2543702','NULL','NULL','NULL','NULL','NULL','美国','2014-12-05(美国)',
-'莉顿·梅斯特 托比·琼斯 本·巴恩斯 哈威·凯特尔 肯尼·沃莫尔德  里特奇·科斯特 保罗·本-维克托 Slaine William Xifaras Jay Giannone Julie Ann Dawson Stacey Queripel Billy \'V\' Vigeant Armen Garo Michael Yebba','詹姆斯·莫特恩','剧情 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKTjwYZZNGnavvHsWDiyDMj',
-'magnet:?xt=urn:btih:c50e2ddaff14fa1e3f850fbb8aaea7092edf2fdb','NULL','4',1,'/static/movie/img/p2206048412.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9072,'最美','https://movie.douban.com/subject/1308301/','5.7',185,
-'http://www.imdb.com/title/tt0036947','NULL','NULL','NULL','NULL','NULL','日本','1944-04-13(日本)',
-'志村乔 清川荘司 菅井一郎 入江隆子 谷间小百合 河野丝子','黑泽明','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGelVcbvGPT2MsFA5lF3jTuLpNFkgOPOq9Wgxh-kivt3g',
-'NULL','NULL','4',1,'/static/movie/img/p2289707504.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9073,'低下层','https://movie.douban.com/subject/1297331/','7.4',877,
-'http://www.imdb.com/title/tt0050330','NULL','NULL','NULL','NULL','NULL','日本','1957-09-17(日本)',
-'三船敏郎 山田五十铃 香川京子 中村雁治郎 千秋实 藤原釜足 根岸明美 清川虹子 三井弘次 东野英治郎 田中春男 三好荣子 左卜全 渡边笃 上田吉二郎','黑泽明','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1ZPFFGs25Juka4D_8tXo4S431NIIYd1msP0BnkveJf_8y6oS8Y2oNHySJCYq0snq-A==',
-'NULL','NULL','4',1,'/static/movie/img/p2346573464.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9074,'想念哥哥','https://movie.douban.com/subject/26348153/','7.2',301,
-'http://www.imdb.com/title/tt5093754','NULL','NULL','NULL','NULL','NULL','韩国','2016-01-21(韩国)',
-'任时完 高雅星 李熙俊 李来','李翰','剧情 战争',
-'NULL',
-'magnet:?xt=urn:btih:0adb6e8d80950bc2d457be9ecef9f7f1a8cdf6ac','NULL','4',1,'/static/movie/img/p2306873413.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9075,'命运派对','https://movie.douban.com/subject/25758005/','5.5',1522,
-'http://www.imdb.com/title/tt2859350','NULL','NULL','NULL','NULL','NULL','香港','2013-11-28(香港)',
-'黄贯中 谢安琪 关楚耀 泰迪·罗宾 刘浩龙 张国强 陈美琪 廖子妤 谢卓言','何康','剧情 惊悚 犯罪',
-'NULL',
-'magnet:?xt=urn:btih:e9d7f63951d261b05b9f50b87bbd9a31dd1e3e68','NULL','4',1,'/static/movie/img/p2169805600.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9076,'警察日记','https://movie.douban.com/subject/20426973/','6.4',1388,
-'http://www.imdb.com/title/tt3064998','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-03-21(中国大陆)',
-'王景春 陈维涵 孙亮 侯岩松 袁利坚 白波','宁瀛','剧情 悬疑 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrny54i0.html',
-'magnet:?xt=urn:btih:65d8fb46ed6bab1620c59b7f649ff4647185731a','NULL','4',1,'/static/movie/img/p2174213488.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9077,'被迫情死的日本之夏','https://movie.douban.com/subject/1820071/','6.6',356,
-'http://www.imdb.com/title/tt0062009','NULL','NULL','NULL','NULL','NULL','日本','1967-09-02',
-'田村正和 佐藤慶 桜井啓子','大岛渚','剧情 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML3T9FHIZHWeeKXA9xPjCOz',
-'NULL','NULL','4',1,'/static/movie/img/p2058758407.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9078,'杠上开花','https://movie.douban.com/subject/24867829/','3.8',322,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-10-21(中国大陆)',
-'贾一平 袁弘 刘雨欣 赵滨 廖晓琴 吴志雄 王迅 奚美娟 刘涛 王媛可 潘霜霜 韩雪','贾一平','喜剧 悬疑',
-'http://www.iqiyi.com/v_19rr9upatk.html',
-'magnet:?xt=urn:btih:C9B0B68E98BEEFC45ABA703250C37219A6A14A64','NULL','4',1,'/static/movie/img/p2388393157.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9079,'白领流氓3','https://movie.douban.com/subject/25934443/','4.4',31,
-'http://www.imdb.com/title/tt2850304','NULL','NULL','NULL','NULL','NULL','英国','2014-06-28',
-'丽贝卡·沃尔什 西蒙·菲利普斯 Rita Ramnani 瓦斯·布莱克伍德','Paul Tanter','犯罪',
-'http://www.iqiyi.com/v_19rrn7xve4.html',
-'NULL','NULL','4',1,'/static/movie/img/p2194047291.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9080,'猪排山','https://movie.douban.com/subject/1300627/','6.7',365,
-'http://www.imdb.com/title/tt0053183','NULL','NULL','NULL','NULL','NULL','美国','1959-05-29',
-'格利高里·派克','刘易斯·迈尔斯通','剧情 动作 战争',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJeRe2zoApqFdlRhT64f5vp',
-'NULL','NULL','4',1,'/static/movie/img/s8962690.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9081,'付出与收获','https://movie.douban.com/subject/6893934/','6.3',14111,
-'http://www.imdb.com/title/tt1980209','NULL','NULL','NULL','NULL','NULL','美国','2013-04-26(美国)',
-'马克·沃尔伯格 道恩·强森 艾德·哈里斯 托尼·夏尔赫布 安东尼·麦凯 芭儿·帕丽 罗伯·考德瑞 蕾蓓尔·威尔森 郑肯 迈克尔·瑞斯玻利 凯利·勒夫科维茨 艾米莉·拉瑟弗德 拉里·哈金 托尼·普拉纳 彼得·斯特曼','迈克尔·贝','喜剧 动作 犯罪',
-'http://www.iqiyi.com/v_19rrifucfj.html',
-'magnet:?xt=urn:btih:96fc873b234eafc65c956ab25811bc41ffa1f8f0','NULL','4',1,'/static/movie/img/p2024537107.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9082,'太白山脉','https://movie.douban.com/subject/1401254/','8.4',136,
-'http://www.imdb.com/title/tt0111348','NULL','NULL','NULL','NULL','NULL','韩国','1994-09-17(韩国)',
-'安圣基 方银振 Dong-joon Choi 郑善京 金甲洙 吴侦孩','林权泽','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1070780094.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9083,'好朋友们','https://movie.douban.com/subject/21937432/','3.6',717,
-'http://www.imdb.com/title/tt3004748','NULL','NULL','NULL','NULL','NULL','韩国','2013-03-28(韩国)',
-'Yeon Jeong-hoon 北村一辉 Lee Ji-hoon','Jin Hyeong-tae','剧情 动作 黑色电影',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIHzaphFwVIvpaDu9Qx27wR',
-'NULL','NULL','4',1,'/static/movie/img/p1896704683.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9084,'旧墨西哥一夜','https://movie.douban.com/subject/20493873/','6.0',126,
-'http://www.imdb.com/title/tt2308260','NULL','NULL','NULL','NULL','NULL','美国','2014-05-16',
-'罗伯特·杜瓦尔 杰瑞米·艾文 安吉·塞佩达','埃米利奥·阿拉贡','剧情',
-'NULL',
-'magnet:?xt=urn:btih:3956b61928ae27f6cb1eb391a3b69aa509dcd70b','NULL','4',1,'/static/movie/img/p2171802479.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9085,'射手','https://movie.douban.com/subject/10750012/','5.7',127,
-'http://www.imdb.com/title/tt2381989','NULL','NULL','NULL','NULL','NULL','丹麦','2013-02-21',
-'金·波德尼亚 大卫·丹席克 尼古拉·雷·卡斯 崔娜·迪斯霍尔姆 Carsten Bjørnlund Jens Jørn Spottag 拉斯·兰特 Henning Valin Jakobsen','安妮特·欧森','惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLQjKjCcRWaCsmlkS__wfR8',
-'magnet:?xt=urn:btih:806f51140891218ee26a665761d4de35e623f3a8','NULL','4',1,'/static/movie/img/p1957452116.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9086,'凯德警长','https://movie.douban.com/subject/1829477/','7.1',100,
-'http://www.imdb.com/title/tt0060232','NULL','NULL','NULL','NULL','NULL','美国','1966-02-19',
-'马龙·白兰度 简·方达 罗伯特·雷德福','阿瑟·佩恩','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2410377375.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9087,'光逝','https://movie.douban.com/subject/3179039/','4.8',1720,
-'http://www.imdb.com/title/tt1274586','NULL','NULL','NULL','NULL','NULL','美国','2014-12-05(美国)',
-'尼古拉斯·凯奇 安东·叶利钦 亚历山大·卡里姆 伊莲娜·雅各布 Aymen Hamdouchi Claudius Peters Tomiwa Edun Robert G. Slade Derek Ezenagu Geff Francis Tim Silano 西拉斯·卡森 Serban Celea David Lipper Arsha Aghdasi','保罗·施拉德','剧情 惊悚',
-'NULL',
-'magnet:?xt=urn:btih:5df2d797b09d1ad9ecfd53d10f7ea7557f5584fc','NULL','4',1,'/static/movie/img/p2344098402.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9088,'心战','https://movie.douban.com/subject/11623346/','4.3',5335,
-'http://www.imdb.com/title/tt1700439','NULL','NULL','NULL','NULL','NULL','香港','2013-10-03(中国大陆)',
-'任达华 黄德斌 廖启智 龚慈恩 陈燃 蔡颖恩 张家辉 单立文 朱璇 莫子仪','陈翊恒','悬疑 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrifvfvq.html',
-'NULL','NULL','4',1,'/static/movie/img/p2141091025.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9089,'边境执行','https://movie.douban.com/subject/6875484/','4.9',316,
-'http://www.imdb.com/title/tt2069955','NULL','NULL','NULL','NULL','NULL','美国','0000-00-00',
-'莎朗·斯通 比利·赞恩 Rosemberg Salgado Miguel Rodarte','Gabriela Tagliavini','惊悚',
-'http://www.iqiyi.com/v_19rrhx5vj8.html',
-'magnet:?xt=urn:btih:71c9f5a17cf4f94c4291da97ce17899848fd123e','NULL','4',1,'/static/movie/img/p1886428340.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9090,'孽海痴魂','https://movie.douban.com/subject/1293813/','8.0',327,
-'http://www.imdb.com/title/tt0053793','NULL','NULL','NULL','NULL','NULL','美国','1960-07-07',
-'伯特·兰卡斯特 简·西蒙斯 阿瑟·肯尼迪 迪恩·贾格尔 雪莉·琼斯 帕蒂·佩姬 爱德华·安德鲁斯 约翰·麦克因泰 休·马洛威 乔马洛斯 菲利普·奥伯 Barry Kelley Wendell Holmes 代顿拉米斯','理查德·布鲁克斯','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIn7ONj-2KR5opPHf2qoRGS',
-'NULL','NULL','4',1,'/static/movie/img/p2434762089.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9091,'活人的记录','https://movie.douban.com/subject/1302062/','7.5',734,
-'http://www.imdb.com/title/tt0048198','NULL','NULL','NULL','NULL','NULL','日本','1955-11-22(日本)',
-'三船敏郎 志村乔 千秋实 三好荣子 青山京子 东乡晴子 千石规子 根岸明美 太刀川宽 上田吉二郎 东野英治郎 佐田丰 藤原釜足 三津田健 清水将夫','黑泽明','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJVxZMC3EmvOC6Dx8WAjmeh',
-'NULL','NULL','4',1,'/static/movie/img/p1543695899.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9092,'夜半哭声','https://movie.douban.com/subject/26851206/','2.7',538,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-09-02(中国大陆)',
-'刘俐儿 刘一辰 秦立洋 吴静一 陈田心 吕梓铷','陆诗雷','惊悚 恐怖',
-'http://www.iqiyi.com/v_19rrm0l9p4.html',
-'magnet:?xt=urn:btih:ef17784db96f3ca09a927521ca8c1915f2ae19b4','NULL','4',1,'/static/movie/img/p2377514132.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9093,'春风秋雨','https://movie.douban.com/subject/1865008/','7.5',115,
-'http://www.imdb.com/title/tt0025301','NULL','NULL','NULL','NULL','NULL','美国','1934-11-26',
-'克劳黛·考尔白 华伦·威廉 路易丝·比弗斯','John M. Stahl','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJca4gh90QiSexBlBBO-vWX',
-'NULL','NULL','4',1,'/static/movie/img/s8514852.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9094,'黑瞳','https://movie.douban.com/subject/26183019/','3.3',201,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2015-07-27(广东地区)',
-'王姬 成泰燊 李子雄','杜云萍','悬疑 犯罪',
-'http://www.iqiyi.com/v_19rrkpxvnw.html',
-'NULL','NULL','4',1,'/static/movie/img/p2256627758.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9095,'美国劫案','https://movie.douban.com/subject/24856648/','4.7',1352,
-'http://www.imdb.com/title/tt2923316','NULL','NULL','NULL','NULL','NULL','加拿大 / 卢森堡','2014-09-11(多伦多电影节)',
-'海登·克里斯滕森 艾德里安·布洛迪 乔丹娜·布鲁斯特 Aaron V. Williamson 劳拉·凯洛蒂 埃琳娜·桑切斯 托利·基特尔斯 Divine Prince Ty Emmecca 乔·克里斯特 约翰·阿米乔 Luis Da Silva Jr. 贾德·罗德曼 阿肯 兰斯·E·尼克尔斯 Jazzy Ellis','Sarik Andreasyan','动作',
-'http://www.iqiyi.com/v_19rrofum04.html',
-'magnet:?xt=urn:btih:bb735e60b894aa3e7bd63f0b57d35867fef169cf','NULL','4',1,'/static/movie/img/p2193220586.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9096,'丑闻','https://movie.douban.com/subject/1293162/','7.3',1583,
-'http://www.imdb.com/title/tt0042958','NULL','NULL','NULL','NULL','NULL','日本','1950-04-30',
-'三船敏郎 李香兰 桂木洋子 千石规子 小泽荣太郎 志村乔','黑泽明','剧情',
-'http://www.iqiyi.com/w_19rtjdo4fx.html',
-'NULL','NULL','4',1,'/static/movie/img/p2078206389.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9097,'香站','https://movie.douban.com/subject/26756225/','4.1',195,
-'http://www.imdb.com/title/tt3914400','NULL','NULL','NULL','NULL','NULL','越南','2016-03-25(中国大陆)',
-'张玉英 金李 陈庄 芝芙 阮如琼 Hiếu Nguyễn','吴国强','动作 犯罪 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2208709429.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9098,'一个明星的诞生','https://movie.douban.com/subject/1294450/','7.2',152,
-'http://www.imdb.com/title/tt0029606','NULL','NULL','NULL','NULL','NULL','美国','1937-04-27',
-'珍妮·盖诺 弗雷德里克·马奇 阿道夫·门吉欧 梅·罗布森 安迪·德怀恩','威廉·A·韦尔曼','剧情',
-'http://www.iqiyi.com/v_19rrmkjxrg.html',
-'NULL','NULL','4',1,'/static/movie/img/p2184820456.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9099,'敌人之路','https://movie.douban.com/subject/10763202/','6.4',271,
-'http://www.imdb.com/title/tt2258285','NULL','NULL','NULL','NULL','NULL','美国 / 法国','2014-02-06(德国)',
-'福里斯特·惠特克 艾伦·伯斯汀 哈威·凯特尔','拉契得·波查拉','剧情',
-'NULL',
-'magnet:?xt=urn:btih:5de70f5ecf89be3870df46846a6406a7c8626f80','NULL','4',1,'/static/movie/img/p2184354645.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9100,'信义兄弟','https://movie.douban.com/subject/6872239/','7.1',255,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'赵毅 霍青 刘佳佳 吕晶','方军亮','剧情 家庭',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb_J3npQ5lV_JIyh22SsTK7j15VrseAA81SQa15UIgJPP',
-'NULL','NULL','4',1,'/static/movie/img/movie_default_large.png','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9101,'泥醉天使','https://movie.douban.com/subject/1294859/','8.1',2155,
-'http://www.imdb.com/title/tt0040979','NULL','NULL','NULL','NULL','NULL','日本','1948-04-27',
-'志村乔 三船敏郎 木暮实千代 中北千枝子 千石规子 笠置静子 进藤英太郎 清水将夫 殿山泰司 久我美子 饭田蝶子 谷晃 堺左千夫','黑泽明','剧情 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1dL1eyWCW0nX0ZGdjbjNmINAAapQXCgSKjIk55OJucoVNLr64C079pOpnNSSXfMDDw==',
-'NULL','NULL','4',1,'/static/movie/img/p2166207479.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9102,'暗器','https://movie.douban.com/subject/26910811/','5.5',175,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2017-01-03',
-'赵鸿飞 苏倩薇 栾浚威 贺镪','范冬雨','动作 武侠',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2396090660.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9103,'隔窗有眼','https://movie.douban.com/subject/10801279/','3.8',229,
-'http://www.imdb.com/title/tt4550536','NULL','NULL','NULL','NULL','NULL','中国大陆','2013-08-28(中国大陆)',
-'胡明 乌达木 小麦','刘奋斗','悬疑 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1590251797.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9104,'劫机惊魂','https://movie.douban.com/subject/10809113/','3.9',558,
-'http://www.imdb.com/title/tt1986857','NULL','NULL','NULL','NULL','NULL','美国','2012-07-31(美国)',
-'克雷格·法布拉斯 多米尼克·珀塞尔 维尼·琼斯','Brandon Nutt','动作 惊悚',
-'http://www.iqiyi.com/v_19rrhwm3cs.html',
-'magnet:?xt=urn:btih:fdf3bd0f1f8917c15856ae2126b95b2a1e07ffb1','NULL','4',1,'/static/movie/img/p1624196930.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9105,'圣玛丽的钟声','https://movie.douban.com/subject/1295376/','7.3',129,
-'http://www.imdb.com/title/tt0037536','NULL','NULL','NULL','NULL','NULL','美国','1945-12-06',
-'英格丽·褒曼 平·克劳斯贝 亨利·崔佛斯','莱奥·麦卡雷','剧情 家庭',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMznwhvlxSK5JWw1iawnAO4rrRpPtkayDQFQ_cqL0CBf-T',
-'NULL','NULL','4',1,'/static/movie/img/p2156609585.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9106,'基隆','https://movie.douban.com/subject/25875053/','6.7',678,
-'http://www.imdb.com/title/tt3828092','NULL','NULL','NULL','NULL','NULL','中国大陆 / 台湾','2015',
-'任帅 安唯绫 高允汉 陈以文 海伦清桃 应采灵','乔梁','剧情',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzbw2GguMmoYZW53sdFnzVkBtxHJktg_s5F0B4vPReq9Me',
-'NULL','NULL','4',1,'/static/movie/img/p2242617279.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9107,'浪华悲歌','https://movie.douban.com/subject/1297556/','7.4',593,
-'http://www.imdb.com/title/tt0028021','NULL','NULL','NULL','NULL','NULL','日本','1936-05-28',
-'Seiichi Takegawa 大仓千代子 浅香新八郎 志贺乃家弁庆 梅村蓉子 原健作 泷泽静子 进藤英太郎 田村邦男 山田五十铃 志村乔','沟口健二','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML9locLavpDsDHP8GcNPhUG',
-'NULL','NULL','4',1,'/static/movie/img/p2085607019.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9108,'祇园姊妹','https://movie.douban.com/subject/1297208/','8.0',1079,
-'http://www.imdb.com/title/tt0027672','NULL','NULL','NULL','NULL','NULL','日本','1936-10-15(日本)',
-'山田五十铃 梅村蓉子','沟口健二','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1898346777.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9109,'威基基兄弟','https://movie.douban.com/subject/2213613/','7.7',64,
-'http://www.imdb.com/title/tt0297462','NULL','NULL','NULL','NULL','NULL','韩国','2001-10-27(韩国)',
-'李乌 黄政民 朴海日','林顺礼','剧情',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzuHBP-ytgsAF6jKSL3oneMYWoVWO0pE7ZnCov0KLHSHd',
-'NULL','NULL','4',1,'/static/movie/img/p816304168.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9110,'流浪记','https://movie.douban.com/subject/1467020/','8.0',701,
-'http://www.imdb.com/title/tt0049537','NULL','NULL','NULL','NULL','NULL','日本','1956-11-20(日本)',
-'田中绢代 山田五十铃 高峰秀子 杉村春子 冈田茉莉子 中北千枝子','成濑巳喜男','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2319857810.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9111,'我要求审判','https://movie.douban.com/subject/1306863/','8.2',115,
-'http://www.imdb.com/title/tt0093660','NULL','NULL','NULL','NULL','NULL','美国','1987-11-20',
-'芭芭拉·史翠珊 理查德·德莱弗斯 玛伦·斯塔普莱顿 卡尔·莫尔登 埃里·瓦拉赫 罗伯特·韦伯 詹姆斯·惠特摩 莱斯利·尼尔森 William Prince 戴金·马修斯 保罗·本杰明 Warren Manzi Elizabeth Hoffman','马丁·里特','剧情 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2078087609.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9112,'诡影迷情','https://movie.douban.com/subject/26470514/','3.0',1330,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2015-11-27(中国大陆)',
-'孙菲菲 李泰 商蓉 王艺嘉','项海明','悬疑 惊悚',
-'http://so.iqiyi.com/links/99o4kBuRLFk8iR4ZenvqfzHo-IKyE6H78JpNLBmP0-iQuTLDCk2zst2c510oMeXgJWWXTIH6BnsgYOwh33rI2A==',
-'NULL','NULL','4',1,'/static/movie/img/p2285980297.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9113,'静夜之决斗','https://movie.douban.com/subject/1307988/','7.6',712,
-'http://www.imdb.com/title/tt0041870','NULL','NULL','NULL','NULL','NULL','日本','1949-03-13(日本)',
-'三船敏郎 志村乔 三條美紀 植村谦二郎 中北千枝子 千石规子 町田博子','黑泽明','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2166208039.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9114,'镖行天下之七星端砚','https://movie.douban.com/subject/2347263/','6.5',509,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2007',
-'周群达 吴晓敏 王久胜 姜大卫 邹爽 柏含 郑萍 尹天兆 张智尧','邓衍成','动作 武侠 古装',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGb3j6r23Wb7xt1bIGSurKNNjuooxix79xYskcJkAAxdw',
-'NULL','NULL','4',1,'/static/movie/img/s2889504.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9115,'饭','https://movie.douban.com/subject/1424618/','8.3',1723,
-'http://www.imdb.com/title/tt0043801','NULL','NULL','NULL','NULL','NULL','日本','1951-11-23',
-'原节子 上原谦 小林桂树 岛崎雪子 杉叶子 杉村春子','成濑巳喜男','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p794829964.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9116,'独生子','https://movie.douban.com/subject/1308311/','8.4',1233,
-'http://www.imdb.com/title/tt0027752','NULL','NULL','NULL','NULL','NULL','日本','1936-09-15(日本)',
-'饭田蝶子 叶山正雄 日守新一 笠智众 坪内美子 吉川满子 横山準 青木富夫','小津安二郎','剧情',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzs7cz3NKzri8em85Bjcr-NBZKkwwyBVqO_XDJTUznhZe',
-'NULL','NULL','4',1,'/static/movie/img/p2193007591.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9117,'仁慈天使','https://movie.douban.com/subject/1296060/','6.8',120,
-'http://www.imdb.com/title/tt0039190','NULL','NULL','NULL','NULL','NULL','美国','1947-12-09',
-'加里·格兰特 洛丽泰·扬 大卫·尼文','亨利·科斯特','剧情 喜剧 爱情 奇幻',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2303367956.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9118,'登龙一梦','https://movie.douban.com/subject/1301907/','8.2',305,
-'http://www.imdb.com/title/tt0050371','NULL','NULL','NULL','NULL','NULL','美国','1957-05-28',
-'安迪·格里菲斯 帕德里夏·妮尔 安东尼·弗兰西欧萨 沃尔特·马修','伊利亚·卡赞','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2219253589.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9119,'一个人的皮影戏','https://movie.douban.com/subject/6038035/','6.6',226,
-'http://www.imdb.com/title/tt2096601','NULL','NULL','NULL','NULL','NULL','中国大陆','2011-04-25',
-'王亚军 包贝尔','张唯','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGZPW_qjKXJW-dTvJy8OTuFuNpSOX9BvaGQ0DIKVC_Ewy',
-'NULL','NULL','4',1,'/static/movie/img/p2162870705.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9120,'白痴','https://movie.douban.com/subject/1293017/','7.1',1185,
-'http://www.imdb.com/title/tt0043614','NULL','NULL','NULL','NULL','NULL','日本','1951-05-23(日本)',
-'原节子 森雅之 三船敏郎 志村乔 东山千荣子 文谷千代子 柳永二郎 久我美子 千秋实 三好荣子 千石规子','黑泽明','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI2syjCj0XYaQErSFATezj0',
-'NULL','NULL','4',1,'/static/movie/img/p647944562.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9121,'兰闺春怨','https://movie.douban.com/subject/1293836/','7.7',206,
-'http://www.imdb.com/title/tt0044509','NULL','NULL','NULL','NULL','NULL','美国','1952-12-24(美国)',
-'Burt Lancaster 雪莉·布思 Shirley Booth Terry Moore 伯特·兰卡斯特','丹尼尔·曼','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1QhU1XeTYF0OdR26MxE6nj8FbtTBpyCA--KUsrfw8GrRsvSyEgNTZR-7Z38HfkzR1yTFkGkWU786cTrMp0iVTNo=',
-'NULL','NULL','4',1,'/static/movie/img/p2360242012.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9122,'人狗奇缘','https://movie.douban.com/subject/1970437/','8.3',28200,
-'http://www.imdb.com/title/tt1710565','NULL','NULL','NULL','NULL','NULL','韩国','2006-10-25(韩国)',
-'俞承豪 Dal-i 金香起 安吉江 郑敏儿 金兰讳 金东英 徐荣华','朴银炯','剧情 儿童',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLB3GZDeZKeV9y6982uHTYC',
-'NULL','NULL','4',1,'/static/movie/img/p547477150.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9123,'谎言大爆炸','https://movie.douban.com/subject/26686170/','3.1',451,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-05-13(中国大陆)',
-'孙坚 白冰 潘霜霜 常远 吉杰 张颂文','侯亮','喜剧 悬疑',
-'http://www.iqiyi.com/v_19rrlg28sc.html',
-'magnet:?xt=urn:btih:b7bbff6439569bc84c0445535dfaf5a23744712b','NULL','4',1,'/static/movie/img/p2335656403.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9124,'末路狂奔','https://movie.douban.com/subject/6389479/','5.6',294,
-'http://www.imdb.com/title/tt1921070','NULL','NULL','NULL','NULL','NULL','英国','2012-06-21(英国)',
-'理查德·柯伊尔 阿格妮丝·迪恩 布隆森·韦伯 保罗·凯耶 M·费尔达',' 路易斯·普瑞托','动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrny5bqo.html',
-'magnet:?xt=urn:btih:fbf042b8e772d3fc1c0a75d5a59faa811a9eff82','NULL','4',1,'/static/movie/img/p1713768931.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9125,'阮氏三雄','https://movie.douban.com/subject/2333794/','5.6',97,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'于荣光 于辉光 范冬雨','江杨','动作 武侠 古装',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8BDhJW4urKgQIHz85YBHppmYksnYqasDcQo0JojZaLaM',
-'NULL','NULL','4',1,'/static/movie/img/p2375648876.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9126,'自君别后','https://movie.douban.com/subject/1295610/','7.5',109,
-'http://www.imdb.com/title/tt0037280','NULL','NULL','NULL','NULL','NULL','美国','1944-07-20(美国)',
-'克劳黛·考尔白 珍妮弗·琼斯 约瑟夫·科顿 秀兰·邓波儿 莱昂纳尔·巴里摩尔','约翰·克隆威尔','剧情 爱情 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2360432905.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9127,'爱在廊桥','https://movie.douban.com/subject/6039190/','6.6',255,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-03-23(中国大陆)',
-'吴兴国 徐守莉 姜大卫 孙维民 王鸣飞','陈力','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGboFCgKE1idV-L5Oa2Fjk5eApPv4p3FThjgBfafQH3Ex',
-'NULL','NULL','4',1,'/static/movie/img/p1458980451.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9128,'37','https://movie.douban.com/subject/5153525/','5.8',376,
-'http://www.imdb.com/title/tt1634104','NULL','NULL','NULL','NULL','NULL','中国大陆 / 香港','2012-06-01(中国大陆)',
-'林妙可 杨采妮 刘晓庆','陈国新','剧情 家庭',
-'http://www.iqiyi.com/v_19rr7w54oo.html',
-'magnet:?xt=urn:btih:457b1b5a0d048cdf74ee4319669668ceb41ae001','NULL','4',1,'/static/movie/img/s23118787.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9129,'永生羊','https://movie.douban.com/subject/5353077/','7.6',173,
-'http://www.imdb.com/title/tt2437848','NULL','NULL','NULL','NULL','NULL','中国大陆','2010-10-29',
-'玛尔江·巴依吐肯 阿布都瓦依提·艾比包 再依乃莆·艾勒木塔依 努尔兰·阿里木江 艾孜麦提·哈山 别克包拉提·朱玛汗','高峰','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqcKSrjIqN8a9r5oF8YUVq84dD3JDpiKRbDjeCmkZydWG',
-'NULL','NULL','4',1,'/static/movie/img/p2383896010.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9130,'送信者','https://movie.douban.com/subject/3268186/','3.8',395,
-'http://www.imdb.com/title/tt0995845','NULL','NULL','NULL','NULL','NULL','美国','2011',
-'米基·洛克 杰弗里·迪恩·摩根 蒂尔·施威格','汉尼·阿布-阿萨德','动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ755r8vdoq5iHTIYQtP6dV',
-'NULL','NULL','4',1,'/static/movie/img/p1516472258.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9131,'古墓凶铃','https://movie.douban.com/subject/26741567/','3.8',52,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-03-03(中国大陆)',
-'朱辉 刘研 孟鹏 唐溢 吴佳玮','段昊人','暂时无数据',
-'http://www.iqiyi.com/v_19rrkxc6tg.html',
-'NULL','NULL','4',1,'/static/movie/img/p2323887946.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9132,'野良犬','https://movie.douban.com/subject/1293107/','8.2',3300,
-'http://www.imdb.com/title/tt0041699','NULL','NULL','NULL','NULL','NULL','日本','1949-10-17(日本)',
-'三船敏郎 志村乔 淡路惠子 三好荣子 千石规子','黑泽明','剧情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2169179574.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9133,'爱情谎言','https://movie.douban.com/subject/3119446/','7.0',1040,
-'http://www.imdb.com/title/tt1239449','NULL','NULL','NULL','NULL','NULL','德国','2009-12-17',
-'丹尼尔·布鲁赫 汉娜·赫斯普朗 亨利·哈布臣 克斯腾·布劳克','阿兰·葛斯彭纳','喜剧',
-'http://www.iqiyi.com/v_19rrho5p8o.html',
-'NULL','NULL','4',1,'/static/movie/img/p1220318690.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9134,'亡命边缘','https://movie.douban.com/subject/3318040/','6.8',75,
-'http://www.imdb.com/title/tt0254252','NULL','NULL','NULL','NULL','NULL','加拿大','2001-11-06',
-'Stephen Baldwin Macha Grenon Michael Ironside','Marc S. Grenier','动作 惊悚',
-'http://www.iqiyi.com/v_19rrhj0f8c.html',
-'magnet:?xt=urn:btih:e10a3405189b19b78240bca8a0fbd4b02f9a3e5d','NULL','4',1,'/static/movie/img/p2410605411.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9135,'血符门','https://movie.douban.com/subject/2300798/','6.2',121,
-'http://www.imdb.com/title/tt0165549','NULL','NULL','NULL','NULL','NULL','香港','1971-07-16',
-'凌波 张翼 谷峰 施思 王侠','黄枫','动作 武侠',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p974414650.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9136,'堡垒','https://movie.douban.com/subject/5159697/','4.4',332,
-'http://www.imdb.com/title/tt1558575','NULL','NULL','NULL','NULL','NULL','美国','2012-04-01',
-'巴格·霍尔 Donnie Jeffcoat Sean McGowan','Mike Phillips','剧情',
-'http://www.iqiyi.com/v_19rrhxrbf8.html',
-'magnet:?xt=urn:btih:c8af02b34930dd0bf21f6e8e8355dd09114a78a0','NULL','4',1,'/static/movie/img/p1527215091.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9137,'玉女奇男','https://movie.douban.com/subject/1449829/','7.5',203,
-'http://www.imdb.com/title/tt0044391','NULL','NULL','NULL','NULL','NULL','美国','1954-07-01',
-'Lana Turner Kirk Douglas Walter Pidgeon 格洛丽亚·格雷厄姆','Vincente Minnelli','剧情 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2303586884.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9138,'镖行天下之瞒天过海','https://movie.douban.com/subject/2347261/','6.7',532,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'周群达 姜大卫 吴晓敏','邓衍成','暂时无数据',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqeLS2R6Qdmh10NFyQzNrMHYwJCQ6bDGD2gtZUL2zC_y8',
-'NULL','NULL','4',1,'/static/movie/img/s2809139.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9139,'一点巧克力','https://movie.douban.com/subject/2256055/','7.7',79,
-'http://www.imdb.com/title/tt1095432','NULL','NULL','NULL','NULL','NULL','西班牙','2008-04-30',
-'Daniel Brühl Héctor Alterio Julieta Serrano','Aitzol Aramaio','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2201994582.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9140,'狗狗与我的十个约定','https://movie.douban.com/subject/2976111/','8.0',53643,
-'http://www.imdb.com/title/tt1179271','NULL','NULL','NULL','NULL','NULL','日本','2009-01-26(中国大陆)',
-'田中丽奈 加濑亮 福田麻由子 丰川悦司 高岛礼子','本木克英','剧情 喜剧 爱情',
-'http://www.iqiyi.com/v_19rrny58l0.html',
-'magnet:?xt=urn:btih:2438341d63890e9cda77175e72d37fd59cf32830','NULL','4',1,'/static/movie/img/p1093145688.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9141,'花瓣','https://movie.douban.com/subject/1949682/','7.2',277,
-'http://www.imdb.com/title/tt0114119','NULL','NULL','NULL','NULL','NULL','韩国','1996-04-05(韩国)',
-'李贞贤 文成根 薛耿求 朴哲民 秋相美 罗昶辰 李英兰 朴光正 具在妍 朴忠善 许峻豪 明桂南 闵庆珍 Sun-cheol Yu 洪锡然 Min-cheul Cho 安锡焕 朴友燮 柳泰浩 Jeong Jin-u Jeon Hong-ryeol 申承哲 Seon-ju Jeong 吴智慧 沈光镇 李惠京','张善宇','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2455234453.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9142,'偷盗艺术','https://movie.douban.com/subject/10460153/','6.6',3616,
-'http://www.imdb.com/title/tt2172985','NULL','NULL','NULL','NULL','NULL','加拿大','2013-09-11(多伦多电影节)',
-'凯瑟琳·温妮克 杰伊·巴鲁切尔 库尔特·拉塞尔 马特·狄龙 特伦斯·斯坦普 戴文·博斯蒂克 克里斯·达玛托普拉斯 杰森·琼斯 肯尼斯·威尔什 尤金·里皮斯基','乔纳森·索博尔','喜剧',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8MuflWFrhvmsiQs5XdA3Rhc6GqUyJMAkvwxzWsoHg0v5',
-'magnet:?xt=urn:btih:ba0b1ece6301001b7ba5be1d5eb9b83a54bfad6d','NULL','4',1,'/static/movie/img/p2125431315.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9143,'七号禁毒组','https://movie.douban.com/subject/10551883/','6.2',864,
-'http://www.imdb.com/title/tt1924277','NULL','NULL','NULL','NULL','NULL','西班牙','2012-04-04(西班牙)',
-'马里奥·卡萨斯 安东尼奥·德·拉·托雷 茵玛·奎斯塔 Joaquín Núñez José Manuel Poga 胡里安·毕亚格兰 Estefanía de los Santos','阿尔伯特·罗德里格斯','剧情 动作 惊悚',
-'NULL',
-'magnet:?xt=urn:btih:25051e1c36d5e8be1883fe01bcb79a01f99ccdb0','NULL','4',1,'/static/movie/img/p1491824892.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9144,'神勇小拳童','https://movie.douban.com/subject/3136391/','5.6',83,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1995',
-'林国斌 孙清 阮明吉 刘超','李钊','暂时无数据',
-'http://www.iqiyi.com/v_19rrny8p4s.html',
-'NULL','NULL','4',1,'/static/movie/img/s4440374.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9145,'反黑行动组','https://movie.douban.com/subject/26335572/','5.3',1990,
-'http://www.imdb.com/title/tt4232610','NULL','NULL','NULL','NULL','NULL','法国 / 英国','2016-12-09(中国大陆)',
-'让·雷诺 卡特琳娜·莫里诺 奥尔本·勒努瓦 奥马尔·迪奥 施特菲·塞尔马 塞巴斯蒂安·拉兰内 蒂埃里·钮维 雅各布·克德格恩 萨巴纳·奥扎尼 费奥多尔·阿特金','本杰明·罗切尔','动作',
-'http://www.iqiyi.com/v_19rraq9m80.html',
-'magnet:?xt=urn:btih:aa3856bee1b0e40f8a1b4503d05f98830fbd9dac','NULL','4',1,'/static/movie/img/p2397920765.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9146,'铁罗汉','https://movie.douban.com/subject/2354895/','6.2',61,
-'http://www.imdb.com/title/tt0211666','NULL','NULL','NULL','NULL','NULL','香港','1970-11-12',
-'方盈 凌云 虞慧 陈鸿烈 尤情','严俊','动作 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1957184014.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9147,'哈里·布朗','https://movie.douban.com/subject/3217128/','7.6',14993,
-'http://www.imdb.com/title/tt1289406','NULL','NULL','NULL','NULL','NULL','英国','2009-11-11',
-'迈克尔·凯恩 艾米莉·莫迪默 查理·科里德-米尔斯 大卫·布拉德利 伊恩·格雷 西恩·哈里斯 本·德鲁 杰克·奥康奈尔 李·奥克斯 约瑟夫·吉尔根 利亚姆·坎宁安 Jamie Downey Marva Alexander Liz Daniels Marvin Campbell','Daniel Barber','剧情 惊悚 犯罪',
-'NULL',
-'magnet:?xt=urn:btih:1743ccdc562241dcb4a2824f9c522fa9bcf05e81','NULL','4',1,'/static/movie/img/p1333504472.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9148,'尸体派对2：影之书','https://movie.douban.com/subject/26703789/','4.1',293,
-'http://www.imdb.com/title/tt5641606','NULL','NULL','NULL','NULL','NULL','日本','2016-07-30(日本)',
-'生驹里奈 前田希美 池冈亮介 喜多阳子 ジュン 石川恋 水石亚飞梦 青木玄德','山田雅史','惊悚 恐怖',
-'NULL',
-'magnet:?xt=urn:btih:766bf09c0ab981ffd47de62c4921e58b32d83bb1','NULL','4',1,'/static/movie/img/p2367014511.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9149,'北村方向','https://movie.douban.com/subject/5992865/','7.5',3280,
-'http://www.imdb.com/title/tt1922561','NULL','NULL','NULL','NULL','NULL','韩国','2011-09-08(韩国)',
-'刘俊相 宋宣美 高贤贞 金义城 金甫京','洪尚秀','剧情',
-'http://www.iqiyi.com/dianying/20130710/c7eb53f01f82aa92.html',
-'magnet:?xt=urn:btih:a2fadbd0bb04a1ad3437aef40e89428d4c7be036','NULL','4',1,'/static/movie/img/p1133692403.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9150,'月色狰狞','https://movie.douban.com/subject/10553094/','3.3',301,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-05-04(中国大陆)',
-'邢佳栋 姚橹 矢野浩二 李彧','张力','动作 悬疑',
-'http://www.iqiyi.com/v_19rr7hdcy0.html',
-'NULL','NULL','4',1,'/static/movie/img/p1524023814.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9151,'康定情歌','https://movie.douban.com/subject/5045804/','6.5',4116,
-'http://www.imdb.com/title/tt1754001','NULL','NULL','NULL','NULL','NULL','中国大陆','2010-11-05',
-'苏有朋 居文沛 蒲巴甲 翁虹 卢奇 何政军 张光北 吴军 马以 谢润 袁霆','江平','剧情 战争 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p678178958.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9152,'阴婚之鬼压床','https://movie.douban.com/subject/26639396/','2.7',61,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'完颜羽珊 唐伟鹏 魏若熙 张蓝兮 王小璐','贾真','暂时无数据',
-'http://www.iqiyi.com/v_19rrklk2jo.html',
-'NULL','NULL','4',1,'/static/movie/img/p2275013455.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9153,'西鹤一代女','https://movie.douban.com/subject/1303603/','8.3',2488,
-'http://www.imdb.com/title/tt0045112','NULL','NULL','NULL','NULL','NULL','日本','1952-04-03(日本)',
-'田中绢代 Tsukie Matsuura 三船敏郎 近卫敏明 菅井一郎','沟口健二','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2216182442.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9154,'午夜丽人','https://movie.douban.com/subject/3066821/','5.7',174,
-'http://www.imdb.com/title/tt0091517','NULL','NULL','NULL','NULL','NULL','香港','1986-04-13',
-'陈家齐 吴文玲 吴镇宇','黎大炜','剧情',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzs6Xpmg-bogtEmfmztEQ_E6CpFh5940npSv6B7Tds7C6',
-'NULL','NULL','4',1,'/static/movie/img/p2346718420.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9155,'卡拉鹰','https://movie.douban.com/subject/4173581/','6.5',183,
-'http://www.imdb.com/title/tt1542852','NULL','NULL','NULL','NULL','NULL','阿根廷 / 智利 / 法国 / 韩国','2010-09-24',
-'里卡多·达林 马蒂娜·古斯曼 Carlos Weber','帕布罗·查比罗','剧情 爱情 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrn6mxwo.html',
-'NULL','NULL','4',1,'/static/movie/img/p817976140.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9156,'我们善熙','https://movie.douban.com/subject/21371664/','6.9',3245,
-'http://www.imdb.com/title/tt2942512','NULL','NULL','NULL','NULL','NULL','韩国','2013-09-12(韩国)',
-'郑有美 李善均 郑在咏 艺智苑 李珉宇 金相中','洪尚秀','剧情',
-'http://www.iqiyi.com/v_19rrn80cgs.html',
-'NULL','NULL','4',1,'/static/movie/img/p2079119933.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9157,'四月的女孩','https://movie.douban.com/subject/6797483/','4.0',116,
-'http://www.imdb.com/title/tt1901033','NULL','NULL','NULL','NULL','NULL','芬兰','2011-08-05(芬兰)',
-'Antti Reini Taisto Oksanen Riitta Viiperi Marjaana Maijala Tuomas Uusitalo','Lauri Törhönen','犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1176368528.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9158,'山之音','https://movie.douban.com/subject/1404845/','7.8',940,
-'http://www.imdb.com/title/tt0047682','NULL','NULL','NULL','NULL','NULL','日本','1954-01-15(日本)',
-'原节子 上原谦 山村聪','成濑巳喜男','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKBnPRE1-rFpCilU9liooOx',
-'NULL','NULL','4',1,'/static/movie/img/p2314220346.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9159,'斩尽杀绝','https://movie.douban.com/subject/20399328/','3.9',445,
-'http://www.imdb.com/title/tt1928335','NULL','NULL','NULL','NULL','NULL','美国','2012',
-'Johnny Messner, Chia Hui Liu Joe Lewis','Raimund Huber','动作',
-'http://www.iqiyi.com/v_19rrhnn9dw.html',
-'NULL','NULL','4',1,'/static/movie/img/p2163527522.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9160,'方糖','https://movie.douban.com/subject/1850797/','8.0',15722,
-'http://www.imdb.com/title/tt0438986','NULL','NULL','NULL','NULL','NULL','韩国','2006-08-10(韩国)',
-'林秀晶 金裕贞 金相浩 刘五性','李焕庆','剧情 爱情',
-'http://www.iqiyi.com/dianying/20100810/n29167.html',
-'NULL','NULL','4',1,'/static/movie/img/p699063492.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9161,'乌鲁木齐的天空','https://movie.douban.com/subject/6110557/','7.3',114,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2011-05-08(中国大陆)',
-'曹曦文 于滨','西尔扎提·亚合甫','剧情 爱情',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb6MVTtSmCrORB7viraBRyxjjV_JBamofr6ugXZ639ib2',
-'NULL','NULL','4',1,'/static/movie/img/p986521847.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9162,'美丽青年全泰壹','https://movie.douban.com/subject/1891521/','8.1',135,
-'http://www.imdb.com/title/tt0121755','NULL','NULL','NULL','NULL','NULL','韩国','1995-11-18(韩国)',
-'文成根 洪景仁','朴光洙','剧情',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzqeqdm0CTcJLgX-q-zUrnzCYOkcGi1odldSoRBq-590s',
-'NULL','NULL','4',1,'/static/movie/img/p457414271.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9163,'死亡迷局','https://movie.douban.com/subject/5342081/','3.6',229,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-03-23(中国大陆)',
-'董娉 傅冲 阮志强','鲁坚','剧情 悬疑 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1449752947.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9164,'步步追魂','https://movie.douban.com/subject/20278573/','3.3',893,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2013-11-15(中国大陆)',
-'袁成杰 谭卓 徐洁儿 米学东 徐程','江澄','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrhdiujw.html',
-'magnet:?xt=urn:btih:5606339252dfd57037b945f10aba4b10e42e7ee1','NULL','4',1,'/static/movie/img/p2154483785.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9165,'户田家兄妹','https://movie.douban.com/subject/1304317/','8.2',883,
-'http://www.imdb.com/title/tt0034298','NULL','NULL','NULL','NULL','NULL','日本','1941-03-01',
-'三宅邦子 葛城文子 藤野秀夫 吉川满子 笠智众 佐分利信','小津安二郎','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIDL46VSivaShBPmILwJO02',
-'NULL','NULL','4',1,'/static/movie/img/p2285653436.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9166,'子夜招魂','https://movie.douban.com/subject/6521866/','3.9',80,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2011-03-25',
-'陈牧扬 谢闻轩 吴晓莉 郝婷婷 平安 佘艺','杨宗德','剧情 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s6512169.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9167,'女侠黑蝴蝶','https://movie.douban.com/subject/2350168/','6.2',65,
-'http://www.imdb.com/title/tt0062734','NULL','NULL','NULL','NULL','NULL','香港','1968-03-05',
-'焦姣 岳华 陈鸿烈 罗维 田丰','罗维','暂时无数据',
-'http://www.iqiyi.com/v_19rrarhwc4.html',
-'NULL','NULL','4',1,'/static/movie/img/s2812243.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9168,'同命鸟','https://movie.douban.com/subject/1300293/','8.3',153,
-'http://www.imdb.com/title/tt0055217','NULL','NULL','NULL','NULL','NULL','日本','1961-01-15(日本)',
-'高峰秀子 小林桂树','松山善三','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMID99KTmnglQPBpg5o3KFlC',
-'NULL','NULL','4',1,'/static/movie/img/p2241191995.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9169,'狱前教育','https://movie.douban.com/subject/25835306/','6.4',7994,
-'http://www.imdb.com/title/tt2561572','NULL','NULL','NULL','NULL','NULL','美国','2015-03-27(美国)',
-'威尔·法瑞尔 凯文·哈特 爱丽森·布里 艾丽·简 格雷格·T·尼尔森 保罗·本-维克托 丹·巴克达尔 玛丽安娜·宝拉·韦森特 T.I. 瓦内萨·阿玛雅 萨曼莎·比乌列乌 约翰·梅耶 Taryn Terrell','伊坦·柯亨','喜剧',
-'NULL',
-'magnet:?xt=urn:btih:1b9e20d920d16098d977c26fb9ddbc65cbf0b073','NULL','4',1,'/static/movie/img/p2212607822.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9170,'焦点','https://movie.douban.com/subject/20277433/','6.6',20014,
-'http://www.imdb.com/title/tt2381941','NULL','NULL','NULL','NULL','NULL','美国','2015-02-27(美国)',
-'玛格特·罗比 威尔·史密斯 罗德里格·桑托罗 黄荣亮 杰拉尔德·麦克雷尼 罗伯特·泰勒 乔·克里斯特 多米尼克·福穆萨 Christopher Heskey 斯蒂芬妮·奥诺雷 Adrian Martinez Laura Flannery Brennan Brown Justin Lebrun 唐·耶索','格伦·费卡拉','剧情 喜剧 犯罪',
-'http://so.iqiyi.com/links/Y1t4eAa0mLAVDBoVzSYwMMyxXRCEVW4sPOhaeLT2MjbxfbHRebAQKHr5Ro1MUYlkEFu1gugTTuwqF5-0pLeXJw==',
-'magnet:?xt=urn:btih:5ff9510f8a09d90a29d417d9d3576c27c519cec0','NULL','4',1,'/static/movie/img/p2223366690.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9171,'胭脂虎对霸王花','https://movie.douban.com/subject/2174229/','5.3',103,
-'http://www.imdb.com/title/tt0098298','NULL','NULL','NULL','NULL','NULL','香港','1989-04-07',
-'成奎安 刘家辉  吴孟达 李赛凤 梁家仁 高城富世美','鲁俊谷','动作 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2348711507.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9172,'天空之蜂','https://movie.douban.com/subject/25903021/','6.4',1293,
-'http://www.imdb.com/title/tt3786530','NULL','NULL','NULL','NULL','NULL','日本','2015-09-12(日本)',
-'江口洋介 本木雅弘 仲间由纪惠 绫野刚 柄本明 国村隼 石桥莲司 竹中直人 向井理 佐藤二朗 光石研 落合扶树 矢部享佑 手塚通 永濑匡 石桥桂 松岛花 松田悟志 森冈丰','堤幸彦','惊悚',
-'NULL',
-'magnet:?xt=urn:btih:493a080c51b260de6d88f8e0af7546c6cc26ba17','NULL','4',1,'/static/movie/img/p2266734779.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9173,'生命的烙印','https://movie.douban.com/subject/1295336/','7.1',517,
-'http://www.imdb.com/title/tt0074220','NULL','NULL','NULL','NULL','NULL','波兰','1976-12-06',
-'Franciszek Pieczka 马里斯斯·德莫乔斯基 杰基·斯图尔 Jan Skotnicki Stanislaw Igar','克日什托夫·基耶斯洛夫斯基','剧情',
-'http://www.iqiyi.com/v_19rrh104qo.html',
-'NULL','NULL','4',1,'/static/movie/img/s1436242.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9174,'欲霸天下','https://movie.douban.com/subject/4925413/','5.5',123,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆 / 香港','1994',
-'张卫健 蒋勤勤 翁虹 狄威 何家驹 郑则仕','罗文','暂时无数据',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8BDhJW4urKgQIHz85YBHppl-LDd0Z5aD2xlVSpLinQ06',
-'NULL','NULL','4',1,'/static/movie/img/s4452113.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9175,'鬼脸儿杜兴','https://movie.douban.com/subject/6717590/','5.0',109,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'乔鹏樾 李曼 杜玉明 孟飞 李川','刘信义','暂时无数据',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb3SBJanYBUwqJYHvoXaqO-p_rq4V4Anpa1kVhTs6m0So',
-'NULL','NULL','4',1,'/static/movie/img/p2178547387.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9176,'亚历克斯·克洛斯','https://movie.douban.com/subject/5327201/','5.6',2600,
-'http://www.imdb.com/title/tt1712170','NULL','NULL','NULL','NULL','NULL','美国','2012-10-19(美国)',
-'泰勒·派瑞 马修·福克斯 瑞秋·尼科尔斯 让·雷诺 吉安卡罗·埃斯波西托 斯蒂芬妮·雅格布森','罗伯·科恩','动作 悬疑 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1758891775.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9177,'女神捕之局中局','https://movie.douban.com/subject/3241966/','6.5',163,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'商蓉 王冰 方安娜 苗皓钧 崔宝贵 王兵 陶倩倩 于荣光','司小冬','动作 悬疑 古装',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGVPS_f18Mlw7B2YXLkAa_r5voR7eXs3B5OOU9PHxz5Ex',
-'NULL','NULL','4',1,'/static/movie/img/p2081045317.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9178,'警察皆混蛋','https://movie.douban.com/subject/6873216/','6.6',413,
-'http://www.imdb.com/title/tt1893195','NULL','NULL','NULL','NULL','NULL','意大利 / 法国','2012-01-13(意大利)',
-'皮尔弗朗西斯科·法维诺 菲利波·尼格鲁 马可·贾利尼 Andrea Sartoretti 罗伯塔·斯帕格诺洛 多米尼克·迪勒','斯蒂法诺·索利马','剧情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1545135195.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9179,'非常主播','https://movie.douban.com/subject/3550132/','7.9',122484,
-'http://www.imdb.com/title/tt1360795','NULL','NULL','NULL','NULL','NULL','韩国','2009-10-09(中国大陆)',
-'车太贤 朴宝英 王晳铉 宋河波 黄雨瑟惠','姜炯哲','剧情 喜剧 音乐',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLuKuRg1m3vv6xUDmsLhzWe',
-'NULL','NULL','4',1,'/static/movie/img/p547516194.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9180,'影迷','https://movie.douban.com/subject/1294303/','8.4',2004,
-'http://www.imdb.com/title/tt0078763','NULL','NULL','NULL','NULL','NULL','波兰','1979-11-16',
-'杰基·斯图尔 Malgorzata Zabkowska Ewa Pokas Stefan Czyzewski Jerzy Nowak Tadeusz Bradecki Marek Litewka Boguslaw Sobczuk 克日什托夫·扎努西 Andrzej Jurga Alicja Bienicewicz Tadeusz Rzepka Aleksandra Kisielewska Wlodzimierz Maciudzinski Roman Stankiewicz','克日什托夫·基耶斯洛夫斯基','剧情 喜剧 爱情',
-'http://www.iqiyi.com/v_19rrhfe0xo.html',
-'NULL','NULL','4',1,'/static/movie/img/p2206932070.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9181,'骇客交锋','https://movie.douban.com/subject/24530939/','4.0',4319,
-'http://www.imdb.com/title/tt2717822','NULL','NULL','NULL','NULL','NULL','美国','2015-01-16(美国)',
-'克里斯·海姆斯沃斯 汤唯 王力宏 维奥拉·戴维斯 安志杰 霍特·麦克卡兰尼 里特奇·科斯特 布兰顿·莫拉勒 杰森·巴特勒·哈纳 高圣远','迈克尔·曼','剧情 动作 悬疑 惊悚 犯罪',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8BDhJW4urKgQIHz85YBHppnPefOhT8_IqqxMPTM68RdjjpmxKPKtNCPVxbzmaDngjw==',
-'magnet:?xt=urn:btih:cc69a5a2b94eb5b1651522c5141c63c05e61960b','NULL','4',1,'/static/movie/img/p2208551645.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9182,'正果','https://movie.douban.com/subject/26658050/','3.6',64,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2015-12-08(中国大陆)',
-'张优 李菁菁 曹帅 徐池承','李东','剧情 爱情',
-'http://www.iqiyi.com/v_19rrlannp0.html',
-'NULL','NULL','4',1,'/static/movie/img/p2280785461.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9183,'塔克拉玛干','https://movie.douban.com/subject/1771813/','6.4',194,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'苏有朋 秦海璐','甄人','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGb3j6r23Wb7xt1bIGSurKNMJ9PL3k9CHhq-jyQAwK17T',
-'NULL','NULL','4',1,'/static/movie/img/p2362370988.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9184,'罪的留白','https://movie.douban.com/subject/26257310/','5.3',579,
-'http://www.imdb.com/title/tt4218644','NULL','NULL','NULL','NULL','NULL','日本','2015-10-03(日本)',
-'内野圣阳 吉本实忧 谷村美月 葵若菜 宇野爱海 堀部圭亮 利重刚 加藤雅也 武田玲奈','大塚祐吉','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJu_LYokWgAbL4628V8sLBK',
-'magnet:?xt=urn:btih:892b3455793dbfa13bffcfd93208c3739437e247','NULL','4',1,'/static/movie/img/p2253139153.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9185,'此处与彼处','https://movie.douban.com/subject/11504559/','4.9',188,
-'http://www.imdb.com/title/tt2244098','NULL','NULL','NULL','NULL','NULL','中国大陆','2012',
-'赵魏 黄唐一佳 岳鼎 田青玉 王艺铮 李子芊','茅毛','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1979098695.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9186,'长屋绅士录','https://movie.douban.com/subject/1300789/','8.2',450,
-'http://www.imdb.com/title/tt0039651','NULL','NULL','NULL','NULL','NULL','日本','1947-05-20',
-'饭田蝶子','小津安二郎','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIAp6AuicjBc3R14F9OKDDy',
-'NULL','NULL','4',1,'/static/movie/img/p2191550098.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9187,'恶虎村','https://movie.douban.com/subject/1303437/','5.7',91,
-'http://www.imdb.com/title/tt0193890','NULL','NULL','NULL','NULL','NULL','香港','1974-01-12',
-'舒佩佩 岳华 王侠 叶灵芝 詹森','岳枫','动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKHhG5DmFTFbUtHGj4V8P_s',
-'NULL','NULL','4',1,'/static/movie/img/s3033439.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9188,'黑金风暴','https://movie.douban.com/subject/3001143/','6.7',1767,
-'http://www.imdb.com/title/tt1194417','NULL','NULL','NULL','NULL','NULL','加拿大','2010-12-17(美国)',
-'凯文·史派西 海登·克里斯滕森','乔治·海肯卢珀','剧情 喜剧 传记 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1673835711.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9189,'白领流氓','https://movie.douban.com/subject/11232687/','6.0',316,
-'http://www.imdb.com/title/tt2121377','NULL','NULL','NULL','NULL','NULL','英国','0000-00-00',
-'Nick Nevern Mike Jacobs Simon Phillips','Paul Tanter','动作 犯罪',
-'http://www.iqiyi.com/v_19rrh4218s.html',
-'NULL','NULL','4',1,'/static/movie/img/p1668411255.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9190,'巨人','https://movie.douban.com/subject/25977062/','6.8',344,
-'http://www.imdb.com/title/tt4120598','NULL','NULL','NULL','NULL','NULL','韩国','2014-11-13(韩国)',
-'崔宇植','金泰泳','剧情',
-'NULL',
-'magnet:?xt=urn:btih:3aa31467325dbec92adaa2db0b77e91a31de5712','NULL','4',1,'/static/movie/img/p2209494768.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9191,'终极硬汉','https://movie.douban.com/subject/25912266/','3.2',992,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆 / 美国','2016-08-19(中国大陆)',
-'陈天星 霸易 吕克·本扎 克瓦德沃·季德 吉安·德里克 沃里克·吉尔斯 多哥·巴巴鲁 以色列 刘永奇 于震寰','崔磊','动作 犯罪 冒险',
-'http://www.iqiyi.com/v_19rr9idbb8.html',
-'magnet:?xt=urn:btih:9c293052fdf2f46c4874f36a89c4fcbcb07b8e79','NULL','4',1,'/static/movie/img/p2372585223.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9192,'新大小不良','https://movie.douban.com/subject/1296695/','6.1',142,
-'http://www.imdb.com/title/tt0111773','NULL','NULL','NULL','NULL','NULL','香港','0000-00-00',
-'郑则士 张卫健 翁虹 蒋勤勤','罗文 (Norman Law)','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2219342768.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9193,'火车大劫案','https://movie.douban.com/subject/1300783/','7.0',442,
-'http://www.imdb.com/title/tt0079240','NULL','NULL','NULL','NULL','NULL','英国','1979-02-02',
-'肖恩·康纳利 唐纳德·萨瑟兰 莱斯利-安·唐恩','迈克尔·克莱顿','剧情 动作 惊悚 犯罪 冒险',
-'http://so.iqiyi.com/links/99o4kBuRLFk8iR4Zenvqf5VurPN5m0KZDx7Tio10PA6TXCrjidqo2QabZR6hN14jbEK39C1oW95z_4HvbhzV5g==',
-'NULL','NULL','4',1,'/static/movie/img/s3810145.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9194,'汲取月光','https://movie.douban.com/subject/4238952/','5.9',158,
-'http://www.imdb.com/title/tt1703845','NULL','NULL','NULL','NULL','NULL','韩国','2011-03-17(韩国)',
-'姜受延 朴重勋 艺智苑 张恒善','林权泽','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p849778279.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9195,'世上最美的离别','https://movie.douban.com/subject/5364952/','8.3',19611,
-'http://www.imdb.com/title/tt2557406','NULL','NULL','NULL','NULL','NULL','韩国','2011-04-20(韩国)',
-'徐英姬 金甲洙 刘俊相 裴宗玉 朴河宣 柳德焕','闵奎东','剧情 家庭',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1264695739.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9196,'星笼之海','https://movie.douban.com/subject/26311976/','5.3',1662,
-'http://www.imdb.com/title/tt4657280','NULL','NULL','NULL','NULL','NULL','日本','2016-06-04(日本)',
-'玉木宏 广濑爱丽丝 石田光 小仓久宽 要润 谷村美月 吉田荣作 利昂·谢卜利·艾哈迈德','和泉圣治','悬疑 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI4Jd7_yDKEmQBs4X89sTM2',
-'magnet:?xt=urn:btih:5ab65b026533188e431484eca7002aa984430e4e','NULL','4',1,'/static/movie/img/p2313843748.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9197,'百合','https://movie.douban.com/subject/5954497/','6.8',1059,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2011-03-08(中国大陆)',
-'王梓桐 吕丽萍 赵雅淇 王梓蘅 烨烨 董利德 李亮','周晓文','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p875928906.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9198,'笑过2012','https://movie.douban.com/subject/20395278/','6.5',466,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-12-07(中国大陆)',
-'王景春 王柠 李心敏 韩梓轩 沈伐 叮当 钟艳萍','游晓锦','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Z9p7UXKku20xdoKeqyT2asOttwhCD96PPSzc9uyymtF9qEnf24PURRw5-bKOyeQjQ==',
-'NULL','NULL','4',1,'/static/movie/img/p1797772184.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9199,'桑蒂尼之谜','https://movie.douban.com/subject/5151639/','4.7',39,
-'http://www.imdb.com/title/tt1660407','NULL','NULL','NULL','NULL','NULL','捷克共和国','2011-12-04',
-'Viktor Preiss Martin Stropnický David Svehlík 马瑞克·塔西里克 Monika Timková','Jirí Strach','剧情 悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2394661480.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9200,'风雨血痕','https://movie.douban.com/subject/1295136/','8.5',43,
-'http://www.imdb.com/title/tt0026955','NULL','NULL','NULL','NULL','NULL','美国','1935-03-08',
-'查尔斯·劳顿 玛丽·博兰 查尔斯·拉格尔斯 扎苏·皮茨','莱奥·麦卡雷','喜剧 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLI1Hk-qIEKIbOZsd_9gdS_',
-'NULL','NULL','4',1,'/static/movie/img/p2398582923.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9201,'狼少年','https://movie.douban.com/subject/6844868/','7.8',80410,
-'http://www.imdb.com/title/tt2315152','NULL','NULL','NULL','NULL','NULL','韩国','2013-12-19(中国大陆)',
-'宋仲基 朴宝英 柳演锡 张荣男 金香起','赵圣熙','爱情 奇幻',
-'http://www.iqiyi.com/v_19rrkwqsn4.html',
-'magnet:?xt=urn:btih:0189eb1cc87d4a6046156788c7ad973d8e65a52f','NULL','4',1,'/static/movie/img/p2159648145.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9202,'背影','https://movie.douban.com/subject/10561909/','6.5',46,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'吴水美 孙华萍 徐惠君 方院','磐石','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqTYMWafMQdWgZj7o_xNw3nObrTsqEIvO784ak-urLpNi',
-'NULL','NULL','4',1,'/static/movie/img/s8985403.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9203,'心咒','https://movie.douban.com/subject/24695967/','2.8',583,
-'http://www.imdb.com/title/tt4786672','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-05-23(中国大陆)',
-'朱智勋 徐洁儿 刘芷汐 张亚希 陆嘉浩 徐惠雯','李唯劼','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrhw6tb0.html',
-'magnet:?xt=urn:btih:2cb9055e7a9a2ca965d2593613d72965b4b7ba04','NULL','4',1,'/static/movie/img/p2183168678.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9204,'罪恶赎金','https://movie.douban.com/subject/3439317/','5.4',1277,
-'http://www.imdb.com/title/tt1361318','NULL','NULL','NULL','NULL','NULL','英国 / 美国 / 瑞典 / 丹麦','2015-07-03(中国大陆)',
-'詹姆斯·弗兰科 凯特·哈德森 奥玛·赛 汤姆·威尔金森 安娜·弗莱尔 萨姆·斯普卢尔  迪尔梅德·默塔 迈克尔·福克斯 弗朗西斯·麦基 马尔滕·丹嫩贝格 迈克尔·吉普森 瓦·阿里 黛安娜·哈卡索','亨里克·鲁本·甘茨','动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8BDhJW4urKgQIHz85YBHppkcXBHJbxRBaVyIY_slYxU1qmXMW2ofvXdMxfy5w3YQmA==',
-'magnet:?xt=urn:btih:a0774ef7fb4aba1da9792d2fd8390c2c6a39ad27','NULL','4',1,'/static/movie/img/p2252115614.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9205,'分瓶','https://movie.douban.com/subject/26700491/','6.8',166,
-'http://www.imdb.com/title/tt6147768','NULL','NULL','NULL','NULL','NULL','韩国','2016-11-16(韩国)',
-'刘智泰 李贞贤 李大为 郑承华','최국희','剧情',
-'NULL',
-'magnet:?xt=urn:btih:55dbdcd3c5b9bfd0e71f367ab3ed6f7762b7057f','NULL','4',1,'/static/movie/img/p2384948271.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9206,'六扇门之双面人','https://movie.douban.com/subject/26438953/','5.4',66,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'吴毅将 徐亮 陶洋 骆达华','黄祖权','动作',
-'http://so.iqiyi.com/links/iDYCAkmRMemaUWHrzfuxfkt_vEG3T_l3Pg-6C-7bZ4H3i1-R5AlUSV2CO3qY-wu0',
-'NULL','NULL','4',1,'/static/movie/img/p2307572604.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9207,'多情双宝环','https://movie.douban.com/subject/3406777/','7.1',59,
-'NULL','NULL','NULL','NULL','NULL','NULL','台湾','1979-12-29(台湾)',
-'田鹤 孙嘉琳 刘德凯 周明惠 高翔 古錚 鲁平 田平春 金波','张鹏翼','武侠',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2269874419.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9208,'黑狮震雄风','https://movie.douban.com/subject/1297382/','6.4',87,
-'http://www.imdb.com/title/tt0073906','NULL','NULL','NULL','NULL','NULL','美国','1975-05-22',
-'肖恩·康纳利 坎迪斯·伯根 Brian Keith 约翰·休斯顿','约翰·米利厄斯','剧情 动作 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2386204997.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9209,'混蛋','https://movie.douban.com/subject/20366087/','6.2',172,
-'http://www.imdb.com/title/tt2821088','NULL','NULL','NULL','NULL','NULL','法国 / 德国','2013-05-21(戛纳电影节)',
-'梵尚·兰东 萝拉·克雷顿 齐雅拉·马斯楚安尼 米歇尔·索博 米歇尔·索博 Michel Subor','克莱尔·德尼','剧情',
-'NULL',
-'magnet:?xt=urn:btih:731e99a65d69d0eb64e7f08f7761f6d7649a3852','NULL','4',1,'/static/movie/img/p2153242372.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9210,'血玫瑰','https://movie.douban.com/subject/1484139/','6.2',477,
-'http://www.imdb.com/title/tt0092254','NULL','NULL','NULL','NULL','NULL','香港','1988-10-07',
-'林正英 王小凤 金燕玲 薛芷伦 王霄 周比利 成奎安 沈威','蓝乃才','剧情 惊悚 恐怖',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzs6Xpmg-bogtEmfmztEQ_E5aOlUqtd94YvbaxgHBh5Cn',
-'NULL','NULL','4',1,'/static/movie/img/p2047107967.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9211,'金毛狮王','https://movie.douban.com/subject/1760625/','5.2',90,
-'http://www.imdb.com/title/tt0073056','NULL','NULL','NULL','NULL','NULL','香港','1975-12-21',
-'李菁 赵雄 王侠 南宫勋 詹森','何梦华','剧情 动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLdwQq-NHFLoqJIgUaM9Odm',
-'NULL','NULL','4',1,'/static/movie/img/s1632082.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9212,'一条龙','https://movie.douban.com/subject/26598291/','6.5',748,
-'http://www.imdb.com/title/tt5628332','NULL','NULL','NULL','NULL','NULL','韩国','2017-03-29(韩国)',
-'任时完 朴有焕 晋久 李东辉 王智媛','杨景模','剧情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2433520294.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9213,'雨月物语','https://movie.douban.com/subject/1303577/','8.5',8524,
-'http://www.imdb.com/title/tt0046478','NULL','NULL','NULL','NULL','NULL','日本','1953-03-26',
-'田中绢代 森雅之 小泽荣太郎 水户光子 京町子','沟口健二','剧情 悬疑 奇幻',
-'http://so.iqiyi.com/links/dBdbHSDc033EON4taM0pwARsiokLaYmMXKOu2cbuTa9zDlaqiL920MCuVMPh1D5Sx-nS1SKTmbwMhZdt7dkdNLz9gs-7oTkj5wozG48KloGQiCjKsXuC0SDBIokhC0En',
-'NULL','NULL','4',1,'/static/movie/img/p2154451862.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9214,'凤凰劫','https://movie.douban.com/subject/1958178/','7.5',125,
-'http://www.imdb.com/title/tt0059183','NULL','NULL','NULL','NULL','NULL','美国','1965-12-15',
-'詹姆斯·斯图尔特 理查德·阿滕伯勒 彼得·芬奇 哈迪·克鲁格 欧内斯特·博格宁 伊安·邦纳','罗伯特·奥尔德里奇','剧情 冒险',
-'http://www.iqiyi.com/dianying/20130225/e7eb82debe397b20.html',
-'magnet:?xt=urn:btih:f3676933a0f7dfe2033c8050815c0523870b958a','NULL','4',1,'/static/movie/img/s4421028.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9215,'烟雨红颜','https://movie.douban.com/subject/1456391/','6.4',1846,
-'http://www.imdb.com/title/tt0453319','NULL','NULL','NULL','NULL','NULL','中国大陆','2002-02-26',
-'张信哲 周迅','刘德凯','爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1X8x6o6ZLbOi-5nxO2z5LbdpBNH6hP4sb_B4ZIplIwIqSezFv-BJ5QldA5tNE_7HSA==',
-'NULL','NULL','4',1,'/static/movie/img/p1155502038.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9216,'血芙蓉','https://movie.douban.com/subject/1482514/','5.8',134,
-'http://www.imdb.com/title/tt0078456','NULL','NULL','NULL','NULL','NULL','香港','1978-03-11',
-'徐少强 岳华 罗烈 陈萍 邵音音','何梦华','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2161933840.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9217,'恋者多喜欢','https://movie.douban.com/subject/19944572/','4.2',570,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-03-07(中国大陆)',
-'胡兵 刘涛 马静怡 连晋 崔准硕','白承勋','喜剧 爱情',
-'http://www.iqiyi.com/v_19rri11of4.html',
-'magnet:?xt=urn:btih:6ffa8eb5945a5069fa442ba657925e711c997979','NULL','4',1,'/static/movie/img/p2171127703.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9218,'怪医唐慎微','https://movie.douban.com/subject/26323543/','5.7',181,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'马率 赵溪童 卢海华','方军亮','剧情 传记 历史',
-'http://so.iqiyi.com/links/iDYCAkmRMemaUWHrzfuxfjMsJXNZVFXZe635i8ElvFxUWyawEU_mm-6fKbVs1B1B',
-'NULL','NULL','4',1,'/static/movie/img/p2227607428.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9219,'冰封之地','https://movie.douban.com/subject/6753091/','6.3',9207,
-'http://www.imdb.com/title/tt2005374','NULL','NULL','NULL','NULL','NULL','美国','2013-08-23(美国)',
-'尼古拉斯·凯奇 约翰·库萨克 凡妮莎·哈金斯 凯瑟琳·拉·纳莎','斯科特·沃克','剧情 惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLjltXoRSNSeab-jwSj3HNT',
-'magnet:?xt=urn:btih:bd55114bedd97ea0810c068be482be6b0b867a5e','NULL','4',1,'/static/movie/img/p1993280846.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9220,'恋爱进行时','https://movie.douban.com/subject/1389971/','7.6',11457,
-'http://www.imdb.com/title/tt0381838','NULL','NULL','NULL','NULL','NULL','韩国','2003-11-24(韩国)',
-'林秀晶 金来沅 李美淑 金仁文 尹赞 朴俊石','李彦禧','爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1dMEmYmmd2tnxKqsp-9M2yS8VY3PhTuzTrZ6wQrvculrN-6GpSZWjXl5UBNkF3nJXw==',
-'NULL','NULL','4',1,'/static/movie/img/p466516170.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9221,'轰天皇家将','https://movie.douban.com/subject/3793671/','5.1',115,
-'http://www.imdb.com/title/tt0099793','NULL','NULL','NULL','NULL','NULL','香港','1990',
-'吴家丽 大岛由加利 西协美智子 惠英红 狄威','韦烈','动作',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8HbnYfKWVm1yONW6uk0jqOSsLyYAMlBHr3Fzk8M2mXYj',
-'NULL','NULL','4',1,'/static/movie/img/p2228879485.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9222,'机遇之歌','https://movie.douban.com/subject/1307200/','8.5',4523,
-'http://www.imdb.com/title/tt0084549','NULL','NULL','NULL','NULL','NULL','波兰','1987-01-10(波兰)',
-'勃库斯洛·林达 Tadeusz Lomnicki 比涅尤·扎塔西奇斯','克日什托夫·基耶斯洛夫斯基','剧情',
-'http://www.iqiyi.com/v_19rrhgv374.html',
-'NULL','NULL','4',1,'/static/movie/img/p2251471006.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9223,'这本悬疑小说真棒2015','https://movie.douban.com/subject/26651281/','6.0',881,
-'http://www.imdb.com/title/tt5240684','NULL','NULL','NULL','NULL','NULL','日本','2015-11-30(日本)',
-'财前直见 上野树里 檀丽 又吉直树 树木希林 桐山涟 泷本美织 中越典子 东根作寿英 中野裕太 津田宽治 光石研 浜野谦太 马场园梓 猪塚健太 蒼山真人 柴浩二 井阪郁巳 斉藤佑介 清水美沙 木村绿子 渡边真起子 中村友理 中島歩 真岛秀和 大方斐紗子 山田明乡','石井康晴','悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2285299880.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9224,'镖旗飞扬','https://movie.douban.com/subject/2353699/','5.8',54,
-'http://www.imdb.com/title/tt0874865','NULL','NULL','NULL','NULL','NULL','香港','0000-00-00',
-'羅烈 張佩山 王俠 楊愛華','午馬','动作',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1dyp5mUKqUIOKfpB7xK6U54b0izLyUcfFtJd9sroDf3lqLq7pHs-32DnMS0RYb3q_A==',
-'NULL','NULL','4',1,'/static/movie/img/s3041197.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9225,'来电不善','https://movie.douban.com/subject/25732144/','5.1',85,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'佟悦 张茜 李为民 孙小娟 梁子 霍泥芳','郭啸','剧情 动作',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb0UQN0gNbKEJ9xOIGVXo9NaTGMJ_lHAMlnh05fBS5ktd',
-'NULL','NULL','4',1,'/static/movie/img/p2151007481.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9226,'飙风特警','https://movie.douban.com/subject/1296451/','6.2',70,
-'http://www.imdb.com/title/tt0193560','NULL','NULL','NULL','NULL','NULL','美国','2002-01-25',
-'James Van Der Beek Dylan McDermott Usher Raymond Ashton Kutcher Rachael Leigh Cook Tom Skerritt','史蒂夫 迈纳 (Steve Miner)','剧情 西部 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2232640062.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9227,'异世浮生','https://movie.douban.com/subject/1295809/','7.4',3022,
-'http://www.imdb.com/title/tt0099871','NULL','NULL','NULL','NULL','NULL','美国','1990-11-02(美国)',
-'蒂姆·罗宾斯 伊丽莎白·佩纳 丹尼·爱罗 马特·克拉文 普路特·泰勒·文斯 麦考利·卡尔金','阿德里安·莱恩','剧情 悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrmy3s3w.html',
-'NULL','NULL','4',1,'/static/movie/img/p1726243546.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9228,'无休无止','https://movie.douban.com/subject/1293109/','8.0',2028,
-'http://www.imdb.com/title/tt0086961','NULL','NULL','NULL','NULL','NULL','波兰','1985-06-17',
-'Tadeusz Bradecki 马里克·肯德兰特 Michal Bajor 格拉齐娜·扎波罗夫斯卡 Maria Pakulnis 亚历山大·巴尔迪尼','克日什托夫·基耶斯洛夫斯基','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKP3ZaKpwvXGho0d31832lx',
-'NULL','NULL','4',1,'/static/movie/img/p2206930304.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9229,'寻找金钟旭','https://movie.douban.com/subject/4851900/','7.3',15700,
-'http://www.imdb.com/title/tt1826714','NULL','NULL','NULL','NULL','NULL','韩国','2010-12-08(韩国)',
-'林秀晶 孔侑 李清娥 严基俊 李帝勋 千虎珍 柳承秀 张荣男','张幼珍 ','喜剧 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Txn3EztQBze0U8cMoUjLB9U78xhH3FKADMC4UUA258v36mZMpAat49fUPQqmWicjQ==',
-'NULL','NULL','4',1,'/static/movie/img/p1075611902.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9230,'民营科搜研','https://movie.douban.com/subject/26760436/','5.7',67,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-03-14(日本)',
-'国仲涼子 細川茂樹 山口紗弥加 今井雅之 浜田学 宮田俊哉 伊藤裕子 寺十吾 池田一真 清水章吾 根本りつ子 下條アトム 渡辺いっけい','村松弘之','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2327532362.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9231,'步行者','https://movie.douban.com/subject/1889150/','6.8',180,
-'http://www.imdb.com/title/tt0783608','NULL','NULL','NULL','NULL','NULL','美国 / 英国','2007-08-10',
-'伍迪·哈里森 克里斯汀·斯科特·托马斯 劳伦·白考尔 尼德·巴蒂 Stewart Alexander','保罗·施拉德','剧情 悬疑 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJeVUfcz4XkD4rF48zFxucq',
-'magnet:?xt=urn:btih:eb060711c5e00b7cadce4000b8d036e1759fb61e','NULL','4',1,'/static/movie/img/s2784516.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9232,'爱·回家','https://movie.douban.com/subject/1299361/','9.0',44278,
-'http://www.imdb.com/title/tt0312841','NULL','NULL','NULL','NULL','NULL','韩国','2002-04-05(韩国)',
-'金艺芬 俞承豪 童孝熙 闵京勋 林恩京','李廷香','剧情 家庭 儿童',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1RZi91KkS9jQpNfz5WKiENyQvtboiWRwcoLoK5SG7rf0aMgKzI1fdsuoQE4NZ7F_hw==',
-'NULL','NULL','4',1,'/static/movie/img/p2107418134.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9233,'极速复仇','https://movie.douban.com/subject/3725320/','6.3',11125,
-'http://www.imdb.com/title/tt1433108','NULL','NULL','NULL','NULL','NULL','美国','2010-11-24(美国)',
-'道恩·强森 Jim Gaines 汤姆·贝伦杰 简·霍格 考特尼·盖恩斯 比利·鲍伯·松顿 迈克尔·埃尔比 乔什·克拉克 卡拉·古奇诺 山德·贝克利 迈克·艾普斯 西德尼·S·柳法 奥利弗·杰森-科恩 玛姬·格蕾斯','小乔治·提尔曼','动作 犯罪',
-'http://www.iqiyi.com/dianying/20130306/a268f8d7901f5edb.html',
-'magnet:?xt=urn:btih:5e69033a42d47a21acbd57aa5fc203aae7da1bbf','NULL','4',1,'/static/movie/img/p1086821153.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9234,'欢迎来到纽约','https://movie.douban.com/subject/21618995/','5.1',155,
-'http://www.imdb.com/title/tt2758890','NULL','NULL','NULL','NULL','NULL','美国 / 法国','2014-05-17(法国)',
-'杰奎琳·比塞特 热拉尔·德帕迪约 Drena De Niro 艾米·弗格森 Paul Calderon 罗纳德·格特曼 保罗•希普 Maria Di Angelis Anna Lakomy Shanyn Leigh Natasha Romanova 柯蕾莉·克劳德尔 安赫·道格 Pascal Yen-Pfister Kathryn Lillecrapp','阿贝尔·费拉拉','剧情',
-'NULL',
-'magnet:?xt=urn:btih:3bb71713db5826921159faa914ca0268d5a310ab','NULL','4',1,'/static/movie/img/p2182709808.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9235,'最高纪录','https://movie.douban.com/subject/11594985/','4.7',797,
-'http://www.imdb.com/title/tt2119474','NULL','NULL','NULL','NULL','NULL','美国','0000-00-00',
-'史蒂文·席格 史蒂夫·奥斯汀','基翁尼·韦克斯曼','动作 惊悚 冒险',
-'http://so.iqiyi.com/links/UVCVnKrC8dp8YoOW4hfZ6GlBKdxatzuGqtoT4TPcVzbTCUxf_T7XOPZxlCsFyFG2WrAaO-rt7a763sCEcsbrCw==',
-'magnet:?xt=urn:btih:aab90fe24f148963e462acaa5e3323b4624a88d1','NULL','4',1,'/static/movie/img/p1744743199.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9236,'不是任何人女儿的海媛','https://movie.douban.com/subject/10535447/','6.9',4125,
-'http://www.imdb.com/title/tt2576522','NULL','NULL','NULL','NULL','NULL','韩国','2013-02-15(柏林电影节)',
-'李善均 郑恩彩 简·伯金 纪柱峰 刘俊相 金义城 柳德焕 艺智苑 金慈玉','洪尚秀','剧情 爱情',
-'NULL',
-'magnet:?xt=urn:btih:816ec5c3d900f08afb3ab5333c4e58b748a9234f','NULL','4',1,'/static/movie/img/p1848869380.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9237,'白绢之瀑','https://movie.douban.com/subject/1307958/','8.0',184,
-'http://www.imdb.com/title/tt0024641','NULL','NULL','NULL','NULL','NULL','日本','1933-06-01',
-'入江隆子 岡田時彦 村田宏寿','沟口健二','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2300661939.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9238,'秩序的守护者','https://movie.douban.com/subject/3640694/','5.6',101,
-'http://www.imdb.com/title/tt1397176','NULL','NULL','NULL','NULL','NULL','法国','2010',
-'塞西尔·德·弗朗斯 朱利安·波义塞利尔','尼古拉斯·布赫里夫','剧情 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKjBw_PTqsHDDtRBIjUt43f',
-'NULL','NULL','4',1,'/static/movie/img/s4214453.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9239,'江湖异人传','https://movie.douban.com/subject/1756213/','7.0',53,
-'http://www.imdb.com/title/tt0032554','NULL','NULL','NULL','NULL','NULL','美国','1940-08-23',
-'Brian Donlevy','普莱斯顿·斯特奇斯','喜剧',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI4ROE_fC0dGjr4A-dyxXPF',
-'NULL','NULL','4',1,'/static/movie/img/p2325309663.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9240,'死亡竞赛','https://movie.douban.com/subject/3287639/','6.2',38,
-'http://www.imdb.com/title/tt1311699','NULL','NULL','NULL','NULL','NULL','英国','2009-11-06',
-'Tamer Hassan Danny Dyer 50 Cent','Alex De Rakoff','剧情 动作 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2327944144.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9241,'恶汉甜梦','https://movie.douban.com/subject/1297589/','8.3',1438,
-'http://www.imdb.com/title/tt0054460','NULL','NULL','NULL','NULL','NULL','日本','1960-09-19(日本)',
-'三船敏郎 森雅之 香川京子 三桥达也 志村乔 西村晃 加藤武 藤原釜足 笠智众 宫口精二','黑泽明','剧情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2205014870.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9242,'重金属','https://movie.douban.com/subject/1299319/','5.7',183,
-'http://www.imdb.com/title/tt0109427','NULL','NULL','NULL','NULL','NULL','香港','1994-03-11',
-'梁錚 李婉華 罗素 陈启泰','梁小熊 (Tony Leung Siu Hung)','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2973315.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9243,'德尔苏·乌扎拉','https://movie.douban.com/subject/1300034/','8.6',1790,
-'http://www.imdb.com/title/tt0071411','NULL','NULL','NULL','NULL','NULL','苏联 / 日本','1975-08-02',
-'马克西姆·蒙祖克 尤里·索洛明 斯韦特兰娜·丹尼尔琴科','黑泽明','剧情 冒险',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKVuSwyTvs8iTErJYqJbE0K',
-'NULL','NULL','4',1,'/static/movie/img/p2206328948.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9244,'合伙人','https://movie.douban.com/subject/2997029/','7.1',4523,
-'http://www.imdb.com/title/tt1172991','NULL','NULL','NULL','NULL','NULL','英国 / 美国','2011-01-21(美国)',
-'本·阿弗莱克 凯文·科斯特纳 汤米·李·琼斯 克里斯·库珀 肯特·绍克内克 玛丽亚·贝罗 格雷格·T·尼尔森 罗丝玛丽·德薇特 萨沙·斯皮尔伯格 帕特丽夏·考莱姆伯 达娜·埃斯科尔森 安东尼·奥利里','约翰·威尔斯','剧情',
-'NULL',
-'magnet:?xt=urn:btih:6865e2e2644ba2c5ef772f8317df95817fa0668c','NULL','4',1,'/static/movie/img/p1276460910.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9245,'黑骏马','https://movie.douban.com/subject/1401481/','7.7',1446,
-'http://www.imdb.com/title/tt0116511','NULL','NULL','NULL','NULL','NULL','香港 / 中国大陆','1997-04-02(美国)',
-'腾格尔 娜仁花','谢飞','剧情',
-'http://www.iqiyi.com/dianying/20110111/39b46c9df7749ba5.html',
-'magnet:?xt=urn:btih:58b37cb91a6ac3f4a814779fbabcf76ae7526cc0','NULL','4',1,'/static/movie/img/p2193959153.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9246,'巧克力情人','https://movie.douban.com/subject/1292831/','7.6',3013,
-'http://www.imdb.com/title/tt0103994','NULL','NULL','NULL','NULL','NULL','墨西哥','1992-04-16(墨西哥)',
-'马克·莱昂纳蒂 卢米·卡范佐斯 Regina Torné','阿方索·阿雷奥','剧情 爱情',
-'http://www.iqiyi.com/v_19rrnzahs8.html',
-'NULL','NULL','4',1,'/static/movie/img/p2387037811.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9247,'南北雄狮','https://movie.douban.com/subject/2340962/','3.9',38,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'谢苗 释小龙 石天龙 张宝雯','黎致明','动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKdieLNnd96E7ZjIHkhSsHv',
-'NULL','NULL','4',1,'/static/movie/img/p2255616570.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9248,'不完全恋人','https://movie.douban.com/subject/1962932/','6.9',624,
-'NULL','NULL','NULL','NULL','NULL','NULL','台湾','0000-00-00',
-'张信哲 乔振宇 阿部力 史可','陈映蓉','剧情 喜剧 爱情',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzbwzm6kGtZ440YVaTXG3spycgHnuAt2j4iS5Zkkqh9gYB',
-'NULL','NULL','4',1,'/static/movie/img/s1991556.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9249,'第七谎言','https://movie.douban.com/subject/25870074/','4.1',1497,
-'http://www.imdb.com/title/tt3545810','NULL','NULL','NULL','NULL','NULL','香港','2015-03-27(中国大陆)',
-'郑中基 何超仪 罗仲谦 曾珮瑜 许绍雄 姜皓文 徐娜 泰臣 林德信 蔡颖恩 卢海鹏 卓韵芝 蓝奕邦 吴嘉龙 夏占士','孔令政','悬疑 犯罪',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8HMZz2C-NoioAGY0kTchrZfipsuH8IQ6AaGw6Bu6_A7I',
-'magnet:?xt=urn:btih:4f28fb60a6004926deeec6c56a824e290793e09f','NULL','4',1,'/static/movie/img/p2233773372.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9250,'上帝旨意','https://movie.douban.com/subject/3403709/','7.3',91,
-'http://www.imdb.com/title/tt1002536','NULL','NULL','NULL','NULL','NULL','意大利','2008-12-12',
-'费立波·提米 埃里奥·杰马诺 Alvaro Caleca','加布里埃尔·萨瓦托雷斯','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2376745753.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9251,'顾大嫂与孙新','https://movie.douban.com/subject/25785277/','5.8',67,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-05-15',
-'顾大嫂--张译木 孙新--赵擎','刘信义','喜剧 爱情 冒险 武侠 古装',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGYVGbym7YYWoGGtZtEzaFyPJ9oTf9I8wX-um7Ay-JJKA',
-'NULL','NULL','4',1,'/static/movie/img/p2161417211.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9252,'这本悬疑小说真棒！来自畅销作家的挑战书','https://movie.douban.com/subject/26274243/','5.4',1273,
-'http://www.imdb.com/title/tt4239836','NULL','NULL','NULL','NULL','NULL','日本','2014-12-29(日本)',
-'藤原纪香 川岛海荷 吉田荣作 川口春奈 尾形一成 胜村政信 山本裕典 城田优 Akira 山本耕史','大谷健太郎','剧情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2215951261.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9253,'严密监视的列车','https://movie.douban.com/subject/1303081/','8.2',2715,
-'http://www.imdb.com/title/tt0060802','NULL','NULL','NULL','NULL','NULL','捷克斯洛伐克','1966-11-18',
-'瓦茨拉夫·内茨卡 约瑟夫·索姆尔 伏拉基米尔·布劳德斯基 Vladimír Valenta Alois Vachek','伊日·门泽尔','剧情 喜剧 战争',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIOOx2478S-d5KllGxZW77Y',
-'NULL','NULL','4',1,'/static/movie/img/p2211855924.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9254,'犯罪生活','https://movie.douban.com/subject/5327266/','5.5',778,
-'http://www.imdb.com/title/tt1663207','NULL','NULL','NULL','NULL','NULL','美国','2013-09-14(多伦多电影节)',
-'詹妮弗·安妮斯顿 蒂姆·罗宾斯 约翰·浩克斯 艾拉·菲舍尔 威尔·福特 茅斯·达夫','丹尼尔·谢克特','喜剧 犯罪',
-'NULL',
-'magnet:?xt=urn:btih:851a4ce05085d90ebdead69eeaf460d847ab40bd','NULL','4',1,'/static/movie/img/p2197928009.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9255,'电车狂','https://movie.douban.com/subject/1303077/','8.1',1359,
-'http://www.imdb.com/title/tt0065649','NULL','NULL','NULL','NULL','NULL','日本','1970-10-31',
-'头师佳孝 菅井琴 伴淳三郎 田中邦卫 井川比佐志 芥川比吕志','黑泽明','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKNkGnGffpTmQaFkRfGLj5m',
-'NULL','NULL','4',1,'/static/movie/img/p1520541053.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9256,'古镇凶灵之巫咒缠身','https://movie.douban.com/subject/22010958/','3.9',1526,
-'http://www.imdb.com/title/tt3313360','NULL','NULL','NULL','NULL','NULL','中国大陆','2013-09-06(中国大陆)',
-'徐海乔 蒋松 郝洋 张兆北 刘政 阳蕾 王洁曦 龙雨','刘辉','惊悚 恐怖',
-'http://www.iqiyi.com/v_19rrhoh07c.html',
-'NULL','NULL','4',1,'/static/movie/img/p2109492250.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9257,'八卦宗师','https://movie.douban.com/subject/10583890/','2.9',985,
-'http://www.imdb.com/title/tt4658478','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-11-16(中国大陆)',
-'欧力豪 谢苗 孙夕尧 梁小龙 刘锡明 熊欣欣 吴文 陈铁军 周青 江岛 王美英 韩佳纹 段亚兰','陈树楷','动作 武侠 古装',
-'http://www.iqiyi.com/v_19rrn6e93k.html',
-'NULL','NULL','4',1,'/static/movie/img/p1753393174.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9258,'铁人','https://movie.douban.com/subject/3063002/','6.7',1112,
-'http://www.imdb.com/title/tt1459248','NULL','NULL','NULL','NULL','NULL','中国','2009-05-22',
-'吴刚 刘烨 黄渤 胡明','尹力','剧情',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb5K7F6d20lRNDgGfspqScHnPaCt3D87rsZgcbkE8Qz2I',
-'NULL','NULL','4',1,'/static/movie/img/p2128609166.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9259,'战争力量','https://movie.douban.com/subject/10427340/','3.2',336,
-'http://www.imdb.com/title/tt2103997','NULL','NULL','NULL','NULL','NULL','美国','2012',
-'Scott Martin Clint Glenn Tony Pauletto Brandon Kyle Davis','Scott Martin','动作 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1575050503.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9260,'血彩','https://movie.douban.com/subject/20391229/','3.1',167,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-04-11(中国大陆)',
-'刘庭羽 李威 吕平滢 张恒 常涛','张继龙','剧情 爱情 悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrn8cvb8.html',
-'NULL','NULL','4',1,'/static/movie/img/p2176545476.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9261,'浮生录','https://movie.douban.com/subject/1294767/','7.6',164,
-'http://www.imdb.com/title/tt0063663','NULL','NULL','NULL','NULL','NULL','美国','1968-05-15',
-'伯特·兰卡斯特 Janet Landgard 简妮丝·鲁尔','弗兰克·佩里','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKnPFUUBSigMrtAQM55wd3_',
-'NULL','NULL','4',1,'/static/movie/img/p2101182104.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9262,'失翼灵雀','https://movie.douban.com/subject/1306418/','8.4',1014,
-'http://www.imdb.com/title/tt0064994','NULL','NULL','NULL','NULL','NULL','捷克斯洛伐克','1990-05-16',
-'鲁道夫·霍辛斯基 伏拉基米尔·布劳德斯基 瓦茨拉夫·内茨卡','伊日·门泽尔','剧情 喜剧 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML0YI2Ni6GZV2qhVjioPMA_',
-'NULL','NULL','4',1,'/static/movie/img/p1632314768.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9263,'人生','https://movie.douban.com/subject/1299042/','8.3',2440,
-'http://www.imdb.com/title/tt0087992','NULL','NULL','NULL','NULL','NULL','中国大陆','1984',
-'周里京 吴玉芳 高保成 乔建华 李小力','吴天明','剧情',
-'http://www.iqiyi.com/v_19rrauvui4.html',
-'NULL','NULL','4',1,'/static/movie/img/p2453108586.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9264,'一袭灰衣万缕情','https://movie.douban.com/subject/1301941/','7.3',89,
-'http://www.imdb.com/title/tt0049474','NULL','NULL','NULL','NULL','NULL','美国','1956-05-08',
-'格利高里·派克 珍妮弗·琼斯 弗雷德里克·马奇','农纳利·约翰逊','剧情 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p879077532.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9265,'S-最后的警官：夺还','https://movie.douban.com/subject/25808101/','5.1',1091,
-'http://www.imdb.com/title/tt3573412','NULL','NULL','NULL','NULL','NULL','日本','2015-08-29(日本)',
-'向井理 绫野刚 新垣结衣 吹石一惠 青木崇高 池内博之 平山浩行 高桥努 平山祐介 本宫泰风 渊上泰史 本田博太郎 朝加真由美 菅原大吉 土屋安娜 辰巳琢郎 高岛政宏 近藤正臣 小田切让 大森南朋','平野俊一','动作 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLqWJvw0ltv88PpiB2xzCOa',
-'magnet:?xt=urn:btih:ed920f65b4da80e4cdfff5291a2236d048404d07','NULL','4',1,'/static/movie/img/p2253714516.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9266,'武术战士','https://movie.douban.com/subject/4324508/','3.1',69,
-'http://www.imdb.com/title/tt1308182','NULL','NULL','NULL','NULL','NULL','美国','2008',
-'Joseph Cannell Xiao Lung Ding Tod Fennell Matt Frewer','Alain Desrochers','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4208496.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9267,'曼谷杀手','https://movie.douban.com/subject/1918224/','5.9',21599,
-'http://www.imdb.com/title/tt0814022','NULL','NULL','NULL','NULL','NULL','美国 / 泰国','2008-09-04(美国)',
-'尼古拉斯·凯奇 杨采妮 Philip Waley 查克利·彦纳姆 陈贝贝','彭顺','动作 惊悚 犯罪',
-'http://www.iqiyi.com/dianying/20130214/d77acaf1b2357e84.html',
-'NULL','NULL','4',1,'/static/movie/img/p774764612.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9268,'1号通缉令','https://movie.douban.com/subject/1293260/','6.7',869,
-'http://www.imdb.com/title/tt0119709','NULL','NULL','NULL','NULL','NULL','美国','1998-12(中国大陆)',
-'基伦·埃弗瑞·韦恩斯 强·沃特 吉尔·亨内斯 保罗·索维诺 罗伯特·考普','David Hogan','动作 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2174126451.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9269,'揭諦','https://movie.douban.com/subject/1783441/','8.0',146,
-'http://www.imdb.com/title/tt0096778','NULL','NULL','NULL','NULL','NULL','韩国','1989-03-03(韩国)',
-'全茂松 姜受延','林权泽','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1654746.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9270,'梦幻狂杀','https://movie.douban.com/subject/1498848/','7.3',473,
-'http://www.imdb.com/title/tt0106579','NULL','NULL','NULL','NULL','NULL','美国','1993-09-05',
-'彼得·格林纳 Alice Levitt Megan Owen Jennifer MacDonald','Lodge Kerrigan','剧情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2346863724.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9271,'向左爱·向右爱','https://movie.douban.com/subject/1307545/','7.5',18232,
-'http://www.imdb.com/title/tt0328675','NULL','NULL','NULL','NULL','NULL','韩国','2002-08-15(韩国)',
-'车太贤 孙艺珍 李恩珠 朴勇宇 金南镇 文根英 郑仁基 韩宝贝 史江 申胜焕','李翰','剧情 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p471027863.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9272,'勇闯禁地','https://movie.douban.com/subject/10529437/','4.9',135,
-'http://www.imdb.com/title/tt2186783','NULL','NULL','NULL','NULL','NULL','澳大利亚','2012(澳大利亚)',
-'Johan Earl Tim Pocock Martin Copping Denai Gracie Sarah Mawbey Barry Quin Damian Sommerlad Oliver Trajkovski Igor Breakenback','Johan Earl','战争',
-'http://www.iqiyi.com/v_19rrnv37gc.html',
-'NULL','NULL','4',1,'/static/movie/img/p2262819615.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9273,'小旋风柴进','https://movie.douban.com/subject/11594945/','5.5',105,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'高天 卢星宇 王心海 许明虎','刘信义','剧情 动作 历史',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqbKrI62x0k7PE_fG6b95XpNVyuJ14kF04g-tpSGnyCTQ',
-'NULL','NULL','4',1,'/static/movie/img/p2178552652.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9274,'凯特·麦考的审判','https://movie.douban.com/subject/3888513/','6.6',1085,
-'http://www.imdb.com/title/tt1323973','NULL','NULL','NULL','NULL','NULL','美国','2013-11-28(匈牙利)',
-'凯特·贝金赛尔 泰雅·迪格斯 詹姆斯·克伦威尔 克兰西·布朗 尼克·诺特 凯西·贝克 马克·佩雷格里诺 大卫·莱昂斯 戴尔·迪奇 艾赛亚·华盛顿 布兰登·萨克斯顿 Deborah Van Valkenburgh Anna Anissimova Ava Kolker 杰·托马斯','凯伦·孟可芙','剧情',
-'NULL',
-'magnet:?xt=urn:btih:aaa485fd8a54a489421ddb54488858b4fe4520ba','NULL','4',1,'/static/movie/img/p2186763805.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9275,'冤情必报','https://movie.douban.com/subject/25787771/','4.4',181,
-'http://www.imdb.com/title/tt2198241','NULL','NULL','NULL','NULL','NULL','美国','2013-08-16',
-'Shannon Elizabeth James Caan Jason Patric Craig Fairbrass','Brian A Miller','动作',
-'http://www.iqiyi.com/v_19rrn4h5d4.html',
-'magnet:?xt=urn:btih:85586dd170187e0cf208b6c2c2c5f73bef414921','NULL','4',1,'/static/movie/img/p2161939505.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9276,'布鲁克林警察','https://movie.douban.com/subject/3057495/','7.4',6720,
-'http://www.imdb.com/title/tt1210042','NULL','NULL','NULL','NULL','NULL','美国','2010-03-05',
-'理查·基尔 唐·钱德尔 伊桑·霍克 韦斯利·斯奈普斯 Jesse Williams 莉莉·泰勒 艾伦·巴金','安东尼·福奎阿','剧情 动作 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p504410555.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9277,'飞来福','https://movie.douban.com/subject/1292789/','6.8',180,
-'http://www.imdb.com/title/tt0060424','NULL','NULL','NULL','NULL','NULL','美国','1966-10-19',
-'杰克·莱蒙 沃尔特·马修 Ron Rich','比利·怀德','喜剧 爱情',
-'http://www.iqiyi.com/v_19rrlj53mw.html',
-'NULL','NULL','4',1,'/static/movie/img/p2407776890.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9278,'幸福','https://movie.douban.com/subject/2229243/','7.3',8377,
-'http://www.imdb.com/title/tt1048159','NULL','NULL','NULL','NULL','NULL','韩国','2007-10-03',
-'林秀晶 黄政民','许秦豪','剧情 爱情',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzvSnzUl1CHcsPDJWpnf2BzM9tv6oPFT7yCJsqeH3tgF-',
-'NULL','NULL','4',1,'/static/movie/img/p1173474309.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9279,'暴力史','https://movie.douban.com/subject/1422917/','7.4',13961,
-'http://www.imdb.com/title/tt0399146','NULL','NULL','NULL','NULL','NULL','美国 / 德国','2005-09-30(美国)',
-'维果·莫腾森 玛丽亚·贝罗 艾德·哈里斯 威廉·赫特 艾什顿·霍尔姆斯','大卫·柯南伯格','剧情 动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rra6ohnk.html',
-'magnet:?xt=urn:btih:42301ec9327cd6d905ff35090e2a6ba5f0fb4173','NULL','4',1,'/static/movie/img/p810074432.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9280,'黑金杀机','https://movie.douban.com/subject/10462800/','5.0',6610,
-'http://www.imdb.com/title/tt2193215','NULL','NULL','NULL','NULL','NULL','美国 / 英国','2013-10-25(美国)',
-'迈克尔·法斯宾德 佩内洛佩·克鲁斯 卡梅隆·迪亚茨 哈维尔·巴登 布鲁诺·甘茨 罗西·培瑞兹 卢宾·布雷兹 布拉德·皮特 高兰·维斯耶克 埃德加·拉米雷兹 迪恩·诺里斯 萨姆·斯普卢尔  娜塔莉·多默尔 托比·凯贝尔','雷德利·斯科特','剧情 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrhkk5f0.html',
-'magnet:?xt=urn:btih:815ed3a4a4acda11a50a4037973f3f7a8af6f316','NULL','4',1,'/static/movie/img/p2133669261.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9281,'导盲犬小Q','https://movie.douban.com/subject/1316572/','8.4',112102,
-'http://www.imdb.com/title/tt0400761','NULL','NULL','NULL','NULL','NULL','日本','2004-03-13(日本)',
-'小林薰 椎名桔平 香川照之 户田惠子 黑谷友香','崔洋一','剧情',
-'http://www.iqiyi.com/dianying/20110812/c156cc903ccde56f.html',
-'NULL','NULL','4',1,'/static/movie/img/p1233612794.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9282,'惊曝内幕','https://movie.douban.com/subject/1292660/','8.1',15023,
-'http://www.imdb.com/title/tt0140352','NULL','NULL','NULL','NULL','NULL','美国','1999-11-05(美国)',
-'阿尔·帕西诺 罗素·克劳 克里斯托弗·普卢默  戴安·维诺拉 菲利浦·贝克·霍尔 林赛·克洛斯 黛比·玛扎 斯蒂芬·托布罗斯基 科鲁姆·费奥瑞 布鲁斯·麦克吉尔 吉娜·格申 迈克尔·刚本 雷普·汤恩 林恩·瑟格本 海莉·凯特·爱森伯格','迈克尔·曼','剧情 惊悚 传记',
-'http://www.iqiyi.com/dianying/20120817/46988ae04fcc99c2.html',
-'NULL','NULL','4',1,'/static/movie/img/p827331728.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9283,'汉密尔顿2：绑票危机','https://movie.douban.com/subject/6390827/','5.6',1017,
-'http://www.imdb.com/title/tt1856047','NULL','NULL','NULL','NULL','NULL','瑞典','2012-09-07',
-'米卡埃尔·佩斯布兰特','Kathrine Windfeld','剧情 动作 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1815316551.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9284,'那根所有权','https://movie.douban.com/subject/3076088/','6.6',211,
-'http://www.imdb.com/title/tt0121585','NULL','NULL','NULL','NULL','NULL','台湾','0000-00-00',
-'陈松勇 Sung Young Chen 陈淑芬 陈素珍 文英 林义雄 林照雄 谢万益','张智超','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2196233340.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9285,'重整旗鼓','https://movie.douban.com/subject/1892504/','7.4',1603,
-'http://www.imdb.com/title/tt0416185','NULL','NULL','NULL','NULL','NULL','美国','2007-08-24',
-'塞缪尔·杰克逊 乔什·哈奈特 凯瑟琳·莫里斯 泰瑞·海切尔','罗德·拉里','剧情 运动',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2342410683.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9286,'龙凤斗智','https://movie.douban.com/subject/1296966/','7.0',199,
-'http://www.imdb.com/title/tt0063688','NULL','NULL','NULL','NULL','NULL','美国','1968-06-19',
-'史蒂夫·麦奎因 费·唐纳薇 保罗·伯克','诺曼·杰威森','剧情 爱情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2245786701.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9287,'银汉双星','https://movie.douban.com/subject/2080554/','7.0',168,
-'http://www.imdb.com/title/tt0122805','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'金焰 紫罗兰 高占非','史东山','剧情 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1amWc-bTqgfXCbD_RWVHLvs5iI_HuOPc-o3nyKHjUvpgMIvGoOQO0wA_WQD2EQ6lbg==',
-'NULL','NULL','4',1,'/static/movie/img/p2231338242.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9288,'小李广花荣','https://movie.douban.com/subject/3434519/','5.9',320,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2008',
-'陈浩民 何中华 吴毅将 周显欣','黄祖权','剧情 动作',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb4Zp0M9uB-evpFfOb7mMrBBlBCyP9146U-oAmr4hydT1',
-'NULL','NULL','4',1,'/static/movie/img/p2178538023.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9289,'响尾伏魔棒','https://movie.douban.com/subject/26429855/','4.3',91,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'曹帅 徐向东 彤阳 王心海 太极侯','刘信义','剧情 武侠',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGawqV-vyNFwRf4g3qfBAZ9jX6phr6sobZxEn7mq34YRR',
-'NULL','NULL','4',1,'/static/movie/img/p2251875865.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9290,'春浓满楼情痴狂','https://movie.douban.com/subject/1299651/','7.6',136,
-'http://www.imdb.com/title/tt0056541','NULL','NULL','NULL','NULL','NULL','美国','1962-03-21',
-'保罗·纽曼 杰拉丹·佩姬 雪莉·奈特 埃德·贝格利 雷普·汤恩 米尔德丽德·丹诺克 Madeleine Sherwood 菲利普·雅培 科里·艾伦 Barry Cahill Dub Taylor James Douglas Barry Atwater Charles Arnt Dorothy Konrad','理查德·布鲁克斯','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2362663278.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9291,'美丽东西','https://movie.douban.com/subject/2038216/','6.2',121,
-'http://www.imdb.com/title/tt0263496','NULL','NULL','NULL','NULL','NULL','法国','2001-07-21',
-'Marion Cotillard Stomy Bugsy Patrick Bruel','Gilles Paquet-Brenner','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1071738397.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9292,'恐怖星球','https://movie.douban.com/subject/2160611/','7.4',30727,
-'http://www.imdb.com/title/tt1077258','NULL','NULL','NULL','NULL','NULL','美国','2007-04-06(美国)',
-'罗丝·麦高恩 弗莱迪·罗德里格兹 乔什·布洛林 玛丽·谢尔顿 杰夫·法赫 迈克尔·比恩 瑞贝尔·罗德里格兹 布鲁斯·威利斯 纳威恩·安德利维斯 胡里奥·奥斯卡·门乔索 斯泰西·弗格森 尼基·凯特 汤姆·萨维尼 卡洛斯·加拉尔多 伊莱克特拉·阿维兰 埃莉斯·阿维兰 昆汀·塔伦蒂诺','罗伯特·罗德里格兹','动作 科幻 恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLweiDSs_LZRphhL5_Fkidl',
-'magnet:?xt=urn:btih:5b472279be93f9b83ae08a9c920c899dabe15242','NULL','4',1,'/static/movie/img/p642348575.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9293,'应许之地','https://movie.douban.com/subject/10468424/','6.9',6259,
-'http://www.imdb.com/title/tt2091473','NULL','NULL','NULL','NULL','NULL','美国','2012-12-28',
-'马特·达蒙 约翰·卡拉辛斯基 罗丝玛丽·德薇特 弗兰西斯·麦克多蒙德 卢卡斯·布莱克 提图斯·维里沃 哈尔·霍尔布鲁克 蒂姆·金尼 斯科特·麦克纳里 特里·金尼','格斯·范·桑特','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1883451902.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9294,'海边的女人','https://movie.douban.com/subject/1853749/','7.4',1390,
-'http://www.imdb.com/title/tt0835787','NULL','NULL','NULL','NULL','NULL','韩国','2006-08-31',
-'高贤贞 李己雨 金承佑 文成根 宋宣美','洪尚秀','剧情 喜剧 爱情',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzpvljah9GDMMR401qcaLb6XLIpHCwnYY2t2Da8SHuo9e',
-'NULL','NULL','4',1,'/static/movie/img/p2054854287.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9295,'非关正义特别篇：双重定义之连锁','https://movie.douban.com/subject/26591457/','5.6',171,
-'http://www.imdb.com/title/tt5034790','NULL','NULL','NULL','NULL','NULL','日本','2015-09-15(日本)',
-'北乃绮 青柳翔 中村俊介 木南晴夏 吉田钢太郎 吉田羊 阿部隆史 加藤雅也 寺岛进 筱原凉子','根本和政','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2316606472.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9296,'红髅','https://movie.douban.com/subject/26417725/','3.6',559,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2015-08-06(中国大陆)',
-'李威 梅俪儿 李子雄 石小满 林好 杨猛 姚岗','李明','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrkq01l4.html',
-'NULL','NULL','4',1,'/static/movie/img/p2259527891.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9297,'额吉','https://movie.douban.com/subject/3993565/','7.9',214,
-'http://www.imdb.com/title/tt2108511','NULL','NULL','NULL','NULL','NULL','中国大陆','2010-05-09',
-'娜仁花 图门巴雅','宁才','暂时无数据',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb2CcJNy18XoXRftqfvnC-GQYEc0c5anZBWN1LcTO32Wa',
-'NULL','NULL','4',1,'/static/movie/img/p2128611745.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9298,'复仇在我','https://movie.douban.com/subject/1294940/','8.3',3047,
-'http://www.imdb.com/title/tt0079182','NULL','NULL','NULL','NULL','NULL','日本','1979-04-21(日本)',
-'绪形拳 小川真由美 三国连太郎 倍赏美津子 清川虹子 日向铃子','今村昌平','剧情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2204849479.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9299,'美丽家园','https://movie.douban.com/subject/2303778/','7.7',69,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'阿力木江•吐尔斯拜克 达列力汗•卡德尔','高峰','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2766097.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9300,'鬼狗杀手','https://movie.douban.com/subject/1303449/','7.5',3343,
-'http://www.imdb.com/title/tt0165798','NULL','NULL','NULL','NULL','NULL','法国 / 德国 / 美国 / 日本','1999-10-06',
-'福里斯特·惠特克 约翰·托尔梅 克里夫·戈曼 翠西亚·维西 理查德·波特诺 伊萨赫·德·班克尔','吉姆·贾木许','剧情 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIeGTvzaA0YyDx2czJNcGIO',
-'NULL','NULL','4',1,'/static/movie/img/p2206916681.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9301,'女神捕之借刀','https://movie.douban.com/subject/3241968/','6.4',160,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'商蓉 赵亮 周磊 方安娜 苗皓钧 王漩尹 陈海 王鑫峰 石天生','司小冬','动作 悬疑 古装',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGVPS_f18Mlw7B2YXLkAa_r5I2Bo6LkU2M0EkTVCjxUmh',
-'NULL','NULL','4',1,'/static/movie/img/p2081066381.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9302,'恋爱与义务','https://movie.douban.com/subject/1301249/','8.2',443,
-'http://www.imdb.com/title/tt0192239','NULL','NULL','NULL','NULL','NULL','中国大陆','1931-04-05(中国大陆)',
-'阮玲玉 陈燕燕 金焰','卜万苍','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ-1gL12zGnHv0kod5tW4g1',
-'NULL','NULL','4',1,'/static/movie/img/p2210660065.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9303,'理发师','https://movie.douban.com/subject/1875311/','6.3',7003,
-'http://www.imdb.com/title/tt0821477','NULL','NULL','NULL','NULL','NULL','中国大陆','2006-04-28(中国大陆)',
-'陈坤 曾黎 王雅捷 毕远晋 李丽虹 秦卫东 魏宗万','陈逸飞','剧情 爱情 战争',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8I79Xypqizgt9wnl0lq4szUW_Q0w8v5yuZXBFAVOnxFx',
-'magnet:?xt=urn:btih:7a2ab84b462426819eb81b49a14a916c8b119875','NULL','4',1,'/static/movie/img/p2388172297.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9304,'黑荆棘','https://movie.douban.com/subject/5153904/','7.5',1168,
-'http://www.imdb.com/title/tt1629705','NULL','NULL','NULL','NULL','NULL','西班牙 / 法国 / 玻利维亚 / 英国','2011-07-01(西班牙)',
-'山姆·夏普德 爱德华多·诺列加 斯蒂芬·瑞 玛佳丽·索利埃 尼古拉·科斯特-瓦尔道 帕德莱克·德兰尼 多米妮克·麦克艾丽戈特','马特奥·希尔','西部',
-'http://www.iqiyi.com/v_19rrn1hxuk.html',
-'magnet:?xt=urn:btih:59e8811dfea2cb3b6de6a2da20ab5af59062468b','NULL','4',1,'/static/movie/img/p1188761260.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9305,'虎胆','https://movie.douban.com/subject/1307981/','5.7',90,
-'http://www.imdb.com/title/tt0064878','NULL','NULL','NULL','NULL','NULL','香港','1969-08-13',
-'岳华 郑佩佩 吴风 罗维 田丰','罗维','动作 武侠 古装',
-'http://www.iqiyi.com/v_19rr9r1nwc.html',
-'NULL','NULL','4',1,'/static/movie/img/s3030571.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9306,'爱犬的奇迹','https://movie.douban.com/subject/2357302/','8.7',9965,
-'http://www.imdb.com/title/tt1921012','NULL','NULL','NULL','NULL','NULL','日本','2007-12-08(日本)',
-'船越英一郎 松本明子 广田亮平 佐佐木麻绪','猪股隆一','剧情 灾难',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLMmyI54AgHwdw_zV2XLmDX',
-'NULL','NULL','4',1,'/static/movie/img/p638702029.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9307,'燕娘','https://movie.douban.com/subject/2349806/','5.5',75,
-'http://www.imdb.com/title/tt0453318','NULL','NULL','NULL','NULL','NULL','香港','1969-10-08',
-'宗华 秦萍 张翼 郑雷 黄宗迅','张瑛','动作 武侠 古装',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1543133941.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9308,'湘女萧萧','https://movie.douban.com/subject/1434275/','7.7',1103,
-'http://www.imdb.com/title/tt0092247','NULL','NULL','NULL','NULL','NULL','中国大陆','1988-03-04(中国大陆)',
-'娜仁花 邓晓光 张愚','谢飞','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqS6G5DwskWnjFLVZZhvAO8-znzUfAC2hKkve82v4g5Hm',
-'NULL','NULL','4',1,'/static/movie/img/p2215972216.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9309,'狂野追踪','https://movie.douban.com/subject/3660570/','7.4',1144,
-'http://www.imdb.com/title/tt1414378','NULL','NULL','NULL','NULL','NULL','新西兰 / 英国','0000-00-00',
-'雷·温斯顿 特穆拉·莫里森 Andy Anderson','伊恩·夏普','剧情 动作 惊悚 冒险',
-'NULL',
-'magnet:?xt=urn:btih:6005f717ec437aad5eeef10bc38c23693b8e32af','NULL','4',1,'/static/movie/img/p1111611028.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9310,'武器的选择','https://movie.douban.com/subject/1903801/','7.1',89,
-'http://www.imdb.com/title/tt0082173','NULL','NULL','NULL','NULL','NULL','法国','1981-08-19(法国)',
-'伊夫·蒙当 热拉尔·德帕迪约 卡特琳·德纳芙','阿兰·柯诺','剧情 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI8JBYz5V1cPhD1c1nFSJRv',
-'NULL','NULL','4',1,'/static/movie/img/s4679210.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9311,'天生拳霸','https://movie.douban.com/subject/1315573/','5.6',186,
-'http://www.imdb.com/title/tt0428725','NULL','NULL','NULL','NULL','NULL','泰国','2004-08-05',
-'Choopong Changp Amornthep Waews Somrak Kumsing','Punna Littikrai','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2265794201.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9312,'盗日者','https://movie.douban.com/subject/1300578/','8.0',745,
-'http://www.imdb.com/title/tt0194426','NULL','NULL','NULL','NULL','NULL','日本','1979-10-06',
-'泽田研二 菅原文太 池上季实子','长谷川和彦','动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMK_9-HJYcjmY9v5kZTfDvK5',
-'NULL','NULL','4',1,'/static/movie/img/p1495008307.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9313,'特警急先锋','https://movie.douban.com/subject/1304772/','7.2',1099,
-'http://www.imdb.com/title/tt0114641','NULL','NULL','NULL','NULL','NULL','香港','1995-10-06',
-'李修贤 周文健 陈松勇','林德禄 ','动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJRRJNx4iNi8O3iMjORAfAL',
-'NULL','NULL','4',1,'/static/movie/img/s3317372.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9314,'爱情一二三','https://movie.douban.com/subject/4253195/','5.6',48,
-'http://www.imdb.com/title/tt1308093','NULL','NULL','NULL','NULL','NULL','台湾','1970',
-'张美瑶 柯俊雄 欧威 林嘉 李虹 丁强 孙越 葛小宝 蒋光超 雷鸣','李行','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2362563079.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9315,'英雄无泪','https://movie.douban.com/subject/1302154/','6.8',395,
-'http://www.imdb.com/title/tt0202697','NULL','NULL','NULL','NULL','NULL','香港','1978',
-'傅声 尔冬升 赵雅芝 谷峰 岳华 白彪','楚原','剧情 动作 武侠 古装',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzuHBP-ytgsAF6jKSL3oneMYOJavo2OoJjceDAynLxfhc',
-'NULL','NULL','4',1,'/static/movie/img/p2266405674.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9316,'龙城正月','https://movie.douban.com/subject/1308651/','6.5',657,
-'http://www.imdb.com/title/tt0192272','NULL','NULL','NULL','NULL','NULL','香港','2003-10-25',
-'吴倩莲 尤勇','杨凤良','剧情',
-'http://www.iqiyi.com/v_19rrmy6wkg.html',
-'NULL','NULL','4',1,'/static/movie/img/s3087911.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9317,'神行太保','https://movie.douban.com/subject/2295794/','6.4',446,
-'http://www.imdb.com/title/tt0098311','NULL','NULL','NULL','NULL','NULL','香港','1989-05-25',
-'林俊贤 刘德华 苗侨伟 曾志伟 邝美云','赵良骏','暂时无数据',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI_xWHa7rR9MPyZA30qCzh-',
-'NULL','NULL','4',1,'/static/movie/img/p2236737655.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9318,'共犯者','https://movie.douban.com/subject/26602196/','5.6',200,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2015-09-30(日本)',
-'观月亚理莎 仲里依纱 山本耕史 江原由希子 大地康雄 寺岛进','水谷俊之','悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2267129819.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9319,'爱人同志','https://movie.douban.com/subject/1308229/','6.6',683,
-'http://www.imdb.com/title/tt0099002','NULL','NULL','NULL','NULL','NULL','香港','1989-12-21(香港)',
-'刘德华 钟楚红 成奎安','黄泰来','剧情 战争',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1cFTi0BiO0yBwBCA0d77e4WqiV7HA-EHL72svYEefMsDt1yhlR5FZ0gCBO8inJAcnw==',
-'NULL','NULL','4',1,'/static/movie/img/p2348746082.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9320,'龙虎会风云','https://movie.douban.com/subject/2220686/','6.1',53,
-'http://www.imdb.com/title/tt0445534','NULL','NULL','NULL','NULL','NULL','香港','1973',
-'陈骏 罗烈 施思 詹森 张佩山','申江','冒险',
-'http://www.iqiyi.com/v_19rr9s0ifk.html',
-'NULL','NULL','4',1,'/static/movie/img/s2663233.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9321,'狱警','https://movie.douban.com/subject/26304929/','6.0',70,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2015-02-02(日本)',
-'小日向文世 小泽征悦 泉谷茂 左时枝 雾岛丽香','五十岚匠','剧情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2226070252.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9322,'秘术','https://movie.douban.com/subject/25969095/','2.5',3503,
-'http://www.imdb.com/title/tt5370104','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-11-14(中国大陆)',
-'安以轩 汪东城 郭德纲 宁桓宇 陈欣淇','吴兵','悬疑 惊悚 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2211086480.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9323,'在那遥远的地方','https://movie.douban.com/subject/1919408/','7.0',232,
-'http://www.imdb.com/title/tt0108644','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'张洪量 陈红 胡锦 张复建 李志希 关毅 达娃央宗','滕文骥','剧情 爱情 传记',
-'http://www.iqiyi.com/v_19rrmx66zo.html',
-'NULL','NULL','4',1,'/static/movie/img/p2230065697.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9324,'非法入侵','https://movie.douban.com/subject/4919232/','5.7',8517,
-'http://www.imdb.com/title/tt1674784','NULL','NULL','NULL','NULL','NULL','美国','2011-10-14(美国)',
-'尼古拉斯·凯奇 妮可·基德曼 凯姆·吉甘戴 丽亚娜·莱伯拉托 尼可·托托雷拉','乔·舒马赫','剧情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1260906214.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9325,'刑房','https://movie.douban.com/subject/1482090/','7.8',19243,
-'http://www.imdb.com/title/tt0462322','NULL','NULL','NULL','NULL','NULL','美国','2007-04-06(美国)',
-'库尔特·拉塞尔 罗莎里奥·道森 罗丝·麦高恩 玛丽·谢尔顿 弗莱迪·罗德里格兹 乔什·布洛林 布鲁斯·威利斯 昆汀·塔伦蒂诺 尼古拉斯·凯奇','罗伯特·罗德里格兹','动作 惊悚 恐怖',
-'NULL',
-'magnet:?xt=urn:btih:602d858fcef5ca945398d546774e76ee40c5a69d','NULL','4',1,'/static/movie/img/p2167803400.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9326,'十二金钱镖','https://movie.douban.com/subject/1820057/','6.1',141,
-'http://www.imdb.com/title/tt0064973','NULL','NULL','NULL','NULL','NULL','香港','1969-03-13',
-'罗烈 井莉 田丰 房勉','徐增宏','动作 武侠',
-'http://so.iqiyi.com/links/bu1fv1oRRL5kcvvjEx3YlnANz2b6aG2RTl4fCoo9eJXVh1IkarDGhRWJVkZkmQ_s',
-'NULL','NULL','4',1,'/static/movie/img/p2335696334.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9327,'迷宫搜查','https://movie.douban.com/subject/26351687/','5.5',217,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2015-05-10(日本)',
-'反町隆史 高橋克実 八嶋智人 貫地谷しほり 夏菜 中村ゆり 竜星涼 でんでん 大杉漣','藤田明二','悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2240595560.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9328,'爱的蹦极','https://movie.douban.com/subject/1306367/','7.5',4543,
-'http://www.imdb.com/title/tt0276818','NULL','NULL','NULL','NULL','NULL','韩国','2003-04-03',
-'李秉宪 李恩珠 吕贤洙','金大胜','剧情 爱情 同性',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1052614642.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9329,'赤色杀机','https://movie.douban.com/subject/1433503/','8.2',718,
-'http://www.imdb.com/title/tt0057829','NULL','NULL','NULL','NULL','NULL','日本','1964-06-28',
-'春川增美 西村晃 露口茂','今村昌平','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIn_j7WMzhf2WWqNqmPQaj2',
-'NULL','NULL','4',1,'/static/movie/img/p2151709709.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9330,'睿古教授的事件簿','https://movie.douban.com/subject/26765191/','5.6',194,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-05-21(日本)',
-'藤木直人 田中直樹 清水富美加 白洲迅 宇梶剛士 浅野ゆう子 武田鉄矢','木下高男','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2349674986.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9331,'圣徒秘录','https://movie.douban.com/subject/3272846/','7.0',396,
-'http://www.imdb.com/title/tt1316616','NULL','NULL','NULL','NULL','NULL','美国 / 阿根廷 / 西班牙','2011-05-06(美国)',
-'查理·考克斯 韦斯·本特利 多格雷·斯科特 尤纳克斯·阿高德 欧嘉·柯瑞兰寇 Pablo Lapadula 格什菲·法拉哈尼 Rusty Lemorande 安娜·托伦特 阿方索·巴萨维 詹迪·莫拉 罗德里格·桑托罗 杰拉丁·卓别林','罗兰·约菲','剧情 传记',
-'NULL',
-'magnet:?xt=urn:btih:a6e061ac85e71ab6e5ebf0e813abc9d61df73737','NULL','4',1,'/static/movie/img/p1246966664.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9332,'海豹干将','https://movie.douban.com/subject/1293843/','6.8',472,
-'http://www.imdb.com/title/tt0100232','NULL','NULL','NULL','NULL','NULL','美国','1990-07-20',
-'迈克尔·比恩 查理·辛 琼妮·威利 比尔·帕克斯顿 塞瑞尔·奥莱利 里克·罗索维奇 丹尼斯·海斯伯特','刘易斯·提革','动作 惊悚 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s7051544.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9333,'小花','https://movie.douban.com/subject/1309226/','7.3',2820,
-'http://www.imdb.com/title/tt0081781','NULL','NULL','NULL','NULL','NULL','中国大陆','1979',
-'陈冲 刘晓庆 唐国强 王佳宁 曹小敏 葛存壮 王彪','张铮','剧情 爱情 战争',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGb3j6r23Wb7xt1bIGSurKNMPwRsr4lKroP_6GVqyi6Zp',
-'NULL','NULL','4',1,'/static/movie/img/s3169082.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9334,'离别钩','https://movie.douban.com/subject/3406780/','7.0',59,
-'NULL','NULL','NULL','NULL','NULL','NULL','台湾','1980',
-'衛子雲 凌雲 余安安 陸一嬋 葛小宝 郑康业 龍軍','方豪','动作 武侠 古装',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKB3-G14R-AOhdNNdB3ttDJ',
-'NULL','NULL','4',1,'/static/movie/img/p2355475249.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9335,'侦探船梨精','https://movie.douban.com/subject/26682876/','5.4',170,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-01-07(日本)',
-'ふなっしー 儿岛一哉 松下洸平 木戸邑弥 永濑匡 田鍋謙一郎 浜谷健司 バービー ゆいP 田中奏生 清水伸 大野瑞生 高野光希 木下邦家','吉村慶介','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2306146760.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9336,'巡弋悍将','https://movie.douban.com/subject/1297025/','6.1',484,
-'http://www.imdb.com/title/tt0105104','NULL','NULL','NULL','NULL','NULL','美国','1992-11-06',
-'伊丽莎白·赫利 韦斯利·斯奈普斯 汤姆·塞兹摩尔','凯文·霍克斯','动作 犯罪',
-'http://so.iqiyi.com/links/Y1t4eAa0mLAVDBoVzSYwMIUlSDB--pokktMm-8ntmCf44_KMmsSguFLjKXgfEs6nSPVRAEaJutq7Y32GCnTKIA==',
-'NULL','NULL','4',1,'/static/movie/img/p2327947600.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9337,'午夜寻访录','https://movie.douban.com/subject/7161697/','3.1',351,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-04-08(中国大陆)',
-'沙溢 胡可 李琦 付宏','刘天荣','惊悚 恐怖',
-'http://www.iqiyi.com/v_19rrlw5pbc.html',
-'magnet:?xt=urn:btih:e2e0fa2c46f11e48670e26b1ce7c6cfca4b5ba4e','NULL','4',1,'/static/movie/img/p2325586694.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9338,'勾魂手','https://movie.douban.com/subject/1302664/','7.2',82,
-'http://www.imdb.com/title/tt0062755','NULL','NULL','NULL','NULL','NULL','美国','1968-10-16',
-'托尼·柯蒂斯 亨利·方达 乔治·肯尼迪','理查德·弗莱彻','剧情 悬疑 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s6643489.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9339,'侦探马龙','https://movie.douban.com/subject/3161047/','5.5',1139,
-'http://www.imdb.com/title/tt1258137','NULL','NULL','NULL','NULL','NULL','美国','2009-07-25',
-'托马斯·简 埃尔莎·帕塔奇 文·瑞姆斯 乔·曼特纳 道格·休切逊','拉塞尔·穆卡希','动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ5Ymq7EsdGN5GkoCirU8zR',
-'NULL','NULL','4',1,'/static/movie/img/p2327944544.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9340,'红尘','https://movie.douban.com/subject/2080578/','8.4',260,
-'http://www.imdb.com/title/tt6136258','NULL','NULL','NULL','NULL','NULL','中国大陆','1994',
-'徐松子 陶泽如 徐雷 陈宝国 冯雷 柳健 马恩然 黄素影','古榕','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKddubo1_65nnE7qnwIyzpR',
-'NULL','NULL','4',1,'/static/movie/img/p2229023304.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9341,'魔剑侠情','https://movie.douban.com/subject/1303372/','7.0',652,
-'http://www.imdb.com/title/tt0081168','NULL','NULL','NULL','NULL','NULL','香港','1981-01-31',
-'狄龙 傅声 尔冬升 井莉 罗烈 谷峰 惠英红 岳华 元华 元彬','楚原','剧情 动作',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1ZOl03zW0LZ879EKWfaCGHkjgIIfcfwteT2t-nrnsXuxHuXNJq7Wcwiq579WPW8Ulg==',
-'NULL','NULL','4',1,'/static/movie/img/s3044814.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9342,'剑气萧萧孔雀翎','https://movie.douban.com/subject/3406779/','6.7',77,
-'NULL','NULL','NULL','NULL','NULL','NULL','台湾','1980-02-29(台湾)',
-'田鹤 唐威 孙嘉琳 李环春 李建平 原森 田在春 马场 陈宝亮','张鹏翼','武侠',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIdJ8sBQklC8hB4tUd-dT9s',
-'NULL','NULL','4',1,'/static/movie/img/p2358114276.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9343,'夜半梳头','https://movie.douban.com/subject/25862407/','3.5',1453,
-'http://www.imdb.com/title/tt5619304','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-06-13(中国大陆)',
-'王李丹妮 李威 宣璐 杨紫彤 戴向宇 孙桂田 尔玛依娜 ','刘宁','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrnfgqho.html',
-'magnet:?xt=urn:btih:c220162091b0680447581009a2a28c5863a18f1e','NULL','4',1,'/static/movie/img/p2186252856.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9344,'余命85分','https://movie.douban.com/subject/2264227/','6.7',67,
-'http://www.imdb.com/title/tt1031951','NULL','NULL','NULL','NULL','NULL','Colombia','2007-05-22',
-'Daniel Páez Hugo Pereira Michael Schorling','Spiros Stathoulopoulos','剧情 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p541667160.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9345,'宝刀未老','https://movie.douban.com/subject/1307092/','6.8',120,
-'http://www.imdb.com/title/tt0281820','NULL','NULL','NULL','NULL','NULL','法国 / 英国 / 爱尔兰 / 加拿大','2003-01-27',
-'尼莎·库察尼婕 Ouassini Embarek 马克·莱沃因 尼克·诺特 切基·卡尤 热拉尔·达尔蒙 萨伊德·塔格马奥 埃米尔·库斯图里卡','尼尔·乔丹','剧情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1430802.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9346,'禁入魔镜','https://movie.douban.com/subject/4089361/','7.0',78,
-'http://www.imdb.com/title/tt0100156','NULL','NULL','NULL','NULL','NULL','美国','1990',
-'凯伦·布莱克 伊冯娜·德·卡洛 威廉·桑德森 Rainbow Harvest 克里斯汀·达蒂洛 Ricky Paull Goldin Charlie Spradling','Marina Sargenti','惊悚 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2327782328.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9347,'Love','https://movie.douban.com/subject/20393785/','6.4',81,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2012-12-20(日本)',
-'桐谷美玲 平山浩行 矢田亚希子 冈田义德 中村友理 鹤见辰吾 前川泰之 竹财辉之助 林刚史 吉冈睦雄 宇野祥平 松山メアリ 平田裕一郎 小岛圣 奥贯薫 加藤和子 六平直政 石仓三郎 中尾彬 津川雅彦','前田弘二','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2199135499.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9348,'特务风云','https://movie.douban.com/subject/1477206/','7.3',9303,
-'http://www.imdb.com/title/tt0343737','NULL','NULL','NULL','NULL','NULL','美国','2006-12-22',
-'马特·达蒙 安吉丽娜·朱莉 亚历克·鲍德温 坦米·布兰查德 比利·克鲁德普 罗伯特·德尼罗 凯尔·杜拉 迈克尔·刚本 马蒂娜·格德克 威廉·赫特 蒂莫西·赫顿 马克·伊瓦涅 盖布瑞·马赫特 李·佩斯 乔·佩西 埃迪·雷德梅恩','罗伯特·德尼罗','剧情 惊悚',
-'http://so.iqiyi.com/links/Y1t4eAa0mLAVDBoVzSYwMCT2ugm9mUiSEambSsaoKLlYOEZsSSviQN96FDh6jYlnhboFheItqcKGRaiYXp12Xg==',
-'NULL','NULL','4',1,'/static/movie/img/p1267846140.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9349,'害时出世','https://movie.douban.com/subject/3275650/','7.1',213,
-'http://www.imdb.com/title/tt0085634','NULL','NULL','NULL','NULL','NULL','香港','1983-10-27(香港)',
-'郑丹瑞 陈欣健 伊雷 李殿朗 李殿馨 林迪安 白文彪 陈立品','江龙','惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2275903213.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9350,'越位者','https://movie.douban.com/subject/20471346/','2.4',512,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2013-01-16(中国大陆)',
-'李乾铭 汤嬿 周蕾 高军 高洁 金彧亮 张晶 文章 黄一飞','李志洲','动作 犯罪',
-'http://www.iqiyi.com/v_19rrlgxsy0.html',
-'NULL','NULL','4',1,'/static/movie/img/p1833900485.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9351,'家在香港','https://movie.douban.com/subject/1920138/','7.4',256,
-'http://www.imdb.com/title/tt1293779','NULL','NULL','NULL','NULL','NULL','香港','1983-08-14(香港)',
-'朱海玲 刘德华(Andy Lau) 古嘉露 谷峰(Feng Ku)','敬海林','剧情',
-'http://www.iqiyi.com/v_19rrifly0x.html',
-'NULL','NULL','4',1,'/static/movie/img/s3080101.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9352,'鸳鸯蝴蝶','https://movie.douban.com/subject/1394543/','7.1',6090,
-'http://www.imdb.com/title/tt0453323','NULL','NULL','NULL','NULL','NULL','中国大陆','2005-02-14(中国大陆)',
-'周迅 陈坤 严羚 张曦文 严浩 赵梓荐 于凌达 武锦华','严浩','剧情 爱情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGb3j6r23Wb7xt1bIGSurKNNDHMHTp_-6d-5uXT-3pKxq',
-'NULL','NULL','4',1,'/static/movie/img/p1417316527.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9353,'打擂台','https://movie.douban.com/subject/1307069/','6.2',213,
-'http://www.imdb.com/title/tt0084056','NULL','NULL','NULL','NULL','NULL','香港','1982-10-21',
-'王龙威 高雄 吕良伟 阮天云 林凯玲 徐锦江','黄志强','剧情 动作',
-'http://www.iqiyi.com/dianying/20110415/ae3a4ba2edce5cce.html',
-'magnet:?xt=urn:btih:a8c1d41020a412ee99f9fbd6d866dca086c96d7e','NULL','4',1,'/static/movie/img/p2355712529.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9354,'暴风少年','https://movie.douban.com/subject/1299205/','7.3',48,
-'http://www.imdb.com/title/tt0101406','NULL','NULL','NULL','NULL','NULL','香港','1991-05-04(香港)',
-'成奎安 午马 张艾嘉 吴家丽 苗侨伟 雪梨 何沛东 金十二 卢惠光 张沅薇','曹建南','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2349568853.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9355,'相伴永远','https://movie.douban.com/subject/3080197/','7.6',107,
-'http://www.imdb.com/title/tt1023143','NULL','NULL','NULL','NULL','NULL','中国大陆','2000',
-'王学圻 宋春丽','丁荫楠','剧情 传记',
-'http://www.iqiyi.com/v_19rrn30ero.html',
-'NULL','NULL','4',1,'/static/movie/img/p2457044645.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9356,'停不了的爱','https://movie.douban.com/subject/1307789/','6.2',589,
-'http://www.imdb.com/title/tt0086446','NULL','NULL','NULL','NULL','NULL','香港','1984-03-22',
-'刘德华 温碧霞 李丽珍 周茵茵','麦当杰','剧情 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Y9r0AoVYKt4On0lyfxzK_jnjn0wUaIQY7_eluVyU6FVYg9ngqyo266ReqS3oeucwg==',
-'NULL','NULL','4',1,'/static/movie/img/s1804425.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9357,'美术馆旁的动物园','https://movie.douban.com/subject/1306467/','7.5',1773,
-'http://www.imdb.com/title/tt0288621','NULL','NULL','NULL','NULL','NULL','韩国','1998-12-19',
-'沈银河 李成宰 安圣基','李廷香','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p703364663.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9358,'一千零一夜之梦中人','https://movie.douban.com/subject/2058858/','6.4',413,
-'http://www.imdb.com/title/tt0115024','NULL','NULL','NULL','NULL','NULL','香港','1995-06-17',
-'梁家辉 吴倩莲 高捷 罗家英 陈百祥','林庆隆','喜剧 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLwD33HS3ho4SOqKDRUbbQb',
-'NULL','NULL','4',1,'/static/movie/img/s3056369.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9359,'八月钱潮','https://movie.douban.com/subject/3123955/','6.1',537,
-'http://www.imdb.com/title/tt0470679','NULL','NULL','NULL','NULL','NULL','美国','2008-01-22',
-'乔什·哈奈特 亚当·斯科特 娜奥米·哈里斯 雷普·汤恩 埃曼纽尔·施莱琪 罗宾·汤尼 大卫·鲍伊 安德烈·罗佑  莱拉·罗宾斯 卡罗琳·拉格菲尔特 艾伦·考克斯 杰里米·博布','奥斯汀·奇克','暂时无数据',
-'http://www.iqiyi.com/v_19rrhlb1xo.html',
-'NULL','NULL','4',1,'/static/movie/img/p1501499837.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9360,'告別有情天','https://movie.douban.com/subject/1298698/','7.5',153,
-'http://www.imdb.com/title/tt0113143','NULL','NULL','NULL','NULL','NULL','香港','0000-00-00',
-'任达华 刘雅丽 梅爱芳 刘兆铭 潘志文 罗君左','陈汗','剧情 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1397992.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9361,'威震八方','https://movie.douban.com/subject/1309132/','6.3',5312,
-'http://www.imdb.com/title/tt0351977','NULL','NULL','NULL','NULL','NULL','美国','2004-04-22',
-'道恩·强森 寇碧·史莫德斯 约翰尼·诺克斯维尔','凯文·布瑞','剧情 喜剧 动作 惊悚 传记 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLz3K_8T5VvxLLOPlXbK83H',
-'magnet:?xt=urn:btih:add5543ef9eb451cc4e113f1fb5fc7ffaa0dd898','NULL','4',1,'/static/movie/img/p2193564128.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9362,'疑云密布','https://movie.douban.com/subject/1300949/','7.1',1250,
-'http://www.imdb.com/title/tt0164212','NULL','NULL','NULL','NULL','NULL','法国 / 美国','2000-06-02',
-'吉恩·哈克曼 摩根·弗里曼 莫妮卡·贝鲁奇','斯蒂芬·霍普金斯','剧情 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrho9t60.html',
-'magnet:?xt=urn:btih:d7cbfbceb2f22f71d0c0afdc467076d2f2264240','NULL','4',1,'/static/movie/img/p543881032.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9363,'极道追踪','https://movie.douban.com/subject/1298745/','6.4',796,
-'http://www.imdb.com/title/tt0102158','NULL','NULL','NULL','NULL','NULL','香港','1991-07-20',
-'刘德华 钟楚红 庹宗华 孙鹏 石田纯一 岸田今日子','许鞍华','剧情 爱情 犯罪',
-'http://www.iqiyi.com/v_19rrmy64hg.html',
-'NULL','NULL','4',1,'/static/movie/img/p2349523485.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9364,'紫蝴蝶','https://movie.douban.com/subject/1303217/','6.4',5218,
-'http://www.imdb.com/title/tt0363290','NULL','NULL','NULL','NULL','NULL','中国大陆 / 法国','2003-05-22(戛纳电影节)',
-'冯远征 仲村亨 章子怡 刘烨 李冰冰','娄烨','剧情 历史 战争',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8HbnYfKWVm1yONW6uk0jqOTyqr7QvODGETRU758LJVaP',
-'NULL','NULL','4',1,'/static/movie/img/p1446439220.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9365,'事件','https://movie.douban.com/subject/1303838/','7.2',64,
-'http://www.imdb.com/title/tt0202932','NULL','NULL','NULL','NULL','NULL','日本','1978-06-03',
-'永島敏行 松坂慶子 大竹しのぶ 渡瀬恒彦','野村芳太郎','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2277995565.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9366,'跨跃彩虹','https://movie.douban.com/subject/1308436/','8.3',1882,
-'http://www.imdb.com/title/tt0313445','NULL','NULL','NULL','NULL','NULL','韩国','2002-05-03(韩国)',
-'李政宰 张真英','安振宇','剧情 爱情',
-'http://so.iqiyi.com/links/APVlP5MdJsWGL-F-44oLIjtDqOZt8-jnAl7sdpibfnuO_ig2EQ6bEZ3HVGmiufEJMyeRTIBqKjCHGqEScrjvgg==',
-'NULL','NULL','4',1,'/static/movie/img/p617541913.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9367,'海军陆战队员','https://movie.douban.com/subject/1899892/','5.6',3237,
-'http://www.imdb.com/title/tt0419946','NULL','NULL','NULL','NULL','NULL','美国','2006-10-13',
-'约翰·塞纳 罗伯特·帕特里克 Jon Bennett','John Bonito','剧情 动作 惊悚',
-'http://www.iqiyi.com/v_19rrifwdy0.html',
-'magnet:?xt=urn:btih:c8e04938624b1a8ef7f56bc12312c5bb3b96e789','NULL','4',1,'/static/movie/img/p2238071856.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9368,'再见了德彪西：钢琴侦探岬洋介','https://movie.douban.com/subject/26717766/','5.4',240,
-'http://www.imdb.com/title/tt5378736','NULL','NULL','NULL','NULL','NULL','日本','2016-03-18(日本)',
-'东出昌大 黑岛结菜 武田真治 正名仆蔵 上白石萌歌 岛田久作 金田明夫 半海一晃 宍户美和公 青木珠菜 富山绘里子 小川涼 木之实奈奈 菊池桃子 木村绿子 北大路欣也','菅原伸太郎','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2327605498.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9369,'曲线难题','https://movie.douban.com/subject/6888712/','7.3',7414,
-'http://www.imdb.com/title/tt2083383','NULL','NULL','NULL','NULL','NULL','美国','2012-09-21(美国)',
-'克林特·伊斯特伍德 艾米·亚当斯 约翰·古德曼 切尔西·罗斯 贾斯汀·汀布莱克 乔治·维内尔 鲍勃·冈顿 杰克·吉尔平 马修·里沃德 罗伯特·帕特里克 内森·怀特 斯科特·伊斯特伍德','罗伯特·洛伦兹','剧情 运动',
-'http://so.iqiyi.com/links/Y1t4eAa0mLAVDBoVzSYwMP3F-qY2-fkiVoflwrECPVM5Ve4fBPLtBn8qHHH28fZ7ChzoLYN19frj37tNPWSscw==',
-'NULL','NULL','4',1,'/static/movie/img/p1716299744.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9370,'温柔杀戮','https://movie.douban.com/subject/5364976/','6.0',9227,
-'http://www.imdb.com/title/tt1764234','NULL','NULL','NULL','NULL','NULL','美国','2012-05-22(戛纳电影节)',
-'布拉德·皮特 斯科特·麦克纳里 本·门德尔森 詹姆斯·甘多菲尼 文森特·库拉托拉 理查德·詹金斯 雷·利奥塔','安德鲁·多米尼克','剧情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1681312288.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9371,'金枪手徐宁','https://movie.douban.com/subject/11226057/','4.3',101,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'何中华 梁小冰 蒋一铭','黄祖权','剧情 古装',
-'http://so.iqiyi.com/links/iDYCAkmRMemaUWHrzfuxfl1CkdIKjJFlpnF1g_GA-3fT289gaOZZPmCiamH7iWmi',
-'NULL','NULL','4',1,'/static/movie/img/p2177193818.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9372,'深入敌后3：哥伦比亚','https://movie.douban.com/subject/3074541/','5.9',1808,
-'http://www.imdb.com/title/tt1208647','NULL','NULL','NULL','NULL','NULL','美国','2009-01-06',
-'乔·曼根尼罗 Ken Anderson 珊农·罗伊','提姆·麦锡森','动作 惊悚 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1578572516.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9373,'替罪羊','https://movie.douban.com/subject/2568112/','7.5',53,
-'http://www.imdb.com/title/tt0053247','NULL','NULL','NULL','NULL','NULL','英国 / 美国','1959-08-06',
-'亚历克·吉尼斯 贝蒂·戴维斯 妮可·茂瑞 艾琳·沃斯 帕米拉·布朗 Annabel Bartlett 格佛雷·肯  ','罗伯特·哈默','悬疑 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2865823.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9374,'车逝','https://movie.douban.com/subject/3239695/','6.0',1088,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2008-11-10',
-'刘兆铭 成泰燊 王珞丹','书亚','剧情',
-'http://www.iqiyi.com/v_19rrifl51k.html',
-'NULL','NULL','4',1,'/static/movie/img/p827675055.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9375,'女寝还魂','https://movie.douban.com/subject/26705973/','4.7',43,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016',
-'黄梓城 杨丹 梁雪芹 马玥彤 乘瑶','周铜','爱情 悬疑 惊悚 恐怖',
-'http://www.iqiyi.com/v_19rrkf0emg.html',
-'NULL','NULL','4',1,'/static/movie/img/p2310676235.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9376,'警察，形容词','https://movie.douban.com/subject/3692298/','7.1',511,
-'http://www.imdb.com/title/tt1337051','NULL','NULL','NULL','NULL','NULL','罗马尼亚','2009-05-15',
-'德拉戈什·布库尔 弗拉德·伊凡诺夫','柯内流·波蓝波宇','剧情 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKdQEBg7mLZKFhX7USKqX1g',
-'NULL','NULL','4',1,'/static/movie/img/p2378466500.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9377,'都市猎人','https://movie.douban.com/subject/1298570/','5.9',589,
-'http://www.imdb.com/title/tt0097245','NULL','NULL','NULL','NULL','NULL','香港','1989-08-24',
-'王祖贤 万梓良 冼宝华 吴家丽 黎明 方刚','叶天行','悬疑 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2348717164.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9378,'汉娜的旅程','https://movie.douban.com/subject/24876985/','6.9',70,
-'http://www.imdb.com/title/tt2429414','NULL','NULL','NULL','NULL','NULL','德国 / 以色列','2013-08-27(蒙特利尔世界电影节)',
-'Karoline Schuch Max Mauff Doron Amit','Julia von Heinz','喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2181949504.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9379,'哪吒','https://movie.douban.com/subject/1303804/','6.3',237,
-'http://www.imdb.com/title/tt0071887','NULL','NULL','NULL','NULL','NULL','香港 / 台湾','1974-09-27',
-'傅声 冯克安 李允中 曾志伟 卢迪','张彻','动作 奇幻 冒险 武侠 古装',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2456418697.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9380,'最后的爱，最初的爱','https://movie.douban.com/subject/1451413/','6.3',3417,
-'http://www.imdb.com/title/tt0453326','NULL','NULL','NULL','NULL','NULL','中国大陆 / 日本','2004-05-14',
-'渡部笃郎 徐静蕾 董洁','当摩寿史','爱情',
-'http://www.iqiyi.com/dianying/20110812/4f6f7602a05e14f5.html',
-'NULL','NULL','4',1,'/static/movie/img/p1880311592.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9381,'情迷步话机','https://movie.douban.com/subject/1308494/','7.3',1308,
-'http://www.imdb.com/title/tt0270919','NULL','NULL','NULL','NULL','NULL','韩国','2000-05-27',
-'金荷娜 刘智泰 河智苑 金正权 金敏珠 申哲鎮','金正权','爱情 科幻',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML9JRppTaRdTY4SvU1dBWoD',
-'magnet:?xt=urn:btih:30d4124419da50d88370434b340b85ab9d4445d2','NULL','4',1,'/static/movie/img/p524964709.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9382,'选秀日','https://movie.douban.com/subject/20257765/','7.8',6027,
-'http://www.imdb.com/title/tt2223990','NULL','NULL','NULL','NULL','NULL','美国','2014-04-11(美国)',
-'凯文·科斯特纳 詹妮弗·加纳 克里斯·伯曼 查德维克·博斯曼 帕特里克·圣埃斯普利特 齐·麦克布赖德 梅尔·基佩尔 乔·格鲁登','伊万·雷特曼','剧情 运动',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Y1bYmP3poU8YdefbqakO_zxq0PmFQ8Q-HY_6BZDDhJ8bHU7HQpX436PrhEdOIC-lknkscKMp5tkr-FY6Np7NEA=',
-'magnet:?xt=urn:btih:405a55ab6e00ac542df7c0a16374d816bc7bccb9','NULL','4',1,'/static/movie/img/p2163995104.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9383,'智利说不','https://movie.douban.com/subject/6852646/','7.4',2195,
-'http://www.imdb.com/title/tt2059255','NULL','NULL','NULL','NULL','NULL','智利 / 美国 / 法国 / 墨西哥','2012-05-18(戛纳电影节)',
-'盖尔·加西亚·贝纳尔 理查德·德莱弗斯 简·方达 阿尔佛莱德·卡斯特罗 安东尼娅·泽格斯 佩德罗·佩拉诺','帕布罗·拉雷恩','剧情 历史',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML6BoLTanJWHJPgHH54Zl2F',
-'NULL','NULL','4',1,'/static/movie/img/p1844397489.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9384,'踩虎尾的男人','https://movie.douban.com/subject/1293176/','7.4',1102,
-'http://www.imdb.com/title/tt0038182','NULL','NULL','NULL','NULL','NULL','日本','1952-04-24(日本)',
-'大河内传次郎 藤田进 榎本健一','黑泽明','剧情 惊悚 冒险',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1SMDiCVp6dieEGIPzChUlmi7gilOtBML6F7jnS5uF7e5Ao-aQs8saVXBEJfh_DEr3w==',
-'NULL','NULL','4',1,'/static/movie/img/p2165665634.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9385,'野蛮人','https://movie.douban.com/subject/5973984/','6.1',5496,
-'http://www.imdb.com/title/tt1615065','NULL','NULL','NULL','NULL','NULL','美国','2012-07-06(美国)',
-'亚伦·泰勒-约翰逊 泰勒·克奇 布蕾克·莱弗利 约翰·特拉沃尔塔 本尼西奥·德尔·托罗 萨尔玛·海耶克 安东尼·库托罗 埃米尔·赫施','奥利佛·斯通','剧情 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrhuh6p4.html',
-'NULL','NULL','4',1,'/static/movie/img/p1765989373.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9386,'战力外搜查官SP','https://movie.douban.com/subject/26299413/','6.8',219,
-'http://www.imdb.com/title/tt4862156','NULL','NULL','NULL','NULL','NULL','日本','2015-03-21(日本)',
-'武井咲 田崎敬浩','中島悟','剧情 喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2318271096.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9387,'礼物','https://movie.douban.com/subject/1300021/','7.7',1709,
-'http://www.imdb.com/title/tt0294949','NULL','NULL','NULL','NULL','NULL','韩国','2001-03-24(韩国)',
-'李政宰 李英爱 权海骁 孔炯轸 金相辰 金秀路 金泰熙 孔晓振 史贤真','吴基焕','剧情 爱情',
-'http://www.iqiyi.com/dongman/20130327/d45ba96e578d1f0e.html',
-'magnet:?xt=urn:btih:3401ccb58b34a0de7a04917e3452693f062f29ec','NULL','4',1,'/static/movie/img/p700723334.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9388,'卒迹','https://movie.douban.com/subject/24737161/','7.0',870,
-'http://www.imdb.com/title/tt4415434','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-01-03',
-'范雷 卢映 董娉','鲁坚','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqUFwqyLzNQomu-r0EHHBPJN0Dx0rGF5mbLZB9nGBmtsU',
-'NULL','NULL','4',1,'/static/movie/img/p2165079048.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9389,'苦中带甜','https://movie.douban.com/subject/25727451/','6.4',93,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2013-10-25(日本)',
-'小池徹平 蟹江敬三 武田鉄矢 石橋杏奈 丘みつ子','堀口航平','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2189732776.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9390,'断肠剑','https://movie.douban.com/subject/2345018/','6.1',139,
-'http://www.imdb.com/title/tt0060350','NULL','NULL','NULL','NULL','NULL','香港','1967-03-04',
-'乔庄 秦萍 王羽 郑雷 焦姣','张彻','剧情 动作 歌舞',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKcNMYLjIe40v-3Q6gXP_ZW',
-'NULL','NULL','4',1,'/static/movie/img/p2174645807.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9391,'杀手阿一','https://movie.douban.com/subject/1295629/','7.4',21662,
-'http://www.imdb.com/title/tt0296042','NULL','NULL','NULL','NULL','NULL','日本','2001-09-14(多伦多电影节)',
-'浅野忠信 大森南朋 塚本晋也 萨布 孙佳君 寺岛进 菅田俊 涩川清彦 松尾铃木','三池崇史','剧情 喜剧 动作 悬疑 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2176702650.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9392,'两个人的车站','https://movie.douban.com/subject/1297585/','8.6',4593,
-'http://www.imdb.com/title/tt0084873','NULL','NULL','NULL','NULL','NULL','苏联','1983-10-28',
-'柳德米拉·古尔琴柯 奥列格·巴希拉什维利 尼基塔·米哈尔科夫','埃利达尔·梁赞诺夫','爱情',
-'http://www.iqiyi.com/v_19rrh0bijg.html',
-'NULL','NULL','4',1,'/static/movie/img/p856874299.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9393,'蓝色矢车菊','https://movie.douban.com/subject/4019431/','4.1',371,
-'http://www.imdb.com/title/tt2471308','NULL','NULL','NULL','NULL','NULL','台湾','2010-12-31(台湾)',
-'张震 方中信 范文芳 江一燕 张国柱','陈铭章','剧情 爱情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGWMYZy_mjvW1RoabyHPCGTRHMFg3nvec237vAYYYur0F',
-'NULL','NULL','4',1,'/static/movie/img/p1301718565.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9394,'为你而来','https://movie.douban.com/subject/6003151/','5.7',680,
-'http://www.imdb.com/title/tt5805284','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-05-31(中国大陆)',
-'夏如芝 郑凯 霍泥芳 林宗仁','瞿友宁','剧情 爱情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGUbkkfm7iC1hdHwfwYnrBWHmEHc24fFaurGXsw4CanMt',
-'NULL','NULL','4',1,'/static/movie/img/p1471266976.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9395,'荒岛情未了','https://movie.douban.com/subject/5951224/','3.7',628,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-04-13(中国大陆)',
-'陈龙 曹曦文 蒋小涵 戴凌鹏 任珈锐','喻瀚湫','悬疑 惊悚 冒险',
-'http://www.iqiyi.com/v_19rrho8ivw.html',
-'NULL','NULL','4',1,'/static/movie/img/p1481048482.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9396,'喜悦','https://movie.douban.com/subject/1820056/','6.9',366,
-'http://www.imdb.com/title/tt0059159','NULL','NULL','NULL','NULL','NULL','日本','1965-08-29(日本)',
-'中村贺津雄 加贺麻理子 野川由美子 八木昌子 樋口年子 清水宏子','大岛渚','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Sw6NhqiwnGyCVnxe8R35RgaR2M4Uo6O79ZhpGZJhoaCnkkZDf8gurBgm872q2janA==',
-'NULL','NULL','4',1,'/static/movie/img/p2058753619.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9397,'女捕快','https://movie.douban.com/subject/2284670/','6.3',110,
-'http://www.imdb.com/title/tt0198848','NULL','NULL','NULL','NULL','NULL','香港','1975-06-07',
-'罗烈 施思 杨志卿 詹森','申江','剧情 动作',
-'http://so.iqiyi.com/links/Ip79BMB38n6dcBaGpkbCdQekjk1Vop9BQ724-Watgs0=',
-'NULL','NULL','4',1,'/static/movie/img/s3082364.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9398,'惩罚者','https://movie.douban.com/subject/1305686/','6.4',10227,
-'http://www.imdb.com/title/tt0330793','NULL','NULL','NULL','NULL','NULL','美国 / 德国','2004-04-16(美国)',
-'托马斯·简 约翰·特拉沃尔塔 威尔·帕顿 丽贝卡·罗梅恩 本·福斯特','乔纳森·汉斯雷','剧情 动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrh78644.html',
-'magnet:?xt=urn:btih:febfa75adbe366a305e41f56b414b2e0a131b4f1','NULL','4',1,'/static/movie/img/p1356756326.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9399,'父子TCK','https://movie.douban.com/subject/20399026/','5.4',193,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆 / 加拿大','2012-11-22',
-'薛奇 杨晨 郭芷岑 边红丽','胡纪华','剧情',
-'http://www.iqiyi.com/v_19rrifwl78.html',
-'NULL','NULL','4',1,'/static/movie/img/s24439932.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9400,'亮牌时刻','https://movie.douban.com/subject/3082526/','6.5',178,
-'http://www.imdb.com/title/tt0811128','NULL','NULL','NULL','NULL','NULL','美国','2008-07-22',
-'法米克·詹森 Jaymie Dornan 雷普·汤恩 马特·罗斯 罗伊丝·史密斯 玛琳·辛科 特里·金尼 John Juback Tony Robles 约旦·布里奇斯 阿丽·格雷诺 Santo D\'Asaro 佐伊·利斯特·琼斯 Elizabeth Atkeson Joseph Siravo','克里斯·埃吉曼','剧情',
-'http://www.iqiyi.com/v_19rrhnosjg.html',
-'magnet:?xt=urn:btih:37223f6b33a62819da196d9214cc30a211be58b0','NULL','4',1,'/static/movie/img/p1860798692.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9401,'夜审','https://movie.douban.com/subject/1471710/','7.4',44,
-'http://www.imdb.com/title/tt0082436','NULL','NULL','NULL','NULL','NULL','法国','1981-09-23',
-'利诺·文图拉 米歇尔·塞罗尔 罗密·施奈德','Claude Miller克劳德·米勒','剧情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1775826.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9402,'因父之名','https://movie.douban.com/subject/1297009/','8.8',20248,
-'http://www.imdb.com/title/tt0107207','NULL','NULL','NULL','NULL','NULL','爱尔兰 / 英国 / 美国','1993-12-12(爱尔兰首映)',
-'丹尼尔·戴-刘易斯 皮特·波斯尔思韦特 约翰·林奇 马克·谢泼德 比蒂·埃德尼 艾玛·汤普森 安东尼·布罗菲 Frankie McCafferty Maureen McBride Don Baker 科林·雷德格瑞夫 杰拉德·迈克索利 Frank Harper 杰米·哈里斯 汤姆·威尔金森 Kelly McKeavney Alison Crosbie Philip King Nye Heron 保罗·沃利纳 Julian Walsh Stuart Wolfenden Jo Connor Karen Carlisle Seamus Moran Billy Byrne 萨弗蓉·布罗斯','吉姆·谢里丹','剧情 传记',
-'http://www.iqiyi.com/v_19rrhx11o4.html',
-'NULL','NULL','4',1,'/static/movie/img/p758788727.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9403,'影之地带','https://movie.douban.com/subject/26421441/','5.5',118,
-'http://www.imdb.com/title/tt4776172','NULL','NULL','NULL','NULL','NULL','日本','2015-07-06(日本)',
-'谷原章介 泷藤贤一 矢田亚希子 冈本玲 青山伦子 千葉哲也 北见敏之 岩本多代 山本圭 上川隆也','倉貫健二郎','悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2254394200.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9404,'杀出个黎明','https://movie.douban.com/subject/1301409/','7.5',32596,
-'http://www.imdb.com/title/tt0116367','NULL','NULL','NULL','NULL','NULL','美国','1996-01-19',
-'乔治·克鲁尼 昆汀·塔伦蒂诺 哈威·凯特尔 朱丽叶特·刘易斯 萨尔玛·海耶克 迈克尔·帕克斯 丹尼·特雷霍','罗伯特·罗德里格兹','动作 恐怖 犯罪',
-'http://www.iqiyi.com/dianying/20130323/c8d9d2828e1ff531.html',
-'magnet:?xt=urn:btih:2c44b095390fe5a94ac0f67324a7f9bae677fc72','NULL','4',1,'/static/movie/img/p1776544990.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9405,'青涩恋爱','https://movie.douban.com/subject/1302559/','7.6',2445,
-'http://www.imdb.com/title/tt0300633','NULL','NULL','NULL','NULL','NULL','韩国','2001-11-23(韩国)',
-'曹承佑 金喜善 朱镇模 崔江熙','金容钧','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKBgfEF91HystgfYFQMrjGW',
-'NULL','NULL','4',1,'/static/movie/img/p700724296.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9406,'雪国之劫','https://movie.douban.com/subject/25851739/','5.8',355,
-'http://www.imdb.com/title/tt3715860','NULL','NULL','NULL','NULL','NULL','日本','2014-08-02(日本)',
-'渡边谦 冈田将生 广末凉子 铃木浩介 庄野崎谦 安田显 中尾明庆 山下莉绪 渡边哲 金田明夫 平泉成 野际阳子 国村隼','藤田明二','剧情 悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2190941632.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9407,'参孙和达莉拉','https://movie.douban.com/subject/1292742/','7.3',173,
-'http://www.imdb.com/title/tt0041838','NULL','NULL','NULL','NULL','NULL','美国','1949-12-21',
-'海蒂·拉玛 维克多·迈彻 安吉拉·兰斯伯瑞','塞西尔·B·戴米尔','剧情 爱情 历史',
-'http://www.iqiyi.com/v_19rrlp9a6c.html',
-'NULL','NULL','4',1,'/static/movie/img/p2179080167.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9408,'高品质生活','https://movie.douban.com/subject/3750856/','6.6',279,
-'http://www.imdb.com/title/tt1143110','NULL','NULL','NULL','NULL','NULL','加拿大','2009-12-28',
-'乔·安德森 蒂莫西·奥利芬特','Gary Yates','喜剧 犯罪',
-'NULL',
-'magnet:?xt=urn:btih:fc2aa0bcbc37c7892ab267a076f6d405f7b8c3d2','NULL','4',1,'/static/movie/img/p2327944054.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9409,'赤色天使','https://movie.douban.com/subject/1303133/','7.7',405,
-'http://www.imdb.com/title/tt0139820','NULL','NULL','NULL','NULL','NULL','日本','1966-10-01',
-'若尾文子 芦田伸介 川津祐介','增村保造','剧情 爱情 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2323844198.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9410,'我们俩','https://movie.douban.com/subject/1756073/','8.6',69110,
-'http://www.imdb.com/title/tt0757376','NULL','NULL','NULL','NULL','NULL','中国大陆','2005-10(东京电影节)',
-'宫哲 金雅琴 罗忠学 孙捷 强爽 刘正亮','马俪文','剧情',
-'http://so.iqiyi.com/links/iDYCAkmRMemaUWHrzfuxfnTaH955t9aNweMPyqA6tfubnCk2eOdMCNiKYoJkakBv',
-'NULL','NULL','4',1,'/static/movie/img/p2173725381.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9411,'姐姐词典','https://movie.douban.com/subject/1461180/','6.8',332,
-'http://www.imdb.com/title/tt0470386','NULL','NULL','NULL','NULL','NULL','中国大陆','2005-06-10',
-'蒋勤勤 郑昊 潘耀武','蒋钦民','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2361487.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9412,'女流推理作家药师寺睿子','https://movie.douban.com/subject/26340426/','4.6',126,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2015-02-09(日本)',
-'财前直见 户田惠子 金子贤 桐山涟 竹财辉之助','森嶋正也','剧情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2232234507.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9413,'砂之女','https://movie.douban.com/subject/1295812/','8.4',4224,
-'http://www.imdb.com/title/tt0058625','NULL','NULL','NULL','NULL','NULL','日本','1964-02-15(日本)',
-'冈田英次 岸田今日子 三井弘次','敕使河原宏','剧情 惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIAxaS4QA54FSmYKsx0ic73',
-'NULL','NULL','4',1,'/static/movie/img/p2151938579.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9414,'美眉校探','https://movie.douban.com/subject/22604659/','6.6',4473,
-'http://www.imdb.com/title/tt2771372','NULL','NULL','NULL','NULL','NULL','美国','2014-03-14(美国)',
-'克里斯汀·贝尔 杰森·多灵 克里斯滕·里特 瑞恩·汉森 弗朗西斯·卡普拉 珀西·达格斯三世 克里斯·劳威尔 蒂娜·米乔里诺 恩里克·克兰东尼','罗伯·托马斯','剧情 喜剧 犯罪',
-'http://www.iqiyi.com/v_19rrhokrq0.html',
-'NULL','NULL','4',1,'/static/movie/img/p2165974228.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9415,'致命替身','https://movie.douban.com/subject/19928967/','3.0',704,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-11-16(中国大陆)',
-'刘青 魏建云 王诗乔','过华','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrnwzu64.html',
-'NULL','NULL','4',1,'/static/movie/img/p2380632454.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9416,'虐面人之死灵面膜','https://movie.douban.com/subject/24873412/','2.7',618,
-'http://www.imdb.com/title/tt5036454','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-06-20(中国大陆)',
-'蒲巴甲 程媛媛 韩丹彤 舒耀瑄 刘陆 于彭 向鼎','吴国勇','爱情 悬疑 惊悚',
-'NULL',
-'magnet:?xt=urn:btih:d19730f73045726fd9be9c2663af836a89c32754','NULL','4',1,'/static/movie/img/p2188121784.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9417,'迷离感应','https://movie.douban.com/subject/1306669/','6.1',67,
-'http://www.imdb.com/title/tt0182000','NULL','NULL','NULL','NULL','NULL','美国','2001-03-02',
-'Samuel L. Jackson Colm Feore Ann Magnuson','卡西 莱蒙斯 (Kasi Lemmons)','剧情 悬疑 惊悚 音乐 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2336733954.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9418,'红胡子','https://movie.douban.com/subject/1296679/','8.5',2921,
-'http://www.imdb.com/title/tt0058888','NULL','NULL','NULL','NULL','NULL','日本','1965-04-03',
-'三船敏郎 加山雄三 山崎努 团令子 香川京子 笠智众 田中绢代 三井弘次','黑泽明','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2080678653.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9419,'小黄狗的窝','https://movie.douban.com/subject/1470921/','8.4',1089,
-'http://www.imdb.com/title/tt0432325','NULL','NULL','NULL','NULL','NULL','德国 / 蒙古','2005-07-28',
-'Babbayar Batchuluun Nansal Batchuluun Nansalmaa Batchuluun Buyandulam Daramdadi Batchuluun Urjindorj','琵亚芭苏伦·戴娃','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIw49XnKn1ETDswVHEDHJhW',
-'NULL','NULL','4',1,'/static/movie/img/p639890619.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9420,'茂山日记','https://movie.douban.com/subject/5273308/','7.2',566,
-'http://www.imdb.com/title/tt1802806','NULL','NULL','NULL','NULL','NULL','韩国','2011-04-14',
-'朴庭凡 陈龙玉 姜恩镇','朴庭凡','剧情',
-'http://www.iqiyi.com/dianying/20130620/f58b0874c9967e80.html',
-'NULL','NULL','4',1,'/static/movie/img/p952368476.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9421,'网上有缘','https://movie.douban.com/subject/1302199/','7.3',233,
-'http://www.imdb.com/title/tt0320763','NULL','NULL','NULL','NULL','NULL','韩国','2002-05-20',
-'曹承佑 李奈映','崔豪 ','喜剧 爱情',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzuHBP-ytgsAF6jKSL3oneMYVGRZBUBw3I6zBl4ZrvZOf',
-'NULL','NULL','4',1,'/static/movie/img/p2186539675.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9422,'玩叛游戏','https://movie.douban.com/subject/1916995/','6.4',7271,
-'http://www.imdb.com/title/tt0800240','NULL','NULL','NULL','NULL','NULL','美国','2008-04-25',
-'伊万·麦克格雷格 休·杰克曼 米歇尔·威廉姆斯 李美琪','Marcel Langenegger','剧情 悬疑 惊悚 犯罪',
-'NULL',
-'magnet:?xt=urn:btih:8864045504a3b32a5dfbd69879aaf7dc1e27605c','NULL','4',1,'/static/movie/img/p901847460.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9423,'马克思·佩恩','https://movie.douban.com/subject/2117922/','5.5',11092,
-'http://www.imdb.com/title/tt0467197','NULL','NULL','NULL','NULL','NULL','美国 / 加拿大','2008-10-17(美国)',
-'马克·沃尔伯格 米拉·库尼斯 博·布里奇斯 克里斯·奥唐纳 唐纳尔·罗格 欧嘉·柯瑞兰寇 阿莫里·诺拉斯科','约翰·摩尔','剧情 动作 悬疑 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrmy58os.html',
-'magnet:?xt=urn:btih:52c0872fc311b0f79c07a4707086d1a6ab2a3203','NULL','4',1,'/static/movie/img/p1898868937.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9424,'医者童心','https://movie.douban.com/subject/26324170/','7.5',245,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2015-02-11',
-'薛俨 薛中锐 王晞 王正权','方军亮','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGelVcbvGPT2MsFA5lF3jTuJES6e4HgVQU3AujWak54U3',
-'NULL','NULL','4',1,'/static/movie/img/p2287323615.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9425,'我是山姆','https://movie.douban.com/subject/1306861/','8.8',95406,
-'http://www.imdb.com/title/tt0277027','NULL','NULL','NULL','NULL','NULL','美国','2001-12-03(美国)',
-'西恩·潘 达科塔·范宁 米歇尔·菲佛 黛安·韦斯特 洛雷塔·迪瓦恩 理查德·希夫 劳拉·邓恩','杰茜·尼尔森','剧情 家庭',
-'http://www.iqiyi.com/v_19rra63ny4.html',
-'magnet:?xt=urn:btih:6525136f371ab5568dc6d3cacb1a6e49e4ffb346','NULL','4',1,'/static/movie/img/p652417775.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9426,'自由之丘','https://movie.douban.com/subject/10796578/','7.3',4837,
-'http://www.imdb.com/title/tt3732252','NULL','NULL','NULL','NULL','NULL','韩国','2014-09-04(韩国)',
-'加濑亮 文素丽 徐永嬅 金义城 尹汝贞 纪柱峰 郑恩彩 李珉宇','洪尚秀','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1WMdFkWZ2bI6efYf0W79C29cgl4oCwKvz9tFnzx_5sQYgcSGkbuBIDZN4gOZ7eis1ubKz1MeMGVGqaiMaABZkUc=',
-'NULL','NULL','4',1,'/static/movie/img/p2193382662.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9427,'春寒','https://movie.douban.com/subject/1494227/','7.8',151,
-'http://www.imdb.com/title/tt2099587','NULL','NULL','NULL','NULL','NULL','台湾','1981-04-09(香港)',
-'刘尚谦 凤飞飞','陈俊良','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJbjjJaoolixzneZUiI5wTT',
-'NULL','NULL','4',1,'/static/movie/img/p2198308733.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9428,'炮打双灯','https://movie.douban.com/subject/1307823/','6.9',1107,
-'http://www.imdb.com/title/tt0110769','NULL','NULL','NULL','NULL','NULL','中国大陆 / 香港','1994-12-19',
-'宁静 巫刚 赵小锐 高阳 徐正运','何平','剧情 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1QL_Dr9QcKacq-IgSXr8gB3Yak5eo9YYQrDrraHCmNGhhyBnoQVVwjLrv74wvKCC-A==',
-'NULL','NULL','4',1,'/static/movie/img/p2196458957.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9429,'哭喊自由','https://movie.douban.com/subject/1293290/','7.9',444,
-'http://www.imdb.com/title/tt0092804','NULL','NULL','NULL','NULL','NULL','英国','1987-11-06',
-'凯文·克莱恩 丹泽尔·华盛顿 凯文·麦克纳利 Albert Ndinda','理查德·阿滕伯勒','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1900343396.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9430,'城中大盗','https://movie.douban.com/subject/3217165/','7.5',46931,
-'http://www.imdb.com/title/tt0840361','NULL','NULL','NULL','NULL','NULL','美国','2010-09-17',
-'本·阿弗莱克 丽贝卡·豪尔 乔恩·哈姆 杰瑞米·雷纳 布蕾克·莱弗利 提图斯·维里沃 皮特·波斯尔思韦特 克里斯·库珀 Slaine Owen Burke Dennis McLaughlin Corena Chase Brian Scannell Kerri Dunbar Tony V.','本·阿弗莱克','剧情 惊悚 犯罪',
-'http://so.iqiyi.com/links/Y1t4eAa0mLAVDBoVzSYwMGipEbcmtXhHLFKe-ltSLy9ieYFWeJz8Qwg3voZSAMDH2oxMUWcgxa_cVywzLUXNrw==',
-'magnet:?xt=urn:btih:0d206289983f103f3875c14d41513d6a57b542bc','NULL','4',1,'/static/movie/img/p588491081.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9431,'风雷魔镜','https://movie.douban.com/subject/1307273/','5.6',69,
-'http://www.imdb.com/title/tt0068482','NULL','NULL','NULL','NULL','NULL','香港','1972-06-15',
-'舒佩佩 王侠 井淼 詹森 刘丹','孙仲','动作 奇幻',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1dc9oY9XQGJN789knULwBUHMikD9AIWWocHqEZGK__keZkHBE9auHlf8ItdvRpZzAg==',
-'NULL','NULL','4',1,'/static/movie/img/s3082412.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9432,'人质游戏','https://movie.douban.com/subject/4905788/','5.9',834,
-'http://www.imdb.com/title/tt1650535','NULL','NULL','NULL','NULL','NULL','加拿大','2011-09-06(美国)',
-'凯文·席格斯 Devon Bostick','Aaron Woodley','惊悚',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8HbnYfKWVm1yONW6uk0jqOQtHNGAzriUxvENTkUgUOjt',
-'magnet:?xt=urn:btih:b1d6efc8fa4d3b9c1733787a2b1858320551badd','NULL','4',1,'/static/movie/img/p1244345478.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9433,'禁运品','https://movie.douban.com/subject/4074733/','6.5',9886,
-'http://www.imdb.com/title/tt1524137','NULL','NULL','NULL','NULL','NULL','美国 / 英国 / 法国','2012-01-13(美国)',
-'马克·沃尔伯格 凯特·贝金赛尔 本·福斯特 吉奥瓦尼·瑞比西 J·K·西蒙斯 卡赖伯·兰德里·琼斯 迭戈·卢纳 卢卡斯·哈斯','巴塔萨·科马库','剧情 动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/UVCVnKrC8dp8YoOW4hfZ6D-jTZvpnorpjWcZH001tfjRKU0mWtXwM26-LfbD_1G4UGGOXnvCn8hYxq3xpJKzQQ==',
-'magnet:?xt=urn:btih:6cf80c8e80b252efb3ba6d9bce2a15cfc7631e98','NULL','4',1,'/static/movie/img/p1312526233.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9434,'医痴叶天士','https://movie.douban.com/subject/4116995/','7.2',390,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'田小洁 刘思伟 苏倩薇 尚国伟','方军亮','剧情 传记',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb-mdcOk3X0A9GkZ6j_hgJ78UHLLt5ksR8C9n4xT4r7s8',
-'NULL','NULL','4',1,'/static/movie/img/s4039250.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9435,'三十八度','https://movie.douban.com/subject/1476912/','6.2',1207,
-'http://www.imdb.com/title/tt0453204','NULL','NULL','NULL','NULL','NULL','中国大陆','2003-09-04(中国大陆)',
-'黄磊 陶红 谢雨欣 刘龙 高远 马晓峰 傅艺伟 佟瑞欣 杨昆 陈茂林 王志华 瞿凡壹 郑毓芝  马睿 狄梵 仲星火 居文沛 严永瑄','刘新','喜剧 爱情',
-'http://so.iqiyi.com/links/e7u4hJrkRo6pyU78rzWXSES8sxupzw9ZzxHjFRj_EUyVVPj7QYavynf_sNnJeO9y',
-'NULL','NULL','4',1,'/static/movie/img/p2129637100.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9436,'狙击','https://movie.douban.com/subject/26861602/','5.3',89,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-10-02(日本)',
-'尾野真千子 阿部隆史 北村有起哉 小市慢太郎 真岛秀和 鈴木麻衣花 永山毅 南圭介 柄本明 铃木杏 绪方义博 长谷川初范 松重丰 佐藤浩市','秋山純','剧情 悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2376844166.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9437,'七月半2：前世今生','https://movie.douban.com/subject/26647080/','2.7',585,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-08-19(中国大陆)',
-'陈美行 翟子陌 罗翔 王良 赵吉 苗青 夏星翎 常奕然 付曼 张力飞 曾漪莲','李红建','剧情 悬疑 惊悚 恐怖',
-'http://www.iqiyi.com/v_19rr9k9krs.html',
-'magnet:?xt=urn:btih:be66e76a52ab3863b14e323a61b1144c75d09a96','NULL','4',1,'/static/movie/img/p2372805407.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9438,'鸳鸯剑侠','https://movie.douban.com/subject/2062418/','6.2',124,
-'http://www.imdb.com/title/tt0059292','NULL','NULL','NULL','NULL','NULL','香港','1965-12-22',
-'王羽 秦萍 凌波','徐增宏','剧情 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2382986.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9439,'阳晖楼','https://movie.douban.com/subject/2222710/','7.8',577,
-'http://www.imdb.com/title/tt0203224','NULL','NULL','NULL','NULL','NULL','日本','1983-09-10',
-'緒形拳 池上季実子 浅野温子 二宮さよ子 熊谷真実 佳那晃子','五社英雄','剧情 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3309487.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9440,'绝对情感','https://movie.douban.com/subject/2295844/','5.4',72,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2001',
-'刘蓓 尤勇 袁立 王学兵 陈琳','曹保平','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqfzGOgWnQ8g84vz5Ynx2zuOeH_qzhQLcTJSWNHFziKW3',
-'NULL','NULL','4',1,'/static/movie/img/p1180036740.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9441,'仙境绑架案','https://movie.douban.com/subject/2330309/','5.8',189,
-'http://www.imdb.com/title/tt0374853','NULL','NULL','NULL','NULL','NULL','英国','2009',
-'Mischa Barton Maggie Grace','Simon Fellows','剧情 爱情 惊悚 奇幻',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4179126.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9442,'读取记忆碎片的男人','https://movie.douban.com/subject/26579369/','6.3',404,
-'http://www.imdb.com/title/tt4889648','NULL','NULL','NULL','NULL','NULL','日本','2016-04-29(日本)',
-'野村万斋 宫迫博之 木村文乃 杉咲花 高畑淳子 安田章大','金子修介','悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2315365664.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9443,'快乐英雄','https://movie.douban.com/subject/3369699/','7.4',137,
-'http://www.imdb.com/title/tt0164462','NULL','NULL','NULL','NULL','NULL','台湾','1980-07-05',
-'衛子雲 凌雲 夏玲玲 高強 李陸齡 周瑞舫 陳星','歐陽俊','喜剧 动作 悬疑 武侠 古装',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2161768064.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9444,'拳霸3之火云盗','https://movie.douban.com/subject/2049721/','5.1',969,
-'http://www.imdb.com/title/tt0963915','NULL','NULL','NULL','NULL','NULL','泰国','2006-12-21',
-'Dan Chupong ... Chiang Leo Putt ... Phraya Wang Leo Putt ... Phraya Wang','Chalerm Wongpim','喜剧 动作',
-'http://www.iqiyi.com/v_19rrlx09hg.html',
-'NULL','NULL','4',1,'/static/movie/img/p2247516930.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9445,'蜂巢幽灵','https://movie.douban.com/subject/1401900/','8.6',3119,
-'http://www.imdb.com/title/tt0070040','NULL','NULL','NULL','NULL','NULL','西班牙','1973-10-08',
-'安娜·托伦特 Isabel Tellería 费尔南多·费尔南·戈麦斯 特雷莎·希梅拉','维克多·艾里斯','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJuLCg05845CQKiLNC8-ABL',
-'NULL','NULL','4',1,'/static/movie/img/p2074440945.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9446,'八两金','https://movie.douban.com/subject/1300202/','8.1',2856,
-'http://www.imdb.com/title/tt0099079','NULL','NULL','NULL','NULL','NULL','香港','1989-12-21',
-'洪金宝 张艾嘉 谢伟雄 顾辉','张婉婷','剧情 喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2348594709.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9447,'R4之谜','https://movie.douban.com/subject/2079527/','6.2',131,
-'http://www.imdb.com/title/tt6574410','NULL','NULL','NULL','NULL','NULL','中国大陆','1982',
-'邵慧芳 王滨雁 张力维 乔榛','李云东','犯罪',
-'http://www.iqiyi.com/v_19rrn6134c.html',
-'NULL','NULL','4',1,'/static/movie/img/p2199263576.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9448,'银色子弹','https://movie.douban.com/subject/1298658/','6.8',124,
-'http://www.imdb.com/title/tt0090021','NULL','NULL','NULL','NULL','NULL','美国','1985-10-11',
-'加里·布塞 埃沃雷特·麦克吉尔 科里·海姆 梅根·佛洛斯','Daniel Attias','剧情 悬疑 惊悚 恐怖 冒险',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJk04tBvSdqk43FEMLO12gG',
-'NULL','NULL','4',1,'/static/movie/img/p1930595798.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9449,'狂暴飞车','https://movie.douban.com/subject/4014405/','5.7',23502,
-'http://www.imdb.com/title/tt1502404','NULL','NULL','NULL','NULL','NULL','美国','2011-09-15(中国大陆)',
-'尼古拉斯·凯奇 艾梅柏·希尔德 凯蒂·米克松 比利·伯克 威廉·菲德内尔 夏洛特·罗丝 大卫·摩斯 普路特·泰勒·文斯 克里斯蒂娜·坎贝尔','帕特里克·卢西尔','动作 惊悚 犯罪 奇幻',
-'http://www.iqiyi.com/v_19rrhogxss.html',
-'magnet:?xt=urn:btih:501b78f596c2852720fb50061d1b72878594a7e4','NULL','4',1,'/static/movie/img/p1283654144.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9450,'双重生活','https://movie.douban.com/subject/1293597/','6.9',179,
-'http://www.imdb.com/title/tt0039335','NULL','NULL','NULL','NULL','NULL','美国','1947-12-25',
-'罗纳德·考尔曼 艾德蒙·奥布莱恩 谢利·温特斯','乔治·库克','剧情 犯罪 黑色电影',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMInPSQe4xttfS07vURYvGM3',
-'NULL','NULL','4',1,'/static/movie/img/s6893497.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9451,'我的小狗斯齐普','https://movie.douban.com/subject/1300787/','8.0',2582,
-'http://www.imdb.com/title/tt0156812','NULL','NULL','NULL','NULL','NULL','美国','2000-03-03',
-'Frankie Muniz Luke Wilson Kevin Bacon Diane Lane Caitlin Wachs','Jay Russell','剧情 家庭 运动',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1ctukd7-hwGS8VxqgsXsLju-a8fNFT3hZAdIKgn1LCR95grrr_Yib_F2n4ldXpmsmwayZEgmjpWzvTiNT89Kq3Y=',
-'magnet:?xt=urn:btih:ec18b15e0f3344f94bcce1fa47ae258b1c05d364','NULL','4',1,'/static/movie/img/p1771670327.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9452,'怒火攻心','https://movie.douban.com/subject/1849959/','7.3',50386,
-'http://www.imdb.com/title/tt0479884','NULL','NULL','NULL','NULL','NULL','美国','2006-09-01(美国)',
-'杰森·斯坦森 艾米·斯马特 霍塞·帕布罗·坎蒂罗 艾弗连·莱米雷斯 德怀特·尤科姆','马克·耐沃尔代','剧情 动作 惊悚 犯罪',
-'http://www.iqiyi.com/dianying/20120130/9b60d2becc2df552.html',
-'magnet:?xt=urn:btih:aef9e4b8a3f49c8ca3aa344c8cf1366aa63bcc74','NULL','4',1,'/static/movie/img/p1499667510.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9453,'流星蝴蝶剑','https://movie.douban.com/subject/1301180/','7.6',1367,
-'http://www.imdb.com/title/tt0074745','NULL','NULL','NULL','NULL','NULL','香港','1976-03-20',
-'岳华 井莉 宗华 凌云 陈萍 王侠 林伟图 罗烈 谷峰 井淼 杨志卿 王钟 李修贤 顾冠忠 郑康业 艾飞 詹森 强汉 徐少强','楚原','剧情 动作 武侠 古装',
-'http://www.iqiyi.com/v_19rrabue9o.html',
-'NULL','NULL','4',1,'/static/movie/img/p2196352472.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9454,'拉丁男孩的天空','https://movie.douban.com/subject/2977573/','7.6',1092,
-'http://www.imdb.com/title/tt0990404','NULL','NULL','NULL','NULL','NULL','美国','2007-05-21',
-'Alejandro Polanco Isamar Gonzales Ahmad Razvi','拉敏·巴哈尼','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ_HUv6L4YaBujKBfMEkGIB',
-'NULL','NULL','4',1,'/static/movie/img/p1211355515.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9455,'赌王之王','https://movie.douban.com/subject/1293090/','7.4',16308,
-'http://www.imdb.com/title/tt0128442','NULL','NULL','NULL','NULL','NULL','美国','1998-09-11(美国)',
-'马特·达蒙 爱德华·诺顿 约翰·马尔科维奇 格瑞辰·摩尔 法米克·詹森 约翰·特托罗','约翰·达尔','剧情 犯罪',
-'http://www.iqiyi.com/dianying/20130327/6eacc79f7b3c7d69.html',
-'NULL','NULL','4',1,'/static/movie/img/p460869430.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9456,'大脑中的猫','https://movie.douban.com/subject/2981579/','6.4',152,
-'http://www.imdb.com/title/tt0099637','NULL','NULL','NULL','NULL','NULL','意大利','1990-08-08',
-'Lucio Fulci David L. Thompson Jeoffrey Kennedy Malisa Longo Robert Egon','Lucio Fulci','恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2219547596.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9457,'爱，不爱','https://movie.douban.com/subject/5912977/','6.7',14657,
-'http://www.imdb.com/title/tt1832453','NULL','NULL','NULL','NULL','NULL','韩国','2011-03-03(韩国)',
-'玄彬 林秀晶 河正宇','李胤基','剧情 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1VESsp17FdXf4K7hXDIy3NowHDyD-nIRGGQtNFetSuI97v3EAPeEAnqNcPNtS7-aNQ==',
-'NULL','NULL','4',1,'/static/movie/img/p813200624.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9458,'手到擒来','https://movie.douban.com/subject/1300871/','6.3',238,
-'http://www.imdb.com/title/tt0211938','NULL','NULL','NULL','NULL','NULL','加拿大 / 澳大利亚 / 美国','2000-08-29',
-'Jamie Foxx David Morse','安东尼·福奎阿','动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKYiYCa93tGwJdkBGjR2vuT',
-'NULL','NULL','4',1,'/static/movie/img/p2264032656.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9459,'血腥的宽恕','https://movie.douban.com/subject/5937923/','7.2',751,
-'http://www.imdb.com/title/tt1787127','NULL','NULL','NULL','NULL','NULL','美国 / 阿尔巴尼亚 / 丹麦 / 意大利','2011-02-18(柏林电影节)',
-'Tristan Halilaj Refet Abazi Refet Abazi','乔舒华·玛斯顿','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKr4Pplp90u1rQBQEvDqlJr',
-'magnet:?xt=urn:btih:70ad9c5ac60be545c8275a9c881823bddce688ac','NULL','4',1,'/static/movie/img/p1732081762.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9460,'生活的发现','https://movie.douban.com/subject/1305561/','7.7',2332,
-'http://www.imdb.com/title/tt0313550','NULL','NULL','NULL','NULL','NULL','韩国','2002-03-22(韩国)',
-'金相庆 秋相美 艺智苑 安吉江','洪尚秀','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p606119777.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9461,'海豹突击队','https://movie.douban.com/subject/1296278/','5.3',232,
-'http://www.imdb.com/title/tt0091734','NULL','NULL','NULL','NULL','NULL','美国','0000-00-00',
-'Gregg Henry','Frank Harris','剧情 动作',
-'http://www.iqiyi.com/v_19rrmtqgns.html',
-'NULL','NULL','4',1,'/static/movie/img/s2840133.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9462,'死亡邮件','https://movie.douban.com/subject/25798808/','3.5',3906,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-06-20(中国大陆)',
-'任泉 乔任梁 张杨果而 李彧 周泓 曹阳 白瑶','李彧','悬疑 犯罪',
-'http://www.iqiyi.com/v_19rrhk4wx0.html',
-'NULL','NULL','4',1,'/static/movie/img/p2186952703.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9463,'新干线爆炸案','https://movie.douban.com/subject/1300370/','7.9',559,
-'http://www.imdb.com/title/tt0080479','NULL','NULL','NULL','NULL','NULL','日本','1975-07-05(日本)',
-'宇津井健 千叶真一 高仓健 北大路欣也 山本圭 田中邦卫 丹波哲郎 志村乔','佐藤纯弥','剧情 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMK6Qg_OCO7nYzntAZoA8WS-',
-'NULL','NULL','4',1,'/static/movie/img/p2198650617.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9464,'守株人','https://movie.douban.com/subject/7053739/','3.5',631,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-08-23(中国大陆)',
-'杨紫 骆达华 杜奕衡 刘筱筱 林雪 林妙可','李明明','悬疑 惊悚',
-'http://www.iqiyi.com/dianying/20121122/6f61d21344daed58.html',
-'NULL','NULL','4',1,'/static/movie/img/p1654168122.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9465,'吐鲁番情歌','https://movie.douban.com/subject/3670368/','6.9',43,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2006-03-01(中国大陆)',
-'阿孜古丽·热西提 木拉丁·阿不力米提 胡尔西德·吐尔地 梅丽古丽·艾买提 古丽菲亚·米吉提 伊力哈木·买买提 阿布都克里木·阿不力孜','金丽妮','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s24423100.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9466,'时间不会停止','https://movie.douban.com/subject/25812225/','6.5',277,
-'http://www.imdb.com/title/tt3554766','NULL','NULL','NULL','NULL','NULL','日本','2014-02-22(日本)',
-'中井贵一 樋口可南子 黑木美沙 吉行和子 柳叶敏郎 桥爪功 岸本加世子 倍赏美津子 渡边大 神木隆之介','堀川とんこう','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2231863276.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9467,'长恨歌','https://movie.douban.com/subject/1422889/','6.0',16945,
-'http://www.imdb.com/title/tt0475263','NULL','NULL','NULL','NULL','NULL','中国大陆 / 香港','2005-09-29(香港)',
-'郑秀文 梁家辉 胡军 吴彦祖 苏岩 黄觉 黄奕 郑希怡','关锦鹏','剧情 爱情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGd54OGlhPKtZKYc70NzZjuOAE9jSl28M4HuKDOxc7tMm',
-'magnet:?xt=urn:btih:c6c568b35b8af31da097e9ab29cfe826706e30d6','NULL','4',1,'/static/movie/img/p537026298.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9468,'我们是冠军','https://movie.douban.com/subject/25806492/','6.7',203,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'廖亮 杨海超','金舸','剧情',
-'http://so.iqiyi.com/links/iDYCAkmRMemaUWHrzfuxfkx2VddAL4Wf44-iunOCtIviniYNykc_LNJxzK8wX2YP',
-'NULL','NULL','4',1,'/static/movie/img/p2321391919.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9469,'在他之后','https://movie.douban.com/subject/2020343/','7.1',145,
-'http://www.imdb.com/title/tt0922354','NULL','NULL','NULL','NULL','NULL','法国','2007-05-23',
-'卡特琳·德纳芙 Thomas Dumerchez 盖伊·莫辰特 艾洛迪·布歇 埃莉·梅黛洛斯','盖尔·莫雷尔','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p582014027.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9470,'无人之子','https://movie.douban.com/subject/4117296/','5.7',2079,
-'http://www.imdb.com/title/tt1535612','NULL','NULL','NULL','NULL','NULL','美国','2011-11-04(美国)',
-'詹姆斯· 兰索恩 查宁·塔图姆 阿尔·帕西诺 雷·利奥塔 凯蒂·霍尔姆斯 乌苏拉·帕克 布莱恩·吉尔伯特 崔西·摩根 杰克·切里 朱丽叶·比诺什 罗杰·格午埃文·史密斯 迈克尔·里维拉 彼得·安东尼·唐伯蒂斯 拉尔夫·罗德里格斯 蒂托·蒙蒂尔','蒂托·蒙蒂尔','动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzvC8fLWAk-vXHw_TxaCeHeJ3oXRb0NG5biQluBl9JEaX',
-'magnet:?xt=urn:btih:78a94fbf3960ed15884df112ea8c3980f629c40c','NULL','4',1,'/static/movie/img/p811144583.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9471,'刺客','https://movie.douban.com/subject/24530516/','3.3',423,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆 / 香港','2013-12-26(中国大陆)',
-'梁家仁 姜超 陈观泰 董志华 谢沅江 朱国安 周依晨 王小宝 肖宏','苗述','剧情 动作',
-'http://www.iqiyi.com/v_19rrhoko2g.html',
-'magnet:?xt=urn:btih:0570c30557fa6738a5c48e69308102ae7a30a4e0','NULL','4',1,'/static/movie/img/p2161039874.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9472,'法国贩毒网','https://movie.douban.com/subject/3013046/','7.6',5129,
-'http://www.imdb.com/title/tt0067116','NULL','NULL','NULL','NULL','NULL','美国','1971-10-09',
-'吉恩·哈克曼 费尔南多·雷伊 罗伊·沙伊德尔 托尼·洛·比安科','威廉·弗莱德金','动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrifkxow.html',
-'NULL','NULL','4',1,'/static/movie/img/p1435506144.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9473,'总统特工队','https://movie.douban.com/subject/1779064/','5.3',278,
-'http://www.imdb.com/title/tt0415778','NULL','NULL','NULL','NULL','NULL','德国 / 美国 / 加拿大','2006-07-21',
-'小古巴·戈丁 詹姆斯·伍兹 安吉·哈蒙','郑继宗','剧情 动作 惊悚',
-'NULL',
-'magnet:?xt=urn:btih:6bd218fdbc6d7833c3d7423d28740b3980107561','NULL','4',1,'/static/movie/img/p2237854117.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9474,'忠犬八公物语','https://movie.douban.com/subject/1959195/','9.0',51366,
-'http://www.imdb.com/title/tt0093132','NULL','NULL','NULL','NULL','NULL','日本','1987-08-01(日本)',
-'山本圭 井川比佐志 片桐入 仲代达矢 春川真澄 八千草薰 石野真子 殿山泰司 加藤嘉 石仓三郎 泉谷茂 柳叶敏郎','神山征二郎','剧情',
-'http://www.iqiyi.com/dianying/20110812/1605b357fe5ea2e7.html',
-'NULL','NULL','4',1,'/static/movie/img/p2297934945.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9475,'来如风','https://movie.douban.com/subject/5089414/','6.4',113,
-'http://www.imdb.com/title/tt0200797','NULL','NULL','NULL','NULL','NULL','香港','1971-08-25(香港)',
-'金汉 黄宗迅 罗烈 詹森 樊梅生','郑昌和','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1963809733.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9476,'不法之徒','https://movie.douban.com/subject/1301798/','8.2',5989,
-'http://www.imdb.com/title/tt0090967','NULL','NULL','NULL','NULL','NULL','美国 / 西德','1986-10-30(美国)',
-'汤姆·威兹 约翰·劳瑞 罗伯托·贝尼尼 尼可莱塔·布拉斯基','吉姆·贾木许','剧情 喜剧 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1cey9iCgCEebCCpLaTloAMVi4r3P_i9AxkrAObaxtvyy82AU7YDaSKuBYPlEJI4AGw==',
-'NULL','NULL','4',1,'/static/movie/img/p2211598109.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9477,'那年夏天你去了哪里','https://movie.douban.com/subject/26876595/','4.7',12541,
-'http://www.imdb.com/title/tt6464252','NULL','NULL','NULL','NULL','NULL','中国大陆 / 香港','2016-12-30(中国大陆)',
-'宋佳 林家栋 颜卓灵 胡歌','周隼','悬疑',
-'http://www.iqiyi.com/v_19rra9y9ps.html',
-'magnet:?xt=urn:btih:7C756AD1F9B24EE064243D0F7A08CFFD2BB339C3','NULL','4',1,'/static/movie/img/p2402705389.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9478,'陌生人：怪物事件曝光','https://movie.douban.com/subject/26735280/','5.2',364,
-'http://www.imdb.com/title/tt5587854','NULL','NULL','NULL','NULL','NULL','日本','2016-03-27(日本)',
-'香取慎吾 中条彩未 段田安则 音尾琢真 小野武彦 益冈徹 萩原圣人','本广克行','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2324305377.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9479,'芝加哥大火记','https://movie.douban.com/subject/1294546/','7.8',70,
-'http://www.imdb.com/title/tt0029047','NULL','NULL','NULL','NULL','NULL','美国','1938-03-31',
-'泰隆·鲍华 艾丽丝·费伊 唐·阿米契 艾丽丝·布雷迪','Henry King','剧情 动作 爱情 歌舞',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2330582497.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9480,'弗兰基与爱丽丝','https://movie.douban.com/subject/3072092/','6.8',373,
-'http://www.imdb.com/title/tt1221208','NULL','NULL','NULL','NULL','NULL','加拿大','2010-05-17(戛纳电影节)',
-'哈莉·贝瑞 斯特兰·斯卡斯加德 菲利西亚·拉斯海德','杰弗里·萨克斯','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p713391922.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9481,'我很幸福','https://movie.douban.com/subject/3221641/','6.4',970,
-'http://www.imdb.com/title/tt1588369','NULL','NULL','NULL','NULL','NULL','韩国','2008-10-10',
-'玄彬 李宝英','尹宗灿','剧情',
-'http://www.iqiyi.com/v_19rrn7ll0s.html',
-'NULL','NULL','4',1,'/static/movie/img/p466559651.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9482,'吉原里同心：新春吉原的大火','https://movie.douban.com/subject/26639070/','6.5',63,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-01-03(日本)',
-'小出惠介 贯地谷诗穗梨 近藤正臣 野々すみ花 安达祐实 山内圭哉 山田純大 本田博太郎 茂吕师冈 野间口彻 麻生祐未','佐藤峰世','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2298587363.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9483,'猪堕井的那天','https://movie.douban.com/subject/1308027/','7.2',1956,
-'http://www.imdb.com/title/tt0116005','NULL','NULL','NULL','NULL','NULL','韩国','1996-05-04(韩国)',
-'金义城 赵银淑 李应敬 方银姬 宋康昊','洪尚秀','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJWWJrDtiXW_K4OQdFTGZ4T',
-'NULL','NULL','4',1,'/static/movie/img/p606115055.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9484,'通往平利可的护照','https://movie.douban.com/subject/1303943/','8.1',36,
-'http://www.imdb.com/title/tt0041737','NULL','NULL','NULL','NULL','NULL','英国','1949-04-26',
-'','Henry Cornelius','喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2299182130.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9485,'第一茧','https://movie.douban.com/subject/1301324/','7.1',504,
-'http://www.imdb.com/title/tt0095011','NULL','NULL','NULL','NULL','NULL','香港','1989',
-'刘德华 吴家丽 曾江 马斯晨 林建明','梁本熙','剧情 爱情 惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIHEEVR1ZEXlXgnMfNjDWS5',
-'NULL','NULL','4',1,'/static/movie/img/p2382529246.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9486,'辛瑞那','https://movie.douban.com/subject/1439286/','7.3',5493,
-'http://www.imdb.com/title/tt0365737','NULL','NULL','NULL','NULL','NULL','美国','2005-12-09',
-'乔治·克鲁尼 马特·达蒙 杰弗里·怀特 克里斯·库珀 威廉·赫特 蒂姆·布雷克·尼尔森 阿曼达·皮特 克里斯托弗·普卢默 亚历山大·希迪格 凯万·诺瓦克 阿马尔·维克德 罗伯特·福克沃斯 尼古拉斯·亚特 理查德·林特恩 Nicky Henson Steven Hinkle Peter Gerety','斯蒂芬·加汉','剧情 惊悚',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1aoO0EvnHyEjbQRmKoo7K4lKvdrwRopDOwS5EmG_N3HHPRZv090mhbQ8zHmEA9RPC76bPT5WAkjHvBSDliXRGJg=',
-'magnet:?xt=urn:btih:7e024658f09f633269e33c0381cb37e8fc9bfdc9','NULL','4',1,'/static/movie/img/p1665737247.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9487,'擦鞋童','https://movie.douban.com/subject/1302993/','8.5',1722,
-'http://www.imdb.com/title/tt0038913','NULL','NULL','NULL','NULL','NULL','意大利','1946-04-27',
-'弗朗科·英特朗吉 里纳尔多·斯默东尼 Annielo Mele','维托里奥·德·西卡','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1VoA4L4bKX-VbQ7w8nxysWluf7rlCPXWAHPq_GiL7PUwUv0Vo3pF5dseHg74H0zE3w==',
-'NULL','NULL','4',1,'/static/movie/img/s1650789.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9488,'皇家飞凤','https://movie.douban.com/subject/5384541/','5.1',44,
-'http://www.imdb.com/title/tt0098676','NULL','NULL','NULL','NULL','NULL','香港','1989-01-14(香港)',
-'杨盼盼 颜莉   Anh Lee 孟秋   Chui Meng','何志强','动作',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8HbnYfKWVm1yONW6uk0jqOSAl6XFPxrgmzL-tc0hhj1Y',
-'NULL','NULL','4',1,'/static/movie/img/s4556132.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9489,'染血罗密欧','https://movie.douban.com/subject/1301740/','7.4',273,
-'http://www.imdb.com/title/tt0107983','NULL','NULL','NULL','NULL','NULL','英国 / 美国','1993-09-13',
-'加里·奥德曼 莉娜·奥琳 Wallace Wood','彼得·梅达克','剧情 惊悚 犯罪',
-'NULL',
-'magnet:?xt=urn:btih:abd02599d1f31c4ba65486d6e71703d2a7f343df','NULL','4',1,'/static/movie/img/p478593591.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9490,'法网杀机','https://movie.douban.com/subject/1305480/','6.5',229,
-'http://www.imdb.com/title/tt0186183','NULL','NULL','NULL','NULL','NULL','英国 / 美国 / 加拿大','2000-06-01',
-'比尔·普尔曼 Bill Pullman .....Callum Crane 戴文·萨瓦 Devon Sawa .....Nathan Corrigan 加布里埃尔·安瓦尔 Gabrielle Anwar .....Sophie Lennon 安吉拉·范泽斯通 Angela Featherstone .....Tanya Duncan','Anthony Waller','惊悚 犯罪',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8I79Xypqizgt9wnl0lq4szWyEQ3jXKbcd9T01FemmeLT',
-'NULL','NULL','4',1,'/static/movie/img/p2386614463.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9491,'弹指神功','https://movie.douban.com/subject/2072097/','6.3',86,
-'NULL','NULL','NULL','NULL','NULL','NULL','台湾','1982-09-30(台湾)',
-'赵雅芝 关聪 吴孟达 夏雨 廖安丽 高妙思 姜大卫 孟飞 刘尚谦','方豪','动作 武侠 古装',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2252810637.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9492,'替天行道','https://movie.douban.com/subject/1303141/','6.8',1280,
-'http://www.imdb.com/title/tt0264616','NULL','NULL','NULL','NULL','NULL','美国 / 德国 / 意大利','2001-11-17',
-'比尔·帕克斯顿 马修·麦康纳 鲍沃斯·布斯 杰瑞米·桑普特','比尔·帕克斯顿','剧情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p456559596.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9493,'鬼影敲门','https://movie.douban.com/subject/20376573/','3.6',663,
-'NULL','NULL','NULL','NULL','NULL','NULL','韩国','2012-11-29(韩国)',
-'徐雨 林贤成 朱敏荷 白瑞彬 恩雨','李洙宪','爱情 恐怖',
-'http://www.iqiyi.com/v_19rrgxusfo.html',
-'magnet:?xt=urn:btih:07224e736a9380207639257575c59cd674d8a318','NULL','4',1,'/static/movie/img/p1790341940.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9494,'昨夜长风','https://movie.douban.com/subject/1408117/','6.9',836,
-'http://www.imdb.com/title/tt0111849','NULL','NULL','NULL','NULL','NULL','香港','1994-09-17',
-'刘青云 袁咏仪 林文龙 朱洁仪 陆剑明','林德禄','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4070813.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9495,'女子监狱','https://movie.douban.com/subject/2071525/','7.1',2542,
-'http://www.imdb.com/title/tt0095758','NULL','NULL','NULL','NULL','NULL','香港','1988-08-11(香港)',
-'郑裕玲 冯宝宝 夏文汐 任达华 陈加玲 陈奕诗 鲁芬 玛利亚 黄光亮 关明玉 梁韵蕊 谢月美 谭倩红 顾嘉玲 陈凤芝 夏志珍','林德禄 ','剧情',
-'http://www.iqiyi.com/dianying/20101229/4ae8a5f8314da325.html',
-'NULL','NULL','4',1,'/static/movie/img/p2228074818.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9496,'唯神能恕','https://movie.douban.com/subject/5156137/','5.6',7239,
-'http://www.imdb.com/title/tt1602613','NULL','NULL','NULL','NULL','NULL','法国 / 泰国 / 美国 / 瑞典','2013-05-22(法国)',
-'瑞恩·高斯林 克里斯汀·斯科特·托马斯 雅雅英 维他亚·潘斯林加姆 汤姆·伯克 戈登·布朗','尼古拉斯·温丁·雷弗恩','剧情 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLsAUrnOSqkuhDIp9e-H1IG',
-'magnet:?xt=urn:btih:5534562ceedf92ed230af5f1cb375970ad68b3f1','NULL','4',1,'/static/movie/img/p1945017578.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9497,'地下兵工厂','https://movie.douban.com/subject/1299564/','5.8',210,
-'http://www.imdb.com/title/tt0101723','NULL','NULL','NULL','NULL','NULL','香港','1991-05-30',
-'杨丽菁 李丽珍 徐宝华 郭追 李道谕 李子雄 仇云波 许绍雄 梁锦燊 周景扬','袁俊文','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4188423.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9498,'彼岸花：女人们的犯罪档案','https://movie.douban.com/subject/26022306/','5.4',367,
-'http://www.imdb.com/title/tt4068106','NULL','NULL','NULL','NULL','NULL','日本','2014-10-24(日本)',
-'堀北真希 檀丽 知英 高梨临 YOU 高冈早纪 石野阳子 国生小百合 东干久 高橋恵子 市川知宏 木本武宏 佐野史郎 杉本哲太 大地真央','大谷太郎','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2266809743.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9499,'间接伤害','https://movie.douban.com/subject/1306442/','6.3',3352,
-'http://www.imdb.com/title/tt0233469','NULL','NULL','NULL','NULL','NULL','美国','2002-02-04',
-'阿诺·施瓦辛格 弗朗西斯卡·内莉 克利夫·柯蒂斯','安德鲁·戴维斯','动作 惊悚',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1VtDrjiI8oQUmrKOgQMNGAPLbb7pYkaLRsurLCTFrCYFrqxS2v_MxRPd4ioejoX04VOBqQG-qbdXWMn24QfxTZI=',
-'NULL','NULL','4',1,'/static/movie/img/p1322587808.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9500,'无翼蝙蝠','https://movie.douban.com/subject/1958238/','6.6',309,
-'http://www.imdb.com/title/tt0080420','NULL','NULL','NULL','NULL','NULL','香港','1980-12-11',
-'井莉 尔冬升 欧阳佩珊 谷峰','楚原','武侠',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLDYXychMpfqYiSTVoFNmZ2',
-'NULL','NULL','4',1,'/static/movie/img/p2285841450.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9501,'剧场版MOZU','https://movie.douban.com/subject/26260851/','5.3',1025,
-'http://www.imdb.com/title/tt4214024','NULL','NULL','NULL','NULL','NULL','日本','2015-11-07(日本)',
-'西岛秀俊 香川照之 真木阳子 松坂桃李 伊势谷友介 北野武 长谷川博己 小日向文世 池松壮亮 伊藤淳史 杉咲花 阿部力','羽住英一郎','悬疑 犯罪',
-'NULL',
-'magnet:?xt=urn:btih:0e56213c05b35215d65be1fec8023e40ff0a44e9','NULL','4',1,'/static/movie/img/p2267211081.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9502,'开膛手杰克的告白~刑警','https://movie.douban.com/subject/26339232/','5.8',238,
-'http://www.imdb.com/title/tt4621424','NULL','NULL','NULL','NULL','NULL','日本','2015-04-18(日本)',
-'泽村一树 濑户康史 渡边一计 温水洋一 堀部圭亮 五代高之 山下容莉枝 樱田日和 阿久津慎太郎 床嶋佳子 龙雷太 米姆拉','本橋圭太','悬疑 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2351761861.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9503,'诡梦凶铃','https://movie.douban.com/subject/26582780/','2.5',407,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-09-23(中国大陆)',
-'方力申 李斯丹妮 何映桥 王馨彤 刘小东','邓安东','悬疑 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rr9a9j2g.html',
-'magnet:?xt=urn:btih:bcb1cbbc794e3a29c95e96bb24f269b270f6f097','NULL','4',1,'/static/movie/img/p2382005024.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9504,'心的羽毛','https://movie.douban.com/subject/1819246/','7.4',246,
-'http://www.imdb.com/title/tt0296587','NULL','NULL','NULL','NULL','NULL','比利时','2004-04-10',
-'Sophie Museur Francis Renaud Ulysse de Swaef','Thomas De Thier','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4403446.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9505,'女侠卖人头','https://movie.douban.com/subject/1299007/','6.3',107,
-'http://www.imdb.com/title/tt0064741','NULL','NULL','NULL','NULL','NULL','香港','1970-05-06(香港)',
-'焦姣 王侠 陈亮 井淼 马海伦 康华 高明 樊梅生 洪流 陈燕燕 黎灼灼 潘愛倫 葉寶琴 鄭雷 李寿祺 劉羣 沈劳','郑昌和','动作 冒险',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1VhNhUIMWrn9nr9HqbOkcaQJfIPrF7pEnmRU79Oa9L7_l4KD54NiW4JccDcuTBVKVg==',
-'NULL','NULL','4',1,'/static/movie/img/s2675433.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9506,'完美陌生人','https://movie.douban.com/subject/1777570/','6.6',13061,
-'http://www.imdb.com/title/tt0457433','NULL','NULL','NULL','NULL','NULL','美国','2007-04-13(美国)',
-'哈莉·贝瑞 布鲁斯·威利斯 吉奥瓦尼·瑞比西 理查德·波特诺 加里·杜尔丹 Florencia Lozano 妮基·艾考克斯 凯思琳查尔方特 Gordon MacDonald 丹妮娜·范·格拉斯 Paula Miranda 帕蒂·达班维尔 科里亚·刘易斯 塔玛拉·菲尔德曼 格里·贝克尔','詹姆斯·弗雷','悬疑 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrk36608.html',
-'magnet:?xt=urn:btih:7d0cc0ca9ac5c99988c85dd73b03ddfc61eb6f1a','NULL','4',1,'/static/movie/img/p772471826.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9507,'断魂谷','https://movie.douban.com/subject/2351381/','5.9',91,
-'http://www.imdb.com/title/tt0062871','NULL','NULL','NULL','NULL','NULL','香港','1968-10-11',
-'于倩 岳华 陈鸿烈 罗维 李昆','罗维','动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI9Ofkq203pCK76qYiGudkB',
-'NULL','NULL','4',1,'/static/movie/img/p2335581042.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9508,'江南爱情故事','https://movie.douban.com/subject/25761527/','5.1',1531,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-02-14(中国大陆)',
-'沈秋雨 沈涛 王欢 呼延晓辉 张恩齐 袁其鸣 董芳','任鹏','爱情 战争',
-'http://www.iqiyi.com/v_19rrh58v2w.html',
-'magnet:?xt=urn:btih:136aeaa0c0ecea3b255ba629922745f29f0bd9fe','NULL','4',1,'/static/movie/img/p2167585968.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9509,'杀手乔','https://movie.douban.com/subject/5318758/','6.6',9319,
-'http://www.imdb.com/title/tt1726669','NULL','NULL','NULL','NULL','NULL','美国','2012-07-27(美国)',
-'马修·麦康纳 埃米尔·赫施 朱诺·坦普尔 托马斯·哈登·丘奇 吉娜·格申 马克·麦考利 Gralen Bryant Banks Carol Sutton Danny Epper Jeff Galpin Scott A. Martin Gregory C. Bachaud Charley Vance','威廉·弗莱德金','惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrhy07e4.html',
-'magnet:?xt=urn:btih:ddff818ed8b8d658cb586c071d0416bbbe0b94c1','NULL','4',1,'/static/movie/img/p1585763181.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9510,'我是迪娜','https://movie.douban.com/subject/1432617/','6.9',140,
-'http://www.imdb.com/title/tt0281924','NULL','NULL','NULL','NULL','NULL','瑞典 / 法国 / 挪威 / 德国 / 丹麦','2002-03-08',
-'玛利亚·邦妮薇 热拉尔·德帕迪约 克里斯托弗·埃克莱斯顿','奥勒·博内代尔','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIyXE5xLu_mYvrdjqQ-Km75',
-'NULL','NULL','4',1,'/static/movie/img/p849662946.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9511,'焦裕禄','https://movie.douban.com/subject/1439400/','6.9',5483,
-'http://www.imdb.com/title/tt0470385','NULL','NULL','NULL','NULL','NULL','中国大陆','1990',
-'李雪健 李仁堂 周宗印 田园 张英 卢珊','王冀邢','剧情 传记',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqSfXbEx3guoa8v7oJLppEO_p23OKuWxu3Cpp1zBb_1-6',
-'NULL','NULL','4',1,'/static/movie/img/s1480510.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9512,'致命密函','https://movie.douban.com/subject/2079752/','5.3',135,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国香港','2001-08-16',
-'释小龙 钱嘉乐 李珊珊 张晋 唐宁 王合喜 郭雅祥 梁家宝 谈伟杰','王建为','动作 武侠',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqeLS2R6Qdmh10NFyQzNrMHalyLSG7V5RorB-FO2CWBoj',
-'NULL','NULL','4',1,'/static/movie/img/p2247001447.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9513,'凶灵女一号','https://movie.douban.com/subject/6971307/','4.5',59,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2011-10-28',
-'韩一菲、王璐、董妮娜、李晟烨、崔漫莉、山长凯','龚力','剧情 悬疑 惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJctV-73q5MxVIB7sZISYW6',
-'NULL','NULL','4',1,'/static/movie/img/s6991599.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9514,'肮脏的哈里','https://movie.douban.com/subject/1293045/','7.6',2604,
-'http://www.imdb.com/title/tt0066999','NULL','NULL','NULL','NULL','NULL','美国','1971-12-22',
-'克林特·伊斯特伍德 哈里·古蒂诺 雷尼·桑托尼 约翰·沃侬 安德鲁·罗宾逊','唐·希格尔','动作 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1341966214.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9515,'华丽之后','https://movie.douban.com/subject/6068517/','5.7',5160,
-'http://www.imdb.com/title/tt2235184','NULL','NULL','NULL','NULL','NULL','香港','2012-08-16(香港/中国大陆)',
-'容祖儿 胡歌 杜汶泽 林欣彤 陈家乐 刘浩龙 冼色丽','麦曦茵','爱情 音乐',
-'http://www.iqiyi.com/dianying/20121114/003b8acb60d999e1.html',
-'magnet:?xt=urn:btih:551e37a15dc9c58f858ab52169e161318898cbfc','NULL','4',1,'/static/movie/img/p1594233332.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9516,'天长地久','https://movie.douban.com/subject/1299822/','7.4',1735,
-'http://www.imdb.com/title/tt0108335','NULL','NULL','NULL','NULL','NULL','香港','1993-08-05',
-'刘德华 刘锦玲 吴家丽 叶晨 徐濠萦 方平 叶德娴 刘江 陈启泰 陈国邦','刘镇伟','剧情 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1UYu-f2YtZ592SIdL05YGE4fph6RGAdw9xjYRT9PcCjcd9fquz5jCUECCKh6-YW7hFai-B_CBsSpQr5hDCrt3vE=',
-'NULL','NULL','4',1,'/static/movie/img/p2351324894.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9517,'钱学森','https://movie.douban.com/subject/6041200/','6.7',10855,
-'http://www.imdb.com/title/tt2566924','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-03-02(中国大陆)',
-'陈坤 张雨绮 林永健 尤勇 张铁林 连凯 苏瑾 许还山 潘虹','张建亚','传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1421557551.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9518,'封门村','https://movie.douban.com/subject/24707368/','2.8',1927,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-05-27(中国大陆)',
-'陈亦飞 徐冬冬 包小柏 岳小军 王良 宋睿','邢博','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrhl14f4.html',
-'magnet:?xt=urn:btih:a8a4fd027bfa81fd690099fe61887f68d1a56eb2','NULL','4',1,'/static/movie/img/p2182184959.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9519,'花碧莲逼婚','https://movie.douban.com/subject/3242973/','5.6',95,
-'http://www.imdb.com/title/tt0356712','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'李琳 贾平 王响伟 李铁','胡立德','动作 爱情 武侠 古装',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3340159.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9520,'物极必反','https://movie.douban.com/subject/1788924/','7.3',136,
-'http://www.imdb.com/title/tt0126253','NULL','NULL','NULL','NULL','NULL','美国','1998-12-04',
-'Michael Rooker Robert Patrick','Martin Kunert','动作 惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLcTKHNuNmQx0EVZTvEi31R',
-'NULL','NULL','4',1,'/static/movie/img/p2220872684.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9521,'李元霸与宇文成都','https://movie.douban.com/subject/25918682/','3.2',64,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2015-12-25(中国大陆)',
-'吕一杰 曹元泰 郑清文','潘培成','剧情 动作',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb2uSc1KdRSVRSG6H1bgDT10et2zKA86lL7Mq5mSkqsJw',
-'NULL','NULL','4',1,'/static/movie/img/movie_default_large.png','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9522,'斯通夫人的罗马春天','https://movie.douban.com/subject/1950983/','7.3',124,
-'http://www.imdb.com/title/tt0311730','NULL','NULL','NULL','NULL','NULL','美国','2003-03-31',
-'Brian Dennehy Anne Bancroft Rodrigo Santoro Helen Mirren','Robert Allan Ackerman','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2199611063.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9523,'地下室惊魂','https://movie.douban.com/subject/11500880/','3.3',1247,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-12-28(中国大陆)',
-'余少群 何杜娟 周子扬 马文龙 黄一山','梁杰','剧情 悬疑 惊悚 恐怖',
-'http://www.iqiyi.com/dianying/20130131/4d40e2c96ef62a9c.html',
-'NULL','NULL','4',1,'/static/movie/img/p1805296453.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9524,'其后','https://movie.douban.com/subject/1294580/','8.6',3601,
-'http://www.imdb.com/title/tt0091989','NULL','NULL','NULL','NULL','NULL','日本','1985-11-09(日本)',
-'松田优作 藤谷美和子 小林薰 笠智众','森田芳光','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIOj2Iqkj2s19vYuve_xCoP',
-'NULL','NULL','4',1,'/static/movie/img/p1859987414.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9525,'佐知与真由','https://movie.douban.com/subject/26306629/','6.3',134,
-'http://www.imdb.com/title/tt4504938','NULL','NULL','NULL','NULL','NULL','日本','2015-03-17(日本)',
-'门胁麦 广濑爱丽丝 本田大辅 与座よしあき 塩野瑛久 富田靖子','榎戸崇泰','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2230779735.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9526,'悲伤假期','https://movie.douban.com/subject/1986482/','7.3',1441,
-'http://www.imdb.com/title/tt0915749','NULL','NULL','NULL','NULL','NULL','日本','2007-08-31(威尼斯电影节)',
-'浅野忠信 石田惠理 宫崎葵 板谷由夏 中村贺津雄 高良健吾 小田切让 丰原功补 齐藤阳一郎 岛田久作 川津祐介 丰田真帆 光石研','青山真治','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKQ2Rvc5XkoJjhzusZ9URp0',
-'NULL','NULL','4',1,'/static/movie/img/p585741479.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9527,'孙中山','https://movie.douban.com/subject/1304017/','6.3',263,
-'http://www.imdb.com/title/tt0348143','NULL','NULL','NULL','NULL','NULL','中国大陆','1986',
-'王诗槐 刘文治  张燕 辛静','丁荫楠','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGWMYZy_mjvW1RoabyHPCGTQlM6xb3xTYIW6ghKNaeD9-',
-'NULL','NULL','4',1,'/static/movie/img/p1212006321.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9528,'人狼游戏：越狱','https://movie.douban.com/subject/26802833/','4.9',641,
-'http://www.imdb.com/title/tt5923124','NULL','NULL','NULL','NULL','NULL','日本','2016-07-02(日本)',
-'小岛梨里杏 渡边佑太朗 山谷花纯 清水尚弥 冈本夏美 花影香音 篠田諒 金子大地 小山莉奈 濱正悟 池田和樹 梅村紗瑛','绫部真弥','动作 惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLgF2XmZQg_bPXCB38Ujg49',
-'NULL','NULL','4',1,'/static/movie/img/p2364435312.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9529,'商海通牒','https://movie.douban.com/subject/4888853/','7.8',27878,
-'http://www.imdb.com/title/tt1615147','NULL','NULL','NULL','NULL','NULL','美国','2011-01-25(圣丹斯电影节)',
-'凯文·史派西 保罗·贝坦尼 斯坦利·图齐 扎克瑞·昆图 黛米·摩尔 西蒙·贝克 杰瑞米·艾恩斯 佩恩·拜德格雷 玛丽·麦克唐纳 阿西夫·曼德维 阿什利·威廉姆斯 阿尔·萨皮恩扎 苏珊·布莱克威尔 玛丽亚·迪齐亚 吉米·帕伦博 Peter Y. Kim Oberon K.A. Adjepong','J·C·尚多尔','剧情',
-'http://www.iqiyi.com/dianying/20130226/3d6f2df72b8fc8dc.html',
-'magnet:?xt=urn:btih:af58fc5d2b24598047f086c9f2b2a523dae1635f','NULL','4',1,'/static/movie/img/p1119800463.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9530,'柳堡的故事','https://movie.douban.com/subject/1768184/','7.7',1566,
-'http://www.imdb.com/title/tt6554484','NULL','NULL','NULL','NULL','NULL','中国大陆','1958-02',
-'廖有梁 徐林格 陶玉玲 张璋 康天申','王苹','剧情',
-'http://www.iqiyi.com/v_19rrn6oruk.html',
-'NULL','NULL','4',1,'/static/movie/img/p2361290583.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9531,'极度快乐','https://movie.douban.com/subject/3129588/','7.3',185,
-'http://www.imdb.com/title/tt1087890','NULL','NULL','NULL','NULL','NULL','丹麦','2008-07-05',
-'','Henrik Ruben Genz','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2346865816.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9532,'艾迪','https://movie.douban.com/subject/1308689/','8.1',682,
-'http://www.imdb.com/title/tt0338949','NULL','NULL','NULL','NULL','NULL','波兰','2002-10-18',
-'Henryk Golebiewski 雅采克·布拉茨亚克 Jacek Lenartowicz','Piotr Trzaskalski','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2212469484.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9533,'绝对底线','https://movie.douban.com/subject/10432916/','4.2',601,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-02-03(中国大陆)',
-'郭达 郭涛 袁晶 刘莉莉','何涛','剧情 悬疑 犯罪',
-'http://www.iqiyi.com/v_19rr7hcgeo.html',
-'NULL','NULL','4',1,'/static/movie/img/p1368993811.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9534,'生人回避5','https://movie.douban.com/subject/3794902/','4.8',40,
-'http://www.imdb.com/title/tt0156706','NULL','NULL','NULL','NULL','NULL','意大利','1987',
-'拉腊·文德尔 罗伯特·沃恩 Leslie Cumming James Villemaire Lin Gathright','Claudio Lattanzi','恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2382282198.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9535,'法外之徒','https://movie.douban.com/subject/3068210/','7.3',1130,
-'http://www.imdb.com/title/tt1229381','NULL','NULL','NULL','NULL','NULL','法国 / 阿尔及利亚 / 比利时','2010-09-22(法国)',
-'贾梅尔·杜布兹 罗什迪·泽姆 塞米·鲍亚吉拉 Chafia Boudraa 伯纳德·布兰卡恩 Sabrina Seyvecou Assaad Bouab 蒂博·德·蒙塔朗贝尔','拉契得·波查拉','剧情 犯罪',
-'http://www.iqiyi.com/v_19rrmy7pfg.html',
-'magnet:?xt=urn:btih:8e42aa6d4f6b6d6ccb50aae3b8d4f550d4591561','NULL','4',1,'/static/movie/img/p628511504.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9536,'朱丽叶与梁山伯','https://movie.douban.com/subject/1304304/','8.3',13419,
-'http://www.imdb.com/title/tt0260992','NULL','NULL','NULL','NULL','NULL','香港','2000-03-02',
-'吴君如 任达华 吴镇宇 葛民辉 刘以达 汤盈盈 林雪','叶伟信','剧情 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Qf7TBlYGLtKRe70LJ1af8Xdj2Nmn_jvqYgqGLkurkVfqvGfyyY6Pvlk0UOrAe2iHA==',
-'NULL','NULL','4',1,'/static/movie/img/p826794784.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9537,'我妻子的一切','https://movie.douban.com/subject/6905169/','7.3',25367,
-'http://www.imdb.com/title/tt2173264','NULL','NULL','NULL','NULL','NULL','韩国','2012-05-17(韩国)',
-'林秀晶 李善均 柳承龙 金智英 金正泰','闵奎东','喜剧 爱情',
-'http://www.iqiyi.com/v_19rrhociv0.html',
-'magnet:?xt=urn:btih:70a411dd98ed386abb1720c01ae8cd8f0ccd19b2','NULL','4',1,'/static/movie/img/p1505007252.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9538,'李清照','https://movie.douban.com/subject/3254213/','6.5',100,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1981',
-'谢芳 冯福生','张景隆','暂时无数据',
-'http://www.iqiyi.com/v_19rrny56f0.html',
-'NULL','NULL','4',1,'/static/movie/img/s4133594.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9539,'半月交响曲','https://movie.douban.com/subject/1981171/','7.8',308,
-'http://www.imdb.com/title/tt0847050','NULL','NULL','NULL','NULL','NULL','奥地利 / 法国 / 伊朗 / 伊拉克','2006-09-09',
-'格什菲·法拉哈尼 Ismail Ghaffari Farzin Sabooni Allah-Morad Rashtian Hedye Tehrani','巴赫曼·戈巴迪','剧情 喜剧 音乐',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Vo0wWeuZEkoTXLpuZ1ODf4GABA9u0t3Mw_t4-DL9tdwPracHwD-uD_w8JULkJ0OKA==',
-'NULL','NULL','4',1,'/static/movie/img/p2166779821.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9540,'银行匪帮','https://movie.douban.com/subject/3158432/','6.9',13582,
-'http://www.imdb.com/title/tt1135084','NULL','NULL','NULL','NULL','NULL','美国','2010-01-08',
-'马特·狄龙 保罗·沃克 海登·克里斯滕森 克里斯·布朗 佐伊·索尔达娜 迈克尔·伊雷 伊德里斯·艾尔巴 杰伊·埃尔南德斯 T.I.','John Luessenhop','动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrmy7bdk.html',
-'magnet:?xt=urn:btih:f8dbbe6b96359f2ca26cf79fa27b186edbb00863','NULL','4',1,'/static/movie/img/p597700664.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9541,'麦克法兰','https://movie.douban.com/subject/11520649/','8.3',13543,
-'http://www.imdb.com/title/tt2097298','NULL','NULL','NULL','NULL','NULL','美国','2015-02-20(美国)',
-'凯文·科斯特纳 Ramiro Rodriguez 卡洛斯·普拉斯 约翰尼·奥蒂斯 Rafael Martinez 赫克托·杜兰 塞吉奥·阿维拉尔 Michael Aguero 戴安娜·玛丽亚·里瓦 奥马尔·莱瓦 维勒特·罗德里格斯 Danny Mora 玛丽亚·贝罗 摩根·塞勒 艾尔西·费舍尔','妮琪·卡罗','剧情 传记 运动',
-'http://www.iqiyi.com/v_19rro6aokk.html',
-'magnet:?xt=urn:btih:ffb94de3b4bf852b10bcfbd3b9febadc5ddb8f9e','NULL','4',1,'/static/movie/img/p2222667000.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9542,'乔布斯','https://movie.douban.com/subject/6877703/','6.0',23772,
-'http://www.imdb.com/title/tt2357129','NULL','NULL','NULL','NULL','NULL','美国','2013-09-27(中国大陆)',
-'阿什顿·库彻 德蒙特·莫罗尼 乔什·加德 卢卡斯·哈斯 马修·莫迪恩 J·K·西蒙斯 莱斯莉·安·华伦 阿娜·欧蕾利 詹姆斯·伍兹 约翰·盖兹 凯文·杜恩 蓝尼·雅各布森  埃尔登·汉森 朗·埃达德 维克多·罗塞克','乔舒亚·迈克尔·斯坦','剧情 传记',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8HbnYfKWVm1yONW6uk0jqORx3dOh4TzoBKoWD8hF6Mrh',
-'magnet:?xt=urn:btih:91637d18077db4a5c50be0889e8702558bc82384','NULL','4',1,'/static/movie/img/p2120484940.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9543,'草迷宫','https://movie.douban.com/subject/1401521/','8.2',1420,
-'http://www.imdb.com/title/tt0229520','NULL','NULL','NULL','NULL','NULL','日本','1979(法国)',
-'三上博史 若松武 新高惠子 兰妖子 伊丹十三','寺山修司','爱情 奇幻',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p834372337.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9544,'恶魔之子','https://movie.douban.com/subject/1467177/','6.8',52,
-'http://www.imdb.com/title/tt0108517','NULL','NULL','NULL','NULL','NULL','美国','1993-09-24',
-'Julian Sands Chris Young Paula Marshall','Anthony Hickox','恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2953726.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9545,'恐怖旅馆','https://movie.douban.com/subject/11511025/','2.7',1928,
-'http://www.imdb.com/title/tt4152230','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-08-17(中国大陆)',
-'陈司翰 贡米 来喜 安雅 赵铭 李菁 董立范','郑来志','喜剧 恐怖',
-'http://www.iqiyi.com/dianying/20121012/1e4087f38200f566.html',
-'NULL','NULL','4',1,'/static/movie/img/p1668547930.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9546,'全金属外壳','https://movie.douban.com/subject/1300055/','8.5',55110,
-'http://www.imdb.com/title/tt0093058','NULL','NULL','NULL','NULL','NULL','英国 / 美国','1987-06-17',
-'亚当·鲍德温 马修·莫迪恩 文森特·多诺费奥 李·厄米 Kevyn Major Howard','斯坦利·库布里克','剧情 战争',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8Bip9uhDSA52siLzsFLxIyBhZKqpW5Jq5hvDhf37oiHV',
-'NULL','NULL','4',1,'/static/movie/img/p2204920889.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9547,'人类学入门','https://movie.douban.com/subject/1299038/','8.0',891,
-'http://www.imdb.com/title/tt0060560','NULL','NULL','NULL','NULL','NULL','日本','1966-03-12(日本)',
-'西村晃 菅井一郎 小泽昭一 坂本澄子 近藤正臣','今村昌平','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIDqAteSsxaTBUZ0nPbszAn',
-'NULL','NULL','4',1,'/static/movie/img/p2211593507.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9548,'不许抢劫','https://movie.douban.com/subject/3418610/','7.2',386,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国','2009',
-'王景春 邱林 姜彤','周伟','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqXLP-aHj3LjGBeDJ16A2MUrR9JvDV45u8mYI6M_ljv5A',
-'NULL','NULL','4',1,'/static/movie/img/s3543426.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9549,'刺青','https://movie.douban.com/subject/1463433/','7.4',542,
-'http://www.imdb.com/title/tt0200740','NULL','NULL','NULL','NULL','NULL','日本','1966-01-15',
-'若尾文子 长谷川明男 山本学','增村保造','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKGaLs-xVuQMyBsO54SXX0R',
-'NULL','NULL','4',1,'/static/movie/img/p514936626.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9550,'你是我的命运','https://movie.douban.com/subject/1433557/','7.8',2650,
-'http://www.imdb.com/title/tt0479773','NULL','NULL','NULL','NULL','NULL','韩国','2005-09-23',
-'全度妍 黄政民 金尚河 罗文姬','朴珍杓','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJcSAo6SltedTHzEws2GpGi',
-'NULL','NULL','4',1,'/static/movie/img/p2176563405.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9551,'卡特教练','https://movie.douban.com/subject/1309017/','8.3',17846,
-'http://www.imdb.com/title/tt0393162','NULL','NULL','NULL','NULL','NULL','美国 / 德国','2005-01-14',
-'塞缪尔·杰克逊 罗伯·布朗 查宁·塔图姆 瑞克·冈萨雷斯 奥克塔维亚·斯宾瑟 Lacey Beeman 妮可·尼尔','托马斯·卡特','剧情 运动',
-'http://www.iqiyi.com/v_19rrk37whk.html',
-'magnet:?xt=urn:btih:16907af2931f7b4a4e3882a4b69062d7e2709d6c','NULL','4',1,'/static/movie/img/p2219988388.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9552,'单刀直入','https://movie.douban.com/subject/1305781/','6.1',3190,
-'http://www.imdb.com/title/tt0266465','NULL','NULL','NULL','NULL','NULL','美国 / 德国','2004-11-17(中国大陆)',
-'范·迪塞尔 拉伦兹·泰特 蒂莫西·奥利芬特 Geno Silva 杰奎琳·奥拉德丝 Juan Fernández 杰夫·科伯 Marco Rodríguez 埃米里奥·瑞弗拉 乔治·沙佩尔森 Malieek Straughter Jim Boeke','F·加里·格雷','剧情 动作 犯罪',
-'http://www.iqiyi.com/v_19rr9wtx4w.html',
-'magnet:?xt=urn:btih:c58bac34897a781f95c726ea55cf461dc2b6f4af','NULL','4',1,'/static/movie/img/p2265046680.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9553,'禁海苍狼','https://movie.douban.com/subject/2003853/','6.2',38,
-'http://www.imdb.com/title/tt0121422','NULL','NULL','NULL','NULL','NULL','香港','0000-00-00',
-'万梓良 苗侨伟 王冠雄 方中信 龙冠武 史仲田 黄正霖 陈淑芳','张智超','动作 犯罪',
-'http://www.iqiyi.com/v_19rrnw9wv4.html',
-'NULL','NULL','4',1,'/static/movie/img/s3079051.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9554,'迈克尔·克莱顿','https://movie.douban.com/subject/1905790/','7.1',9006,
-'http://www.imdb.com/title/tt0465538','NULL','NULL','NULL','NULL','NULL','美国','2007-10-12',
-'乔治·克鲁尼 汤姆·威尔金森 蒂尔达·斯文顿 西德尼·波拉克','托尼·吉尔罗伊','剧情 悬疑 惊悚 犯罪',
-'http://so.iqiyi.com/links/Y1t4eAa0mLAVDBoVzSYwMCLO7TQWkWTPYGICJWC1wyf4exS6d8TrbPVy4RcmFY6obepEydSFFJkbNN5OAs6w3A==',
-'NULL','NULL','4',1,'/static/movie/img/p1395655728.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9555,'竞雄女侠秋瑾','https://movie.douban.com/subject/5924360/','6.3',2856,
-'http://www.imdb.com/title/tt1993428','NULL','NULL','NULL','NULL','NULL','中国大陆 / 香港','2011-10-13(中国大陆)',
-'黄奕 杜宇航 黄秋生 郑嘉颖 陈嘉桓 夏文汐 熊欣欣 林雪 刘兆铭 徐天佑 黄又南 刘俊纬 阎清','邱礼涛','剧情 动作 传记',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqcqtld_Yq72nqbSXhMSt-xfQbUGv9cyuquy6xcLCw19X',
-'magnet:?xt=urn:btih:39e96c4c0f428813abc72b428b18b0a9073fb1a1','NULL','4',1,'/static/movie/img/p1239897713.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9556,'双城故事','https://movie.douban.com/subject/1302662/','7.8',6343,
-'http://www.imdb.com/title/tt0102886','NULL','NULL','NULL','NULL','NULL','香港','1991-03-29',
-'谭咏麟 张曼玉 曾志伟 柯受良 方保罗','陈可辛','剧情 爱情',
-'http://www.iqiyi.com/dianying/20110104/4ec080529643e21b.html',
-'NULL','NULL','4',1,'/static/movie/img/p495118999.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9557,'怪侠','https://movie.douban.com/subject/1905848/','5.8',87,
-'http://www.imdb.com/title/tt0192094','NULL','NULL','NULL','NULL','NULL','香港','1968-02-05',
-'黄宗迅 田丰 舒佩佩 井淼 樊梅生','岳枫','动作 武侠 古装',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1R0q0PD7TiVs45vAg1zs5cogRB-dox4-D6U5qs-Kif3kLOd-e0IXp4xwbotq1SlvGA==',
-'NULL','NULL','4',1,'/static/movie/img/s3044762.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9558,'竭尽全力','https://movie.douban.com/subject/5154135/','5.4',141,
-'http://www.imdb.com/title/tt1626135','NULL','NULL','NULL','NULL','NULL','美国','2011',
-'','Penelope Spheeris','喜剧',
-'http://www.iqiyi.com/v_19rrhnp8is.html',
-'NULL','NULL','4',1,'/static/movie/img/s6971796.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9559,'茶泡饭之味','https://movie.douban.com/subject/1306183/','8.2',2416,
-'http://www.imdb.com/title/tt0044982','NULL','NULL','NULL','NULL','NULL','日本','1952-10-01(日本)',
-'木暮实千代 鹤田浩二 佐分利信 淡岛千景 笠智众','小津安二郎','剧情 家庭',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJCwhU1iAHF5OogzDrIqDG4',
-'NULL','NULL','4',1,'/static/movie/img/p2018420870.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9560,'越战先锋2','https://movie.douban.com/subject/1296688/','6.2',116,
-'http://www.imdb.com/title/tt0089604','NULL','NULL','NULL','NULL','NULL','美国','1985-03-02',
-'查克·诺瑞斯 史蒂文·威廉姆斯','兰斯 胡尔 (Lance Hool)','动作 战争',
-'http://www.iqiyi.com/v_19rrhod4lg.html',
-'magnet:?xt=urn:btih:0fc7eeb6e8c8b6ebc0e3b6a91a83f95905f104a2','NULL','4',1,'/static/movie/img/p1593626571.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9561,'黑蜥蜴','https://movie.douban.com/subject/26668502/','4.8',191,
-'http://www.imdb.com/title/tt5259550','NULL','NULL','NULL','NULL','NULL','日本','2015-12-22(日本)',
-'真矢美纪 渡部笃郎 刚力彩芽 龙星凉 升毅 山下真司 里见浩太朗','根本和政','悬疑',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1YW9I20qwgdShrsYBPZ5Vd6XhTJkkoiIRXD0ZABLlZl1Jr5ZGsvwpLiEVmS-fk0lgQ==',
-'NULL','NULL','4',1,'/static/movie/img/p2288387748.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9562,'相约2000年','https://movie.douban.com/subject/1862185/','5.7',322,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国 / 香港','1999',
-'周杰 柯蓝 陈小春 胡忻','金戈','爱情',
-'http://www.iqiyi.com/v_19rrnza9e8.html',
-'NULL','NULL','4',1,'/static/movie/img/s2820858.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9563,'子狐物语','https://movie.douban.com/subject/1796778/','8.0',4497,
-'http://www.imdb.com/title/tt0808336','NULL','NULL','NULL','NULL','NULL','日本','2006-03-18',
-'大泽隆夫 松雪泰子 深泽岚 小林凉子','河野圭太','剧情 家庭',
-'http://www.iqiyi.com/dongman/20120330/7a8804fd1786e23c.html',
-'NULL','NULL','4',1,'/static/movie/img/p2164253335.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9564,'狙击精英：重装上阵','https://movie.douban.com/subject/5158655/','5.6',3505,
-'http://www.imdb.com/title/tt1571243','NULL','NULL','NULL','NULL','NULL','南非','2010',
-'比利·赞恩 Patrick Lyster 理查德·塞梅尔 查德·迈克尔·墨瑞','Claudio Fäh','动作',
-'http://www.iqiyi.com/v_19rrifl3em.html',
-'NULL','NULL','4',1,'/static/movie/img/p2182019221.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9565,'狗狗心事','https://movie.douban.com/subject/1418677/','7.9',4854,
-'http://www.imdb.com/title/tt0475974','NULL','NULL','NULL','NULL','NULL','日本','2005-03-19',
-'天海祐希 荒川良良 江口德子 伊东美咲 川平慈英 木村多江 北村总一朗 小西真奈美 宫崎葵 中村狮童 乙叶 佐野史郎 佐藤隆太 高桥克实 户田惠子 菅野莉央 田中要次 深水元基 森下能幸 大家由祐子 利重刚','犬童一心','家庭',
-'http://www.iqiyi.com/v_19rrhjysqo.html',
-'NULL','NULL','4',1,'/static/movie/img/p2181471193.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9566,'切腹','https://movie.douban.com/subject/1304920/','9.2',10193,
-'http://www.imdb.com/title/tt0056058','NULL','NULL','NULL','NULL','NULL','日本','1962-09-16(日本)',
-'仲代达矢 石浜朗 岩下志麻 丹波哲郎 三岛雅夫 中谷一郎 佐藤庆 稻叶义男 井川比佐志 武内亨 青木义朗 松村达雄 小林昭二 三国连太郎','小林正树','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLx1dyStqovt3IN_SFlbXeN',
-'NULL','NULL','4',1,'/static/movie/img/p2151748293.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9567,'鼓书艺人','https://movie.douban.com/subject/1304975/','6.8',909,
-'http://www.imdb.com/title/tt0093131','NULL','NULL','NULL','NULL','NULL','中国大陆','1987-01-01',
-'李雪健','田壮壮','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqQrlh2v1YNPQ_-lc3Ye1ziWdTH0HKtxW9yP-MQb1JJqm',
-'NULL','NULL','4',1,'/static/movie/img/s7051192.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9568,'玩命警探7','https://movie.douban.com/subject/26318051/','5.4',288,
-'http://www.imdb.com/title/tt4426130','NULL','NULL','NULL','NULL','NULL','日本','2016-01-30(日本)',
-'馆博 柴田恭兵 浅野温子 仲村亨 吉川晃司 菜菜绪 木之实奈奈 伊藤洋三郎 山西道广 長谷部香苗 柳原晴郎 小林稔侍 夕辉寿太 吉泽亮 入江甚仪 片桐竜次','村川透','喜剧 动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIyhbXJ9b_Zxyoqcoj8w7A-',
-'magnet:?xt=urn:btih:5866198fcadaac3e575a099621eb0f068cf63f60','NULL','4',1,'/static/movie/img/p2277841583.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9569,'东京战争战后秘史','https://movie.douban.com/subject/1297097/','7.8',224,
-'http://www.imdb.com/title/tt0066466','NULL','NULL','NULL','NULL','NULL','日本','1970-06-27(日本)',
-'后藤和夫 岩崎惠美子','大岛渚','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3568739.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9570,'赢家','https://movie.douban.com/subject/1301340/','6.7',331,
-'http://www.imdb.com/title/tt0131655','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'宁静 邵兵 耿乐 王千源','霍建起','剧情',
-'http://so.iqiyi.com/links/wv9kivRX33_g_Ymf8pA3qbYByVy9xNYQII4yTJSWYV1Np5nXYrEOxPWvrdOn7Zwwv8Qdouehz_RrlPFVKhnfyg==',
-'NULL','NULL','4',1,'/static/movie/img/s2158578.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9571,'爱玛姑娘','https://movie.douban.com/subject/1298227/','7.9',597,
-'http://www.imdb.com/title/tt0057187','NULL','NULL','NULL','NULL','NULL','美国','1963-06-05(美国)',
-'杰克·莱蒙 雪莉·麦克雷恩 娄·雅可比','比利·怀德','喜剧 爱情',
-'http://www.iqiyi.com/v_19rrlim2t8.html',
-'NULL','NULL','4',1,'/static/movie/img/s2556563.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9572,'应召女郎1988','https://movie.douban.com/subject/1306790/','6.9',878,
-'http://www.imdb.com/title/tt0095221','NULL','NULL','NULL','NULL','NULL','香港','1988-01-01',
-'张曼玉 冯宝宝 吴家丽 齐秦 汤镇业 陈奕诗 余倩雯','林德禄','剧情',
-'http://www.iqiyi.com/dianying/20110104/c912f87a2a40dcff.html',
-'NULL','NULL','4',1,'/static/movie/img/p2228398612.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9573,'火线特攻','https://movie.douban.com/subject/2124507/','6.5',12094,
-'http://www.imdb.com/title/tt1034331','NULL','NULL','NULL','NULL','NULL','美国','2010-11-30(中国大陆)',
-'罗伯特·德尼罗 阿尔·帕西诺 50分 卡拉·古奇诺 约翰·雷吉扎莫 唐尼·沃尔伯格 布莱恩·丹内利 特里尔比·格洛弗','乔恩·阿维奈','剧情 悬疑 犯罪',
-'http://www.iqiyi.com/dianying/20110215/16c9089f60ab290e.html',
-'magnet:?xt=urn:btih:cc3f3fc077279979d7cbd8341d51f06ef9641374','NULL','4',1,'/static/movie/img/p1571325377.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9574,'法外情','https://movie.douban.com/subject/1306977/','7.3',3939,
-'http://www.imdb.com/title/tt0121259','NULL','NULL','NULL','NULL','NULL','香港','1985-09-26',
-'刘德华 叶德娴 秦沛 刘兆铭 蓝洁瑛','吴思远','犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ6RUzWkvjX11Zy1MYPSsve',
-'NULL','NULL','4',1,'/static/movie/img/p1276458573.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9575,'猛鬼街','https://movie.douban.com/subject/1298389/','7.2',15617,
-'http://www.imdb.com/title/tt0087800','NULL','NULL','NULL','NULL','NULL','美国','1984-11-09',
-'希瑟·兰根坎普 罗伯特·英格兰德 约翰·萨克松 阿曼达·怀斯 约翰尼·德普','韦斯·克雷文','恐怖',
-'http://www.iqiyi.com/v_19rr9up9fc.html',
-'magnet:?xt=urn:btih:0cc7605a5a39123a30a7d1297f35b98f2907bfec','NULL','4',1,'/static/movie/img/p2163976216.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9576,'刺客列传','https://movie.douban.com/subject/2072107/','6.8',84,
-'http://www.imdb.com/title/tt0121148','NULL','NULL','NULL','NULL','NULL','台湾','1980-11-11',
-'姜大卫 李修贤 狄龙 施思 蔡弘 吴家骧 赵婷 芦苇','Bolo Hsieh','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2355103778.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9577,'华丽人生','https://movie.douban.com/subject/2059361/','7.0',488,
-'http://www.imdb.com/title/tt0907119','NULL','NULL','NULL','NULL','NULL','俄罗斯','2007-08-23',
-'Yuliya Vysotskaya','Andrei Konchalovsky','剧情 喜剧',
-'http://so.iqiyi.com/links/p9IqaAE3uBDroFuM-CtFFx_KO4-JZZQQ5LkCIa5lQxbcO0ZcbrpYYkmIVvQx4BmgAY8TvQ9j2MTDc-W5y0_2KDltGaFmcyeMofVxQoTqbvQEHvJyNA2RgIyjxH8DvcYd',
-'NULL','NULL','4',1,'/static/movie/img/s2968905.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9578,'毒品网络','https://movie.douban.com/subject/1299235/','7.6',8623,
-'http://www.imdb.com/title/tt0181865','NULL','NULL','NULL','NULL','NULL','美国 / 德国','2000-12-27',
-'迈克尔·道格拉斯 本尼西奥·德尔·托罗 唐·钱德尔 凯瑟琳·泽塔-琼斯 丹尼斯·奎德 阿尔伯特·芬尼 贾克波·瓦格斯 路易斯·古兹曼 米盖尔·弗尔 埃丽卡·克里斯滕森','史蒂文·索德伯格','剧情 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrn4i6xw.html',
-'magnet:?xt=urn:btih:9ab73e0d0eea6e795e26fa12798edeebba693741','NULL','4',1,'/static/movie/img/p817029842.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9579,'布鲁克林黑街','https://movie.douban.com/subject/1301030/','7.8',208,
-'http://www.imdb.com/title/tt0097714','NULL','NULL','NULL','NULL','NULL','美国 / 英国 / 西德','1989-10-12',
-'詹妮弗·杰森·李 史蒂芬·朗 波特·杨 彼得·道博森 杰里·奥尔巴赫 史蒂芬·鲍德温','乌利·埃德尔','剧情',
-'http://www.iqiyi.com/dianying/20130618/c0831c303ab9896f.html',
-'NULL','NULL','4',1,'/static/movie/img/s3099050.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9580,'蚱蜢','https://movie.douban.com/subject/25919961/','5.9',4614,
-'http://www.imdb.com/title/tt3846972','NULL','NULL','NULL','NULL','NULL','日本','2015-11-07(日本)',
-'生田斗真 浅野忠信 山田凉介 麻生久美子 波瑠 菜菜绪 村上淳 宇崎龙童 金儿宪史 吉冈秀隆 石桥莲司','泷本智行','剧情',
-'NULL',
-'magnet:?xt=urn:btih:21bc6958878a8fede10dece0ce1e16f8f1748d60','NULL','4',1,'/static/movie/img/p2254492197.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9581,'夜之女','https://movie.douban.com/subject/1401884/','6.9',335,
-'http://www.imdb.com/title/tt0040980','NULL','NULL','NULL','NULL','NULL','日本','1948-05-26(日本)',
-'Kinuyo Tanaka 高杉早苗 Tomie Tsunoda Mitsuo Nagata','沟口健二','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2300191066.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9582,'不明身份','https://movie.douban.com/subject/3614963/','7.0',35377,
-'http://www.imdb.com/title/tt1401152','NULL','NULL','NULL','NULL','NULL','美国 / 英国 / 德国 / 法国','2011-11-01(中国大陆)',
-'连姆·尼森 黛安·克鲁格 詹纽瑞·琼斯 弗兰克·兰格拉 艾丹·奎因 塞巴斯蒂安·科赫 佩特拉·施密特-夏勒 卡尔·马克维斯 布鲁诺·甘茨','佐米·希尔拉','剧情 悬疑 惊悚',
-'http://www.iqiyi.com/v_19rra6y0ms.html',
-'NULL','NULL','4',1,'/static/movie/img/p726152647.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9583,'鸡蛋','https://movie.douban.com/subject/3099327/','7.5',585,
-'http://www.imdb.com/title/tt1021004','NULL','NULL','NULL','NULL','NULL','土耳其','2007-07-04',
-'Nejat Isl Saadet Aksoy Ufuk Bayraktar','赛米·卡普拉诺格鲁','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1265913692.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9584,'等候名单','https://movie.douban.com/subject/1297963/','7.6',63,
-'http://www.imdb.com/title/tt0222150','NULL','NULL','NULL','NULL','NULL','西班牙 / Cuba / 法国 / 墨西哥 / 德国','2000-06-02',
-'Vladimir Cruz Thaimí Alvariño Jorge Perugorría','胡安·卡洛斯·塔比奥 (Juan Carlos Tabío)','剧情 喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1960650.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9585,'第44条军规','https://movie.douban.com/subject/3239906/','4.5',3845,
-'http://www.imdb.com/title/tt1886493','NULL','NULL','NULL','NULL','NULL','美国','2011-12-09',
-'Maggie Grace 玛琳·阿克曼 Reila Aphrodite 凯文·贝尔德 布鲁斯·威利斯 福里斯特·惠特克 黛博拉·安沃尔 Deborah Ann Woll','艾伦·哈维','剧情 惊悚 犯罪 西部',
-'NULL',
-'magnet:?xt=urn:btih:d400fd357fb092da38ace84fbde3825ceaa3f24f','NULL','4',1,'/static/movie/img/p1399785939.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9586,'松林外','https://movie.douban.com/subject/5966609/','6.9',10784,
-'http://www.imdb.com/title/tt1817273','NULL','NULL','NULL','NULL','NULL','美国','2013-03-29(美国)',
-'瑞恩·高斯林 布莱德利·库珀 伊娃·门德斯 萝丝·拜恩 雷·利奥塔 戴恩·德哈恩 布鲁斯·格林伍德 本·门德尔森 艾莫里·科恩','德里克·斯安弗朗斯','剧情 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJfsNXc7A-h9eSHQn18II-O',
-'NULL','NULL','4',1,'/static/movie/img/p1883430456.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9587,'热重启','https://movie.douban.com/subject/4908628/','5.2',85,
-'http://www.imdb.com/title/tt1031224','NULL','NULL','NULL','NULL','NULL','加拿大','2008',
-'Tyler Labine Sonja Bennett Geoff Gustafson','Cameron Labine','剧情 喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2376791407.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9588,'生活的颤音','https://movie.douban.com/subject/1483903/','6.9',269,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1979',
-'史钟麒 冷眉 项堃','滕文骥','剧情 音乐 历史',
-'http://www.iqiyi.com/v_19rrkpalxk.html',
-'NULL','NULL','4',1,'/static/movie/img/p2456225566.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9589,'特高课在行动','https://movie.douban.com/subject/1946314/','6.7',275,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'李静莉 雷明 马崇乐 袁春海 郭法曾','李育才','剧情 犯罪',
-'http://www.iqiyi.com/v_19rrn72j58.html',
-'NULL','NULL','4',1,'/static/movie/img/p2223188595.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9590,'心动的感觉','https://movie.douban.com/subject/1298999/','7.5',6231,
-'http://www.imdb.com/title/tt0096523','NULL','NULL','NULL','NULL','NULL','法国 / 意大利','1988-10-05(法国)',
-'苏菲·玛索 梵尚·兰东','克洛德·比诺托','喜剧 爱情',
-'http://www.iqiyi.com/v_19rrgxbqlk.html',
-'NULL','NULL','4',1,'/static/movie/img/p2377321052.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9591,'爱慕','https://movie.douban.com/subject/2297194/','6.7',767,
-'http://www.imdb.com/title/tt1074929','NULL','NULL','NULL','NULL','NULL','加拿大','2008-05-22',
-'斯科特·斯比德曼 雷切尔·布兰卡德 肯尼斯·威尔什 戴文·博斯蒂克 Aaron Poole','阿托姆·伊戈扬','剧情',
-'http://www.iqiyi.com/v_19rrn9a3tc.html',
-'magnet:?xt=urn:btih:ab189ecd36a53c238e00ddb562fde577a0731758','NULL','4',1,'/static/movie/img/s3549001.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9592,'太极拳','https://movie.douban.com/subject/2301931/','5.4',129,
-'http://www.imdb.com/title/tt0200194','NULL','NULL','NULL','NULL','NULL','香港','1974-03-07',
-'陈沃夫 施思 杨志卿 韦弘 詹森','鲍学礼','剧情 动作',
-'http://www.iqiyi.com/v_19rrlg7rgw.html',
-'NULL','NULL','4',1,'/static/movie/img/p2229343067.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9593,'悲伤电影','https://movie.douban.com/subject/1459368/','7.8',54172,
-'http://www.imdb.com/title/tt0475711','NULL','NULL','NULL','NULL','NULL','韩国','2005-10-21(韩国)',
-'郑雨盛 车太贤 李己雨 林秀晶 金石源 申敏儿 孙泰英 廉晶雅 吕珍九','权宗官','剧情 喜剧 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMITtcfKcoiOFDKBESasfJ-i',
-'NULL','NULL','4',1,'/static/movie/img/p1825817370.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9594,'风花','https://movie.douban.com/subject/1394535/','7.3',340,
-'http://www.imdb.com/title/tt0261000','NULL','NULL','NULL','NULL','NULL','日本','2001-01-27(日本)',
-'小泉今日子 浅野忠信 麻生久美子 椎名桔平 尾美利德 小日向文世 寺田农 柄本明 绫田俊树 鹤见辰吾 笑福亭鹤瓶','相米慎二','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ2a3N5VRwhHNSio672lklu',
-'NULL','NULL','4',1,'/static/movie/img/p1806115359.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9595,'独行侠野狼','https://movie.douban.com/subject/1295744/','6.1',108,
-'http://www.imdb.com/title/tt0085862','NULL','NULL','NULL','NULL','NULL','美国','1983-04-15',
-'查克·诺瑞斯 大卫·卡拉丁 芭芭拉·卡勒拉 莱昂·伊萨克·肯尼迪','史蒂夫·卡佛','剧情 动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLnu9Fkr6R-3_M9kltNs3Rp',
-'NULL','NULL','4',1,'/static/movie/img/p1632336769.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9596,'骇客追缉令','https://movie.douban.com/subject/1305675/','7.3',468,
-'http://www.imdb.com/title/tt0159784','NULL','NULL','NULL','NULL','NULL','美国','2000-03-15',
-'斯基特·乌尔里奇 王盛德 安吉拉·范泽斯通','乔·施佩尔','剧情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2411984058.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9597,'办公室的故事','https://movie.douban.com/subject/1302205/','8.8',12109,
-'http://www.imdb.com/title/tt0076727','NULL','NULL','NULL','NULL','NULL','苏联','1977-02-03(苏联)',
-'安德烈·米亚赫科夫 阿丽萨·弗雷因德利赫 斯维特拉娜·涅莫利亚耶娃 奥列格·巴希拉什维利 莉亚·阿赫扎科娃','埃利达尔·梁赞诺夫','喜剧 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLKlQWbXqZdNODSftfMUskg',
-'magnet:?xt=urn:btih:8df435990f70eee3ae78d2fcf0b14c3e5d1a7369','NULL','4',1,'/static/movie/img/p2216166945.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9598,'再见箱舟','https://movie.douban.com/subject/1401522/','8.2',1942,
-'http://www.imdb.com/title/tt0088041','NULL','NULL','NULL','NULL','NULL','日本','1984-09-08',
-'山崎努 小川真由美 原田芳雄 石桥莲司 小松方正 宫口精二 高桥瞳 若松武史 高桥洋子 天本英世 新高惠子','寺山修司','悬疑 情色',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJzdzq09TLPsiEJ4b1xl5tq',
-'NULL','NULL','4',1,'/static/movie/img/p2325988202.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9599,'超限定能力','https://movie.douban.com/subject/26681532/','6.3',152,
-'http://www.imdb.com/title/tt5296610','NULL','NULL','NULL','NULL','NULL','日本','2015-12-20(日本)',
-'龙星凉 太贺 永野芽郁 ルー大柴 坂野丹迪 武藤敬司 绀野真昼','野田悠介','喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2293989461.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9600,'蛇','https://movie.douban.com/subject/1304254/','8.2',992,
-'http://www.imdb.com/title/tt0069251','NULL','NULL','NULL','NULL','NULL','法国 / 意大利 / 西德','1973-04-07(法国)',
-'尤·伯连纳 德克·博加德 亨利·方达 菲利普·努瓦雷 米歇尔·布凯 法利·格兰杰','亨利·维尼尔','惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2553001.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9601,'迷宫先生','https://movie.douban.com/subject/26857510/','6.3',38,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-10-15(日本)',
-'渡瀬恒彦 貫地谷しほり 佐野史郎 長谷川朝晴 菅原大吉 加藤貴子 神尾佑 三浦涼介 黒川芽以','和泉聖治','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2375105991.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9602,'圆月弯刀','https://movie.douban.com/subject/1302397/','6.5',695,
-'http://www.imdb.com/title/tt0079183','NULL','NULL','NULL','NULL','NULL','香港','1979-01-25',
-'尔冬升 岳华 林建明 汪明荃 王戎','楚原','爱情 武侠 古装',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIQbm90qGZDuo9SyxLSAQY5',
-'NULL','NULL','4',1,'/static/movie/img/p2182157185.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9603,'我爱天上人间','https://movie.douban.com/subject/3328336/','6.1',1457,
-'http://www.imdb.com/title/tt0445590','NULL','NULL','NULL','NULL','NULL','香港 / 中国','2004-02-05',
-'吴镇宇 袁咏仪 林心如 陆毅 吴智昊 周文健 韩晓','赵崇基','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2473030155.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9604,'魔鬼警长地狱镇','https://movie.douban.com/subject/1301706/','7.4',368,
-'http://www.imdb.com/title/tt0100685','NULL','NULL','NULL','NULL','NULL','英国 / 美国','1990-09-14',
-'西恩·潘 艾德·哈里斯 加里·奥德曼 罗宾·怀特 约翰·特托罗','菲尔·乔安诺','剧情 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIchbZKjaaxiGGHbjcr1mog',
-'NULL','NULL','4',1,'/static/movie/img/p1382612679.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9605,'巨恶无法入眠','https://movie.douban.com/subject/26839677/','5.3',85,
-'http://www.imdb.com/title/tt5897720','NULL','NULL','NULL','NULL','NULL','日本','2016-10-05(日本)',
-'玉木宏 相武纱季 奥田瑛二 草笛光子 胜村政信 铃木浩介 萩原圣人 羽田美智子 西村雅彦 田村亮 东干久 田中健 仲代达矢','若松节朗','剧情 悬疑 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2385146869.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9606,'聊斋系列之桃花劫','https://movie.douban.com/subject/10458675/','4.0',264,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2011',
-'乔乔 谢丹 蔡庆勇 郑茜 王光辉 田淼','沈东','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqWlRWttLZJPksT2TN6ru_TyOcdIa8geAN7xBpmuNLdbS',
-'NULL','NULL','4',1,'/static/movie/img/s9010988.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9607,'威猛奇兵','https://movie.douban.com/subject/1303195/','7.5',344,
-'http://www.imdb.com/title/tt0090180','NULL','NULL','NULL','NULL','NULL','美国','1985-11-01',
-'威廉·彼德森 威廉·达福 约翰·特托罗 达兰妮·弗鲁格','威廉·弗莱德金','剧情 动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKWIpYmf1IVowZvfZZe827q',
-'NULL','NULL','4',1,'/static/movie/img/p2099270743.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9608,'一球成名','https://movie.douban.com/subject/1437204/','7.4',25007,
-'http://www.imdb.com/title/tt0380389','NULL','NULL','NULL','NULL','NULL','英国 / 美国','2006-03-24(中国大陆)',
-'库诺·贝克 亚历桑德罗·尼沃拉 马塞尔·尤勒斯 托尼·普拉纳 Miriam Colon','丹尼·加农','剧情 运动',
-'http://www.iqiyi.com/v_19rrifgok0.html',
-'NULL','NULL','4',1,'/static/movie/img/p1793017518.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9609,'惊魂游戏','https://movie.douban.com/subject/6536267/','3.7',1287,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-01-24(中国大陆)',
-'胡兵 莫小棋 李玲玉 王双宝 朴努植 赵铭 李浩轩','周耀武','悬疑 惊悚',
-'http://www.iqiyi.com/dianying/20120327/533982329ebdf521.html',
-'NULL','NULL','4',1,'/static/movie/img/p1366999855.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9610,'黑猫白猫','https://movie.douban.com/subject/1293236/','8.5',9396,
-'http://www.imdb.com/title/tt0118843','NULL','NULL','NULL','NULL','NULL','南斯拉夫联邦共和国 / 法国 / 德国 / 奥地利 / 希腊 / 美国','1998-09-10',
-'斯尔詹·托多罗维奇 布兰卡·卡蒂奇 巴伊拉姆·瑟瓦丹 Florijan Ajdini Ljubica Adzovic Zabit Memedov Sabri Sulejmani Jasar Destani Predrag Lakovic 马诺伊洛维奇','埃米尔·库斯图里卡','喜剧 爱情 音乐',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1aKVYAaywfFa7bIBjjK4oWESiCvpJa7Vv840CJlu7C_y7aGGhv_5MeBgmE65Dqk_hw==',
-'NULL','NULL','4',1,'/static/movie/img/p2176669838.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9611,'游戏规则','https://movie.douban.com/subject/1401261/','8.4',4323,
-'http://www.imdb.com/title/tt0031885','NULL','NULL','NULL','NULL','NULL','法国','1939-07-08',
-'诺拉·格雷戈尔 波莱特·杜博斯特 米拉·帕雷利 奥黛特·塔拉扎克 马塞尔·达里奥','让·雷诺阿','剧情 喜剧',
-'http://www.iqiyi.com/v_19rrbbuvns.html',
-'magnet:?xt=urn:btih:f72858212d5cbde21166a4adc75e0ef2fe78facd','NULL','4',1,'/static/movie/img/p863429327.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9612,'谋杀地下老板','https://movie.douban.com/subject/1438613/','7.9',544,
-'http://www.imdb.com/title/tt0074749','NULL','NULL','NULL','NULL','NULL','美国','1976-02-15',
-'本·戈扎那 蒂莫西·凯瑞 西摩·卡塞尔 Robert Phillips Morgan Woodward','约翰·卡萨维茨','剧情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2211590710.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9613,'天水围的日与夜','https://movie.douban.com/subject/3077668/','8.5',69271,
-'http://www.imdb.com/title/tt1233499','NULL','NULL','NULL','NULL','NULL','香港','2008-07-17',
-'鲍起静 陈丽云 梁进龙 陈玉莲 高志森 陈丽卿','许鞍华','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIzXOnxocXG5kl7zW6dGBjF',
-'NULL','NULL','4',1,'/static/movie/img/p2157923959.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9614,'叛舰喋血记','https://movie.douban.com/subject/1292862/','7.3',237,
-'http://www.imdb.com/title/tt0056264','NULL','NULL','NULL','NULL','NULL','美国','1962-11-08',
-'马龙·白兰度 特雷弗·霍华德 理查德·哈里斯','刘易斯·迈尔斯通','剧情 爱情 历史 冒险',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1YcHg-47KXgnzMQqK9hrAZ3iuidP4JNyyZ8um4bw756AXmsiqsTKl0-LQ3XD6SChiQ==',
-'NULL','NULL','4',1,'/static/movie/img/p1871342621.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9615,'东京之宿','https://movie.douban.com/subject/1308326/','8.0',338,
-'http://www.imdb.com/title/tt0027118','NULL','NULL','NULL','NULL','NULL','日本','1935-11-21',
-'坂本武','小津安二郎','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2285651645.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9616,'蓝色天空','https://movie.douban.com/subject/1294204/','6.8',769,
-'http://www.imdb.com/title/tt0109306','NULL','NULL','NULL','NULL','NULL','美国','1994-09-09',
-'杰西卡·兰格 汤米·李·琼斯 鲍沃斯·布斯 卡丽·斯诺格丽丝 艾咪·洛肯 克里斯·奥唐纳 米奇·瑞恩 代尔·戴 Timothy Scott 安妮·罗斯 Anna Klemp','托尼·理查德森','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKAJK2m7aFH_mZ-UQK1lNo3',
-'NULL','NULL','4',1,'/static/movie/img/p2167886410.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9617,'拼图女王','https://movie.douban.com/subject/4250510/','7.1',213,
-'http://www.imdb.com/title/tt1517238','NULL','NULL','NULL','NULL','NULL','阿根廷 / 法国','2010-04-22(阿根廷)',
-'Arturo Goetz Gabriel Goity María Onetto','娜塔莉娅·斯米诺夫Natalia Smirnoff','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p993808342.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9618,'废柴同盟','https://movie.douban.com/subject/1433699/','6.5',1198,
-'http://www.imdb.com/title/tt0441259','NULL','NULL','NULL','NULL','NULL','香港','2001-11-15',
-'曾志伟 吴镇宇 邵美琪 黄卓玲 谢天华 卢海鹏 秦煌 林伟健','游达志','喜剧',
-'http://www.iqiyi.com/dianying/20120827/d48184d598b1d457.html',
-'NULL','NULL','4',1,'/static/movie/img/s3248762.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9619,'追女仔95之绮梦','https://movie.douban.com/subject/1305558/','6.4',775,
-'http://www.imdb.com/title/tt0115056','NULL','NULL','NULL','NULL','NULL','香港','1995-06-24',
-'刘青云 张敏 郑丹瑞 郑祖 古巨基','李力持','喜剧 爱情 奇幻',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4265731.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9620,'美国骗局','https://movie.douban.com/subject/6873657/','6.6',61165,
-'http://www.imdb.com/title/tt1800241','NULL','NULL','NULL','NULL','NULL','美国','2014-07-04(中国大陆)',
-'克里斯蒂安·贝尔 布莱德利·库珀 艾米·亚当斯 杰瑞米·雷纳 詹妮弗·劳伦斯 路易·C·K 杰克·休斯顿 迈克尔·佩纳 谢伊·惠格姆 亚历桑德罗·尼沃拉 伊丽莎白·霍尔姆 保罗·赫尔曼 萨伊德·塔格马奥 马修·拉塞尔 托马斯·马修','大卫·O·拉塞尔','剧情 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Q06CxRzkNOP_P93LmZmpuZVcfE92MMKk9w_fdNOHvyscPBCi3dvUJal7fsA2F5vuA==',
-'magnet:?xt=urn:btih:873f270b7f021c1225a7d2c21701afd844c7b45b','NULL','4',1,'/static/movie/img/p2188108927.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9621,'心之线','https://movie.douban.com/subject/4928724/','7.3',992,
-'http://www.imdb.com/title/tt1711371','NULL','NULL','NULL','NULL','NULL','日本','2010-11-27',
-'松雪泰子 神木隆之介 谷村美月 染谷将太 石橋蓮司','東山充裕','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4514497.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9622,'首尔','https://movie.douban.com/subject/4724733/','5.5',84,
-'NULL','NULL','NULL','NULL','NULL','NULL','韩国','2010-04-22(韩国)',
-'朴志胤 李浩英','尹兑容','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p864756926.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9623,'流浪者之歌','https://movie.douban.com/subject/1303525/','9.1',3421,
-'http://www.imdb.com/title/tt0097223','NULL','NULL','NULL','NULL','NULL','意大利 / 英国 / 南斯拉夫','1988-12-21',
-'达沃尔·杜伊莫维奇 博拉·托德洛维奇 Ljubica Adzovic','埃米尔·库斯图里卡','剧情 喜剧 犯罪 奇幻',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKXwNXon3qqxzry1u9TUiA1',
-'NULL','NULL','4',1,'/static/movie/img/p2267333084.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9624,'泥鳅也是鱼','https://movie.douban.com/subject/1866477/','6.9',963,
-'http://www.imdb.com/title/tt0821478','NULL','NULL','NULL','NULL','NULL','中国','2006-04-15',
-'倪萍 倪大红 潘虹','杨亚洲','剧情 爱情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqWrW8gEi-skqDIp-f_UrXMoGKlX9Y_7E_rnYXWqLWhj7',
-'NULL','NULL','4',1,'/static/movie/img/p1737086753.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9625,'惊悚小说','https://movie.douban.com/subject/26902792/','2.8',167,
-'http://www.imdb.com/title/tt6183334','NULL','NULL','NULL','NULL','NULL','中国大陆','2017-04-07(中国大陆)',
-'吕聿来','白丽丽','恐怖',
-'http://www.iqiyi.com/v_19rr7aa6q0.html',
-'NULL','NULL','4',1,'/static/movie/img/p2450356235.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9626,'第二次握手','https://movie.douban.com/subject/1498644/','6.6',204,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'谢芳 康泰 袁玫','董克娜','暂时无数据',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML8BMtqQ0okI5cMSRaAmjEi',
-'NULL','NULL','4',1,'/static/movie/img/p2349301548.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9627,'蝴蝶','https://movie.douban.com/subject/1292056/','8.6',91011,
-'http://www.imdb.com/title/tt0329485','NULL','NULL','NULL','NULL','NULL','法国','2002-12-18(法国)',
-'米歇尔·塞罗尔 柯莱儿·布翁尼许 娜德·蒂约 奥黛丽·玛丽奥 弗朗索瓦·米肖 海伦·伊利 伊蒂格·斯特凡','费利普·弥勒','剧情 喜剧 儿童',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8BDhJW4urKgQIHz85YBHppmQYbZY_8xHO73QPPafVb_d',
-'NULL','NULL','4',1,'/static/movie/img/p1451436171.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9628,'大而不倒','https://movie.douban.com/subject/6013501/','8.2',9328,
-'http://www.imdb.com/title/tt1742683','NULL','NULL','NULL','NULL','NULL','美国','2011-05-23(美国)',
-'詹姆斯·伍兹 约翰·赫德 威廉·赫特 艾米·卡尔森 托弗·戈瑞斯 辛西娅·尼克松 凯西·贝克 爱德华·阿斯纳 保罗·吉亚玛提 蔡斯·凯利 托尼·夏尔赫布 Ayad Akhtar Beau Baxter Ben Livingston Erin Burnett','柯蒂斯·汉森','剧情',
-'http://so.iqiyi.com/links/Y1t4eAa0mLAVDBoVzSYwMJlb-CY-wg7istWl7ltvsHKFjZgPZFMoBY7C6LgO-xS4C10VccofRQSJe50x9wzq0A==',
-'magnet:?xt=urn:btih:78061b8a13cbe15c4abab8157b5c932dbc48c2ae','NULL','4',1,'/static/movie/img/p1010261467.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9629,'每天上帝都会亲吻我们的嘴唇','https://movie.douban.com/subject/2279096/','7.8',132,
-'http://www.imdb.com/title/tt0309705','NULL','NULL','NULL','NULL','NULL','罗马尼亚','2002-09-06',
-'丹·康德里奇 安娜·琼泰亚 霍拉蒂乌·马拉埃雷 Dan Astileanu Valer Delakeza Cristina Tacoi','Sinisa Dragin','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2738746.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9630,'残菊物语','https://movie.douban.com/subject/1293329/','8.4',1567,
-'http://www.imdb.com/title/tt0032156','NULL','NULL','NULL','NULL','NULL','日本','1939-10-13',
-'花柳章太郎 高田浩吉 梅村蓉子','沟口健二','剧情',
-'http://www.iqiyi.com/v_19rrgybixg.html',
-'NULL','NULL','4',1,'/static/movie/img/p2360073734.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9631,'痴男怨女','https://movie.douban.com/subject/1422927/','8.1',5255,
-'http://www.imdb.com/title/tt0379306','NULL','NULL','NULL','NULL','NULL','英国 / 意大利 / 西班牙 / 卢森堡 / 美国','2004-09-15',
-'海伦·亨特 斯嘉丽·约翰逊 米莱娜·伍柯迪克 斯蒂芬·坎贝尔·莫尔 马克·坎巴斯 罗杰·汉蒙德 约翰·斯坦丁 汤姆·威尔金森 Giorgia Massetti 黛安娜·哈卡索','麦克·巴克','剧情 喜剧 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJGuptyxY8UB8b3_XPyH6um',
-'NULL','NULL','4',1,'/static/movie/img/p874430333.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9632,'神通术与小霸王','https://movie.douban.com/subject/1305341/','5.3',171,
-'http://www.imdb.com/title/tt0086574','NULL','NULL','NULL','NULL','NULL','香港','1983-05-05',
-'程天赐 赵国 白彪 艾飞 顾冠忠','张彻','动作 奇幻',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIxqXRJd3W9tQT04s384RnA',
-'NULL','NULL','4',1,'/static/movie/img/s3082318.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9633,'救姜刑警','https://movie.douban.com/subject/1302458/','7.3',1197,
-'http://www.imdb.com/title/tt0276154','NULL','NULL','NULL','NULL','NULL','香港','2000-11-03',
-'吴镇宇 狄龙 张家辉 车婉婉 林晓峰 马德钟 黎耀祥 潘源良 田蕊妮','阮世生','动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJVf6S2_Lblz1ISEkigKQ9F',
-'NULL','NULL','4',1,'/static/movie/img/p2198950524.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9634,'侠士行','https://movie.douban.com/subject/2354004/','6.3',93,
-'http://www.imdb.com/title/tt0067358','NULL','NULL','NULL','NULL','NULL','香港','1971-12-31',
-'李菁 罗烈 岳华 王侠 彭鹏','何梦华','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3082440.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9635,'FIRST','https://movie.douban.com/subject/26176787/','6.6',173,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2014-10-01',
-'菜菜绪','金只和史','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2206945149.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9636,'人皮拼图','https://movie.douban.com/subject/26393759/','2.7',554,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2015-09-18(中国大陆)',
-'高云翔 熊乃瑾 刘言语 马少骅','刘观伟','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrkk5zfw.html',
-'NULL','NULL','4',1,'/static/movie/img/p2266477512.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9637,'等爱的女人','https://movie.douban.com/subject/1829237/','7.1',541,
-'http://www.imdb.com/title/tt0109597','NULL','NULL','NULL','NULL','NULL','香港','1994-09-15(香港)',
-'叶童 吴家丽 周华健','侯永财','暂时无数据',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKbeWRiKvNeMScyaO1F38m1',
-'NULL','NULL','4',1,'/static/movie/img/p2456225446.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9638,'楚留香大結局','https://movie.douban.com/subject/3368990/','5.5',109,
-'NULL','NULL','NULL','NULL','NULL','NULL','台湾','0000-00-00',
-'鄭少秋 呂盈瑩 徐少強 陸一龍 田鶴 陸儀鳳 周明慧 周瑞舫 徐忠信','張鵬翼','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3577195.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9639,'南极大冒险','https://movie.douban.com/subject/1477448/','8.6',48516,
-'http://www.imdb.com/title/tt0397313','NULL','NULL','NULL','NULL','NULL','美国','2006-04-21(中国大陆)',
-'保罗·沃克 布鲁斯·格林伍德 穆恩·布拉得古德 温迪·古逊 贾森·比格斯','弗兰克·马歇尔','剧情 冒险',
-'http://www.iqiyi.com/v_19rrjbo3r0.html',
-'magnet:?xt=urn:btih:fea3220c3bd0b4a0e6cca4b2c132b74a48dc4059','NULL','4',1,'/static/movie/img/p687048224.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9640,'纯爱谱','https://movie.douban.com/subject/1308557/','7.0',402,
-'http://www.imdb.com/title/tt0300525','NULL','NULL','NULL','NULL','NULL','韩国','2000-12-09(韩国)',
-'李政宰 Jung-Jae Lee 橘實里 (Tachibana Misato) Young-jin Lee','李在容','剧情 爱情',
-'http://www.iqiyi.com/dianying/20100830/n31473.html',
-'NULL','NULL','4',1,'/static/movie/img/p2198950605.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9641,'第601个电话','https://movie.douban.com/subject/1890569/','4.6',11537,
-'http://www.imdb.com/title/tt0865448','NULL','NULL','NULL','NULL','NULL','中国大陆','2006-08-18(中国大陆)',
-'张柏芝 周笔畅 胡歌 张国立 张萌 贾乃亮','张国立','剧情',
-'http://www.iqiyi.com/v_19rrny7tag.html',
-'NULL','NULL','4',1,'/static/movie/img/p2362488915.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9642,'临歧','https://movie.douban.com/subject/3012728/','6.6',616,
-'NULL','NULL','NULL','NULL','NULL','NULL','香港','1983',
-'刘德华 周星驰 梁朝伟','施洁玲','剧情 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIZk_9mdQsGNOr-YcmF4YdV',
-'NULL','NULL','4',1,'/static/movie/img/p1886071464.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9643,'女王蜂','https://movie.douban.com/subject/1308218/','7.1',280,
-'http://www.imdb.com/title/tt0077773','NULL','NULL','NULL','NULL','NULL','日本','1978-02-11(日本)',
-'石坂浩二 高峰三枝子 岸惠子 司叶子 仲代达矢 伴淳三郎 萩尾绿 加藤武 小林昭二 草笛光子 神山繁 三木纪平 中井贵惠 冲雅也 冷泉公裕 佐佐木胜彦 佐佐木刚 中岛久之 高野浩幸 常田富士男 武内亨','市川昆','剧情 悬疑 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKQxdlpBBf2t_6sJaqTPVsL',
-'NULL','NULL','4',1,'/static/movie/img/p2435016716.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9644,'戴安娜','https://movie.douban.com/subject/19971387/','6.0',3320,
-'http://www.imdb.com/title/tt1758595','NULL','NULL','NULL','NULL','NULL','英国 / 法国 / 瑞典 / 比利时','2013-09-20(英国)',
-'娜奥米·沃茨 道格拉斯·霍奇斯 杰拉丁妮·詹姆斯 乔纳森·克里根 茱丽叶特·斯蒂文森 劳伦斯·布莱切 纳威恩·安德利维斯 卡斯·安瓦尔','奥利弗·西斯贝格','剧情 爱情 传记',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLrL43oe7sqwS4MMupKg8BP',
-'magnet:?xt=urn:btih:04e75efe26b93bf0b867dab637e26e2f0b06fccf','NULL','4',1,'/static/movie/img/p2043239543.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9645,'撒玛利亚人','https://movie.douban.com/subject/6875607/','5.7',569,
-'http://www.imdb.com/title/tt1867093','NULL','NULL','NULL','NULL','NULL','美国','2012-05-18(美国)',
-'塞缪尔·杰克逊 卢克·科比  鲁丝·内伽 汤姆·威尔金森','David Weaver','惊悚',
-'http://www.iqiyi.com/v_19rrgy02ik.html',
-'NULL','NULL','4',1,'/static/movie/img/p1708097045.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9646,'崩溃的银行','https://movie.douban.com/subject/4097156/','7.9',206,
-'NULL','NULL','NULL','NULL','NULL','NULL','美国','2009-06-16',
-'Kenneth Lewis John Thain','Michael Kirk','纪录片',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2372590288.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9647,'遭遇激情','https://movie.douban.com/subject/1438025/','6.7',197,
-'http://www.imdb.com/title/tt0409519','NULL','NULL','NULL','NULL','NULL','中国大陆','1990',
-'吕丽萍 袁苑 张嘉译 郭晓晓','夏钢','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2162360201.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9648,'山椒大夫','https://movie.douban.com/subject/1303573/','8.1',1982,
-'http://www.imdb.com/title/tt0047445','NULL','NULL','NULL','NULL','NULL','日本','1954-03-31',
-'田中绢代 香川京子 菅井一郎','沟口健二','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2211481819.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9649,'知音','https://movie.douban.com/subject/1437317/','7.4',916,
-'http://www.imdb.com/title/tt0221723','NULL','NULL','NULL','NULL','NULL','中国大陆','1981',
-'王心刚 张瑜 英若诚','谢铁骊','爱情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGREDMc2RdxgCCmNamUk3fhj_UcKi77x5_H04KqKTmp2t',
-'NULL','NULL','4',1,'/static/movie/img/s3345404.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9650,'战栗黑洞','https://movie.douban.com/subject/1303460/','7.5',3923,
-'http://www.imdb.com/title/tt0113409','NULL','NULL','NULL','NULL','NULL','美国','1995-02-03(美国)',
-'山姆·尼尔 朱莉·卡门 尤尔根·普洛斯诺','约翰·卡朋特','悬疑 恐怖 奇幻',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJLVx5edZXco-Gcz_Lvkez3',
-'NULL','NULL','4',1,'/static/movie/img/p1078004649.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9651,'诡替身','https://movie.douban.com/subject/25713540/','3.2',3704,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-10-17(中国大陆)',
-'覃文静 马文龙 邱璐璠 王伟 王子强 周翔 母华常隆 余浩瑞 李承峰 王婷 鲍仙军 李沅','李锦航','惊悚 恐怖',
-'http://www.iqiyi.com/v_19rrn15c1g.html',
-'NULL','NULL','4',1,'/static/movie/img/p2204795000.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9652,'独眼龙·花嫁道中','https://movie.douban.com/subject/26309178/','5.6',42,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2015-07-29(日本)',
-'渡边大 栗山千明','新延明','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2252790081.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9653,'上车走吧','https://movie.douban.com/subject/1663415/','7.9',11411,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2000',
-'高虎 黄渤 陈宁 姜彤 胡晓光 孙艺菲','管虎','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqWrW8gEi-skqDIp-f_UrXMqgbCmGjrk_RhHmLcoNb_16',
-'NULL','NULL','4',1,'/static/movie/img/p1565928165.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9654,'混蛋3','https://movie.douban.com/subject/25929981/','4.7',177,
-'http://www.imdb.com/title/tt3525346','NULL','NULL','NULL','NULL','NULL','美国','0000-00-00',
-'Danny Trejo Danny Glover John Amos Loni Love','Craig Moss','喜剧 动作',
-'http://www.iqiyi.com/v_19rrns4gd8.html',
-'NULL','NULL','4',1,'/static/movie/img/p2364979031.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9655,'川岛芳子','https://movie.douban.com/subject/1307569/','7.0',7208,
-'http://www.imdb.com/title/tt0099265','NULL','NULL','NULL','NULL','NULL','香港','1990-07-28(香港)',
-'梅艳芳 刘德华 谢贤 尔冬升','方令正','剧情 动作 爱情 战争 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1a7poRHqpgjLbDbVOpBtZRNFq5JdRQNr2KgT0spHprdi45flat0vqwOapmnoUU1Log==',
-'NULL','NULL','4',1,'/static/movie/img/p2382529375.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9656,'冰山上的来客','https://movie.douban.com/subject/1422286/','7.8',5753,
-'http://www.imdb.com/title/tt6635034','NULL','NULL','NULL','NULL','NULL','中国大陆','1963',
-'梁音 谷毓英 恩和森 张辉 马陋夫 阿布都力米提·胡加','赵心水','剧情 悬疑 战争',
-'http://www.iqiyi.com/v_19rro2jh5g.html',
-'NULL','NULL','4',1,'/static/movie/img/p1344030669.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9657,'北之萤','https://movie.douban.com/subject/2120170/','7.3',267,
-'http://www.imdb.com/title/tt0459867','NULL','NULL','NULL','NULL','NULL','日本','1984-09-01(日本)',
-'仲代达矢 岩下志麻 佐藤浩市','五社英雄','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3931709.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9658,'胡越的故事','https://movie.douban.com/subject/1471794/','7.1',931,
-'http://www.imdb.com/title/tt0082534','NULL','NULL','NULL','NULL','NULL','香港','1981-04-24',
-'周润发 缪骞人 钟楚红 罗烈 金彪','许鞍华','剧情',
-'http://so.iqiyi.com/links/99o4kBuRLFk8iR4Zenvqf_9Ki0fiXfMtemQKdU2NLI8tYKobnsZsHzRl1V6Zn4lPgCHLbEx1BUVs0m8KKcBWBQ==',
-'NULL','NULL','4',1,'/static/movie/img/s1497332.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9659,'海鸥飞处','https://movie.douban.com/subject/1890812/','6.6',142,
-'http://www.imdb.com/title/tt0860912','NULL','NULL','NULL','NULL','NULL','台湾 / 香港','1974-06-29',
-'甄珍 邓光荣 秦汉','李行','爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKjHDeWTdqjDw7amJcqHJL4',
-'NULL','NULL','4',1,'/static/movie/img/s1851876.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9660,'混在北京','https://movie.douban.com/subject/1467759/','7.5',850,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'张国立 剧雪 奚美娟 方子哥 冯远征','何群','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqeLS2R6Qdmh10NFyQzNrMHYA9u-qvcj1A-gbnYg-KWYP',
-'NULL','NULL','4',1,'/static/movie/img/p2464624677.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9661,'人·鬼·情','https://movie.douban.com/subject/1307320/','8.2',2404,
-'http://www.imdb.com/title/tt0093844','NULL','NULL','NULL','NULL','NULL','中国大陆','1987',
-'裴艳玲 李保田 徐守莉','黄蜀芹','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2337272317.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9662,'唐·海明威','https://movie.douban.com/subject/10755166/','6.0',2034,
-'http://www.imdb.com/title/tt2402105','NULL','NULL','NULL','NULL','NULL','英国','2013-09-08(多伦多电影节)',
-'裘德·洛 理查德·E·格兰特 德米安·比齐尔 艾米莉亚·克拉克 凯瑞·康顿 内森·斯图尔特-贾瑞特 汉娜·布拉米雷斯','理查德·谢帕德','剧情 喜剧 犯罪',
-'http://www.iqiyi.com/v_19rrmmkjrs.html',
-'magnet:?xt=urn:btih:1f1337ecebf33239934febaf42d14aae32f41a68','NULL','4',1,'/static/movie/img/p2106280346.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9663,'与妻书','https://movie.douban.com/subject/6601425/','5.1',901,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-05-04(中国大陆)',
-'许晴 佟大为 李子雄 肖聪 吴孟达 王姬 洪剑涛','王小列','剧情 爱情',
-'http://www.iqiyi.com/v_19rrnf399o.html',
-'NULL','NULL','4',1,'/static/movie/img/p1512828760.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9664,'雪行','https://movie.douban.com/subject/26313848/','6.9',96,
-'NULL','NULL','NULL','NULL','NULL','NULL','韩国','2016-03-03(韩国)',
-'金太勋 朴素丹 崔武成','金姬廷','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2268642751.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9665,'天使的微笑','https://movie.douban.com/subject/3832600/','6.7',1912,
-'http://www.imdb.com/title/tt1440161','NULL','NULL','NULL','NULL','NULL','美国','2012-05-04',
-'凯特·哈德森 盖尔·加西亚·贝纳尔 彼特·丁克拉奇 露茜·彭奇 乌比·戈德堡 凯西·贝茨','Nicole Kassell','剧情 喜剧 爱情',
-'http://www.iqiyi.com/v_19rrlfdbi8.html',
-'magnet:?xt=urn:btih:eaa78507b6ef43d2478fb87692942b6f645a611c','NULL','4',1,'/static/movie/img/p1245042069.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9666,'安娜·卡列尼娜','https://movie.douban.com/subject/1292577/','7.4',22345,
-'http://www.imdb.com/title/tt0118623','NULL','NULL','NULL','NULL','NULL','美国','1997-04-04(美国)',
-'苏菲·玛索 肖恩·宾 阿尔弗雷德·莫里纳 米娅·科施娜 詹姆斯·福克斯 费奥纳·肖','伯纳德·罗斯','剧情 爱情',
-'http://www.iqiyi.com/v_19rrhud4qw.html',
-'magnet:?xt=urn:btih:e41b35815218bb098b3c6f4581aa4849d752f2aa','NULL','4',1,'/static/movie/img/p452625577.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9667,'诡新娘','https://movie.douban.com/subject/26437676/','3.2',647,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-08-26(中国大陆)',
-'苏菲 刘骐 杨济妤 陈国良 温春荣 李世宏 岳俊岭 于天川 贾舒夷 赫明宇 贾玉华 段俊宝 刘连钧 芦旭 郑嘉琨 刘明 张海报 张东升','王健','悬疑 恐怖',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1QZPSLoDR6g9-daL0i4zQRWhhyuDbCK0G-oV3g4eDxx8BQ5VG4AjLKRtAWGrSN0YY8h3hb9Jz7RyIuhefu4XB3Q=',
-'magnet:?xt=urn:btih:6fa7bebda2f3e1ae6d3d5e9b5e81f04d7c4ef45d','NULL','4',1,'/static/movie/img/p2369412426.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9668,'女神捕之绝境','https://movie.douban.com/subject/3241972/','6.6',139,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'商蓉 苗海忠 吴樾','司小冬','暂时无数据',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqeVKQyY5qRMuiASvboOeRSuMCh7QHbJRRzBxCDY0uidw',
-'NULL','NULL','4',1,'/static/movie/img/p2081054835.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9669,'我是爸爸','https://movie.douban.com/subject/6026048/','6.2',632,
-'http://www.imdb.com/title/tt2009494','NULL','NULL','NULL','NULL','NULL','韩国','2011-04-14',
-'金承佑 孙秉浩 林河龙 金赛纶 金姬妍','全万培','剧情 动作 犯罪',
-'http://www.iqiyi.com/v_19rrhw2v1w.html',
-'NULL','NULL','4',1,'/static/movie/img/p1077771256.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9670,'七星碧玉刀','https://movie.douban.com/subject/3240774/','6.5',86,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'赵阳 李思杰 李殿芳 祁明远 单星梅','姚守岗','动作',
-'http://www.iqiyi.com/v_19rrny7pd0.html',
-'NULL','NULL','4',1,'/static/movie/img/p2424991009.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9671,'爱伦的日记','https://movie.douban.com/subject/1422979/','6.8',145,
-'http://www.imdb.com/title/tt0350811','NULL','NULL','NULL','NULL','NULL','美国','2003-05-12',
-'丽莎·伯伦纳 Lisa Brenner 史蒂文·布兰德 凯特·伯顿','克雷格·巴克斯利 Craig R. Baxley','剧情 恐怖 惊栗 悬念',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKiXLBdKKTR9m1KAeiz6YT0',
-'NULL','NULL','4',1,'/static/movie/img/s1441999.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9672,'我爱你','https://movie.douban.com/subject/1299629/','8.1',2085,
-'http://www.imdb.com/title/tt0147608','NULL','NULL','NULL','NULL','NULL','香港','1998-03-12',
-'袁咏仪 方中信 吴镇宇 黄佩霞 黄文意 陈芷菁 刘松仁 熊欣欣 曾宝仪','李仁港','剧情 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1XFLuVE3wwtN3KNMQ7RphqtbDj-klkm4BGIwbk8E0K037jY6zMJl1wbmGzzbyUIBjw==',
-'NULL','NULL','4',1,'/static/movie/img/p2233458830.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9673,'爱情梦幻号','https://movie.douban.com/subject/1308384/','5.6',10997,
-'http://www.imdb.com/title/tt0188615','NULL','NULL','NULL','NULL','NULL','中国大陆 / 香港','1999-02-13(香港)',
-'刘德华 石田光 瞿颖 黄磊 黄百鸣 伍咏薇 黄秋生 陈芷菁 何嘉莉','邱礼涛','爱情',
-'http://www.iqiyi.com/v_19rrj63sic.html',
-'NULL','NULL','4',1,'/static/movie/img/p2226449093.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9674,'我爱你','https://movie.douban.com/subject/5908478/','9.0',50793,
-'http://www.imdb.com/title/tt1862020','NULL','NULL','NULL','NULL','NULL','韩国','2011-02-17(韩国)',
-'宋在浩 李顺载 尹秀晶 金秀美 宋智孝 吴达洙','秋昌旼','剧情 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1XFLuVE3wwtN3KNMQ7RphqtbDj-klkm4BGIwbk8E0K037jY6zMJl1wbmGzzbyUIBjw==',
-'NULL','NULL','4',1,'/static/movie/img/p1075591188.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9675,'检察官的死命','https://movie.douban.com/subject/26661526/','5.8',81,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-01-17(日本)',
-'上川隆也 松下由树 志田未来 益冈徹 竹富圣花 津田宽治 田山凉成 荒井萌 有森也实 饭田基祐 山中崇 寺田农 江波杏子 伊武雅刀','池澤辰也','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2316770765.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9676,'翻译风波','https://movie.douban.com/subject/1291823/','6.6',14340,
-'http://www.imdb.com/title/tt0373926','NULL','NULL','NULL','NULL','NULL','美国 / 英国 / 法国','2005-04-22(中国大陆)',
-'妮可·基德曼 西恩·潘 凯瑟琳·基纳 加斯帕·克里斯滕森 伊万·阿达勒 周采芹','西德尼·波拉克','剧情 悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrhyrjdk.html',
-'magnet:?xt=urn:btih:7f89f17dd49341ac94d2e789ebf0a0854e05930f','NULL','4',1,'/static/movie/img/p1910900170.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9677,'橡树男孩','https://movie.douban.com/subject/3543324/','7.3',776,
-'http://www.imdb.com/title/tt1375669','NULL','NULL','NULL','NULL','NULL','德国 / 瑞典 / 丹麦 / 挪威','2011-12-09(瑞典)',
-'比尔·斯卡斯加德 海伦·修荷姆  Stefan Gödicke 让·约瑟夫·莱佛斯 Karl Linnertorp 茜茜莉亚·尼尔森','丽萨· 奥林','剧情',
-'NULL',
-'magnet:?xt=urn:btih:4bb88afd834330483c46cb9880ff96fe136c2d61','NULL','4',1,'/static/movie/img/p1250285988.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9678,'职业大贼','https://movie.douban.com/subject/1296320/','7.5',308,
-'http://www.imdb.com/title/tt0060862','NULL','NULL','NULL','NULL','NULL','美国','1966-11-02',
-'伯特·兰卡斯特 李·马文 罗伯特·瑞安 伍迪·斯特罗德 杰克·帕兰斯 克劳迪娅·卡迪纳莱 拉尔夫·贝拉米 乔·德·桑蒂斯  Rafael Bertrand Jorge Martínez de Hoyos Marie Gomez José Chávez Carlos Romero 沃恩·泰勒','理查德·布鲁克斯','动作 西部',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLpCcr71ES6AEaJMis9b3AL',
-'NULL','NULL','4',1,'/static/movie/img/p2198989668.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9679,'死亡医生','https://movie.douban.com/subject/3074482/','8.6',16986,
-'http://www.imdb.com/title/tt1132623','NULL','NULL','NULL','NULL','NULL','美国','2010-04-14(美国)',
-'阿尔·帕西诺 苏珊·萨兰登 约翰·古德曼 迪尔德丽·奥康奈尔 托德·苏斯曼 亚当·卢巴尔斯基 詹妮弗·马奇','巴瑞·莱文森','剧情 传记',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1da2xYwJUV-TIA-JTVUDug0Cc6Km_xzvJ3vDv-cTeWGxVtw81zF7ItU_ylCmnwf8jI9vRLleaCKqJTj65RwZOd0=',
-'magnet:?xt=urn:btih:1bbd738feaa8c3abd4f20418b77a28d996ba57a9','NULL','4',1,'/static/movie/img/p2166647043.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9680,'给人生浇点水','https://movie.douban.com/subject/1950450/','7.1',507,
-'http://www.imdb.com/title/tt0790723','NULL','NULL','NULL','NULL','NULL','美国','2008-03-18',
-'迪伦·沃尔什 丹尼·德维托 贾斯汀·朗 特雷西·米登道夫 乔纳·希尔 阿尼卡·诺尼·罗斯 Brad Hunt','哈特·巴克纳','喜剧 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1ecxGM2IPSK1eC4AOY_RNavuXT-Vn8J9ienF6hhYV6EXM8Uoz0doTiDdljq93t0EPw==',
-'magnet:?xt=urn:btih:65baf1283c0ce7a6751539939b872d4723cd0992','NULL','4',1,'/static/movie/img/p1085969437.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9681,'借你俩胆','https://movie.douban.com/subject/11632728/','3.1',538,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-11-16(中国大陆)',
-'韩兆 潘霜霜 张楚炎 张凯辉 曹其昌','韩兆','喜剧 惊悚',
-'http://www.iqiyi.com/v_19rrhohk3w.html',
-'NULL','NULL','4',1,'/static/movie/img/p1762738943.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9682,'无语问苍天','https://movie.douban.com/subject/1297388/','8.1',231,
-'http://www.imdb.com/title/tt0067277','NULL','NULL','NULL','NULL','NULL','美国','1971-08-04',
-'唐·瑞德·巴里 蒂姆斯·伯特姆斯 Craig Bovia','达尔顿·特朗勃','剧情 战争',
-'http://www.iqiyi.com/v_19rrh8tvuo.html',
-'NULL','NULL','4',1,'/static/movie/img/s10347839.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9683,'最后的证人','https://movie.douban.com/subject/26022307/','6.1',116,
-'http://www.imdb.com/title/tt4156658','NULL','NULL','NULL','NULL','NULL','日本','2015-01-24(日本)',
-'上川隆也 松下由樹 倉科カナ 石黒賢 紺野まひる 平田満 大杉漣 伊武雅刀','兼崎涼介','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2316770489.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9684,'金环蚀','https://movie.douban.com/subject/1308000/','8.4',447,
-'http://www.imdb.com/title/tt0322969','NULL','NULL','NULL','NULL','NULL','日本','1975-09-06(日本)',
-'仲代达矢 三国连太郎 宇野重吉 西村晃 加藤嘉 京町子','山本萨夫','暂时无数据',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMInUhI2VZOsiChXEOko_GQJ',
-'NULL','NULL','4',1,'/static/movie/img/p2221556347.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9685,'火鸟出击','https://movie.douban.com/subject/1301448/','6.1',986,
-'http://www.imdb.com/title/tt0099575','NULL','NULL','NULL','NULL','NULL','美国','1990-05-25',
-'尼古拉斯·凯奇 汤米·李·琼斯 肖恩·杨','David Green (I)','动作 冒险',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKEdJgPOJ1xMmDmFkH7MpZ2',
-'NULL','NULL','4',1,'/static/movie/img/s1503823.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9686,'阴差阳错的女演员们','https://movie.douban.com/subject/26425002/','8.1',6660,
-'http://www.imdb.com/title/tt4792052','NULL','NULL','NULL','NULL','NULL','日本','2015-06-23(日本)',
-'竹内结子 真木阳子 水川麻美 片桐仁 升野英知','関和亮','剧情 奇幻',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2400524082.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9687,'丛林赤子心','https://movie.douban.com/subject/1473562/','9.2',3075,
-'http://www.imdb.com/title/tt0092638','NULL','NULL','NULL','NULL','NULL','美国','1987-06-05(美国)',
-'Benji Joe Camp Mike Francis','乔·坎普','剧情 冒险',
-'http://www.iqiyi.com/dianying/20120723/1ffde66bdd627459.html',
-'NULL','NULL','4',1,'/static/movie/img/p2321248846.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9688,'摩根河的奇迹','https://movie.douban.com/subject/1303419/','7.1',111,
-'http://www.imdb.com/title/tt0037077','NULL','NULL','NULL','NULL','NULL','美国','1944-01-05',
-'埃迪·布莱肯 蓓蒂·赫顿 戴安娜·琳','普莱斯顿·斯特奇斯','喜剧 爱情 战争',
-'http://so.iqiyi.com/links/Y1t4eAa0mLAVDBoVzSYwMHtNyxYvlZbjZvg5OTQDD2L9RnenDIG4kw6AwA9ysku-wVlNplqsm4cYOyi4F_7GRw==',
-'NULL','NULL','4',1,'/static/movie/img/p2167142321.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9689,'托卡列夫','https://movie.douban.com/subject/19908446/','5.0',3337,
-'http://www.imdb.com/title/tt2401807','NULL','NULL','NULL','NULL','NULL','美国 / 法国','2014-01-31(罗马尼亚)',
-'瑞秋·尼科尔斯 尼古拉斯·凯奇 彼得·斯特曼 丹尼·格洛弗 迈克尔·麦克格雷迪 帕沙·D.林奇尼科夫 马克斯·福勒 麦克斯·瑞恩 Weston Cage','帕科·卡贝萨斯','动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLC17256ttsFBz5R8GK9NSI',
-'magnet:?xt=urn:btih:d3dca53c08ac3f8fc8e7fccfbb9555ca7802fdf2','NULL','4',1,'/static/movie/img/p2168840829.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9690,'美国紫罗兰','https://movie.douban.com/subject/3290657/','7.1',250,
-'http://www.imdb.com/title/tt1152397','NULL','NULL','NULL','NULL','NULL','美国','2008-08-29',
-'Nicole Beharie 威尔·帕顿 阿尔法·伍达德 迈克尔·奥吉弗 蒂姆·布雷克·尼尔森','Tim Disney','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJGX1crM3er9JH0gZ0VUgk6',
-'NULL','NULL','4',1,'/static/movie/img/p1833537163.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9691,'巴尔扎克与小裁缝','https://movie.douban.com/subject/1296769/','7.8',26781,
-'http://www.imdb.com/title/tt0291032','NULL','NULL','NULL','NULL','NULL','中国 / 法国','2002-10-09',
-'周迅 刘烨 陈坤 王双宝 丛志军 王宏伟 肖雄 陈炜','戴思杰','剧情 爱情 传记',
-'http://www.iqiyi.com/v_19rrhnv4w8.html',
-'NULL','NULL','4',1,'/static/movie/img/p1119158729.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9692,'金刚不坏','https://movie.douban.com/subject/2080007/','7.6',26083,
-'http://www.imdb.com/title/tt1028528','NULL','NULL','NULL','NULL','NULL','美国','2007-07-21(美国)',
-'库尔特·拉塞尔 佐伊·贝尔 罗莎里奥·道森 范妮莎·费丽托 西德尼·塔米娅·波蒂埃 翠茜·索姆斯 罗丝·麦高恩 乔丹·莱德 玛丽·伊丽莎白·温斯特德 昆汀·塔伦蒂诺 Marcy Harriell 伊莱·罗斯 奥玛·杜姆 迈克尔·巴考尔 莫妮卡·斯塔吉丝','昆汀·塔伦蒂诺','动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLAOypchcBfCSNsJGFrJXj0',
-'magnet:?xt=urn:btih:20eae3600f0cad99091dedc899527992206ccdff','NULL','4',1,'/static/movie/img/p948510953.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9693,'美好的星期天','https://movie.douban.com/subject/1295751/','7.6',1169,
-'http://www.imdb.com/title/tt0039871','NULL','NULL','NULL','NULL','NULL','日本','1947-07-01(日本)',
-'沼崎勋 中北千枝子 渡边笃 菅井一郎 清水将夫','黑泽明','剧情 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1R0FVXDTYWqf76-aWoFWXUz9IqTFKWFK2F3tU74xdiC4vsziM8X9QQOICgqUAij3Tg==',
-'NULL','NULL','4',1,'/static/movie/img/p2083814357.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9694,'浮出水面','https://movie.douban.com/subject/1306539/','6.5',67,
-'http://www.imdb.com/title/tt0116502','NULL','NULL','NULL','NULL','NULL','美国','1996-11-07',
-'哈威·凯特尔 卡梅隆·迪亚茨 克莱格·谢佛 比利·赞恩 Shay Duffin','Jim Wilson','喜剧 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1442289.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9695,'飞虎雄师','https://movie.douban.com/subject/1788004/','5.8',273,
-'http://www.imdb.com/title/tt0371005','NULL','NULL','NULL','NULL','NULL','香港','2002-12-06',
-'王敏德 谭耀文 余文乐 黄浩然','霍耀良','剧情 动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI4fW9MGLBdQMctHSbphIvZ',
-'NULL','NULL','4',1,'/static/movie/img/p1630122362.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9696,'迷宫先生','https://movie.douban.com/subject/26710213/','6.6',90,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-02-13(日本)',
-'渡濑恒彦 贯地谷诗穗梨 东智鹤 鹫尾真知子 长谷川朝晴 石桥莲司 小野寺昭 多岐川裕美','和泉圣治','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2314519090.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9697,'义侠勇闯上海滩','https://movie.douban.com/subject/1892592/','5.6',766,
-'http://www.imdb.com/title/tt0205395','NULL','NULL','NULL','NULL','NULL','香港','1998-07-03',
-'甄子丹 朱茵 于荣光 陈展鹏','甄子丹','剧情 动作 爱情',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzbxi3NuEeInoHA4d5FY-01EgId4gQicVucAK3aJh_TlEf',
-'NULL','NULL','4',1,'/static/movie/img/s3180721.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9698,'牛奶','https://movie.douban.com/subject/3195496/','7.6',659,
-'http://www.imdb.com/title/tt1284591','NULL','NULL','NULL','NULL','NULL','土耳其 / 法国 / 德国','2008-09-01',
-'Melih Selcuk Basak Koklukaya Riza Akin','赛米·卡普拉诺格鲁','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p890090606.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9699,'开心巨无霸','https://movie.douban.com/subject/1305370/','6.5',155,
-'http://www.imdb.com/title/tt0099912','NULL','NULL','NULL','NULL','NULL','香港','1989-08-01',
-'黄锦荣 (Melvin Wong) 午马 (Ma Wu) 姜大卫 (David Chiang)','陈欣建 (Philip Chan)','喜剧 家庭 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI8fQ96mFhKMRIT9G6fdRNC',
-'NULL','NULL','4',1,'/static/movie/img/s2396450.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9700,'名剑风流','https://movie.douban.com/subject/3333976/','5.7',99,
-'http://www.imdb.com/title/tt1679624','NULL','NULL','NULL','NULL','NULL','台湾','1981-09-11(台湾)',
-'王冠雄 于珊 徐嘉','李嘉','暂时无数据',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8HbnYfKWVm1yONW6uk0jqOTp6tbIzIWMc4S7pUbEjb6f',
-'NULL','NULL','4',1,'/static/movie/img/p2360517145.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9701,'古堡惊魂','https://movie.douban.com/subject/1401622/','7.1',209,
-'http://www.imdb.com/title/tt0012651','NULL','NULL','NULL','NULL','NULL','德国','1921-04-07',
-'Arnold Korff Lulu Kyser-Korff Lothar Mehnert Paul Hartmann Paul Bildt Olga Tschechowa Victor Bluetner Hermann Vallentin Julius Falkenstein Robert Leffler Walter Kurt Kuhle','F·W·茂瑙','剧情 悬疑 恐怖 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJZjG0rHq2CbUG9oPl58U9T',
-'NULL','NULL','4',1,'/static/movie/img/p2383437791.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9702,'艾草仙姑','https://movie.douban.com/subject/24745629/','6.1',78,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2013-06-12',
-'赵溪童 李晟华 高美玲 谢钟灵','杨真','剧情 古装',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqYXbgkkQEhS3PiOPwKLgrj_KwYMDLSxJQqsGq_ZCzih_',
-'NULL','NULL','4',1,'/static/movie/img/p2002152731.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9703,'邓稼先','https://movie.douban.com/subject/3647073/','6.7',294,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2009',
-'巫刚 刘蓓 汤镇宗 徐敏','王冀邢','传记',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGVPS_f18Mlw7B2YXLkAa_r6N0oAwOpOBwMOx4NhzwwXY',
-'NULL','NULL','4',1,'/static/movie/img/s3706546.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9704,'黄色故事','https://movie.douban.com/subject/1307539/','6.5',67,
-'http://www.imdb.com/title/tt0093230','NULL','NULL','NULL','NULL','NULL','台湾 / 香港','1987',
-'张曼玉 吴大维 周华健 张世 林秀玲 管管 钮承泽','金国钊','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2162827996.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9705,'智取农场','https://movie.douban.com/subject/3129219/','5.9',76,
-'http://www.imdb.com/title/tt0903131','NULL','NULL','NULL','NULL','NULL','加拿大','2008-02-11',
-'瑞切尔·蕾·库克 卢克·科比  基思·卡拉丹 丽莎·蕾','Leonard Farlinger','喜剧 西部',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1fl0UwwzGbiEUxOY9whtoGiXEud5ebfrIHne7l2ZSOhXwDv3BZubuX7Pl6LQ8SsPUg==',
-'NULL','NULL','4',1,'/static/movie/img/s3158639.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9706,'表哥我来也','https://movie.douban.com/subject/1299873/','6.5',109,
-'http://www.imdb.com/title/tt0101441','NULL','NULL','NULL','NULL','NULL','香港','1991',
-'钟镇涛 毛舜筠 吴孟达','蒋家俊','喜剧',
-'http://so.iqiyi.com/links/bu1fv1oRRL5kcvvjEx3Ylotad4rX9GJJ6ij_rTgJ-2c7Hnaw8yMnWl4s833gn5G_',
-'NULL','NULL','4',1,'/static/movie/img/p2240437354.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9707,'心中天网岛','https://movie.douban.com/subject/1294378/','8.1',925,
-'http://www.imdb.com/title/tt0064975','NULL','NULL','NULL','NULL','NULL','日本','1969-05-24',
-'岩下志麻 中村吉右卫门 小松方正','筱田正浩','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2205017224.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9708,'天生杀人狂','https://movie.douban.com/subject/1292229/','8.0',73488,
-'http://www.imdb.com/title/tt0110632','NULL','NULL','NULL','NULL','NULL','美国','1994-08-26(美国)',
-'伍迪·哈里森 朱丽叶特·刘易斯 汤姆·塞兹摩尔 汤米·李·琼斯 小罗伯特·唐尼','奥利佛·斯通','剧情 动作 爱情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1640827366.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9709,'水中刀','https://movie.douban.com/subject/1303086/','8.1',6010,
-'http://www.imdb.com/title/tt0056291','NULL','NULL','NULL','NULL','NULL','波兰','1962-03-09(波兰)',
-'里昂·尼梅兹科 乔兰塔·乌梅卡 兹古蒙特·马拉诺维兹奇','罗曼·波兰斯基','剧情 惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ2JYn1ZwVfif-dQjKrqFM4',
-'NULL','NULL','4',1,'/static/movie/img/p2180887017.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9710,'花','https://movie.douban.com/subject/4883425/','6.7',10144,
-'http://www.imdb.com/title/tt1650831','NULL','NULL','NULL','NULL','NULL','法国 / 中国大陆','2011-11-02(法国)',
-'塔哈·拉希姆 任洁 加里·勒斯培 邵斯凡 源利华 尚于博 崔卫平 张献民 曾美慧孜 樊尚·罗蒂埃','娄烨','剧情 爱情 情色',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLISVPkXQu-55Nik49Y07Jf',
-'NULL','NULL','4',1,'/static/movie/img/p1226122941.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9711,'暗物质','https://movie.douban.com/subject/1864199/','6.8',6217,
-'http://www.imdb.com/title/tt0416675','NULL','NULL','NULL','NULL','NULL','美国','2007-01-23',
-'刘烨 梅丽尔·斯特里普 艾丹·奎因 钱熠','陈士铮','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIYGbr-pFRJOxCEpt3-7lJz',
-'magnet:?xt=urn:btih:416c56c1ec610fd58cf7f3cc636e6da8a3280e3d','NULL','4',1,'/static/movie/img/p1085363629.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9712,'地铁','https://movie.douban.com/subject/3279628/','8.2',423,
-'http://www.imdb.com/title/tt0019509','NULL','NULL','NULL','NULL','NULL','英国','1928',
-'布赖恩·艾亨 爱丽莎·兰迪 Cyril McLaglen 诺拉·贝琳','安东尼·阿斯奎斯','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2178138782.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9713,'摩纳哥王妃','https://movie.douban.com/subject/10450713/','6.7',57671,
-'http://www.imdb.com/title/tt2095649','NULL','NULL','NULL','NULL','NULL','法国 / 美国 / 比利时 / 意大利 / 瑞士','2014-06-20(中国大陆)',
-'妮可·基德曼 帕兹·贝嘉 米洛·文堤米利亚 蒂姆·罗斯 帕克·波西 杰拉丁·萨莫维尔 德里克·雅各比 弗兰克·兰格拉 罗杰·阿什顿-格里菲斯 尼古拉斯·法瑞尔 罗伯特·林德森 奥利维尔·雷堡汀 珍妮·巴利巴尔','奥利维埃·达昂','剧情 爱情 传记',
-'http://www.iqiyi.com/v_19rrmjwnfo.html',
-'magnet:?xt=urn:btih:0648af5e8fac8849972bba1cc526796514459f9c','NULL','4',1,'/static/movie/img/p2185958530.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9714,'飞燕金刀','https://movie.douban.com/subject/1308223/','6.0',115,
-'http://www.imdb.com/title/tt0065172','NULL','NULL','NULL','NULL','NULL','香港','1969-07-19(香港)',
-'秦萍 唐菁 岳华 高宝树 顾文宗 李鹏飞 洪金宝 罗汉 彭鹏  蓝伟烈  梁龙  赵雄 ','何梦华','剧情 动作',
-'http://www.iqiyi.com/v_19rrmxgjck.html',
-'NULL','NULL','4',1,'/static/movie/img/p2079241047.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9715,'雁南飞','https://movie.douban.com/subject/1302077/','8.5',4216,
-'http://www.imdb.com/title/tt0050634','NULL','NULL','NULL','NULL','NULL','前苏联','1957-10-12',
-'塔吉娅娜·萨莫依洛娃 阿列克谢·巴塔洛夫 Vasili Merkuryev Aleksandr Shvorin Svetlana Kharitonova Konstantin Kadochnikov 瓦连京·祖布科夫 Antonina Bogdanova 鲍里斯·科科夫金','米哈依尔·卡拉托佐夫','剧情 爱情 战争',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1cd_LZxBV3RPOh-nWoOhELjgFogYk8tW2A1tVrXSJydg5W9kaNpIUJnXOI3whoFcoA==',
-'NULL','NULL','4',1,'/static/movie/img/p2058841317.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9716,'武士人生','https://movie.douban.com/subject/25854570/','5.6',260,
-'http://www.imdb.com/title/tt3628898','NULL','NULL','NULL','NULL','NULL','日本','2015-02-28(日本)',
-'三浦贵大 松冈茉优 加治将树 柾木玲弥 山本凉介 大杉涟 渡边大 古关安广 槙田雄司 高桥真唯 苍波纯','森谷雄','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ8qJ5Hc4aEdfokUGAU8oNG',
-'magnet:?xt=urn:btih:568a51bd273349ffa1e94a678d04ada2962db21e&dn=Samu.Life.2015.720p.BluRay.x264-WiKi&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710','NULL','4',1,'/static/movie/img/p2217046729.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9717,'鬼作秀','https://movie.douban.com/subject/1296008/','7.2',2542,
-'http://www.imdb.com/title/tt0083767','NULL','NULL','NULL','NULL','NULL','美国','1982-11-12',
-'哈尔·霍尔布鲁克 莱斯利·尼尔森 阿德里安娜·巴比欧 E.G.马绍尔 艾德·哈里斯 特德·丹森 斯蒂芬·金','乔治·A·罗梅罗','喜剧 恐怖',
-'http://www.iqiyi.com/v_19rrofqh4c.html',
-'NULL','NULL','4',1,'/static/movie/img/p2216094022.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9718,'戴珍珠耳环的少女','https://movie.douban.com/subject/1291836/','7.7',72642,
-'http://www.imdb.com/title/tt0335119','NULL','NULL','NULL','NULL','NULL','英国 / 卢森堡','2003-09-07',
-'科林·费尔斯 斯嘉丽·约翰逊 汤姆·威尔金森 朱迪·帕瑞福特 基里安·墨菲 艾斯·戴维斯 乔安娜·斯坎伦 阿拉济纳·曼恩 Chris McHallem Gabrielle Reidy 罗洛·韦克斯 安娜·帕波维尔 Anaïs Nepper Melanie Meyfroid Nathan Nepper','彼得·韦柏 ','剧情 爱情 传记',
-'http://www.iqiyi.com/dianying/20130204/fd157573bb879832.html',
-'NULL','NULL','4',1,'/static/movie/img/p1910906252.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9719,'末日天启战','https://movie.douban.com/subject/26288222/','2.6',120,
-'http://www.imdb.com/title/tt3030514','NULL','NULL','NULL','NULL','NULL','马来西亚','2014-04-03',
-'法里德·卡米尔 Jehan Miskin Peter Davis Zoie Tam Miera Leyana Iqram Dinzly Zach Aguilar Tom Bauer Jalen K. Cassell Khoi Dao Michelle Deco Ayez Shaukat Fonseka Farid Dazrin Kamarudin Bobby Thong','Mamat Khalid','动作 科幻',
-'http://www.iqiyi.com/v_19rrn96i74.html',
-'NULL','NULL','4',1,'/static/movie/img/p2218509235.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9720,'猛鬼舞厅','https://movie.douban.com/subject/1813498/','5.1',306,
-'http://www.imdb.com/title/tt0097866','NULL','NULL','NULL','NULL','NULL','香港','0000-00-00',
-'刘家辉 卢惠光 徐少强 林迪安 单桂枝 罗烈 陈百祥 熊欣欣','唐伟成','恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ8fgHrMore4CrZG6VeopeX',
-'NULL','NULL','4',1,'/static/movie/img/p2228297840.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9721,'西班牙恋曲','https://movie.douban.com/subject/1987604/','6.7',93,
-'http://www.imdb.com/title/tt0349076','NULL','NULL','NULL','NULL','NULL','西班牙','2003-01-10',
-'马修·古迪 劳伦斯·福克斯','费尔南多·科洛莫','剧情 喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s11090964.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9722,'非关正义：完结篇','https://movie.douban.com/subject/26312861/','5.7',505,
-'http://www.imdb.com/title/tt4399984','NULL','NULL','NULL','NULL','NULL','日本','2015-09-05(日本)',
-'筱原凉子 永山绚斗 阿部隆史 加藤雅也 向井地美音 吉田钢太郎 AKIRA 寺岛进 佐藤浩市','佐藤嗣麻子','剧情 悬疑 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJorgaogCCyrERM70ITI4h6',
-'magnet:?xt=urn:btih:4ed76afa5bfe6fe8a1e53881027bb7140315ab7c','NULL','4',1,'/static/movie/img/p2256687784.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9723,'恍惚的人','https://movie.douban.com/subject/1850615/','8.5',170,
-'http://www.imdb.com/title/tt0262549','NULL','NULL','NULL','NULL','NULL','日本','1973-01-15',
-'森繁久弥 高峰秀子','丰田四郎','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKmUyvNJI9p-77qQPDMHojY',
-'NULL','NULL','4',1,'/static/movie/img/p919781435.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9724,'魔力女战士','https://movie.douban.com/subject/1309065/','5.6',9626,
-'http://www.imdb.com/title/tt0402022','NULL','NULL','NULL','NULL','NULL','美国','2005-12-02',
-'查理兹·塞隆 马尔顿·索克斯 约翰尼·李·米勒 苏菲·奥康内多 弗兰西斯·麦克多蒙德','卡瑞恩·库萨马','动作 科幻 冒险',
-'http://www.iqiyi.com/v_19rrk3tks0.html',
-'magnet:?xt=urn:btih:1194a593695ca5096bdf03e86fedfe680a0479c8','NULL','4',1,'/static/movie/img/p827467017.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9725,'夜鹰','https://movie.douban.com/subject/1293873/','6.3',122,
-'http://www.imdb.com/title/tt0082817','NULL','NULL','NULL','NULL','NULL','美国','1981-04-04',
-'西尔维斯特·史泰龙 比利·迪·威廉姆斯 鲁特格尔·哈尔','布鲁斯·马尔穆斯','动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrhlz05k.html',
-'NULL','NULL','4',1,'/static/movie/img/p2485007141.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9726,'红娘','https://movie.douban.com/subject/2061179/','6.2',513,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'刘欣 苏有朋 陈丽峰 王馥荔','黄健中','剧情 爱情 古装',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqexzu-uLQNhxXNdvTgwzmWdsR2hWLfFgfdZKsOBcdpCQ',
-'NULL','NULL','4',1,'/static/movie/img/p1938358513.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9727,'米尔克','https://movie.douban.com/subject/2336737/','8.3',41655,
-'http://www.imdb.com/title/tt1013753','NULL','NULL','NULL','NULL','NULL','美国','2008-11-26(美国)',
-'西恩·潘 乔什·布洛林 詹姆斯·弗兰科 迭戈·卢纳 埃米尔·赫施 艾丽森·皮尔 丹尼斯·欧哈拉','格斯·范·桑特','剧情 同性 传记',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1XD351NOOdOoTbc2lcVbClRbwapt9LHCGoeWqByUkCrjP7Pt9HHiFA1cdBQ47CGgX0xziWMWiJrz-PhHjs-YYzs=',
-'magnet:?xt=urn:btih:4e239b119cfa2ce649e936639723af6c64c6777e','NULL','4',1,'/static/movie/img/p549868774.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9728,'彼岸花','https://movie.douban.com/subject/1296834/','8.3',3509,
-'http://www.imdb.com/title/tt0051720','NULL','NULL','NULL','NULL','NULL','日本','1958-09-07',
-'佐分利信 田中绢代 山本富士子 久我美子 有马稻子','小津安二郎','剧情 家庭',
-'http://so.iqiyi.com/links/dBdbHSDc033EON4taM0pwEkaN1QSrNS7xoLGboJkCp2dM2kzcfnRAkVnjQAY6pIxdwQRs-w0W9kZyVOVTk9JB5GxZ1m2-LDkBgdAJF9Qvg-mx-ACl8Z0aDi03U7fLaz-',
-'NULL','NULL','4',1,'/static/movie/img/p1815932443.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9729,'越战先锋','https://movie.douban.com/subject/1305242/','6.2',245,
-'http://www.imdb.com/title/tt0087727','NULL','NULL','NULL','NULL','NULL','美国','1984-11-16',
-'查克·诺瑞斯 M·埃梅特·沃尔什','约瑟夫·齐托','动作 战争',
-'http://www.iqiyi.com/v_19rrhod4o8.html',
-'magnet:?xt=urn:btih:f2b028aeba09b7d1da4af4131e0b781fbfa595c1','NULL','4',1,'/static/movie/img/p1593615384.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9730,'灰烬与钻石','https://movie.douban.com/subject/1303174/','8.3',1604,
-'http://www.imdb.com/title/tt0052080','NULL','NULL','NULL','NULL','NULL','波兰','1958-10-03(波兰)',
-'兹比格涅夫·齐布尔斯基 夏娃·克尔齐塞夫斯卡 瓦克劳·扎斯特泽金斯基 亚当·帕夫利克夫斯基 博古米尔·科别拉 扬·切切尔斯基 Stanislaw Milski Artur Mlodnicki Halina Kwiatkowska Ignacy Machowski Zbigniew Skowronski 芭尔芭拉·克拉夫托夫娜 Aleksander Sewruk Zofia Czerwinska Wiktor Grotowicz','安杰依·瓦伊达','剧情 战争',
-'http://so.iqiyi.com/links/dBdbHSDc033EON4taM0pwM6bRxW0riUK6vFctzsQal2AbdPkQ22QPXMRAs2a9IdWT8cHHlGIisng42zSUEGyoBT0fk1IuWfjOGg5MVqE9WgdLloPf_nmm0kb4REZJju4',
-'NULL','NULL','4',1,'/static/movie/img/p2259550975.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9731,'三十九级台阶','https://movie.douban.com/subject/1302597/','7.8',1334,
-'http://www.imdb.com/title/tt0078389','NULL','NULL','NULL','NULL','NULL','英国','1978-11',
-'罗伯特·鲍威尔 大卫·沃纳 埃里克·波特 卡伦·多里斯 约翰·米尔斯','唐·夏普','悬疑 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrmyatlg.html',
-'NULL','NULL','4',1,'/static/movie/img/p2250521894.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9732,'1/2段情','https://movie.douban.com/subject/2332443/','7.1',135,
-'http://www.imdb.com/title/tt0113975','NULL','NULL','NULL','NULL','NULL','香港','1986-09-06',
-'叶童 许冠英 卢冠廷','陈国熹','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3057964.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9733,'杀手的决定','https://movie.douban.com/subject/4321313/','3.1',162,
-'http://www.imdb.com/title/tt1606162','NULL','NULL','NULL','NULL','NULL','美国','2010',
-'Nagesh Bhonsle Ghanshyam Garg Anant Jog','Deepak Bandhu','剧情 动作',
-'http://so.iqiyi.com/links/wv9kivRX33_g_Ymf8pA3qY4tkzXJ4wROecyh1nEvWiif_tcTqud5Kd6jkfZD4yDY',
-'NULL','NULL','4',1,'/static/movie/img/s4206031.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9734,'看谁在尖叫','https://movie.douban.com/subject/1302518/','6.3',305,
-'http://www.imdb.com/title/tt0119791','NULL','NULL','NULL','NULL','NULL','美国','1997',
-'伊万·麦克格雷格 帕特丽夏·阿奎特 乔什·布洛林 劳伦·格拉汉姆 尼克·诺特 布拉德·道里夫','奥勒·博内代尔','剧情 惊悚 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1271408607.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9735,'那山那人那狗','https://movie.douban.com/subject/1307766/','8.4',43951,
-'http://www.imdb.com/title/tt0210916','NULL','NULL','NULL','NULL','NULL','中国大陆','1999(中国大陆)',
-'滕汝骏 刘烨 陈好 赵秀丽','霍建起','剧情 家庭',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb9PxkimeEKg0F8TFMMe-k063WNacGUM65Sk4c9egxljh',
-'NULL','NULL','4',1,'/static/movie/img/p798810224.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9736,'飞虎雄心2之傲气比天高','https://movie.douban.com/subject/1788010/','6.2',181,
-'http://www.imdb.com/title/tt0183073','NULL','NULL','NULL','NULL','NULL','香港','1996-09-27',
-'陈晓东 张智霖 莫文蔚 吴辰君 张耀扬 谢天华 朱永棠 陈妙瑛 刘松仁 邱礼涛','刘伟强','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3952480.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9737,'福尔摩斯和蜘蛛女','https://movie.douban.com/subject/1806924/','7.2',79,
-'http://www.imdb.com/title/tt0037303','NULL','NULL','NULL','NULL','NULL','美国','1944-01-21',
-'巴斯尔·拉斯博 尼格尔·布鲁斯 盖尔·桑德加德','罗伊·威廉·尼尔','剧情 悬疑 惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ-gPOZv5SbNIkYH2Ibidkd',
-'NULL','NULL','4',1,'/static/movie/img/s3124030.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9738,'警花燕子','https://movie.douban.com/subject/1782223/','5.7',2845,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2006-03-29(中国大陆)',
-'汤唯 田雨 李佳璇','张菁','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGb3j6r23Wb7xt1bIGSurKNPstl0NklkAT4NOkppPSUnr',
-'NULL','NULL','4',1,'/static/movie/img/p2328611890.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9739,'三件事','https://movie.douban.com/subject/3316702/','7.8',91,
-'http://www.imdb.com/title/tt0120372','NULL','NULL','NULL','NULL','NULL','俄罗斯 / 乌克兰','1997-03-13',
-'Сергей Маковецкий Леонид Кушнир','Кира Муратова','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML7dnbMvJvmibn0HsmEJPrO',
-'NULL','NULL','4',1,'/static/movie/img/s8978901.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9740,'神鬼任务','https://movie.douban.com/subject/1296504/','5.8',317,
-'http://www.imdb.com/title/tt0160009','NULL','NULL','NULL','NULL','NULL','美国 / 加拿大','2000-08-25(美国)',
-'韦斯利·斯奈普斯 安妮·阿彻 莫里·柴金','克里斯丁·杜瓦','动作 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1641101.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9741,'龙门金剑','https://movie.douban.com/subject/1307771/','5.4',153,
-'http://www.imdb.com/title/tt0064374','NULL','NULL','NULL','NULL','NULL','香港','1969-10-15',
-'郑佩佩 高远 钱月笙 黄宗迅 高宝树','罗维','动作',
-'http://www.iqiyi.com/v_19rrmydgao.html',
-'NULL','NULL','4',1,'/static/movie/img/p2210256764.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9742,'一封明信片','https://movie.douban.com/subject/4853331/','7.3',464,
-'http://www.imdb.com/title/tt1641397','NULL','NULL','NULL','NULL','NULL','日本','2011-08-06(日本)',
-'丰川悦司 大竹忍 柄本明 大杉涟 六平直政 倍赏美津子 绘泽萠子 川上麻衣子 磨赤儿','新藤兼人','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1543646269.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9743,'面对死亡','https://movie.douban.com/subject/1806908/','7.5',91,
-'http://www.imdb.com/title/tt0036348','NULL','NULL','NULL','NULL','NULL','美国','1943-09-17',
-'巴斯尔·拉斯博 尼格尔·布鲁斯 丹尼斯·霍伊 Arthur Margetson','罗伊·威廉·尼尔','悬疑 惊悚 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1b1n9VlZPA6SbfCSg3BeJm1a_23jdLmu05ymyRPuK9aCqCSsWAxwthkTJFoAeLXt0Q==',
-'NULL','NULL','4',1,'/static/movie/img/s2874450.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9744,'战时丈夫','https://movie.douban.com/subject/1470795/','7.1',51,
-'http://www.imdb.com/title/tt0036891','NULL','NULL','NULL','NULL','NULL','美国','1944-08-09(美国)',
-'埃迪·布莱肯 埃拉·雷恩斯 雷蒙德·沃伯恩 威廉·德马雷斯特 富兰克林·潘伯恩 伊丽莎白·帕特森 乔治娅·凯恩','普莱斯顿·斯特奇斯','喜剧 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4131029.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9745,'宗方姐妹','https://movie.douban.com/subject/1299466/','8.0',742,
-'http://www.imdb.com/title/tt0042762','NULL','NULL','NULL','NULL','NULL','日本','1950-08-25',
-'田中绢代 高峰秀子 笠智众 Chishû Ryû 上原谦','小津安二郎','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIWbu-KT3u8axnThMCMSwDw',
-'NULL','NULL','4',1,'/static/movie/img/p2320354722.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9746,'阿司匹林','https://movie.douban.com/subject/1464548/','7.2',14840,
-'http://www.imdb.com/title/tt1522813','NULL','NULL','NULL','NULL','NULL','中国大陆','2006-02-08(中国大陆)',
-'曹俊 李娟 梅婷 宋宁 潘石屹 王千源 秦海璐 陶虹','鄢颇','爱情',
-'http://so.iqiyi.com/links/dBdbHSDc033EON4taM0pwASm3U2njotWUZQNy7yhHH6dB-aWruFoO2ClCwAN6_IZKY3bUyjV4ulnOLMUwLIJAseLmAkUeXe_hY7QOTNW2pSoWevpKWBxbTvnV286FQwR',
-'NULL','NULL','4',1,'/static/movie/img/p2361446824.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9747,'弗里达','https://movie.douban.com/subject/1291852/','8.7',25963,
-'http://www.imdb.com/title/tt0120679','NULL','NULL','NULL','NULL','NULL','美国 / 墨西哥 / 加拿大','2002-08-29(威尼斯电影节)',
-'萨尔玛·海耶克 阿尔弗雷德·莫里纳 米娅·麦斯特罗 艾什莉·贾德 安东尼奥·班德拉斯 杰弗里·拉什 爱德华·诺顿 瓦莱莉亚·戈利诺 迭戈·卢纳 Alejandro Usigli 萨弗蓉·布罗斯 Loló Navarro 罗杰·里斯 Fermín Martínez Amelia Zapata Roberto Medina Patricia Reyes Spíndola Margarita Sanz Omar Rodríguez 查维拉·巴尔加斯 Felipe Fulop','朱丽·泰莫','剧情 爱情 传记',
-'http://www.iqiyi.com/dianying/20130323/5a6d99cad062133e.html',
-'NULL','NULL','4',1,'/static/movie/img/p1323808729.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9748,'除却巫山不是云','https://movie.douban.com/subject/1297501/','7.5',44,
-'http://www.imdb.com/title/tt0039391','NULL','NULL','NULL','NULL','NULL','美国','1947-10-10',
-'琳达·达内尔 柯纳·王尔德 乔治·桑德斯','约翰·斯塔尔','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2303331994.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9749,'士兵之歌','https://movie.douban.com/subject/1295614/','9.0',3464,
-'http://www.imdb.com/title/tt0052600','NULL','NULL','NULL','NULL','NULL','苏联','1959-12-01(苏联)',
-'弗拉迪米尔·伊瓦绍夫 然娜·普罗霍连科 Antonina Maksimova 尼古拉·克留奇科夫','格利高利·丘赫莱依','剧情 爱情 战争',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8K_1qplmVuHomPWI_wErC4FTAPcOkXE-FW9XdnKJ5vc2',
-'magnet:?xt=urn:btih:983df96f8f4d7240fe55c5b911ed8e06e4762529','NULL','4',1,'/static/movie/img/p806332287.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9750,'武蔵野夫人','https://movie.douban.com/subject/1466790/','7.4',234,
-'http://www.imdb.com/title/tt0043825','NULL','NULL','NULL','NULL','NULL','日本','1951-09-14',
-'田中绢代 森雅之 轰夕起子','沟口健二','剧情',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8AjE_pjgrwo30uShwvURIkKjHXPVjwz9EJ4e89ajhCbc',
-'NULL','NULL','4',1,'/static/movie/img/p2407337442.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9751,'青春之杀人者','https://movie.douban.com/subject/1306201/','7.2',323,
-'http://www.imdb.com/title/tt0217038','NULL','NULL','NULL','NULL','NULL','日本','1976-10-23(日本)',
-'原田美枝子 市原悦子 白川和子 水谷丰','长谷川和彦','剧情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2403027987.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9752,'小街','https://movie.douban.com/subject/1483878/','8.1',1819,
-'http://www.imdb.com/title/tt5663040','NULL','NULL','NULL','NULL','NULL','中国大陆','1981',
-'张瑜 郭凯敏 杨延晋 邱世穗','杨延晋','剧情',
-'http://www.iqiyi.com/v_19rrny01zw.html',
-'NULL','NULL','4',1,'/static/movie/img/p2163184042.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9753,'合理怀疑','https://movie.douban.com/subject/19973990/','5.8',1534,
-'http://www.imdb.com/title/tt2304953','NULL','NULL','NULL','NULL','NULL','德国 / 加拿大','2014-01-09(丹麦)',
-'多米尼克·库珀 塞缪尔·杰克逊 格洛利亚·鲁本 瑞安·罗宾斯 艾琳·卡普拉克 迪伦·泰勒 Karl Thordarson Dean Harder Carson Nattrass John B. Lowe Philippe Brenninkmeyer Jessica Burleson Kelly Wolfman Steve Ratzlaff Jon Ljungberg','彼得·休伊特','惊悚 犯罪',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8BDhJW4urKgQIHz85YBHppmKCQmw3zCYE91OQpQWB4bLfbgGYF_lpwOVwak247JMjQ==',
-'magnet:?xt=urn:btih:6806c5fadc3cdd034bb60baa8829f1a3c2129b4f','NULL','4',1,'/static/movie/img/p2166831631.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9754,'雪地黄金犬','https://movie.douban.com/subject/1769033/','8.6',1391,
-'http://www.imdb.com/title/tt0103247','NULL','NULL','NULL','NULL','NULL','美国','1991-01-18',
-'Klaus Maria Brandauer Ethan Hawke Seymour Cassel Susan Hogan James Remar Bill Moseley','兰德尔·克莱泽','剧情 冒险',
-'http://www.iqiyi.com/v_19rrlfqpl0.html',
-'NULL','NULL','4',1,'/static/movie/img/p452601849.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9755,'曼德拉','https://movie.douban.com/subject/11614065/','6.9',2533,
-'http://www.imdb.com/title/tt2304771','NULL','NULL','NULL','NULL','NULL','英国 / 南非','2014-07-18(中国大陆)',
-'伊德里斯·艾尔巴 娜奥米·哈里斯 托尼·戈罗奇 利雅得·穆萨 祖拉妮·米基瓦 西莫·莫加瓦扎 法纳·莫科纳 塔皮洛·莫库纳 杰米·巴特利特 德翁·洛茨 特里·费托','贾斯汀·查德维克','剧情 传记',
-'NULL',
-'magnet:?xt=urn:btih:d101e3955fcaa2e5d9a7ee2b2a544f472e91442a','NULL','4',1,'/static/movie/img/p2189857545.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9756,'黄瓜','https://movie.douban.com/subject/3194109/','6.2',158,
-'http://www.imdb.com/title/tt3394734','NULL','NULL','NULL','NULL','NULL','中国','2008-10-14',
-'王在和 尚夏 蒋中伟 程媛媛 任朵朵','周耀武','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3439488.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9757,'夜·上海','https://movie.douban.com/subject/1788392/','6.6',27768,
-'http://www.imdb.com/title/tt0798443','NULL','NULL','NULL','NULL','NULL','中国大陆 / 日本','2007-06-26(中国大陆)',
-'赵薇 本木雅弘 郭品超 塚本高史 西田尚美 竹中直人 李灿森 冯瓅 牛犇 大冢忍 和田聪宏 张一白 张歆艺 张雨绮','张一白','剧情 爱情',
-'http://so.iqiyi.com/links/L5XMZhu_N5MzJGcg_xEAHfroqxAgu-tm6NeaJg57eBe4M6IzRjOXUlktsdPugxgO',
-'NULL','NULL','4',1,'/static/movie/img/p2167464437.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9758,'古曼','https://movie.douban.com/subject/25890969/','3.5',785,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-08-05(中国大陆)',
-'韩雪 唐宸禹 朱圣祎 张翔 张子蕾 荣益 梁登凯','张江南','惊悚',
-'http://www.iqiyi.com/v_19rrm3iwa0.html',
-'magnet:?xt=urn:btih:3907fe6826b7e1fbafece2dd3c09f292199a5a5e','NULL','4',1,'/static/movie/img/p2369098979.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9759,'海军陆战队员2','https://movie.douban.com/subject/3155959/','5.2',1523,
-'http://www.imdb.com/title/tt1266027','NULL','NULL','NULL','NULL','NULL','美国','2009-12-29',
-'小泰德·戴比斯 Lara Cox Josiah D. Lee Cameron Pearson Michael Rooker','Roel Reiné','暂时无数据',
-'http://so.iqiyi.com/links/bu1fv1oRRL5kcvvjEx3YliPwql3kLwl2WQyEbMKmzyn2Gqtz_5g-EyuUkQK_hBvt',
-'magnet:?xt=urn:btih:6332f256c665ba1592b3740d8feebbcd527367b8','NULL','4',1,'/static/movie/img/p1675035157.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9760,'莫斯科不相信眼泪','https://movie.douban.com/subject/1303066/','8.5',8189,
-'http://www.imdb.com/title/tt0079579','NULL','NULL','NULL','NULL','NULL','苏联','1980-02-11(苏联)',
-'薇拉·阿莲托娃 阿列克谢·巴塔洛夫 伊琳娜·穆拉维耶娃 罗莎·梁赞诺娃','弗拉基米尔·缅绍夫','剧情 喜剧 爱情',
-'http://www.iqiyi.com/v_19rrgzre8g.html',
-'NULL','NULL','4',1,'/static/movie/img/p1024160518.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9761,'驱魔任务','https://movie.douban.com/subject/1307234/','7.0',141,
-'http://www.imdb.com/title/tt0060794','NULL','NULL','NULL','NULL','NULL','意大利','1966-07-08',
-'吉雅科莫·罗西·斯图尔特 艾丽卡·布兰克 Fabienne Dali','马里奥·巴瓦','悬疑 恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJbnAXjvMPQD4S2fj4y-H6c',
-'NULL','NULL','4',1,'/static/movie/img/p2381641739.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9762,'初吻2','https://movie.douban.com/subject/1292864/','7.5',8355,
-'http://www.imdb.com/title/tt0083686','NULL','NULL','NULL','NULL','NULL','法国','1982-12-08',
-'苏菲·玛索 朗贝尔·维尔森 克劳德·布莱塞','克洛德·比诺托','喜剧 爱情',
-'http://www.iqiyi.com/v_19rrhd482w.html',
-'NULL','NULL','4',1,'/static/movie/img/p860227390.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9763,'沉底鳄','https://movie.douban.com/subject/1302098/','5.7',82,
-'http://www.imdb.com/title/tt0097054','NULL','NULL','NULL','NULL','NULL','香港','1989',
-'万梓良 任达华 吕良伟 大岛由加利 黎汉持 伊雷','章国明','动作',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8BDhJW4urKgQIHz85YBHppladSibVK0y_Ej55oodaJPc',
-'NULL','NULL','4',1,'/static/movie/img/p2151863179.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9764,'越战先锋3','https://movie.douban.com/subject/1304992/','6.4',827,
-'http://www.imdb.com/title/tt0094792','NULL','NULL','NULL','NULL','NULL','美国','1988-01-22',
-'Chuck Norris Aki Aleong Floyd Levine','Aaron Norris','动作',
-'http://www.iqiyi.com/v_19rrofrk28.html',
-'magnet:?xt=urn:btih:e495024861278b8cd0cd4b734c710d39289af6d2','NULL','4',1,'/static/movie/img/p1593633275.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9765,'卡塔琳的秘密','https://movie.douban.com/subject/3445580/','6.3',410,
-'http://www.imdb.com/title/tt1360875','NULL','NULL','NULL','NULL','NULL','罗马利亚 / 英国','2009-10-09',
-'Roberto Giacomello Attila Kozma Sebastian Marina Andrea Gavriliu Melinda Kántor Szilvia Majláth 拉茨洛·马特雷','彼得·斯崔克兰德','剧情 惊悚 犯罪',
-'http://so.iqiyi.com/links/bu1fv1oRRL5kcvvjEx3Ylqrgmw_WZLqYiQhrPyIJp5TWi9P4OdfuaVDtNFLYMaMC',
-'NULL','NULL','4',1,'/static/movie/img/p1285221887.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9766,'我所爱的一切','https://movie.douban.com/subject/2153495/','7.9',74,
-'http://www.imdb.com/title/tt0105775','NULL','NULL','NULL','NULL','NULL','Slovakia','1993-09-14',
-'Juraj Nvota 吉娜·贝尔曼 Zdena Studenková','Martin Šulík','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3971919.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9767,'地下','https://movie.douban.com/subject/1292206/','9.1',23444,
-'http://www.imdb.com/title/tt0114787','NULL','NULL','NULL','NULL','NULL','法国 / 南斯拉夫联盟共和国 / 德国','1995-04-01(南斯拉夫)',
-'马诺伊洛维奇 拉扎尔·里斯托夫斯基 米里亚娜·约科维奇 斯拉夫科·斯提马科 恩斯特·施托兹','埃米尔·库斯图里卡','剧情 喜剧 战争',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLltkkGkAwyl5TVq_90ylrJ',
-'magnet:?xt=urn:btih:a28f7bb7c970e7631011bd70f9432322db8d814f','NULL','4',1,'/static/movie/img/p1833776334.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9768,'猛龙怪客3','https://movie.douban.com/subject/1428459/','6.0',66,
-'http://www.imdb.com/title/tt0089003','NULL','NULL','NULL','NULL','NULL','美国','1985-11-01',
-'查尔斯·布朗森 德博拉·拉芬 埃德·劳特尔 马丁·鲍尔萨姆 Gavan O\'Herlihy Kirk Taylor 亚历克斯·温特 Tony Spiridakis 里科·罗斯 Tony Britts David Crean Nelson Fernandez Alan Cooke Bob Dysinger Topo Grajeda','迈克尔·温纳','剧情 动作 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2311348018.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9769,'消逝的星星','https://movie.douban.com/subject/1867941/','7.7',759,
-'http://www.imdb.com/title/tt0448131','NULL','NULL','NULL','NULL','NULL','意大利 / 法国 / 瑞士 / 新加坡','2006-09-08',
-'塞吉·卡斯特里图 周婷 Angelo Costabile','吉安尼·阿梅利奥','剧情',
-'http://www.iqiyi.com/v_19rrna8jgg.html',
-'NULL','NULL','4',1,'/static/movie/img/p1669150899.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9770,'八墓村','https://movie.douban.com/subject/1307750/','6.8',358,
-'http://www.imdb.com/title/tt0204745','NULL','NULL','NULL','NULL','NULL','日本','1977-10-29',
-'萩原健一 小川真由美 山崎努 夏八木勋 渥美清 藤冈琢也','野村芳太郎','悬疑 惊悚 恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI74CnrxbOOY5-WMvnLB8Ew',
-'NULL','NULL','4',1,'/static/movie/img/p2196252048.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9771,'天上的菊美','https://movie.douban.com/subject/25886523/','5.5',728,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-05-20(中国大陆)',
-'阿旺仁青 江疏影 陈瑾','苗月','剧情',
-'http://www.iqiyi.com/v_19rrlut698.html',
-'NULL','NULL','4',1,'/static/movie/img/p2183328801.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9772,'社会新闻的女人们','https://movie.douban.com/subject/26314384/','5.4',96,
-'http://www.imdb.com/title/tt4403326','NULL','NULL','NULL','NULL','NULL','日本','2015-02-20(日本)',
-'田中麗奈 原田美枝子 千葉雄大 林泰文 柏原収史 宅間孝行 西村雅彦 板谷由夏 寺島しのぶ','廣木隆一','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2224669455.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9773,'与墨索里尼喝茶','https://movie.douban.com/subject/1293942/','8.4',782,
-'http://www.imdb.com/title/tt0120857','NULL','NULL','NULL','NULL','NULL','意大利 / 英国','1999-03-26',
-'Cher Judi Dench Joan Plowright Maggie Smith Lily Tomlin Baird Wallace','佛朗哥·泽菲雷里','剧情 喜剧 战争',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1fJkHdgOEqKDx3fvoFUYSqt2sUVJkCHumnuxYwVCuKkwdJmyuYuDZPS6mE177XR1MynuR7HkQ6s0axOkOL__Qf8=',
-'NULL','NULL','4',1,'/static/movie/img/s2756737.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9774,'患难之交','https://movie.douban.com/subject/1293023/','6.6',151,
-'http://www.imdb.com/title/tt0082111','NULL','NULL','NULL','NULL','NULL','美国','1981-12-11',
-'杰克·莱蒙 沃尔特·马修 宝拉·普林蒂丝','比利·怀德','喜剧',
-'http://www.iqiyi.com/v_19rrn6zd7c.html',
-'NULL','NULL','4',1,'/static/movie/img/p2376797960.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9775,'旋风小子','https://movie.douban.com/subject/1408312/','7.8',72801,
-'http://www.imdb.com/title/tt0111765','NULL','NULL','NULL','NULL','NULL','香港 / 台湾','1994-04-15(香港)',
-'林志颖 郝劭文 释小龙 徐濠萦 徐若瑄 张震岳 秦沛','朱延平','喜剧',
-'http://www.iqiyi.com/dianying/20100928/n80731.html',
-'NULL','NULL','4',1,'/static/movie/img/p2352121968.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9776,'绿衣女子','https://movie.douban.com/subject/1806844/','7.1',57,
-'http://www.imdb.com/title/tt0038259','NULL','NULL','NULL','NULL','NULL','美国','1945-07-27',
-'巴斯尔·拉斯博 尼格尔·布鲁斯 希拉里·布鲁克 亨利·丹尼尔 Paul Cavanagh','罗伊·威廉·尼尔','剧情 悬疑 惊悚 恐怖 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1TRskRPqSkJzc2gchAM79tDTJr30xekiagDZpl-IzYwgHKLGSSddPxbdpej5W6SxCw==',
-'NULL','NULL','4',1,'/static/movie/img/s4019871.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9777,'骑劫地下铁','https://movie.douban.com/subject/1293385/','7.3',535,
-'http://www.imdb.com/title/tt0072251','NULL','NULL','NULL','NULL','NULL','美国','1974-10-02',
-'沃尔特·马修 罗伯特·肖 马丁·鲍尔萨姆 赫克托·埃里仲杜 Earl Hindman 詹姆斯·布罗德里克 Dick O\'Neill Lee Wallace Tom Pedi Beatrice Winde 杰瑞·斯蒂勒 Nathan George 鲁迪·邦德 肯尼思·麦克米伦 多莉丝·罗伯茨','约瑟夫·萨金特','剧情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1483479500.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9778,'少林豪侠传','https://movie.douban.com/subject/1299846/','6.1',559,
-'http://www.imdb.com/title/tt0107161','NULL','NULL','NULL','NULL','NULL','香港 / 中国大陆','1993',
-'王群 计春华 靳德茂 黄一山 邱建国 郭秀云','刘国伟','剧情 喜剧 动作 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2351998760.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9779,'鲜花','https://movie.douban.com/subject/4845397/','8.4',509,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2009-05-01(中国大陆)',
-'茹扎·达吾列提 法蒂哈·马力克 阿力木江·吐尔斯拜克','西尔扎提·亚合甫','剧情',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb1GaH6YVbf0LaM-B0OnWbYq6oDbAozKJnwWtu7UMU3Md',
-'NULL','NULL','4',1,'/static/movie/img/p484325087.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9780,'萨利姆鬼屋事件','https://movie.douban.com/subject/7054757/','3.3',98,
-'http://www.imdb.com/title/tt1912981','NULL','NULL','NULL','NULL','NULL','美国','2011-08-23',
-'Bill Oberst Jr. Courtney Abbiati Jenna Stone','肖恩·范·戴克','暂时无数据',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJJf3A22MAxAPhtbmBzBouL',
-'magnet:?xt=urn:btih:8b5f4429fd5afda774e938115f7cd785c473ce1f','NULL','4',1,'/static/movie/img/p2235139229.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9781,'反恐特警组','https://movie.douban.com/subject/1307384/','6.6',12923,
-'http://www.imdb.com/title/tt0257076','NULL','NULL','NULL','NULL','NULL','美国','2004-04-23(中国大陆)',
-'塞缪尔·杰克逊 科林·法瑞尔 米歇尔·罗德里格兹 LL Cool J 乔西·查尔斯 杰瑞米·雷纳 布莱恩·范·霍尔特 奥利维埃·马丁内斯 雷格·E.凯蒂 拉里·波恩德克斯特 佩吉·肯尼迪 多米尼克·隆巴多兹 詹姆斯·杜蒙特 丹尼斯·阿尔恩特','克拉克·约翰森','动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrk3yz6k.html',
-'magnet:?xt=urn:btih:174a3a07ce89854f6252d631f52eda2451169477','NULL','4',1,'/static/movie/img/p1640322983.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9782,'战地新娘','https://movie.douban.com/subject/1293502/','7.2',169,
-'http://www.imdb.com/title/tt0041498','NULL','NULL','NULL','NULL','NULL','美国','1949-08-19(美国)',
-'加里·格兰特 安·谢里登 Marion Marshall','霍华德·霍克斯','喜剧 爱情 战争',
-'http://www.iqiyi.com/v_19rrmydjbk.html',
-'NULL','NULL','4',1,'/static/movie/img/s6997199.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9783,'恐怖笔记','https://movie.douban.com/subject/25953613/','2.6',218,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-11-04(中国大陆)',
-'赵泳鑫 檀健次 冯家妹 潘春春','闵晋涛','悬疑 恐怖',
-'http://www.iqiyi.com/v_19rra5ga8g.html',
-'NULL','NULL','4',1,'/static/movie/img/p2393751703.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9784,'灰姑娘游戏','https://movie.douban.com/subject/26874508/','4.1',133,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-12-21',
-'山谷花纯 吉田明加 春川芽生 佐々木萌詠 清水爱理 阿知波妃皇 其原有沙 水木彩也子 凛青 湯浅菜月 西岡璃南 澤井まどか 長田彩花 骏河太郎','加納隼','剧情 悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2384248775.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9785,'魔鬼名单','https://movie.douban.com/subject/2374985/','3.5',240,
-'http://www.imdb.com/title/tt0762115','NULL','NULL','NULL','NULL','NULL','美国','2007-08-02',
-'马尔科姆·麦克道威尔 Chuck Carrington 海莉·伯顿 帕特·亨格尔','Gary Wheeler','惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2844073.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9786,'秋日和','https://movie.douban.com/subject/1401843/','8.5',3481,
-'http://www.imdb.com/title/tt0053579','NULL','NULL','NULL','NULL','NULL','日本','1960-11-13(日本)',
-'原节子 司叶子 冈田茉莉子 笠智众 佐田启二 桑野美雪 三上真一郎 中村伸郎 三宅邦子 泽村贞子','小津安二郎','剧情 家庭',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKjt4uQwE4ehGOfB261Vx8r',
-'NULL','NULL','4',1,'/static/movie/img/p2315463903.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9787,'德意志零年','https://movie.douban.com/subject/1293153/','8.3',2110,
-'http://www.imdb.com/title/tt0039417','NULL','NULL','NULL','NULL','NULL','意大利','1948-12-01',
-'Edmund Moeschke Ernst Pittschau Ingetraud Hinze','罗伯托·罗塞利尼','剧情',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMznwhvlxSK5JWw1iawnAO4rrbl8CblsaGOmN-IQwzNsUP',
-'NULL','NULL','4',1,'/static/movie/img/p2358015490.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9788,'爱情与遗产','https://movie.douban.com/subject/1483470/','6.6',69,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1980',
-'张玉玉 袁宗福 周锦堂','颜学恕','暂时无数据',
-'http://www.iqiyi.com/v_19rrn612co.html',
-'NULL','NULL','4',1,'/static/movie/img/p2223086900.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9789,'永恒和一日','https://movie.douban.com/subject/1293455/','8.9',12219,
-'http://www.imdb.com/title/tt0156794','NULL','NULL','NULL','NULL','NULL','法国 / 意大利 / 希腊 / 德国','1998-05-23',
-'布鲁诺·甘茨 伊莎贝拉·雷纳德 法布里齐奥·本蒂沃利奥 Achileas Skevis Despina Bebedelli','西奥·安哲罗普洛斯','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1391839595.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9790,'鄂尔多斯骑士','https://movie.douban.com/subject/25732105/','5.5',125,
-'http://www.imdb.com/title/tt4653896','NULL','NULL','NULL','NULL','NULL','中国大陆','2015-01-28(鹿特丹电影节)',
-'何雨繁 干迪格','禾家','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2272257024.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9791,'家族情仇','https://movie.douban.com/subject/1297805/','6.5',355,
-'http://www.imdb.com/title/tt0138946','NULL','NULL','NULL','NULL','NULL','美国','2000-04-27',
-'马克·沃尔伯格 杰昆·菲尼克斯 查理兹·塞隆 詹姆斯·肯恩 艾伦·伯斯汀 费·唐纳薇 Steve Lawrence Andy Davoli','詹姆士·格雷','剧情 惊悚 犯罪',
-'http://www.iqiyi.com/dianying/20130403/30ed8b05cb84bd25.html',
-'NULL','NULL','4',1,'/static/movie/img/s4611711.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9792,'玻璃之城','https://movie.douban.com/subject/1303590/','7.9',48878,
-'http://www.imdb.com/title/tt0179110','NULL','NULL','NULL','NULL','NULL','香港','1998-10-28(香港)',
-'黎明 舒淇 吴彦祖 张燊悦 谷德昭 陈奕迅 金燕玲','张婉婷','爱情 历史',
-'http://so.iqiyi.com/links/pTDC7TM4nZL7qEH4QP2T9IUCiLLV69HOO5SCD6DNwMcc4I4je4iyWKvgxz-ruAyfckLiZjjZZq4D6b3-PHObMoGnKxfAsWIpaZLPCx_9FEg=',
-'NULL','NULL','4',1,'/static/movie/img/p791235992.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9793,'英雄虎胆','https://movie.douban.com/subject/1493578/','7.8',966,
-'http://www.imdb.com/title/tt6418780','NULL','NULL','NULL','NULL','NULL','中国大陆','1958',
-'王晓棠 于洋 张勇手 方辉 胡敏英','严寄洲','战争',
-'http://www.iqiyi.com/v_19rrn6q8so.html',
-'NULL','NULL','4',1,'/static/movie/img/p2323625313.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9794,'春天情书','https://movie.douban.com/subject/1858233/','8.4',3351,
-'http://www.imdb.com/title/tt0115431','NULL','NULL','NULL','NULL','NULL','日本','1996-03-09(日本)',
-'深津绘里 内野圣阳 户田菜穗 宫泽和史','森田芳光','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ7oYEiEZw2k10FuoxklsRn',
-'NULL','NULL','4',1,'/static/movie/img/p2327619627.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9795,'皮肤之下','https://movie.douban.com/subject/1437444/','7.2',95,
-'http://www.imdb.com/title/tt0124185','NULL','NULL','NULL','NULL','NULL','英国','1997-11-28',
-'萨曼莎·莫顿 Claire Rushbrook 丽塔·塔欣厄姆','Carine Adler','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1454102.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9796,'我们的幸福时光','https://movie.douban.com/subject/1940094/','8.1',19548,
-'http://www.imdb.com/title/tt0870967','NULL','NULL','NULL','NULL','NULL','韩国','2006-09-14(韩国)',
-'李奈映 姜栋元 姜信日 金真赫 吴光禄 尹汝贞 李宰久','宋海星','爱情',
-'http://www.iqiyi.com/v_19rrn184bs.html',
-'NULL','NULL','4',1,'/static/movie/img/p472182473.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9797,'请将我遗忘','https://movie.douban.com/subject/2338323/','6.0',1141,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2007-11-23(中国大陆)',
-'刘牧 国歌 张子晨 刘姝含 李东昌','谢鸣晓','剧情 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2796441.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9798,'红爪子','https://movie.douban.com/subject/1807010/','7.0',70,
-'http://www.imdb.com/title/tt0037248','NULL','NULL','NULL','NULL','NULL','美国','1944',
-'巴斯尔·拉斯博 尼格尔·布鲁斯 Paul Cavanagh 迈尔斯·曼德','罗伊·威廉·尼尔','悬疑 惊悚 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1eNpjF7e1MnL0SZ2GCof7jzNA_8E6UHTxBd8pG4V5jltukxlxT9ecmQhCpzJ_9dw9A==',
-'NULL','NULL','4',1,'/static/movie/img/s2874476.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9799,'好莱坞庄园','https://movie.douban.com/subject/1830411/','6.5',1926,
-'http://www.imdb.com/title/tt0427969','NULL','NULL','NULL','NULL','NULL','美国','2006-09-08',
-'艾德里安·布洛迪 戴安·琳恩 本·阿弗莱克 鲍勃·霍斯金斯 罗宾·汤尼 凯瑟琳·罗伯特森 罗伊丝·史密斯 Phillip MacKenzie 拉里·塞达尔 Eric Kaldor 卡洛琳·达芙娜 Kevin Hare 莫莉·帕克 扎奇·米尔斯 尼尔·克容','艾伦·考特勒','剧情 悬疑 惊悚 传记 历史 犯罪',
-'http://www.iqiyi.com/dianying/20130323/0a015793c49566b0.html',
-'NULL','NULL','4',1,'/static/movie/img/p1276475407.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9800,'二嫫','https://movie.douban.com/subject/1417847/','8.1',3063,
-'http://www.imdb.com/title/tt0109738','NULL','NULL','NULL','NULL','NULL','中国大陆 / 香港','1994-08(洛迦诺电影节)',
-'艾丽娅 刘佩琦 戈治均 张海燕','周晓文','剧情',
-'http://so.iqiyi.com/links/bu1fv1oRRL5kcvvjEx3Ylg53dlsv3aTLTe-d00txDsVXJxZrwiAmPDAp2s2HcgFa',
-'NULL','NULL','4',1,'/static/movie/img/p2460798496.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9801,'雇佣兵','https://movie.douban.com/subject/5150156/','4.2',2354,
-'http://www.imdb.com/title/tt1678051','NULL','NULL','NULL','NULL','NULL','英国','2012-08-03(美国)',
-'肖恩·宾 文·瑞姆斯 多米尼克·莫纳汉 克里斯蒂安·史莱特 詹姆斯·克伦威尔 科尔姆·米尼 弗莱迪·罗德里格兹 瑞恩·唐洛胡 查理·比尤利','Maxim Korostyshevsky','动作 冒险',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML3B8d43v1vzM-VwBmhc2-s',
-'NULL','NULL','4',1,'/static/movie/img/p2263531249.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9802,'铁血精英','https://movie.douban.com/subject/3775167/','6.5',21268,
-'http://www.imdb.com/title/tt1448755','NULL','NULL','NULL','NULL','NULL','美国 / 澳大利亚','2012-02-17(中国大陆)',
-'杰森·斯坦森 克里夫·欧文 罗伯特·德尼罗 多米尼克·珀塞尔 阿登·杨 伊冯娜·斯特拉霍夫斯基 本·门德尔森 阿德沃尔·阿吉纽依-艾格拜吉','加里·麦肯德莱','动作 惊悚',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Xa9C_rupEkYsI-dN17rWJc6Ukqa92DLrbn80ACsQIWeXodqXklvmH14iIzuQc5Kng==',
-'magnet:?xt=urn:btih:8e3037d81f962b1b5005f921621d768a1e1984a4','NULL','4',1,'/static/movie/img/p1084402027.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9803,'百年情书','https://movie.douban.com/subject/5915794/','6.5',2457,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2011-05-13(中国大陆)',
-'李雪健 蒋梦婕 王柏杰 高一童 廖亮 姚奕辰 史力嘉 马率','金舸','传记',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8KlmjO5R8zHoSvXgIwRSc-3KWUrimonrF4GinqQdFRO9',
-'NULL','NULL','4',1,'/static/movie/img/p2173332524.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9804,'天妖','https://movie.douban.com/subject/1297349/','5.3',62,
-'http://www.imdb.com/title/tt0096344','NULL','NULL','NULL','NULL','NULL','美国','1988-09(意大利)',
-'Charles King Mark Kinsey Stephenson Alexandra Durrell','Jean-Paul Ouellette','恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKzc5V1DSCmuiajcUNnqwFq',
-'NULL','NULL','4',1,'/static/movie/img/s6960198.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9805,'亡命大煞星','https://movie.douban.com/subject/1298905/','8.1',770,
-'http://www.imdb.com/title/tt0068638','NULL','NULL','NULL','NULL','NULL','美国','1972-12-13',
-'史蒂夫·麦奎因 艾丽·麦古奥 本·约翰逊','萨姆·佩金帕','动作 惊悚 犯罪 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2151356126.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9806,'鬼片王之再现凶榜','https://movie.douban.com/subject/2003848/','5.2',404,
-'http://www.imdb.com/title/tt0289966','NULL','NULL','NULL','NULL','NULL','香港','1999-11-18',
-'王敏德 雷宇扬 张文慈','刘孝伟','恐怖',
-'http://www.iqiyi.com/v_19rrn9k0a4.html',
-'NULL','NULL','4',1,'/static/movie/img/p2251229319.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9807,'零点爆破','https://movie.douban.com/subject/1295514/','6.7',391,
-'http://www.imdb.com/title/tt0109303','NULL','NULL','NULL','NULL','NULL','美国','1994-07-01',
-'杰夫·布里吉斯 汤米·李·琼斯 福里斯特·惠特克 苏茜·爱米斯 劳埃德·布里奇斯','Stephen Hopkins','动作 惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLk3toZsjyQZkyhJuDDOJQh',
-'NULL','NULL','4',1,'/static/movie/img/p2453659329.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9808,'站长夫人','https://movie.douban.com/subject/1760013/','7.1',116,
-'http://www.imdb.com/title/tt0075776','NULL','NULL','NULL','NULL','NULL','德国','1977-07-31',
-'伊丽莎白·特里斯纳 库尔特·拉博 乌多·奇尔','赖纳·维尔纳·法斯宾德','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1631479.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9809,'凶手就在门外','https://movie.douban.com/subject/1294197/','6.7',1607,
-'http://www.imdb.com/title/tt0112722','NULL','NULL','NULL','NULL','NULL','美国','1995-10-27',
-'西格妮·韦弗 霍利·亨特 德蒙特·莫罗尼 威廉·麦克纳马拉 小哈里·康尼克 J·E·弗里曼 威尔·帕顿 约翰·罗斯曼 Shannon O\'Hurley Bob Greene Tony Haney Danny Kovacs Tahmus Rounds Scott DeVenney David Michael Silverman','乔恩·阿米尔','悬疑 惊悚 犯罪',
-'http://so.iqiyi.com/links/Y1t4eAa0mLAVDBoVzSYwMHwrA_YUz2-50MCpUk1-uXzven6GHnCi5iOR98L6mJ1xPGITaTeFrmkgyG_ffDmUTA==',
-'NULL','NULL','4',1,'/static/movie/img/p1166507066.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9810,'新月魅影','https://movie.douban.com/subject/7052403/','2.8',396,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2011-12-20(中国大陆)',
-'陈龙 黄俊淇 孙佺 杨旸 罗梓瑄 秦子涵 钟弦 张佳楠','黄柏基','悬疑 惊悚 恐怖',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8HbnYfKWVm1yONW6uk0jqOSSWDUu1cmYqM3px5cU_CBW',
-'NULL','NULL','4',1,'/static/movie/img/p1341837216.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9811,'播种情人','https://movie.douban.com/subject/1300073/','6.5',375,
-'http://www.imdb.com/title/tt0109311','NULL','NULL','NULL','NULL','NULL','香港','0000-00-00',
-'袁咏仪 刘青云 黄子华','张志成','剧情 喜剧',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJXBMRfVfOi2_jP0dbu5tqM',
-'NULL','NULL','4',1,'/static/movie/img/s3735587.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9812,'恶灵岛','https://movie.douban.com/subject/2157828/','7.0',49,
-'http://www.imdb.com/title/tt0081995','NULL','NULL','NULL','NULL','NULL','日本','1981-10-03',
-'鹿贺丈史 室田日出男 古尾谷雅人','筱田正浩','剧情 悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2435026466.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9813,'新十字街头','https://movie.douban.com/subject/1305992/','5.7',139,
-'http://www.imdb.com/title/tt0259742','NULL','NULL','NULL','NULL','NULL','台湾 / 中国大陆','2001-03-01',
-'刘若英 赵劲 俞飞鸿 艾伦·锡克 冯奇 黄奕 凯迪·考科思 马特·库斯奇','蒋晓真','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Q_h-kd4fYUocNNgQ9EB7Z0kcas7kadZ1snMPlvonDQAD3MpoJWUw-pwBxfgUm1gMw==',
-'NULL','NULL','4',1,'/static/movie/img/s1497726.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9814,'幽冥时代','https://movie.douban.com/subject/1299311/','6.7',119,
-'http://www.imdb.com/title/tt0114609','NULL','NULL','NULL','NULL','NULL','美国','1995-05-24',
-'Clarence Williams III Joe Torry De\'aundre Bonds David Alan Grier','拉斯提 坎蒂耶夫 (Rusty Cundieff)','惊悚 恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIfRnyB_5iGaas_390zHo70',
-'NULL','NULL','4',1,'/static/movie/img/p2327746571.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9815,'尸坑','https://movie.douban.com/subject/2241370/','6.3',83,
-'http://www.imdb.com/title/tt0122037','NULL','NULL','NULL','NULL','NULL','美国','1989',
-'Jeremy Slate Cheryl Lawson Stephen Gregory Foster','Brett Leonard','恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMK7j5uKq-G0W0JsVAqVyN1_',
-'NULL','NULL','4',1,'/static/movie/img/p2176240059.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9816,'柳暗花明','https://movie.douban.com/subject/5954958/','6.9',578,
-'http://www.imdb.com/title/tt1754367','NULL','NULL','NULL','NULL','NULL','墨西哥 / 法国 / 荷兰 / 德国','2012-05(戛纳电影节)',
-'Nathalia Acevedo Adolfo Jiménez Castro Willebaldo Torres Eleazar Reygadas Rut Reygadas','卡洛斯·雷加达斯','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGRxxSdbJAxiNidTXHDiWBa4rK67-Pnb8zOvztlvdaLhg',
-'magnet:?xt=urn:btih:79029d918b0c04b013e5fe4f388be356fe0c6ddd','NULL','4',1,'/static/movie/img/p2198005965.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9817,'笔仙惊魂3','https://movie.douban.com/subject/25828701/','3.2',3349,
-'http://www.imdb.com/title/tt4117310','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-04-04(中国大陆)',
-'余心恬 郭艳 郭鑫 郎鹏 付曼 薛斐 吴云飞 嘉熙 卡卡 郑惠馨','关尔','悬疑 惊悚 恐怖',
-'http://www.iqiyi.com/v_19rrhr8d80.html',
-'magnet:?xt=urn:btih:2dc0b475e41fd3e134c105fe57703b40679777d5','NULL','4',1,'/static/movie/img/p2176186826.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9818,'梦边缘','https://movie.douban.com/subject/7062598/','8.2',595,
-'NULL','NULL','NULL','NULL','NULL','NULL','香港','1988',
-'周星驰 李成昌 湘漪 陈有后 麦皓为','李力持','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s7617093.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9819,'求婚妙术','https://movie.douban.com/subject/1303324/','7.4',36,
-'http://www.imdb.com/title/tt0067482','NULL','NULL','NULL','NULL','NULL','美国','1971-03-11',
-'沃尔特·马修 伊莲·梅','伊莲·梅','喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2403581232.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9820,'大地飞鹰','https://movie.douban.com/subject/3406784/','7.4',50,
-'http://www.imdb.com/title/tt1851887','NULL','NULL','NULL','NULL','NULL','台湾','1978-07-22(台湾)',
-'凌云 王冠雄 柯佑民 石峰 夏玲玲 藍毓莉 黃香蓮 張沖 魯平 張翔 李湘','歐陽俊','武侠 古装',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8AjE_pjgrwo30uShwvURIkLAhzo7eZ4l5J0kOKbCmLEF',
-'NULL','NULL','4',1,'/static/movie/img/p2164421397.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9821,'猛鬼街3','https://movie.douban.com/subject/1298214/','6.8',2644,
-'http://www.imdb.com/title/tt0093629','NULL','NULL','NULL','NULL','NULL','美国','1987-02-27',
-'希瑟·兰根坎普 克雷格·沃森 帕特丽夏·阿奎特 罗伯特·英格兰德 Ken Sagoes 罗德尼·伊士曼 詹妮弗·鲁宾 布拉德利·格雷格 Ira Heiden 劳伦斯·菲什伯恩 Penelope Sudrow 约翰·萨克松 普里西拉·珀伊特 Clayton Landey 布鲁克·邦迪','查克·拉塞尔','惊悚 恐怖 奇幻',
-'http://www.iqiyi.com/v_19rr9wu2j0.html',
-'magnet:?xt=urn:btih:21f4da286249f0ee1dc80adba3c49eb2130ee951','NULL','4',1,'/static/movie/img/p1267599481.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9822,'闺蜜大作战','https://movie.douban.com/subject/4133259/','4.5',997,
-'http://www.imdb.com/title/tt1605724','NULL','NULL','NULL','NULL','NULL','韩国','2009-12-17(韩国)',
-'裴秀彬 姜惠贞 韩彩英 许怡才','姜锡范','喜剧',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1VtaNIe0A3NODeIbRcMpCDQ1Mg5PBt4APTedBL7DsacxGJqCHDJsIG1gMb3Phdlr8g==',
-'NULL','NULL','4',1,'/static/movie/img/p509031947.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9823,'太阳背后','https://movie.douban.com/subject/1296882/','8.0',285,
-'http://www.imdb.com/title/tt0291003','NULL','NULL','NULL','NULL','NULL','巴西 / 法国 / 瑞士','2002-09-12',
-'乔斯·多蒙特 罗德里格·桑托罗 Rita Assemany Ravi Ramos Lacerda Luiz Carlos Vasconcelos Flavia Marco Antonio','沃尔特·塞勒斯','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2363708542.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9824,'日出日落','https://movie.douban.com/subject/1946960/','6.8',218,
-'http://www.imdb.com/title/tt0856105','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'巍子 孙逸飞 邵兵','滕文骥','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGelVcbvGPT2MsFA5lF3jTuJoo1vaksK0YDnvL3QzR23O',
-'NULL','NULL','4',1,'/static/movie/img/s1954366.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9825,'流氓千王','https://movie.douban.com/subject/2136180/','5.7',162,
-'http://www.imdb.com/title/tt0192257','NULL','NULL','NULL','NULL','NULL','香港','1981-06-18',
-'李修贤 宗华 陈萍 艾飞 郭佑华','程刚','剧情 动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLxZiwrdv2IjvTEyvv1_IXw',
-'NULL','NULL','4',1,'/static/movie/img/p1958096767.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9826,'孩子王','https://movie.douban.com/subject/1293391/','7.9',6047,
-'http://www.imdb.com/title/tt0093133','NULL','NULL','NULL','NULL','NULL','中国大陆','1987',
-'谢园 杨学文 陈绍华','陈凯歌','剧情',
-'http://www.iqiyi.com/v_19rrj5wp7s.html',
-'NULL','NULL','4',1,'/static/movie/img/p1932389614.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9827,'玉面飞狐','https://movie.douban.com/subject/2351761/','6.3',83,
-'http://www.imdb.com/title/tt0201353','NULL','NULL','NULL','NULL','NULL','香港','1968-03-13',
-'何莉莉 虞慧 张翼 樊梅生 黄宗迅','徐增宏','暂时无数据',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLb80vTtYohbQ0PWH_d82s3',
-'NULL','NULL','4',1,'/static/movie/img/p2367995831.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9828,'钟馗娘子','https://movie.douban.com/subject/1307050/','6.2',229,
-'http://www.imdb.com/title/tt0067322','NULL','NULL','NULL','NULL','NULL','香港','1971-01-22(香港)',
-'郑佩佩 洪金宝 罗烈 施思','何梦华','武侠',
-'http://www.iqiyi.com/v_19rrmyd570.html',
-'NULL','NULL','4',1,'/static/movie/img/s3082430.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9829,'春妇传','https://movie.douban.com/subject/1429146/','7.7',441,
-'http://www.imdb.com/title/tt0059715','NULL','NULL','NULL','NULL','NULL','日本','1965-02-28',
-'野川由美子 川地民夫 长弘 江角英明 藤冈重庆','铃木清顺','剧情 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2211497451.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9830,'爱情折扣','https://movie.douban.com/subject/6057756/','5.4',242,
-'http://www.imdb.com/title/tt1885298','NULL','NULL','NULL','NULL','NULL','新加坡','2010',
-'王传一 陈靓瑄 张玉华 苏才忠','李天仁','爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKaYbIiGaQq6xjHetbPohh4',
-'NULL','NULL','4',1,'/static/movie/img/p921323950.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9831,'最后生死恋','https://movie.douban.com/subject/1301405/','7.1',105,
-'http://www.imdb.com/title/tt0116827','NULL','NULL','NULL','NULL','NULL','美国','1996-05-03',
-'莎朗·斯通 罗伯·莫洛 兰迪·奎德 彼得·盖勒 简妮·布鲁克','布鲁斯·贝尔斯福德','剧情 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2245627190.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9832,'十二回合','https://movie.douban.com/subject/3011355/','6.1',3363,
-'http://www.imdb.com/title/tt1160368','NULL','NULL','NULL','NULL','NULL','美国','2009-03-27',
-'约翰·塞纳 艾丹·吉伦 艾什丽·斯科特 史蒂夫·哈里斯 布莱恩·J·怀特','雷尼·哈林','剧情 犯罪',
-'http://www.iqiyi.com/v_19rrho3da0.html',
-'NULL','NULL','4',1,'/static/movie/img/p2267340667.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9833,'李四光','https://movie.douban.com/subject/1464571/','6.9',210,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'孙道临 王铁成 俞平 冯奇 文卜东','凌子风','剧情 传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2223061967.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9834,'花落花开','https://movie.douban.com/subject/3173635/','8.5',12927,
-'http://www.imdb.com/title/tt1048171','NULL','NULL','NULL','NULL','NULL','法国 / 比利时','2008-09-07',
-'友兰达·梦露 乌尔里奇·图克尔 Anne Bennent Geneviève Mnich Adélaïde Leroux 尼克·罗格勒 弗朗索瓦·勒布伦 西格·拉维艾尔','马丁·波渥斯','剧情 传记 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p513302781.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9835,'达·芬奇密码','https://movie.douban.com/subject/1329950/','7.2',138405,
-'http://www.imdb.com/title/tt0382625','NULL','NULL','NULL','NULL','NULL','美国 / 马耳他 / 法国 / 英国','2006-05-19(美国/中国大陆)',
-'汤姆·汉克斯 奥黛丽·塔图 伊恩·麦克莱恩 让·雷诺 保罗·贝坦尼','朗·霍华德','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrk3qq60.html',
-'magnet:?xt=urn:btih:fabd7e59b64ff10db4c490529bf10851b6dc8fe7','NULL','4',1,'/static/movie/img/p453938764.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9836,'在七月','https://movie.douban.com/subject/1298331/','8.1',4428,
-'http://www.imdb.com/title/tt0177858','NULL','NULL','NULL','NULL','NULL','德国','2000-08-24',
-'莫里茨·布莱布特罗伊 克里斯蒂安娜·保罗 Mehmet Kurtulus 波热尔·尤内尔','法提赫·阿金','喜剧 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIeIKfzjfyKJ76HOcmsycW-',
-'NULL','NULL','4',1,'/static/movie/img/p1237873785.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9837,'黑侠VS赌圣','https://movie.douban.com/subject/4603516/','3.8',81,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2002-01-01',
-'释小龙 林威 陈明君 周洲 冯克安 史洪波 释行宇 张炎炎 张倩 麦伟坚','李炳光','剧情 喜剧 动作',
-'http://so.iqiyi.com/links/99o4kBuRLFk8iR4Zenvqf2SThPRQXEM2qiMWv_XqP4iZDrhJfB107KD05x8YevyFfRS0sAsmIt7qBNEi_FMRsQ==',
-'NULL','NULL','4',1,'/static/movie/img/s4214861.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9838,'智勇和尚','https://movie.douban.com/subject/2127114/','6.1',105,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆 / 台湾','0000-00-00',
-'陈玉莲 午马 徐承义 徐忠信','张鹏翼','武侠 古装',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqf5ouyR75hM2HggXxge2j9tcnKhIvMuxe_OeDQCG0Yqk',
-'NULL','NULL','4',1,'/static/movie/img/s2697937.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9839,'米尼','https://movie.douban.com/subject/1778993/','5.9',3273,
-'http://www.imdb.com/title/tt0788135','NULL','NULL','NULL','NULL','NULL','中国','2007-08-28',
-'刘烨 李心洁 张耀扬','陈苗','爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1dUBbZc6SowXFi6an-gWJCzzJwAJm2XKcj-N0rpkMMtepz1tPkggVAP-BgU2BYezpQ==',
-'NULL','NULL','4',1,'/static/movie/img/p2328662426.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9840,'转弯','https://movie.douban.com/subject/5157013/','6.0',60,
-'http://www.imdb.com/title/tt1592576','NULL','NULL','NULL','NULL','NULL','澳大利亚','2011-07-25(墨尔本国际电影节)',
-'杰森·克拉科 艾玛·布斯 大卫·莱昂斯','Craig Lahiff','悬疑 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p906971651.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9841,'破碎的拥抱','https://movie.douban.com/subject/2059321/','7.4',10869,
-'http://www.imdb.com/title/tt0913425','NULL','NULL','NULL','NULL','NULL','西班牙','2010-12-28(中国大陆)',
-'佩内洛佩·克鲁斯 路易斯·奥马 布兰卡·波蒂洛 何塞·路易斯·戈麦兹 鲁本·奥钱蒂诺 塔马·诺瓦斯','佩德罗·阿莫多瓦','剧情 爱情 惊悚',
-'NULL',
-'magnet:?xt=urn:btih:1645057c37be997f98c7b4eb7b9c59276df67919','NULL','4',1,'/static/movie/img/p788371623.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9842,'林海雪原','https://movie.douban.com/subject/1916282/','7.6',1790,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'张勇手 王润身 梁志鹏','刘沛然','动作 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2323677146.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9843,'地铁惊魂','https://movie.douban.com/subject/2974273/','6.6',26469,
-'http://www.imdb.com/title/tt1111422','NULL','NULL','NULL','NULL','NULL','美国 / 英国','2009-06-12(美国)',
-'丹泽尔·华盛顿 约翰·特拉沃尔塔 约翰·特托罗 维克多·高佳卡 路易斯·古兹曼 詹姆斯·甘多菲尼','托尼·斯科特','剧情 动作 犯罪',
-'http://www.iqiyi.com/v_19rrifwkm3.html',
-'NULL','NULL','4',1,'/static/movie/img/p620142513.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9844,'恋爱戏曲','https://movie.douban.com/subject/4718361/','5.7',578,
-'http://www.imdb.com/title/tt1674196','NULL','NULL','NULL','NULL','NULL','日本','2010-09-25(日本)',
-'深田恭子 椎名桔平 塚本高史 中村雅俊 清水美沙 西村雅彦 井上順','鴻上尚史','喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p656531685.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9845,'恐怖屋','https://movie.douban.com/subject/1807028/','8.0',70,
-'http://www.imdb.com/title/tt0037794','NULL','NULL','NULL','NULL','NULL','美国','1945-03-16',
-'巴斯尔·拉斯博 尼格尔·布鲁斯 Aubrey Mather 丹尼斯·霍伊 Paul Cavanagh 福尔摩斯·赫伯特 哈利·考丁 加文缪尔 David Clyde','罗伊·威廉·尼尔','悬疑 惊悚 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1dur42HD3nD6LDZyXEpghblBbSB646_EaQCQnZrGw2f50O_Fl5yGDUB32XVro4BO0Q==',
-'NULL','NULL','4',1,'/static/movie/img/s4376251.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9846,'鬼追人2','https://movie.douban.com/subject/1472800/','7.1',189,
-'http://www.imdb.com/title/tt0095863','NULL','NULL','NULL','NULL','NULL','美国','1988-07-08',
-'Angus Scrimm Reggie Bannister','唐·柯斯卡莱利','动作 科幻 惊悚 恐怖 奇幻',
-'NULL',
-'magnet:?xt=urn:btih:552eeb305a70522e6551c40dd390510ad953b7b0','NULL','4',1,'/static/movie/img/p2329272375.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9847,'九纹龙史进之替天行道','https://movie.douban.com/subject/26789956/','5.5',79,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016',
-'朱晓辉 曹帅 张德晖 董婕','刘信义','剧情 动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2387203666.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9848,'剃刀边缘','https://movie.douban.com/subject/1807067/','6.8',69,
-'http://www.imdb.com/title/tt0038494','NULL','NULL','NULL','NULL','NULL','美国','1946-06-07',
-'巴斯尔·拉斯博 尼格尔·布鲁斯','罗伊·威廉·尼尔','剧情 悬疑 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLR2blfLqXGgaBhs7N8FCtL',
-'NULL','NULL','4',1,'/static/movie/img/p2202887872.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9849,'冰天侠女','https://movie.douban.com/subject/2355252/','5.6',170,
-'http://www.imdb.com/title/tt0067933','NULL','NULL','NULL','NULL','NULL','香港','1971-10-29',
-'李菁 岳华 张冲 田丰','罗维','动作 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2338771755.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9850,'梵高传','https://movie.douban.com/subject/1298261/','8.4',3417,
-'http://www.imdb.com/title/tt0049456','NULL','NULL','NULL','NULL','NULL','美国','1956-09-17',
-'柯克·道格拉斯 安东尼·奎恩 詹姆斯·唐纳德 帕梅拉·布朗 埃弗雷特·斯隆','文森特·明奈利','剧情 传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2164069968.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9851,'堵车','https://movie.douban.com/subject/5285685/','2.7',1622,
-'http://www.imdb.com/title/tt2473416','NULL','NULL','NULL','NULL','NULL','中国大陆','2011-10-14(中国大陆)',
-'吴镇宇 倪大红 吕丽萍 孙海英 陈志朋 吴俊余 葛思然 巴哈古丽','阿年','喜剧 动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1222608005.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9852,'HAMU‐公安警察の男－','https://movie.douban.com/subject/25756366/','5.6',281,
-'http://www.imdb.com/title/tt3432786','NULL','NULL','NULL','NULL','NULL','日本','2014-01-10(日本)',
-'滝沢秀明 小澤征悦 戸田菜穂 柏原収史 高木雄也 原田夏希 陣内孝則','都築淳一','剧情 悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2161681623.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9853,'家族企业','https://movie.douban.com/subject/1301422/','6.7',43,
-'http://www.imdb.com/title/tt0097328','NULL','NULL','NULL','NULL','NULL','美国','1989-12-15',
-'肖恩·康纳利 达斯汀·霍夫曼 马修·布罗德里克 罗莎娜·德索托 Janet Carroll','西德尼·吕美特','喜剧 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s8624016.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9854,'小巷名流','https://movie.douban.com/subject/2004547/','8.4',387,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1985',
-'葛建军 任伟民 孙才华 朱旭 张雪梅','从连文','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2176439.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9855,'野山','https://movie.douban.com/subject/1986919/','7.6',493,
-'http://www.imdb.com/title/tt0089335','NULL','NULL','NULL','NULL','NULL','中国大陆','1986-09-11(中国大陆)',
-'岳红 杜源 徐守莉 杨新鸣 谭希和 辛明','颜学恕','剧情',
-'http://www.iqiyi.com/v_19rrn5z8m4.html',
-'NULL','NULL','4',1,'/static/movie/img/p1805956888.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9856,'支手轰天','https://movie.douban.com/subject/1293641/','7.0',193,
-'http://www.imdb.com/title/tt0106309','NULL','NULL','NULL','NULL','NULL','美国','1993-03-27',
-'杜夫·龙格尔 乔治·席格 克里斯汀·奥方索','维克·阿姆斯特朗','剧情 动作 悬疑 惊悚 犯罪 冒险',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJQq_UVn_GCGoWoCzMnfYBf',
-'NULL','NULL','4',1,'/static/movie/img/p2253261263.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9857,'仪式','https://movie.douban.com/subject/1300510/','8.3',408,
-'http://www.imdb.com/title/tt0066639','NULL','NULL','NULL','NULL','NULL','日本','1971-06-05(日本)',
-'河原崎建三 賀来敦子 佐藤慶','大岛渚','剧情 喜剧',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKRvk0XhQaWdyOWXg2HBuxf',
-'magnet:?xt=urn:btih:19054e40431253cb7f6c0ca39ab89260a2303283','NULL','4',1,'/static/movie/img/p2233370651.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9858,'牺牲','https://movie.douban.com/subject/1294531/','8.7',3895,
-'http://www.imdb.com/title/tt0091670','NULL','NULL','NULL','NULL','NULL','瑞典 / 法国 / 英国','1986-05-09(瑞典)',
-'厄兰·约瑟夫森 苏珊·弗利特伍德 艾伦·埃德渥 古德·吉斯拉德提尔 斯文·沃尔特 瓦莱莉·迈蕾丝 菲利帕·弗伦岑 汤米·谢尔奎斯特','安德烈·塔可夫斯基','剧情',
-'http://so.iqiyi.com/links/wv9kivRX33_g_Ymf8pA3qUPsdXK5al4W1DWt-SjFDkCXvt8u7D_Eu5tiWUaWUuB7hl68bhrT9qXSG5wobRDeCQ==',
-'magnet:?xt=urn:btih:a98735254dd4b6d8b43c74560dde5004b66f2c12','NULL','4',1,'/static/movie/img/p456417673.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9859,'无穷的欲望','https://movie.douban.com/subject/1420288/','7.5',159,
-'http://www.imdb.com/title/tt0051704','NULL','NULL','NULL','NULL','NULL','日本','1958-11-18',
-'长门裕之 中原早苗 河上信夫 渡边美佐子 殿山泰司 西村晃','今村昌平','暂时无数据',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML_8CcVKlrLcR232dS_T8ui',
-'NULL','NULL','4',1,'/static/movie/img/s1887857.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9860,'冰雨','https://movie.douban.com/subject/1434206/','6.7',848,
-'http://www.imdb.com/title/tt0389805','NULL','NULL','NULL','NULL','NULL','韩国','2004-01-16(韩国)',
-'李成宰 宋承宪 金荷娜','金银素','剧情 爱情 冒险',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1TjZ9Qt0OiB2e6zTfmSvVn9M8qxRMTui4VDkuOFe8j1z72NCt6VfLGEkr7dliS5m8A==',
-'NULL','NULL','4',1,'/static/movie/img/p1887044070.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9861,'线人','https://movie.douban.com/subject/1301020/','7.1',317,
-'http://www.imdb.com/title/tt0070077','NULL','NULL','NULL','NULL','NULL','美国','1973-06-27',
-'罗伯特·米彻姆 彼得·博伊尔 Richard Jordan Steven Keats 阿历克斯·罗克','彼得·叶茨','剧情 惊悚 犯罪',
-'NULL',
-'magnet:?xt=urn:btih:84d60e37680adec31ddd6944a4b0c7fe25740646','NULL','4',1,'/static/movie/img/p2211468627.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9862,'平壤之约','https://movie.douban.com/subject/10478122/','4.0',1041,
-'http://www.imdb.com/title/tt3428606','NULL','NULL','NULL','NULL','NULL','中国大陆 / 朝鲜','2012-08-03(中国大陆)',
-'刘冬 李梦男 高扬棋 金玉林 金日哲 陶玉玲 侯勇','西尔扎提·亚合甫','剧情',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzbw-sQtFNajEu8s3iWdC87QZAnOcjR7a4U1zFjUKVM69Y',
-'NULL','NULL','4',1,'/static/movie/img/p1642570785.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9863,'霓红光管高高挂之女子公寓','https://movie.douban.com/subject/1299472/','7.1',111,
-'http://www.imdb.com/title/tt0110658','NULL','NULL','NULL','NULL','NULL','香港','1994',
-'莫少聪 杨采妮 吴倩莲 陈启泰 尔冬升','钱永强','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2222693083.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9864,'智取威虎山','https://movie.douban.com/subject/1438274/','7.7',1694,
-'http://www.imdb.com/title/tt0405497','NULL','NULL','NULL','NULL','NULL','中国大陆','1970-10-01',
-'沈金波 童祥苓','谢铁骊','歌舞 战争',
-'http://www.iqiyi.com/v_19rro1vd70.html',
-'magnet:?xt=urn:btih:3c8b475deb0e2f40e92320f9ecb52df01bf7c5a7','NULL','4',1,'/static/movie/img/p2237173868.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9865,'被窃油画的假设','https://movie.douban.com/subject/1806128/','8.0',223,
-'http://www.imdb.com/title/tt0077707','NULL','NULL','NULL','NULL','NULL','法国','1979-04-04',
-'Jean Rougeul Chantal Paley Jean Raynaud','拉乌·鲁兹','剧情 悬疑',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKl-3Vh8zBUUsr5iY6CsBhC',
-'NULL','NULL','4',1,'/static/movie/img/s1831594.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9866,'鬼火','https://movie.douban.com/subject/1395247/','8.5',1053,
-'http://www.imdb.com/title/tt0057058','NULL','NULL','NULL','NULL','NULL','法国','1963-10-15',
-'莫里斯·荣内特 Léna Skerla Yvonne Clech 于贝尔·德尚 Jean-Paul Moulinot Mona Dol Pierre Moncorbier René Dupuy Bernard Tiphaine Bernard Noël Ursula Kubler 让娜·莫罗 Alain Mottet François Gragnon Romain Bouteille','路易·马勒','剧情',
-'http://www.iqiyi.com/v_19rrm2sjtg.html',
-'NULL','NULL','4',1,'/static/movie/img/p2211476027.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9867,'阳光照耀的未来SP','https://movie.douban.com/subject/25825361/','6.5',235,
-'http://www.imdb.com/title/tt3602586','NULL','NULL','NULL','NULL','NULL','日本','2014-04-01(日本)',
-'上戸彩 飯島直子 斎藤工 福徳秀介 木南晴夏 鹿沼憂妃 金田明夫 手塚理美 松金よね子 竜雷太 浅野温子','渋谷未来','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2174046607.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9868,'街头之王2：汽车城','https://movie.douban.com/subject/6100793/','4.8',459,
-'http://www.imdb.com/title/tt1707687','NULL','NULL','NULL','NULL','NULL','美国','2011-04-19',
-'Ray Liotta Linda Boston Ele Bardha Ron Causey Kevin Chapman John P. Chittick','Chris Fisher','剧情 动作 犯罪',
-'NULL',
-'magnet:?xt=urn:btih:ec7ded4ea2edc81c96517b5d8774f0f65491198f','NULL','4',1,'/static/movie/img/p2187442481.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9869,'1600谋杀案','https://movie.douban.com/subject/1300637/','6.4',269,
-'http://www.imdb.com/title/tt0119731','NULL','NULL','NULL','NULL','NULL','美国','1997-04-18',
-'韦斯利·斯奈普斯 戴安·琳恩 丹尼尔·本扎利 罗尼·考克斯 阿伦·阿尔达','德怀特·H·里特','剧情 动作 悬疑 惊悚 犯罪',
-'http://so.iqiyi.com/links/Y1t4eAa0mLAVDBoVzSYwMHt_Mt8BnGgn_M851jUcYEMjjIYv4iE_rpTyowVsxE_-oNPUFrFrfaH2rgojOasElg==',
-'NULL','NULL','4',1,'/static/movie/img/p2327944604.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9870,'杰克遇挫','https://movie.douban.com/subject/3562412/','5.3',232,
-'http://www.imdb.com/title/tt1381508','NULL','NULL','NULL','NULL','NULL','英国','2011-03-21(英国)',
-'塔梅尔·哈桑 西蒙·菲利普斯 奥莉薇娅·哈琳安','Paul Tanter','犯罪',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8HbnYfKWVm1yONW6uk0jqOQx-1joPLKhZCz4q2ZS-Aq0',
-'NULL','NULL','4',1,'/static/movie/img/p913368470.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9871,'这时对那时错','https://movie.douban.com/subject/26297388/','7.4',9410,
-'http://www.imdb.com/title/tt4768776','NULL','NULL','NULL','NULL','NULL','韩国','2015-08-13(洛迦诺电影节)',
-'郑在咏 金敏喜 尹汝贞 纪柱峰 崔华静 刘俊相 徐永嬅 高雅星','洪尚秀','剧情',
-'http://www.iqiyi.com/v_19rrky7les.html',
-'magnet:?xt=urn:btih:baab1fea2828bae716f477a04e05050081cf4001','NULL','4',1,'/static/movie/img/p2264531221.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9872,'日落号列车','https://movie.douban.com/subject/4038241/','7.4',3042,
-'http://www.imdb.com/title/tt1510938','NULL','NULL','NULL','NULL','NULL','美国','2011-02-12(美国)',
-'汤米·李·琼斯 塞缪尔·杰克逊','汤米·李·琼斯','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1fyxmg_bHYVTnfS6VPmeVsDeq3L-_n7HqG-y8BGqcauaBCjB8cG7Q6Y4gbBoBvpkSn2bpv9L7cz_cIEhzWKA7X0=',
-'magnet:?xt=urn:btih:cff1ed9aded16bdc8e0ecc4feca1d03b3c89e5fd','NULL','4',1,'/static/movie/img/p837730536.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9873,'野玫瑰之恋','https://movie.douban.com/subject/1299212/','8.3',506,
-'http://www.imdb.com/title/tt0199156','NULL','NULL','NULL','NULL','NULL','香港','1960-10-04',
-'葛兰 张扬 苏凤 王莱 刘恩甲','王天林','歌舞',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2370724631.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9874,'姊妹情深','https://movie.douban.com/subject/1300177/','6.9',287,
-'http://www.imdb.com/title/tt0110196','NULL','NULL','NULL','NULL','NULL','香港','1994-06-09',
-'梁家辉 袁咏仪 伍咏薇 刘晓彤 郑丹瑞 罗家英 陈淑兰 方中信 苑琼丹 张之亮','郑丹瑞','剧情 喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2352137019.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9875,'老表发钱寒','https://movie.douban.com/subject/3053131/','5.4',54,
-'http://www.imdb.com/title/tt0102262','NULL','NULL','NULL','NULL','NULL','香港','0000-00-00',
-'尹光 黄一山 叶子楣 成奎安 雷宇扬','柯星沛','喜剧 动作 爱情 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1bDUm_447pI5NWN-TIFOd7lqXuN6iHclACRaqbptUiVoFsuNK5OCI3XUDaJ1Ciqx4w==',
-'NULL','NULL','4',1,'/static/movie/img/s3046294.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9876,'途中下車','https://movie.douban.com/subject/25984034/','7.1',124,
-'http://www.imdb.com/title/tt4248656','NULL','NULL','NULL','NULL','NULL','日本','2014-12-25(日本)',
-'北村一輝 原田知世 松田知己 六角精児 木内みどり 野際陽子','笠浦友愛','剧情 家庭',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2216475617.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9877,'月朦胧鸟朦胧','https://movie.douban.com/subject/1797810/','6.5',635,
-'http://www.imdb.com/title/tt0811165','NULL','NULL','NULL','NULL','NULL','台湾','1978-02-07',
-'林青霞 秦祥林 谢玲玲 马永霖','陈耀圻','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKpn-TFofmikT0FTdifLil2',
-'NULL','NULL','4',1,'/static/movie/img/s2558943.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9878,'辛弃疾铁血传奇','https://movie.douban.com/subject/3003199/','4.9',84,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1993',
-'刘燕军 蒋勤勤 毕丹 胡正中 杨新洲','李灵明','剧情 历史 战争 古装',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb5WYzAI_xqjuHXoxNgBJTEDQjZt2pC3InCVwTmM8tUNG',
-'NULL','NULL','4',1,'/static/movie/img/s2959496.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9879,'不得安身','https://movie.douban.com/subject/5151479/','5.9',326,
-'http://www.imdb.com/title/tt1661862','NULL','NULL','NULL','NULL','NULL','西班牙','2011-09-23(西班牙)',
-'何塞·科罗纳多 鲁道夫 桑丘 Helena Miquel Juanjo Artero 佩德罗·玛丽·桑切斯 尤尼斯·贝希尔 Nadia Casado 胡安·巴勃罗·舒克 Eduard Farelo  卡里姆·厄尔-凯雷姆 Abdelali El Aziz 纳赛尔·萨雷 赫克托耳·克拉拉蒙 ','恩里克·乌比祖','惊悚',
-'http://www.iqiyi.com/v_19rrho87ls.html',
-'NULL','NULL','4',1,'/static/movie/img/p1453805563.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9880,'童子功','https://movie.douban.com/subject/2124727/','4.7',83,
-'http://www.imdb.com/title/tt0198755','NULL','NULL','NULL','NULL','NULL','香港','1971',
-'凌云 凌波 龙飞','郭南宏','动作 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2238429503.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9881,'鬼追人3','https://movie.douban.com/subject/1295403/','7.2',132,
-'http://www.imdb.com/title/tt0110823','NULL','NULL','NULL','NULL','NULL','美国','1994-05-06',
-'Reggie Bannister Bill Thornbury A. Michael Baldwin Gloria Lynne Henry Kevin Connors','唐·柯斯卡莱利','动作 科幻 恐怖 奇幻',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIp5E_51hRW3silhp__w-zb',
-'magnet:?xt=urn:btih:217ca39dfcfd1bc5d76a4d197861588d5ca6a6ba','NULL','4',1,'/static/movie/img/p2216947019.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9882,'我们身边的犯罪','https://movie.douban.com/subject/6008297/','6.1',315,
-'NULL','NULL','NULL','NULL','NULL','NULL','韩国','2011-04-07',
-'申贤俊 李基宇 Ki-woo Lee','闵秉镇','犯罪',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzpvljah9GDMMR401qcaLb6W0Qx183zRycM83ASSaDDCD',
-'NULL','NULL','4',1,'/static/movie/img/p1133024512.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9883,'立春','https://movie.douban.com/subject/3036997/','8.0',65038,
-'http://www.imdb.com/title/tt1214973','NULL','NULL','NULL','NULL','NULL','中国大陆','2008-04-10(中国大陆)',
-'蒋雯丽 张瑶 李光洁 董璇 焦刚 吴国华','顾长卫','剧情 音乐',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8KlmjO5R8zHoSvXgIwRSc-2TVbjTenABEdbUCUeTXdA1',
-'NULL','NULL','4',1,'/static/movie/img/p582510752.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9884,'美国精神病人','https://movie.douban.com/subject/1301715/','7.7',37907,
-'http://www.imdb.com/title/tt0144084','NULL','NULL','NULL','NULL','NULL','美国','2000-01-21(圣丹斯电影节)',
-'克里斯蒂安·贝尔 贾斯汀·塞洛克斯 乔什·卢卡斯 比尔·萨奇 科洛·塞维尼 瑞茜·威瑟斯彭 萨曼莎·玛西丝 杰瑞德·莱托 威廉·达福 卡拉·西摩','玛丽·哈伦','剧情 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrk3uhyg.html',
-'NULL','NULL','4',1,'/static/movie/img/p887623643.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9885,'宁静的人生','https://movie.douban.com/subject/4099454/','6.2',324,
-'http://www.imdb.com/title/tt1521090','NULL','NULL','NULL','NULL','NULL','意大利 / 法国 / 德国','0000-00-00',
-'托尼·瑟维洛 Marco D\'Amore Francesco Di Leva 茱莉安·柯勒 Leonardo Sprengler 爱丽丝·德维尔 毛里齐奥·多纳多尼','克劳迪奥·库佩利尼','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1293272277.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9886,'艳阳天','https://movie.douban.com/subject/2378705/','7.8',289,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1948-05',
-'李丽华 石挥 韩非 石羽 崔超明 程之','曹禺','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s9064150.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9887,'错体追击组合','https://movie.douban.com/subject/1482466/','6.3',121,
-'http://www.imdb.com/title/tt0112755','NULL','NULL','NULL','NULL','NULL','香港 / 中国大陆','0000-00-00',
-'梁琤 严广明 陈小春','董玮','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3062710.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9888,'罗丹的情人','https://movie.douban.com/subject/1293466/','8.1',18112,
-'http://www.imdb.com/title/tt0094828','NULL','NULL','NULL','NULL','NULL','法国','1988-12-07',
-'伊莎贝尔·阿佳妮 热拉尔·德帕迪约 Laurent Grévill 阿兰·居尼','布鲁诺·努坦','剧情 爱情 传记 历史',
-'http://www.iqiyi.com/v_19rrho78bw.html',
-'NULL','NULL','4',1,'/static/movie/img/p1360115216.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9889,'江湖三女侠','https://movie.douban.com/subject/2356361/','6.2',94,
-'http://www.imdb.com/title/tt0945350','NULL','NULL','NULL','NULL','NULL','香港','1970-08-05',
-'沈依 林嘉 潘迎紫 张翼 罗烈','申江','动作 武侠 古装',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLLhXq2mLwkhuIHoQDdcguy',
-'NULL','NULL','4',1,'/static/movie/img/p1915724141.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9890,'开心三响炮','https://movie.douban.com/subject/2371922/','6.4',419,
-'http://www.imdb.com/title/tt0089397','NULL','NULL','NULL','NULL','NULL','香港','1985-01-04',
-'曾志伟 陈百强 陈友 古嘉露','张同祖','喜剧',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzprlclV-RBXkZRP35NNtVdaNrOiEZIX1HIhoztDjQoEa',
-'NULL','NULL','4',1,'/static/movie/img/p2346302062.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9891,'合法婚姻','https://movie.douban.com/subject/1459097/','8.6',439,
-'http://www.imdb.com/title/tt0184071','NULL','NULL','NULL','NULL','NULL','苏联','1986-10-23(匈牙利)',
-'纳塔利娅·别洛赫沃斯季科娃 伊戈尔·柯斯托列夫斯基 恩斯特·罗曼诺夫','Albert S. Mkrtchyan','剧情 爱情 战争',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJdu4xiimfmhMWWOPjO7es6',
-'NULL','NULL','4',1,'/static/movie/img/s1476775.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9892,'面包与玫瑰','https://movie.douban.com/subject/1293720/','7.3',414,
-'http://www.imdb.com/title/tt0212826','NULL','NULL','NULL','NULL','NULL','法国 / 德国 / 意大利 / 英国 / 瑞士 / 西班牙','2000-09-22',
-'Pilar Padilla 艾德里安·布洛迪 艾尔皮迪娅·卡里洛','肯·洛奇','剧情',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8BDhJW4urKgQIHz85YBHppmZ5lN3FkYVqtbs-qBWSqiD',
-'NULL','NULL','4',1,'/static/movie/img/p2261526047.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9893,'在异国','https://movie.douban.com/subject/6717601/','6.8',2455,
-'http://www.imdb.com/title/tt1989712','NULL','NULL','NULL','NULL','NULL','韩国','2012-05-20(戛纳电影节)',
-'伊莎贝尔·于佩尔 刘俊相 郑有美 文素丽 尹汝贞 文成根 权海骁','洪尚秀','剧情 爱情',
-'http://www.iqiyi.com/dianying/20130625/3ab6e6c32728b51d.html',
-'magnet:?xt=urn:btih:8383fbb6c65296834f4cd893686a9236c5b8abc1','NULL','4',1,'/static/movie/img/p1541931818.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9894,'菊花香','https://movie.douban.com/subject/1307840/','7.3',7846,
-'http://www.imdb.com/title/tt0349517','NULL','NULL','NULL','NULL','NULL','韩国','2003-02-28',
-'张真英 朴海日 宋宣美','李政旭','剧情 爱情',
-'http://www.iqiyi.com/dianying/20100723/n26303.html',
-'NULL','NULL','4',1,'/static/movie/img/p1172193151.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9895,'一九五一年的欧洲','https://movie.douban.com/subject/1293321/','8.2',786,
-'http://www.imdb.com/title/tt0043511','NULL','NULL','NULL','NULL','NULL','意大利','1952-12-04',
-'英格丽·褒曼 亚历山大·诺克斯 埃托雷贾尼尼 朱丽叶塔·马西纳 特里萨佩拉蒂 玛塞拉罗韦纳 Tina Perna Sandro Franchina Maria Zanoli Silvana Veronese William Tubbs Alberto Plebani Eleonora Barracco Gianna Segale Alfonso Di Stefano','罗伯托·罗塞利尼','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2071605913.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9896,'生死恋','https://movie.douban.com/subject/1484239/','7.7',621,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','1971-06-05',
-'横内正 栗原小卷 新克利','中村登','爱情',
-'http://www.iqiyi.com/v_19rrhh1yp4.html',
-'NULL','NULL','4',1,'/static/movie/img/p2258843295.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9897,'姐妹情仇','https://movie.douban.com/subject/1293568/','7.2',1025,
-'http://www.imdb.com/title/tt0070698','NULL','NULL','NULL','NULL','NULL','美国','1973-03-27',
-'玛戈·基德 詹妮弗·绍特 查尔斯·德恩 威廉姆·菲利 Lisle Wilson','布莱恩·德·帕尔玛','悬疑 惊悚 恐怖',
-'http://www.iqiyi.com/v_19rrkqenq8.html',
-'NULL','NULL','4',1,'/static/movie/img/p2211640046.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9898,'幸运地狱夜','https://movie.douban.com/subject/1420023/','6.1',60,
-'http://www.imdb.com/title/tt0236283','NULL','NULL','NULL','NULL','NULL','南斯拉夫 / 加拿大','1992-07-23',
-'Darren McGavin Sam Rockwell','Brian Owens','悬疑 惊悚 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2327767558.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9899,'魔术师西蒙的爱情','https://movie.douban.com/subject/1960069/','6.7',102,
-'http://www.imdb.com/title/tt0189092','NULL','NULL','NULL','NULL','NULL','匈牙利 / 法国','1999-10-21',
-'Péter Andorai 朱莉·德拉姆 Péter Halász','伊尔蒂科·茵叶蒂','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s5566776.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9900,'明月刀雪夜歼仇','https://movie.douban.com/subject/1300217/','7.4',767,
-'http://www.imdb.com/title/tt0076392','NULL','NULL','NULL','NULL','NULL','香港','1977-12-22',
-'狄龙 刘永 罗烈 尔冬升 顾冠忠 施思 陈萍 樊梅生 张冲 杨志卿 徐少强 顾冠忠 韦弘 欧阳莎菲 井淼 詹森 艾飞 徐忠信 袁祥仁 元彬 元华 钱似莺 元奎 袁日初 黄志强 袁信义','楚原','剧情 动作 武侠 古装',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKpWr1fHLsd0lWw_ZYn6zEa',
-'NULL','NULL','4',1,'/static/movie/img/p2456355574.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9901,'欢颜','https://movie.douban.com/subject/1459387/','7.2',666,
-'http://www.imdb.com/title/tt0260959','NULL','NULL','NULL','NULL','NULL','台湾','1979',
-'韩苏 胡慧中 张国柱','屠忠训','剧情 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2170547797.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9902,'伦勃朗传','https://movie.douban.com/subject/1918241/','7.9',37,
-'http://www.imdb.com/title/tt0163180','NULL','NULL','NULL','NULL','NULL','法国 / 德国 / 荷兰','1999-08-09(法国)',
-'克劳斯·马利亚·布朗道尔 罗曼娜·波琳热 让·雷谢夫','查尔斯·马东','剧情 历史',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2764060.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9903,'波洛克','https://movie.douban.com/subject/1303274/','7.5',1480,
-'http://www.imdb.com/title/tt0183659','NULL','NULL','NULL','NULL','NULL','美国','2000-09-06(威尼斯电影节)',
-'艾德·哈里斯 马西娅·盖伊·哈登 汤姆·鲍尔 詹妮弗·康纳利 巴德·库特 约翰·赫德 方·基默 Robert Knott David Leary 埃米·马迪根 Sally Murphy Molly Regan 斯蒂芬妮·赛默尔 Matthew Sussman 杰弗里·塔伯 诺伯特·魏塞尔 Everett Quinton Annabelle Gurwitch 约翰·罗斯曼 Kenny Scharf Sada Thompson Robert O\'Neill','艾德·哈里斯','剧情 传记',
-'http://www.iqiyi.com/v_19rrk2wea0.html',
-'NULL','NULL','4',1,'/static/movie/img/p2191667658.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9904,'罪犯','https://movie.douban.com/subject/1309131/','7.0',421,
-'http://www.imdb.com/title/tt0362526','NULL','NULL','NULL','NULL','NULL','美国','2004-09-10',
-'约翰·C·赖利 迭戈·卢纳 玛吉·吉伦哈尔 彼得·穆兰 Zitto Kazann 乔纳森·塔克 Laura Cerón 索莱达·圣·希莱尔 艾伦·戈尔 布兰登基纳 Nick Anavio Deborah Van Valkenburgh 玛伊芙·奎因兰 布伦特·塞克斯顿 马利克·约巴','格里高利·雅各布','剧情 喜剧 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrnvykbo.html',
-'NULL','NULL','4',1,'/static/movie/img/p2337737662.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9905,'英雄之战','https://movie.douban.com/subject/25723081/','3.1',8632,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-03-21(中国大陆)',
-'陆毅 何润东 魏一 张志康 侯勇 午马 翁虹 林威 李舒燃 章小军','虞军豪','动作 爱情',
-'http://www.iqiyi.com/v_19rrneyoms.html',
-'NULL','NULL','4',1,'/static/movie/img/p2174242324.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9906,'坏中尉','https://movie.douban.com/subject/1293494/','7.1',2170,
-'http://www.imdb.com/title/tt0103759','NULL','NULL','NULL','NULL','NULL','美国','1992-09-16',
-'哈威·凯特尔 维克多·阿尔果 Paul Calderon Leonard L. Thomas Robin Burrows','阿贝尔·费拉拉','剧情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2337735188.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9907,'濑户内少年棒球团','https://movie.douban.com/subject/26805207/','5.9',53,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-09-17(日本)',
-'武井咲 三浦貴大 友近 山内圭哉 本田望結 坂田湧唯 矢野浩二 栗山航 田中健 えなりかずき 平泉成 高橋惠子 大杉漣','松田礼人','暂时无数据',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLhC5Cnxyfa4LTvkQJUSTWm',
-'NULL','NULL','4',1,'/static/movie/img/p2379003640.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9908,'孤岛','https://movie.douban.com/subject/26021981/','3.3',386,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-10-31(中国大陆)',
-'李依伊 田苏灏 毛毅','廉涛','悬疑 惊悚',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8K_1qplmVuHomPWI_wErC4GNExKDOIREND2iGbIufhuk',
-'NULL','NULL','4',1,'/static/movie/img/p2207964970.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9909,'杜玛','https://movie.douban.com/subject/1309109/','8.2',3731,
-'http://www.imdb.com/title/tt0361715','NULL','NULL','NULL','NULL','NULL','美国','2005-05-27',
-'Alex Michaeletos 坎贝尔·斯科特 霍普·戴维斯 伊默恩·沃克','卡罗尔·巴拉德','剧情 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2055341840.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9910,'天罡星下凡','https://movie.douban.com/subject/4097125/','5.0',496,
-'http://www.imdb.com/title/tt1528718','NULL','NULL','NULL','NULL','NULL','美国','2010-10-19',
-'Steven Seagal Darren Shahlavi Zoltan Butuc','Keoni Waxman','动作',
-'http://www.iqiyi.com/v_19rrhvgaik.html',
-'NULL','NULL','4',1,'/static/movie/img/p676266489.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9911,'仙乐飘飘','https://movie.douban.com/subject/1303218/','6.5',1597,
-'http://www.imdb.com/title/tt0114998','NULL','NULL','NULL','NULL','NULL','香港','1995-08-16',
-'郭富城 陈慧琳 吴耀汉 李佩璇 林朗熙 宫韵瑶 马莉 缪达 金智勇 苗侨伟','张之亮','剧情 喜剧 爱情 歌舞',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1787403.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9912,'谈谈情跳跳舞','https://movie.douban.com/subject/1308010/','8.2',8718,
-'http://www.imdb.com/title/tt0117615','NULL','NULL','NULL','NULL','NULL','日本','1996-01-27(日本)',
-'役所广司 草刈民代 竹中直人','周防正行','剧情 喜剧 爱情 歌舞',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIqXMl9lFH_-asxMO3wYavS',
-'NULL','NULL','4',1,'/static/movie/img/p1696723957.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9913,'囚室211','https://movie.douban.com/subject/3103418/','8.0',24243,
-'http://www.imdb.com/title/tt1242422','NULL','NULL','NULL','NULL','NULL','西班牙 / 法国','2009-11-06',
-'Alberto Ammann 路伊斯·托沙 Carlos Bardem Eduard Fernández Rubén Ochandiano 玛塔·埃图拉 Félix Cubero','Daniel Monzón','剧情 动作',
-'http://www.iqiyi.com/v_19rrh3fj3g.html',
-'magnet:?xt=urn:btih:67b79296a261bf6e30b6b33852cf881189a8ccb2','NULL','4',1,'/static/movie/img/p1622684528.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9914,'廉价航空','https://movie.douban.com/subject/6524251/','6.4',280,
-'http://www.imdb.com/title/tt1717158','NULL','NULL','NULL','NULL','NULL','法国','2011(法国)',
-'让-保罗·卢弗 朱迪丝·哥德雷科','莫里斯·巴泰勒米','喜剧',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLh7pHhIBOoMOrbpKvGCpng',
-'NULL','NULL','4',1,'/static/movie/img/p1141927684.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9915,'欲望法则','https://movie.douban.com/subject/1300951/','8.1',3388,
-'http://www.imdb.com/title/tt0093412','NULL','NULL','NULL','NULL','NULL','西班牙','1987-03-05',
-'欧塞维奥·庞塞拉 卡门·毛拉 安东尼奥·班德拉斯 Miguel Molina 费尔南多·古林','佩德罗·阿莫多瓦','剧情 爱情 同性',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqfzGOgWnQ8g84vz5Ynx2zuPSr_WR5-nJ5wO_uvdlkNmF',
-'NULL','NULL','4',1,'/static/movie/img/p1958673368.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9916,'棒球男孩','https://movie.douban.com/subject/3011108/','7.2',558,
-'http://www.imdb.com/title/tt0990413','NULL','NULL','NULL','NULL','NULL','美国','2008-10-03',
-'Algenis Perez Soto Rayniel Rufino Joendy Pena Brown','Anna Boden','剧情 运动',
-'NULL',
-'magnet:?xt=urn:btih:94386141d0554c5f7bc03a270b21d3034049b8ee','NULL','4',1,'/static/movie/img/p2378465316.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9917,'月光光心慌慌4','https://movie.douban.com/subject/1296288/','6.1',360,
-'http://www.imdb.com/title/tt0095271','NULL','NULL','NULL','NULL','NULL','美国','1988-10-21',
-'唐纳德·普利森斯 艾莉·康纳尔 丹妮尔·哈丽丝 George P. Wilbur 迈克尔·帕塔奇','德怀特·H·里特','惊悚 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2177127725.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9918,'内陆帝国','https://movie.douban.com/subject/1438734/','7.4',4229,
-'http://www.imdb.com/title/tt0460829','NULL','NULL','NULL','NULL','NULL','法国 / 波兰 / 美国','2006-12-06',
-'劳拉·邓恩 杰瑞米·艾恩斯 贾斯汀·塞洛克斯 卡洛琳娜·格鲁什卡 Jan Hencz 克兹佐夫·马扎克 威廉姆·H·梅西 朱莉娅·奥蒙德 娜奥米·沃茨 娜塔莎·金斯基','大卫·林奇','剧情 悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrho7rqc.html',
-'magnet:?xt=urn:btih:0e6cefd9fb59f354dc8e3b14bd004efdf8aa0906','NULL','4',1,'/static/movie/img/p2248899402.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9919,'天堂的孩子','https://movie.douban.com/subject/1300375/','8.8',2549,
-'http://www.imdb.com/title/tt0037674','NULL','NULL','NULL','NULL','NULL','法国','1945-03-15',
-'让-路易斯·巴劳特 阿莱缇 皮埃尔·布拉瑟','马塞尔·卡尔内','剧情 爱情',
-'http://www.iqiyi.com/v_19rrj6sjd4.html',
-'NULL','NULL','4',1,'/static/movie/img/p1458137243.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9920,'猎人','https://movie.douban.com/subject/5028368/','6.8',1439,
-'http://www.imdb.com/title/tt1703148','NULL','NULL','NULL','NULL','NULL','澳大利亚','2011-09-09(多伦多电影节)',
-'威廉·达福 沙利文·斯特普尔顿 山姆·尼尔 弗兰西丝·奥康纳 摩根·戴维斯 杰克·科曼 芬恩·伍德洛克 卡兰·马尔韦 约翰·布鲁普顿 丹·威利 杰米·提莫尼 丹·斯皮尔曼','丹尼尔·奈西姆','剧情',
-'http://www.iqiyi.com/v_19rrhvvus8.html',
-'magnet:?xt=urn:btih:7fa56b78fc9e51f40bf084fc3e06d45fd0b5e098','NULL','4',1,'/static/movie/img/p1620226273.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9921,'他母亲的眼睛','https://movie.douban.com/subject/4900090/','6.8',71,
-'http://www.imdb.com/title/tt1545677','NULL','NULL','NULL','NULL','NULL','法国','2011-03-23(法国)',
-'卡特琳·德纳芙 杰拉尔丁娜·帕伊亚 尼古拉斯·迪佛休尔 玛丽莎·佩雷德斯 玛琳娜·佛伊丝 让-马克·巴尔 Jean-Baptiste Lafarge 埃莱娜·菲利埃 Gilles Cohen Karole Rocher Fred Ulysse','Thierry Klifa','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p811070517.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9922,'以毒攻毒','https://movie.douban.com/subject/1302348/','5.9',424,
-'http://www.imdb.com/title/tt0242445','NULL','NULL','NULL','NULL','NULL','美国 / 澳大利亚','2001-03-16',
-'史蒂文·席格 DMX 艾赛亚·华盛顿','Andrzej Bartkowiak','剧情 喜剧 动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1T1DbQFQSncYniooIXKKQWiKp4rRal6LN1nOvjNyI9eRFLGpfMoZxU-V_saiHsg6wtzVqO_SVHF1v1iZlcT4ToI=',
-'NULL','NULL','4',1,'/static/movie/img/p2193671613.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9923,'李时珍','https://movie.douban.com/subject/1438024/','8.1',475,
-'http://www.imdb.com/title/tt0481870','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'赵丹 舒适 仲星火 顾也鲁 高笑鸥 康泰 江山 邓楠 钱千里 舒绣文 程之','沈浮','剧情 传记 古装',
-'http://www.iqiyi.com/v_19rrn6own8.html',
-'NULL','NULL','4',1,'/static/movie/img/p2323489136.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9924,'沙漠女王','https://movie.douban.com/subject/6874051/','5.9',2146,
-'http://www.imdb.com/title/tt1837636','NULL','NULL','NULL','NULL','NULL','美国 / 摩洛哥','2015-02-06(柏林电影节)',
-'詹姆斯·弗兰科 妮可·基德曼 罗伯特·帕丁森 戴米恩·路易斯 珍妮·艾加特 马克·路易斯·琼斯 大卫·卡尔德 霍莉·厄尔 贝丝·戈达德 迈克尔·吉恩','维尔纳·赫尔佐格','剧情 传记 历史',
-'http://www.iqiyi.com/v_19rrlxdmvg.html',
-'magnet:?xt=urn:btih:50a97d7ca862bea4b8e0de580e8972da793be439','NULL','4',1,'/static/movie/img/p2260147673.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9925,'大国手之才子佳人','https://movie.douban.com/subject/5923483/','6.5',313,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'程皓枫 刘凯菲 孟霞 卢勇','萧锋','剧情 历史 古装',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb1_UBCcUZ997U6J0EZFMrsayJHMwuxenBS3eoSbbY1nh',
-'NULL','NULL','4',1,'/static/movie/img/s4610216.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9926,'抗体','https://movie.douban.com/subject/1789384/','7.1',901,
-'http://www.imdb.com/title/tt0337573','NULL','NULL','NULL','NULL','NULL','德国','2005-07-07',
-'Wotan Wilke Möhring Heinz Hoenig Hauke Diekamp','Christian Alvart','剧情 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrhofqg4.html',
-'NULL','NULL','4',1,'/static/movie/img/p2480744434.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9927,'异度迷局','https://movie.douban.com/subject/20366391/','2.4',513,
-'http://www.imdb.com/title/tt5164238','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-12-14(中国大陆)',
-'温兆伦 杨斯 贺刚 郑佩佩','徐杰','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrhokn9g.html',
-'magnet:?xt=urn:btih:4432447e9eb026d9ed419bb985493b48afccc91a','NULL','4',1,'/static/movie/img/p1768967591.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9928,'灵异骇客','https://movie.douban.com/subject/1292910/','6.4',757,
-'http://www.imdb.com/title/tt0164181','NULL','NULL','NULL','NULL','NULL','美国','1999-09-10',
-'凯文·贝肯 凯瑟琳·厄布 伊里纳·道格拉斯','大卫·凯普','悬疑 惊悚 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1683970086.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9929,'别开门','https://movie.douban.com/subject/26693297/','2.5',331,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-05-13(中国大陆)',
-'徐立 曲少石 杨珑 刘著 刘金 曹蕾 李鹤楠 赵洪纪 李昕芮 王昌 熊竞宇','周阁','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrlnscxs.html',
-'NULL','NULL','4',1,'/static/movie/img/p2326228232.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9930,'花落莺啼春','https://movie.douban.com/subject/1303087/','8.3',1282,
-'http://www.imdb.com/title/tt0055910','NULL','NULL','NULL','NULL','NULL','法国','1962-11-21',
-'Hardy Krüger Nicole Courcel Patricia Gozzi','塞基·鲍格农','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLIEuFLiuzfRf0zipgo795k',
-'NULL','NULL','4',1,'/static/movie/img/p2210479771.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9931,'丛林热','https://movie.douban.com/subject/26672546/','4.2',99,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-01-11(日本)',
-'剛力彩芽 大東駿介 篠原ともえ 阿南健治 高橋メアリージュン 矢柴俊博 内藤理沙 一ノ瀬ワタル 國村隼','榎戸崇泰','科幻 悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2306263308.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9932,'麻雀要革命','https://movie.douban.com/subject/2277010/','4.0',277,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2007',
-'张娜拉 余文乐 严屹宽','江海洋','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2384121868.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9933,'空姐刑警：纽约杀人案','https://movie.douban.com/subject/25878878/','4.7',1249,
-'http://www.imdb.com/title/tt3700818','NULL','NULL','NULL','NULL','NULL','日本','2014-07-07(日本)',
-'深田恭子 吹石一惠 泷本美织 Sumire 水原希子 佐佐木希 高桥玛莉润 松岛花 西山茧子 国广富之 铃木亮平 铃木一真 要润 和冉千秋 水桥研二 宝田明','長瀬国博','悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2189835366.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9934,'地下的天空','https://movie.douban.com/subject/3243634/','7.5',454,
-'http://www.imdb.com/title/tt1303703','NULL','NULL','NULL','NULL','NULL','中国大陆','2008-07-10',
-'李晨 罗德元 郑罗茜 黄轩','张弛','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGb3j6r23Wb7xt1bIGSurKNPUg-MhfqywhwyzNieJ0BlQ',
-'NULL','NULL','4',1,'/static/movie/img/p2382861044.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9935,'本命年','https://movie.douban.com/subject/1296266/','8.2',13579,
-'http://www.imdb.com/title/tt0123450','NULL','NULL','NULL','NULL','NULL','中国大陆','1990-04-14(中国大陆)',
-'姜文 程琳 岳红 刘小宁 梁天','谢飞','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqapeKukfR6xA8PmS1llmdDWski1Yzb6R6ljuBBrmQlWm',
-'NULL','NULL','4',1,'/static/movie/img/p2167550459.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9936,'错爱双鱼座','https://movie.douban.com/subject/1308821/','6.9',3162,
-'http://www.imdb.com/title/tt0380565','NULL','NULL','NULL','NULL','NULL','韩国','2000-10-21(韩国)',
-'李美妍 崔佑齐 尹智慧','金衡泰','爱情',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8BDhJW4urKgQIHz85YBHppk35STSgkm557Hv1g2Ju2HN',
-'NULL','NULL','4',1,'/static/movie/img/p1113537816.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9937,'怒火攻心2：高压电','https://movie.douban.com/subject/3011574/','6.8',36495,
-'http://www.imdb.com/title/tt1121931','NULL','NULL','NULL','NULL','NULL','美国','2009-04-16',
-'杰森·斯坦森 艾米·斯马特 白灵 小克利夫顿·克林斯 艾弗连·莱米雷斯 大卫·卡拉丁 雷诺·维尔森 Joseph Julian Soria 德怀特·尤科姆','马克·耐沃尔代','动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrhjjps8.html',
-'magnet:?xt=urn:btih:8c46928de460a0b81814c7d1f4528c73027b2a54','NULL','4',1,'/static/movie/img/p1501108792.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9938,'化妆师','https://movie.douban.com/subject/21372183/','3.2',1906,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-03-20(中国大陆)',
-'巩新亮 大左 午马 王希维 尚华 高伟光 李晓磊 谢韵虹 冯淬帆','午马','喜剧 惊悚',
-'http://www.iqiyi.com/v_19rrhv6mew.html',
-'magnet:?xt=urn:btih:bd2886628f9ae5208ca4b3ae49295fd742e981a0','NULL','4',1,'/static/movie/img/p2170911933.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9939,'天鹅绒金矿','https://movie.douban.com/subject/1294136/','8.4',41937,
-'http://www.imdb.com/title/tt0120879','NULL','NULL','NULL','NULL','NULL','英国 / 美国','1998-11-06',
-'伊万·麦克格雷格 乔纳森·莱斯·梅耶斯 克里斯蒂安·贝尔 托妮·科莱特 艾迪·伊扎德 Emily Woof 迈克尔·菲斯特 珍妮·麦克蒂尔 Mairead McKinley Luke Morgan Oliver Osheen Jones Micko Westmoreland Damian Suchet Danny Nutt 沃什·韦斯特摩兰 布莱恩·莫尔克','托德·海因斯','剧情 同性 音乐',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJA_PTLHO0GMmss34Lo9QE_',
-'NULL','NULL','4',1,'/static/movie/img/p580624079.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9940,'生命太漫长','https://movie.douban.com/subject/4827355/','6.2',72,
-'http://www.imdb.com/title/tt1572996','NULL','NULL','NULL','NULL','NULL','德国','2010-08-26(德国)',
-'Markus Hering 梅雷特·贝克尔 维罗尼卡·费瑞尔 Hannah Levy David Schlichter 伊冯娜·卡特菲德','丹尼·雷维','剧情 喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p843874884.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9941,'意乱情迷','https://movie.douban.com/subject/1307689/','6.2',201,
-'http://www.imdb.com/title/tt0094353','NULL','NULL','NULL','NULL','NULL','香港','0000-00-00',
-'钟楚红 张学友 王小凤 秦沛','杨凡','暂时无数据',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb7e2_aK_V6zMrFr7PuraH-weopFee7gfI-E3eXB-iufM',
-'NULL','NULL','4',1,'/static/movie/img/p2246333306.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9942,'终极尖兵','https://movie.douban.com/subject/1293570/','6.7',1246,
-'http://www.imdb.com/title/tt0102266','NULL','NULL','NULL','NULL','NULL','美国','1991-12-13',
-'布鲁斯·威利斯 达蒙·韦恩斯 泰勒·内古龙 哈莉·贝瑞','托尼·斯科特','喜剧 动作 悬疑 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rra2722w.html',
-'NULL','NULL','4',1,'/static/movie/img/p1711541107.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9943,'Specialist','https://movie.douban.com/subject/25820610/','7.2',523,
-'http://www.imdb.com/title/tt3575592','NULL','NULL','NULL','NULL','NULL','日本','2014-03-08(日本)',
-'草剪刚 南果步 芦名星 平冈佑太 佐户井贤太 上川隆也 黑谷友香 前田美波里 长谷川初范 名高达男','七髙剛','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2172809658.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9944,'大桥下面','https://movie.douban.com/subject/1868857/','7.7',1324,
-'http://www.imdb.com/title/tt0356499','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'张铁林 龚雪 王频','白沉','爱情',
-'http://www.iqiyi.com/v_19rrnz2x6g.html',
-'NULL','NULL','4',1,'/static/movie/img/p1344126978.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9945,'天堂无路','https://movie.douban.com/subject/1300269/','7.1',161,
-'http://www.imdb.com/title/tt0127722','NULL','NULL','NULL','NULL','NULL','美国','1998-12-30',
-'詹姆斯·伍兹 梅兰尼·格里菲斯 文森特·卡塞瑟','拉里·克拉克','剧情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2443846163.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9946,'安娜与安娜','https://movie.douban.com/subject/2334073/','5.9',4807,
-'http://www.imdb.com/title/tt0985079','NULL','NULL','NULL','NULL','NULL','香港 / 新加坡 / 中国','2007-11-22',
-'林嘉欣 陆毅 黄腾浩','林爱华','剧情 爱情 惊悚',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGXLuNAZcra1FnlESXALTB-xRpVS9PmwSsjnsrhcTeeCx',
-'NULL','NULL','4',1,'/static/movie/img/s2951888.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9947,'春逝','https://movie.douban.com/subject/1300186/','7.8',15939,
-'http://www.imdb.com/title/tt0295192','NULL','NULL','NULL','NULL','NULL','韩国 / 日本 / 香港','2001-09-28(韩国)',
-'李英爱 刘智泰 李文植 朴仁焕 白钟学','许秦豪','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJKjFeUMlc9GWsaF0bBuFG1',
-'magnet:?xt=urn:btih:277d550cf5b939e2823e9668f99c3f6552090126','NULL','4',1,'/static/movie/img/p1369457641.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9948,'偏执','https://movie.douban.com/subject/3660133/','5.6',1799,
-'http://www.imdb.com/title/tt1413495','NULL','NULL','NULL','NULL','NULL','美国 / 法国','2013-08-16(美国)',
-'利亚姆·海姆斯沃斯 加里·奥德曼 艾梅柏·希尔德 哈里森·福特 艾伯丝·戴维兹 卢卡斯·提尔','罗伯特·路克蒂克','剧情 动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLzEdFuIeE0_9IXCIgwy9zh',
-'magnet:?xt=urn:btih:b59785c3a4d089bd2437f83c60918a3a557e51ae','NULL','4',1,'/static/movie/img/p2005851788.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9949,'我走我路','https://movie.douban.com/subject/1308333/','7.1',278,
-'http://www.imdb.com/title/tt0037800','NULL','NULL','NULL','NULL','NULL','英国','1945-10-30',
-'温蒂·希勒 罗杰·莱伍赛 帕梅拉·布朗 芬利·柯里 George Carney','迈克尔·鲍威尔','剧情 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2211637901.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9950,'爱我就搭火车','https://movie.douban.com/subject/1303839/','7.1',481,
-'http://www.imdb.com/title/tt0118834','NULL','NULL','NULL','NULL','NULL','法国','1998-05-15',
-'帕斯卡·格里高利 让·路易·特兰蒂尼昂 文森特·佩雷斯','帕特里斯·夏侯','剧情 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1954779169.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9951,'嘻哈青春','https://movie.douban.com/subject/10508877/','5.6',142,
-'http://www.imdb.com/title/tt2612044','NULL','NULL','NULL','NULL','NULL','韩国','2012-03-15(韩国)',
-'奉太奎 李永勋 郭智敏','卞成贤','剧情',
-'http://www.iqiyi.com/v_19rrh0u0n4.html',
-'NULL','NULL','4',1,'/static/movie/img/p1985472332.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9952,'我的法兰西岁月','https://movie.douban.com/subject/1464134/','7.0',710,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2004-08-20(中国大陆)',
-'钟秋 周朗 卢奇 夏雨 黄海波 邵峰 葛存壮','翟俊杰','剧情 传记 历史',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqeLS2R6Qdmh10NFyQzNrMHZPIecAWeuRksKnuBCNhVXV',
-'NULL','NULL','4',1,'/static/movie/img/s1482661.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9953,'为马儿端上啤酒','https://movie.douban.com/subject/3135545/','6.5',65,
-'http://www.imdb.com/title/tt1178640','NULL','NULL','NULL','NULL','NULL','美国','2008-08-08',
-'托比·基思 Rodney Carrington 克莱尔·弗兰妮','Michael Salomon','喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3183930.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9954,'夜夜夜贼','https://movie.douban.com/subject/1301668/','7.0',344,
-'http://www.imdb.com/title/tt0118100','NULL','NULL','NULL','NULL','NULL','法国','1996-08-21',
-'卡特琳·德纳芙 达尼埃尔·奥德耶 萝伦丝·柯德','安德烈·泰希内','剧情 爱情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2274300809.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9955,'我人生中最美的一周','https://movie.douban.com/subject/1467235/','7.5',2085,
-'http://www.imdb.com/title/tt0479724','NULL','NULL','NULL','NULL','NULL','韩国','2005-10-07(韩国)',
-'黄政民 任昌丁 严正化 金裕贞 吴美熙 郑京浩','闵奎东','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1b5Kt8iGxy1JcQVDW6w30aEEmD_6AFbTcWaYIGKJ_35YKm0jOuH-v0DDB0XxtoQ9Xw==',
-'NULL','NULL','4',1,'/static/movie/img/p733938321.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9956,'丛林的孩子','https://movie.douban.com/subject/3718626/','7.8',150,
-'http://www.imdb.com/title/tt1242543','NULL','NULL','NULL','NULL','NULL','德国','0000-00-00',
-'Thomas Kretschmann Nadja Uhl','Roland Suso Richter','剧情 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s6990704.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9957,'伊夫圣罗兰传','https://movie.douban.com/subject/21370624/','6.6',7954,
-'http://www.imdb.com/title/tt2707858','NULL','NULL','NULL','NULL','NULL','法国','2014-01-08(法国)',
-'皮埃尔·尼内 圭洛姆·加里尼 夏洛特·勒·邦 劳拉·斯梅特 艾克萨维尔·拉菲特 尼科莱·金斯基','加里·勒斯培','爱情 同性 传记',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML1pnQot7zxIc0tYqeu_6mJ',
-'magnet:?xt=urn:btih:92521c4a210bb8e0c0bf4b63610c7dc9a13d6ecc','NULL','4',1,'/static/movie/img/p2161266106.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9958,'张衡','https://movie.douban.com/subject/1483982/','7.0',283,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1983',
-'许还山 高博 秦怡','黄祖模','剧情 传记 历史 古装',
-'http://www.iqiyi.com/v_19rrny4g14.html',
-'NULL','NULL','4',1,'/static/movie/img/p2160602983.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9959,'离婚症候群','https://movie.douban.com/subject/4850391/','6.5',380,
-'http://www.imdb.com/title/tt1663910','NULL','NULL','NULL','NULL','NULL','日本','2010-06-30',
-'中谷美纪 田中圣 余贵美子 释由美子 市川亀治郎 山本太郎 柴本幸 風吹ジュン 石坂浩二 金田明夫 東根作寿英 フォーリンラブ 小林星兰','佐久間紀佳','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4400870.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9960,'再说一次我爱你','https://movie.douban.com/subject/1433232/','6.2',21655,
-'http://www.imdb.com/title/tt0483957','NULL','NULL','NULL','NULL','NULL','中国大陆 / 香港','2005-10-20(香港/中国大陆)',
-'刘德华 杨采妮 蔡卓妍 林依轮 黄秋生 许绍雄 黄淑仪 林雪','余伟国','剧情 爱情',
-'http://www.iqiyi.com/v_19rrnw9omw.html',
-'magnet:?xt=urn:btih:3bd0b1bbbab8d09b81baaec6d19914f9f11de0f0','NULL','4',1,'/static/movie/img/p486988362.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9961,'南方','https://movie.douban.com/subject/1477717/','8.3',1066,
-'http://www.imdb.com/title/tt0084740','NULL','NULL','NULL','NULL','NULL','西班牙 / 法国','1983-05-19',
-'Omero Antonutti Sonsoles Aranguren 伊希娅·博拉茵','维克多·艾里斯','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLfG3_9Pbo9fWhhfg6flNRA',
-'NULL','NULL','4',1,'/static/movie/img/p1470973920.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9962,'致命女人香','https://movie.douban.com/subject/1301629/','6.5',224,
-'http://www.imdb.com/title/tt0109198','NULL','NULL','NULL','NULL','NULL','美国','1994-04-22',
-'玛德琳·斯托 安迪·麦克道威尔 德鲁·巴里摩尔 玛丽·斯图尔特·马斯特森','乔纳森·卡普兰','西部',
-'http://www.iqiyi.com/dianying/20130426/bbe37b3cdb6fb9a2.html',
-'NULL','NULL','4',1,'/static/movie/img/p2257171535.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9963,'幻影追凶','https://movie.douban.com/subject/4120583/','6.1',10335,
-'http://www.imdb.com/title/tt1536410','NULL','NULL','NULL','NULL','NULL','美国 / 法国 / 加拿大 / 英国','2012-11-13(中国大陆)',
-'米拉·乔沃维奇 朱利安·麦克马洪 迈克尔·山克斯 莎拉·韦恩·卡丽丝 何家蓓 瓦伦提娜·瓦格斯','朱利安·麦格奈','剧情 惊悚 犯罪',
-'http://www.iqiyi.com/dianying/20130312/21fe1d7e1be45b44.html',
-'magnet:?xt=urn:btih:73c3fe2a15d183207467b76cef366a80034e451c','NULL','4',1,'/static/movie/img/p717519472.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9964,'恶女们的刀2','https://movie.douban.com/subject/20380251/','6.7',66,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2012-12-21(日本)',
-'仲間由紀恵 中村蒼 山口紗弥加 木村文乃 笠原秀幸 森岡豊 西田尚美 大塚寧々 高橋英樹','日比野朗','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s24229323.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9965,'隐居的一年','https://movie.douban.com/subject/4118924/','6.8',435,
-'http://www.imdb.com/title/tt1536374','NULL','NULL','NULL','NULL','NULL','美国','2011-10-30(美国)',
-'Josh Lucas Ayelet Zurer James Cromwell','Chris Eyre','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJJiMMZPB_4pd8wQ_ivCJ0E',
-'magnet:?xt=urn:btih:c1105e856c2441d1b2724a15495b4f532b0c9bcd','NULL','4',1,'/static/movie/img/p1524944106.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9966,'兔子和蜥蜴','https://movie.douban.com/subject/4087058/','6.1',1234,
-'http://www.imdb.com/title/tt1517218','NULL','NULL','NULL','NULL','NULL','韩国','2009-10-22',
-'成宥利 张赫','朱志洪','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1034617241.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9967,'早安台北','https://movie.douban.com/subject/1305181/','7.2',522,
-'http://www.imdb.com/title/tt0314939','NULL','NULL','NULL','NULL','NULL','台湾','1979',
-'钟镇涛 江明 林凤娇 郎雄','李行','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2177920326.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9968,'沉默的人','https://movie.douban.com/subject/1437331/','8.0',369,
-'http://www.imdb.com/title/tt0069270','NULL','NULL','NULL','NULL','NULL','法国 / 意大利','1973-02-21(法国)',
-'利诺·文图拉 里奥·吉恩 苏珊娜·弗罗恩 罗伯特·哈迪 蕾雅·马萨利 Pierre-Michel Le Conte','克洛德·比诺托','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKuQURwd3mhUCCTOn5mYv9T',
-'NULL','NULL','4',1,'/static/movie/img/s1452397.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9969,'铜雀台','https://movie.douban.com/subject/6796158/','5.0',40948,
-'http://www.imdb.com/title/tt2063013','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-09-26(中国大陆)',
-'周润发 刘亦菲 苏有朋 玉木宏 伊能静 邱心志 姚橹 倪大红 牛犇 罗家英 保剑锋','赵林山','剧情 古装',
-'http://www.iqiyi.com/dianying/20130116/4eea0f232fd15af0.html',
-'magnet:?xt=urn:btih:975cdb997fbaa7eff297a367ee4db0c723a7a9b5','NULL','4',1,'/static/movie/img/p1709282333.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9970,'基地疑云','https://movie.douban.com/subject/1301164/','6.9',4528,
-'http://www.imdb.com/title/tt0264395','NULL','NULL','NULL','NULL','NULL','美国 / 德国','2003-05-15',
-'约翰·特拉沃尔塔 塞缪尔·杰克逊 康妮·尼尔森','约翰·麦克蒂尔南','剧情 悬疑 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2204969185.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9971,'看不见的女人','https://movie.douban.com/subject/6874137/','6.3',1322,
-'http://www.imdb.com/title/tt1700845','NULL','NULL','NULL','NULL','NULL','英国','2014-02-07(英国)',
-'拉尔夫·费因斯 菲丽希缇·琼斯 克里斯汀·斯科特·托马斯 米歇尔·费尔利 汤姆·霍兰德 汤姆·伯克 佩蒂塔·维克斯 夏洛特·霍普','拉尔夫·费因斯','剧情 爱情 传记',
-'NULL',
-'magnet:?xt=urn:btih:bfd55a861dcbb57e708d7934dc44ff76a04a0f3f','NULL','4',1,'/static/movie/img/p2176668285.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9972,'天荒地老不了情','https://movie.douban.com/subject/3249563/','7.0',51,
-'http://www.imdb.com/title/tt0026667','NULL','NULL','NULL','NULL','NULL','美国','1936-01-21',
-'Robert Taylor Irene Dunne','John M. Stahl','剧情 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2115370161.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9973,'高踢少女','https://movie.douban.com/subject/3643289/','4.7',224,
-'http://www.imdb.com/title/tt1406157','NULL','NULL','NULL','NULL','NULL','日本','2009-05-30(日本)',
-'武田梨奈 高橋龍輝 中達也','西冬彦','动作',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8I79Xypqizgt9wnl0lq4szWMKTt6GaMLqrCV3kv87F6f',
-'NULL','NULL','4',1,'/static/movie/img/p963997640.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9974,'喜欢您','https://movie.douban.com/subject/1903672/','6.6',368,
-'http://www.imdb.com/title/tt0441561','NULL','NULL','NULL','NULL','NULL','香港','2001-03-22',
-'吴镇宇 杨恭如 Julie Bataille','查传谊','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2164250203.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9975,'国家利益','https://movie.douban.com/subject/6876154/','6.7',5301,
-'http://www.imdb.com/title/tt1856014','NULL','NULL','NULL','NULL','NULL','瑞典','2016-04-18(中国大陆)',
-'米卡埃尔·佩斯布兰特 萨巴·穆巴拉克 大卫·丹席克 潘妮拉·奥古斯特 杰森·弗莱明 雷·费隆 里奥·格雷高里 彼得·安德森 古斯塔夫·汉马斯顿','凯瑟琳·温德菲尔德','剧情 动作 惊悚',
-'NULL',
-'magnet:?xt=urn:btih:1847a8af42021dd4676f8f04648daa1e3811d7a2','NULL','4',1,'/static/movie/img/p1501309369.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9976,'草叶','https://movie.douban.com/subject/2372389/','7.5',12628,
-'http://www.imdb.com/title/tt1151359','NULL','NULL','NULL','NULL','NULL','美国','2009-09-14',
-'爱德华·诺顿 苏珊·萨兰登 梅兰妮·林斯基 泰·布利尔 凯丽·拉塞尔 理查德·德莱弗斯 蒂姆·布雷克·尼尔森','蒂姆·布雷克·尼尔森','剧情 喜剧 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2154240655.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9977,'苏醒','https://movie.douban.com/subject/3003484/','5.4',235,
-'http://www.imdb.com/title/tt0960097','NULL','NULL','NULL','NULL','NULL','美国','2009-02-25',
-'Bijou Phillips Ian Somerhalder Danny Masterson Jane Seymour Katherine Flynn','Ellie Kanner','剧情 喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4286969.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9978,'法官妈妈','https://movie.douban.com/subject/1867014/','6.3',417,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'奚美娟 陈思诚 赵有亮 刘希媛 李杉 郑晓宁 林海海','穆德远','剧情 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1VLjnkVAwtBu_0eSmxXKoxgER1YjWU5wnMsY60lRsw0wCoyrIphsAmBtFPlUDQwlAA==',
-'NULL','NULL','4',1,'/static/movie/img/p2376338262.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9979,'穆谢特','https://movie.douban.com/subject/1302413/','8.5',2892,
-'http://www.imdb.com/title/tt0061996','NULL','NULL','NULL','NULL','NULL','法国','1967-03-28',
-'Nadine Nortier Jean-Claude Guilbert Marie Cardinal Paul Hebert','罗伯特·布列松','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLptNJC7zRiNT4VxPJ3umyi',
-'NULL','NULL','4',1,'/static/movie/img/p1710495895.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9980,'盲女凶杀案','https://movie.douban.com/subject/1301606/','6.5',273,
-'http://www.imdb.com/title/tt0104549','NULL','NULL','NULL','NULL','NULL','美国','1992-11-06',
-'安迪·加西亚 兰斯·亨利克森 乌玛·瑟曼 约翰·马尔科维奇','布鲁斯·罗宾逊','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrnmv4ag.html',
-'NULL','NULL','4',1,'/static/movie/img/p826996075.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9981,'大旗英雄传','https://movie.douban.com/subject/1937944/','6.2',327,
-'http://www.imdb.com/title/tt0165195','NULL','NULL','NULL','NULL','NULL','香港','1982-02-19',
-'狄龙 罗莽 廖丽玲 陈思佳 艾飞','张鹏翼','剧情 动作',
-'http://www.iqiyi.com/v_19rrho51tg.html',
-'NULL','NULL','4',1,'/static/movie/img/p2344574333.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9982,'非常营救','https://movie.douban.com/subject/11589786/','5.4',560,
-'http://www.imdb.com/title/tt2415536','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-09-21(中国大陆)',
-'赵文瑄 王双宝 任帅 胡影怡 董彦麟 汪洋 崔成勋 张家川','毛坚','剧情 悬疑',
-'http://www.iqiyi.com/dianying/20130221/8a227ad3db71ba7b.html',
-'NULL','NULL','4',1,'/static/movie/img/p1709702054.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9983,'年年有今日','https://movie.douban.com/subject/1306341/','7.7',2053,
-'http://www.imdb.com/title/tt0110660','NULL','NULL','NULL','NULL','NULL','香港','1994-03-31',
-'梁家辉 袁咏仪 吴君如 黄霑 吴镇宇 高志森','高志森','剧情 喜剧',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Q2WLu6LVtINu55mYPNnhqnHXu_6tLfJQO18wJZ-nUBIenN6vqMPmC7ns2HGtsbiZw==',
-'NULL','NULL','4',1,'/static/movie/img/p2352120522.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9984,'半夜不要照镜子','https://movie.douban.com/subject/10569133/','3.5',2482,
-'http://www.imdb.com/title/tt2460762','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-06-14(中国大陆)',
-'关智斌 李曼筠 徐汶萱 张钧涵 及莉 姜梦茹 刘静怡 苏悦华 乌雅心颜','牛朝阳','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrlugnec.html',
-'NULL','NULL','4',1,'/static/movie/img/p1568062440.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9985,'爱丽丝姨妈','https://movie.douban.com/subject/1293552/','7.2',157,
-'http://www.imdb.com/title/tt0065206','NULL','NULL','NULL','NULL','NULL','美国','1969-08-20',
-'杰拉丹·佩姬 鲁思·戈登 Rosemary Forsyth','李·H. 卡金','剧情 悬疑 惊悚 恐怖 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4135555.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9986,'杀出西营盘','https://movie.douban.com/subject/1308716/','6.7',142,
-'http://www.imdb.com/title/tt0125710','NULL','NULL','NULL','NULL','NULL','香港','1982-06-30',
-'秦祥林 岳华 焦姣 叶童 汤镇宗 潘震伟 黎汉持 李修贤 关海山 詹森','唐基明 (Terry Tong)','动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIvCxlGzy8I5YRi9f-daLrk',
-'NULL','NULL','4',1,'/static/movie/img/s24480799.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9987,'春风不化雨','https://movie.douban.com/subject/1292684/','8.3',633,
-'http://www.imdb.com/title/tt0064840','NULL','NULL','NULL','NULL','NULL','英国','1969-03-02',
-'玛吉·史密斯 罗伯特·斯蒂芬斯 帕梅拉·富兰克林','罗纳德·尼姆','剧情 喜剧 爱情 音乐',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2204472409.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9988,'出水芙蓉','https://movie.douban.com/subject/1305158/','8.5',23722,
-'http://www.imdb.com/title/tt0036628','NULL','NULL','NULL','NULL','NULL','美国','1944-06-27(美国)',
-'雷德·斯克尔顿 埃丝特·威廉斯 巴斯尔·拉斯博 比尔·戈德温 简·波特 Nana Bryant Carlos Ramírez Ethel Smith 丽娜·罗迈 Helen Forrest 唐纳德·米克 Jacqueline Dalya Francis Pierlot Ann Codee 玛格丽特·杜蒙 Bunny Waters 简妮丝·佩吉 Xavier Cugat Harry James Abigail Adams Dorothy Adams Jane Isbell','乔治·西德尼','喜剧 歌舞',
-'http://so.iqiyi.com/links/pTDC7TM4nZL7qEH4QP2T9Hmj5IV2KczzDnMoVvHXjRPZm1Q4Qe-g9vdHg-x0ngkX8BsQQDoh03gAhgRSTt0jg7TCJm_PZr-LOnHPshOrCD8=',
-'NULL','NULL','4',1,'/static/movie/img/p785685690.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9989,'野蛮的温柔','https://movie.douban.com/subject/3065473/','4.7',415,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国','2008-06-27',
-'叶童 吕良伟 李学庆 周蕾 张毓晨','侯献岳','暂时无数据',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqRFCHNw7uM__V5-DU822dMC9FqVuz31rpL4omDnxwfQ3',
-'NULL','NULL','4',1,'/static/movie/img/p2371860038.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9990,'红河谷','https://movie.douban.com/subject/1305182/','7.7',33607,
-'http://www.imdb.com/title/tt0223998','NULL','NULL','NULL','NULL','NULL','中国大陆','1999-10-01(美国)',
-'宁静 邵兵 应真 保罗·克塞 Nicholas Love','冯小宁','剧情 爱情 历史 战争',
-'http://www.iqiyi.com/v_19rrny8t0g.html',
-'NULL','NULL','4',1,'/static/movie/img/p2327433041.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9991,'茉莉花开','https://movie.douban.com/subject/1302795/','7.1',34736,
-'http://www.imdb.com/title/tt0370969','NULL','NULL','NULL','NULL','NULL','中国大陆','2004-10-23(中国大陆)',
-'章子怡 姜文 陈冲 刘烨 陆毅','侯咏','剧情 爱情 家庭',
-'http://www.iqiyi.com/dianying/20100517/n12717.html',
-'NULL','NULL','4',1,'/static/movie/img/p1008950338.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9992,'恋爱平安夜','https://movie.douban.com/subject/25784266/','5.6',674,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2013-12-24(日本)',
-'沟端淳平 佐佐木希 臼田麻美 千叶雄大 原史奈 京野琴美 Brother Tom 栗原类 伊武雅刀','大谷太郎','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2161286040.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9993,'梅山奇案','https://movie.douban.com/subject/3320002/','6.2',101,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1985-04',
-'黄达亮 林强 傅艺伟 张勤 苏荧 宋雪娟','李耿','悬疑',
-'http://so.iqiyi.com/links/bu1fv1oRRL5kcvvjEx3Ylqgctm542HH25yqUjiW9NAfOLOuR4i6mQCm6SqX81jxQ',
-'NULL','NULL','4',1,'/static/movie/img/p2328132341.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9994,'贝尔特·莫里索','https://movie.douban.com/subject/24843120/','7.1',42,
-'http://www.imdb.com/title/tt2396722','NULL','NULL','NULL','NULL','NULL','法国','2013-07-26(台湾)',
-'马里恩·德尔特梅 爱丽丝·毕铎 马立克·兹迪 Berangere Bonvoisin','卡洛琳·尚普蒂耶','剧情 爱情 传记',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIbOYjYZQL7v_VNkeF1WCyC',
-'NULL','NULL','4',1,'/static/movie/img/p2045697549.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9995,'地兽','https://movie.douban.com/subject/2353153/','5.3',43,
-'http://www.imdb.com/title/tt0082094','NULL','NULL','NULL','NULL','NULL','美国','1981-09-25',
-'Rebecca Balding Fred McCarren 安妮－玛丽·马丁','James L. Conway','恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML0DXx4HVkdzHOTjJFvc2f-',
-'NULL','NULL','4',1,'/static/movie/img/s2817527.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9996,'席德与南茜','https://movie.douban.com/subject/1293694/','7.7',9122,
-'http://www.imdb.com/title/tt0091954','NULL','NULL','NULL','NULL','NULL','英国','1986-08-29',
-'加里·奥德曼 科洛·韦伯 David Hayman Debby Bishop','亚力克斯·考克斯','剧情 音乐 传记',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIAicNA-iZfKj0NWI3yzI3o',
-'NULL','NULL','4',1,'/static/movie/img/p1366545990.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9997,'八墓村','https://movie.douban.com/subject/1304667/','7.3',1510,
-'http://www.imdb.com/title/tt0118204','NULL','NULL','NULL','NULL','NULL','日本','1996-10-26(日本)',
-'丰川悦司 浅野优子 高桥和也 岸田今日子 岸部一德 万田久子 喜多岛舞 石桥莲司 西村雅彦 井川比佐志 加藤武','市川昆','悬疑',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI74CnrxbOOY5-WMvnLB8Ew',
-'NULL','NULL','4',1,'/static/movie/img/s7006772.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9998,'狙击杀手','https://movie.douban.com/subject/1306507/','5.7',830,
-'http://www.imdb.com/title/tt0160184','NULL','NULL','NULL','NULL','NULL','美国 / 德国','2002-01-04',
-'西尔维斯特·史泰龙 查尔斯·达顿 波利·沃克 克里斯·克里斯托佛森 杰弗里·怀特','Jim Gillespie','悬疑 惊悚 恐怖 犯罪',
-'http://www.iqiyi.com/v_19rrhyuqk8.html',
-'NULL','NULL','4',1,'/static/movie/img/p2485018499.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(9999,'我要活下去','https://movie.douban.com/subject/1473842/','7.7',1299,
-'http://www.imdb.com/title/tt0114968','NULL','NULL','NULL','NULL','NULL','香港','1995',
-'张艾嘉 赵文瑄 袁咏仪 周华健 关礼杰 江欣燕','李惠民','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1UuOINsGSNXhv728eAxDosG2tIdwt9FGixHEVd8xTubrC5rytSSxc0BaOsD0cQJ2sQ==',
-'magnet:?xt=urn:btih:6f887b1ec9076c8c4c154b4b0a2716329e17d3dc','NULL','4',1,'/static/movie/img/s11175241.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10000,'残缺','https://movie.douban.com/subject/1467585/','7.3',970,
-'http://www.imdb.com/title/tt0077292','NULL','NULL','NULL','NULL','NULL','香港','1978-12-21',
-'陈观泰 鹿峰 郭追 罗莽 孙建 潘冰嫦','张彻','剧情 动作 武侠 古装',
-'http://www.iqiyi.com/v_19rrmy7u0k.html',
-'NULL','NULL','4',1,'/static/movie/img/p2038187570.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10001,'五克拉的爱情','https://movie.douban.com/subject/1295625/','6.8',107,
-'http://www.imdb.com/title/tt0119901','NULL','NULL','NULL','NULL','NULL','法国','1998-10-07',
-'卡特琳·德纳芙 让-皮埃尔·巴克里 艾玛纽尔·塞尼耶','妮可·加西亚','剧情 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJYvAAh7iF9Rxc11gAnZfe6',
-'NULL','NULL','4',1,'/static/movie/img/p711471807.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10002,'风尘三女侠','https://movie.douban.com/subject/2068504/','5.8',286,
-'http://www.imdb.com/title/tt0109796','NULL','NULL','NULL','NULL','NULL','香港','1994-04-28',
-'郑伊健 陈雅伦 李丽珍 陈国邦 陈启泰 苑琼丹 叶伟信','钱永强','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2164905832.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10003,'绝地战警2','https://movie.douban.com/subject/1307917/','7.4',19479,
-'http://www.imdb.com/title/tt0172156','NULL','NULL','NULL','NULL','NULL','美国','2003-07-18(美国)',
-'马丁·劳伦斯 威尔·史密斯 詹迪·莫拉 加布里埃尔·尤尼恩 彼得·斯特曼 特里萨·兰德尔 乔·潘托里亚诺 迈克尔·珊农 乔恩·塞达 尤尔·瓦斯克斯 贾森·曼努尔·奥拉扎巴尔 奥托·桑切斯 亨利·罗林斯 安东尼·科隆 Gary Nickens','迈克尔·贝','喜剧 动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrk3uo1w.html',
-'NULL','NULL','4',1,'/static/movie/img/p686551036.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10004,'男朋友','https://movie.douban.com/subject/1303161/','7.9',48,
-'http://www.imdb.com/title/tt0066858','NULL','NULL','NULL','NULL','NULL','英国 / 美国','1971-12-16',
-'崔姬 克里斯托弗·盖布尔 麦克斯阿德里安','肯·罗素','喜剧 爱情 歌舞',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2225138289.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10005,'机器人之恋','https://movie.douban.com/subject/1853752/','6.5',14331,
-'http://www.imdb.com/title/tt0497137','NULL','NULL','NULL','NULL','NULL','韩国','2006-12-07(韩国)',
-'郑智薰 林秀晶 吴达洙 金秉玉 朴秉恩','朴赞郁','剧情 喜剧 爱情',
-'http://www.iqiyi.com/dianying/20100812/n29703.html',
-'magnet:?xt=urn:btih:0393f3e482447a7fc5496388f17678aa0689e386','NULL','4',1,'/static/movie/img/p2455761680.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10006,'长长的逆光','https://movie.douban.com/subject/1439019/','8.0',283,
-'http://www.imdb.com/title/tt0119316','NULL','NULL','NULL','NULL','NULL','匈牙利','1997-04-17',
-'玛丽·德勒契克 Imre Csuja 安德拉斯·费克特 János Katona','阿提拉·杨尼什','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4546515.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10007,'缺席','https://movie.douban.com/subject/5973058/','6.8',1702,
-'http://www.imdb.com/title/tt1796406','NULL','NULL','NULL','NULL','NULL','阿根廷','2011-02-13(柏林电影节)',
-'卡洛斯·埃切维里亚 安托里娜·科斯塔 Javier De Pietro Rocio Pavon Alejandro Barbera','马可·伯格','剧情 惊悚 同性',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIZt63Nh6QtxNXDrSMAhdfm',
-'NULL','NULL','4',1,'/static/movie/img/p1097522433.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10008,'天空是蓝色的','https://movie.douban.com/subject/4038198/','7.5',166,
-'http://www.imdb.com/title/tt1510918','NULL','NULL','NULL','NULL','NULL','瑞典','2010-10-15(瑞典)',
-'比尔·斯卡斯加德 Peter Dalle Josefin Ljungman 伯恩·谢尔曼 阿曼达·奥慕斯','Hannes Holm','剧情',
-'NULL',
-'magnet:?xt=urn:btih:fcafbe10dea382a3a6102cde923640f9bcb2b7da','NULL','4',1,'/static/movie/img/s4697124.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10009,'水玲珑','https://movie.douban.com/subject/1307655/','6.5',215,
-'http://www.imdb.com/title/tt0100610','NULL','NULL','NULL','NULL','NULL','香港','0000-00-00',
-'午马 刘子蔚 李赛凤 江欣燕 钟发 曹荣','杨权 Kuen Yeung','剧情',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8BDhJW4urKgQIHz85YBHppn63Zhk9KiMDU2OE5j3WKWf',
-'NULL','NULL','4',1,'/static/movie/img/s3317606.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10010,'迷局','https://movie.douban.com/subject/5910934/','4.6',3087,
-'http://www.imdb.com/title/tt1748197','NULL','NULL','NULL','NULL','NULL','美国','2011-09-05',
-'布鲁斯·威利斯 瑞恩·菲利普 珍娜·迪万-塔图姆 詹姆斯·瑞马尔 兰迪·库卓 50分 李威尹','Mike Gunther','剧情 动作 犯罪',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzuHBP-ytgsAF6jKSL3oneMbSaoqkjFaaLfhGHuX543CG',
-'magnet:?xt=urn:btih:04b16bb17f16c08574f910e7e13d339a56809976','NULL','4',1,'/static/movie/img/p1210225783.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10011,'红尘','https://movie.douban.com/subject/1292620/','6.9',262,
-'http://www.imdb.com/title/tt0046085','NULL','NULL','NULL','NULL','NULL','美国','1953-10-09(美国)',
-'克拉克·盖博 艾娃·加德纳 格蕾丝·凯利','约翰·福特','剧情 爱情 冒险',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLdGPMwSOebm7bvLAnjlTyy',
-'NULL','NULL','4',1,'/static/movie/img/p2262904767.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10012,'超完美谋杀案','https://movie.douban.com/subject/1297509/','6.9',10703,
-'http://www.imdb.com/title/tt0120787','NULL','NULL','NULL','NULL','NULL','美国','1998-06-05',
-'迈克尔·道格拉斯 格温妮斯·帕特洛 维果·莫腾森 大卫·苏切特','安德鲁·戴维斯','惊悚 犯罪',
-'http://www.iqiyi.com/v_19rra5qaaw.html',
-'NULL','NULL','4',1,'/static/movie/img/p1726794939.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10013,'鹳鸟踟蹰','https://movie.douban.com/subject/1302789/','8.7',2180,
-'http://www.imdb.com/title/tt0102439','NULL','NULL','NULL','NULL','NULL','法国 / 意大利 / 希腊 / 瑞士','1991-09-13',
-'马切洛·马斯特洛亚尼 让娜·莫罗','西奥·安哲罗普洛斯','剧情 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2679219.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10014,'LIVE','https://movie.douban.com/subject/26328113/','7.0',78,
-'http://www.imdb.com/title/tt5282020','NULL','NULL','NULL','NULL','NULL','日本','2015-03-10',
-'石井杏奈 渡边大知 木下百花 柾木玲弥 前田航基  友坂理惠 南果步 中村狮童','井上刚','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2279008582.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10015,'枕边有张脸','https://movie.douban.com/subject/19962668/','3.9',2527,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2013-06-14(中国大陆)',
-'吴其江 赵仕瑾 王翀 赵叶索 刘妙 耿英埔 陶慧 王芯','赵小溪','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrhofm1c.html',
-'magnet:?xt=urn:btih:ae5984fa28f070fa0afbe19dbb1c4635ec5357cf','NULL','4',1,'/static/movie/img/p1974719015.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10016,'穿越国境','https://movie.douban.com/subject/2137492/','7.5',4323,
-'http://www.imdb.com/title/tt0924129','NULL','NULL','NULL','NULL','NULL','美国','2009-02-27',
-'哈里森·福特 雷·利奥塔 艾什莉·贾德 克利夫·柯蒂斯 吉姆·斯特吉斯 艾莉丝·布拉加','Wayne Kramer','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p953167116.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10017,'公爵夫人','https://movie.douban.com/subject/2230906/','6.9',37789,
-'http://www.imdb.com/title/tt0864761','NULL','NULL','NULL','NULL','NULL','英国 / 意大利 / 法国','2008-09-05(英国)',
-'凯拉·奈特莉 拉尔夫·费因斯 夏洛特·兰普林 多米尼克·库珀 海莉·阿特维尔 西蒙·迈克伯尼 艾丹·麦克阿德尔 约翰·斯拉普内尔 阿利斯泰·皮垂 帕特里克·戈弗雷 Michael Medwin Justin Edwards Richard McCabe 凯文·迪恩 Hannah Stokely','索尔·迪勃','剧情 爱情 传记 历史',
-'http://www.iqiyi.com/v_19rrn8k164.html',
-'NULL','NULL','4',1,'/static/movie/img/p794903839.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10018,'兄弟','https://movie.douban.com/subject/2277841/','7.6',20374,
-'http://www.imdb.com/title/tt0765010','NULL','NULL','NULL','NULL','NULL','美国','2009-12-04(美国)',
-'托比·马奎尔 杰克·吉伦哈尔 娜塔莉·波特曼 山姆·夏普德 梅尔·温宁汉姆 拜莉·麦迪逊 泰勒·吉蕾 帕特里克·约翰·弗鲁格 小克利夫顿·克林斯 凯瑞·穆里根 Omid Abtahi 纳维德·内加班 伊桑·苏普利 阿荣·希弗 Ray Prewitt','吉姆·谢里丹','剧情 惊悚 战争',
-'http://www.iqiyi.com/v_19rrnyc7kw.html',
-'NULL','NULL','4',1,'/static/movie/img/p2230352738.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10019,'三角洲突击队','https://movie.douban.com/subject/1305243/','6.5',280,
-'http://www.imdb.com/title/tt0090927','NULL','NULL','NULL','NULL','NULL','美国 / 以色列','1986-02-14',
-'查克·诺瑞斯 李·马文','梅纳哈姆 戈兰 (Menahem Golan)','剧情 动作 惊悚',
-'http://www.iqiyi.com/v_19rrofritw.html',
-'NULL','NULL','4',1,'/static/movie/img/p1591751526.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10020,'岁月留痕','https://movie.douban.com/subject/1304872/','7.9',859,
-'http://www.imdb.com/title/tt0119512','NULL','NULL','NULL','NULL','NULL','比利时 / 荷兰 / 英国 / 美国','1998-03-30',
-'劳拉·弗雷泽 伊莎贝拉·罗塞里尼 Adam Monty 杰罗恩·克拉比','杰罗恩·克拉比','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1459638.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10021,'人约黄昏','https://movie.douban.com/subject/1432773/','7.1',1040,
-'http://www.imdb.com/title/tt0116239','NULL','NULL','NULL','NULL','NULL','中国大陆 / 香港','1996-01-18(香港)',
-'张锦秋 梁家辉 高雄 唐广书 任广智 宁理 夏志卿 卢迪 韩立杨 狄梵 刘昌伟 陈述 夏克平 张明 石灵 李向东 王励 蒋锡礽 鲁梦青 孟谦 龚丽声 潘志文 成家骥 毕远晋 苏德 刘家桢 潘络绎 冯庆 李雁 赵思思 吴素云 杨淑华 高纪文 叶玉卿','陈逸飞','爱情 悬疑',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJGHQmNpnLxjaxJTHpK2BKu',
-'NULL','NULL','4',1,'/static/movie/img/p2376887705.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10022,'天河传说杀人事件','https://movie.douban.com/subject/3295217/','6.4',76,
-'http://www.imdb.com/title/tt0103063','NULL','NULL','NULL','NULL','NULL','日本','1991-03-16',
-'榎木孝明 岸部一德 日下武史 财前直见 岸惠子','市川昆','剧情 悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2437540742.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10023,'橡树','https://movie.douban.com/subject/1303475/','7.8',349,
-'http://www.imdb.com/title/tt0103969','NULL','NULL','NULL','NULL','NULL','法国 / 罗马尼亚','1992-09-16',
-'玛雅·摩根斯坦特 拉兹万·瓦西列斯库 维克托·雷本久克','卢西恩·平蒂列','剧情 喜剧',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJyFogLLODW2naFi284xbAA',
-'NULL','NULL','4',1,'/static/movie/img/p2326391189.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10024,'悲惨世界','https://movie.douban.com/subject/3706732/','5.3',31,
-'http://www.imdb.com/title/tt0104987','NULL','NULL','NULL','NULL','NULL','美国','1992',
-'Michael Bendetti Denise Gentile Holly Floria','David Schmoeller','恐怖',
-'NULL',
-'magnet:?xt=urn:btih:0c7d74bb3e7b54eff6d6dfa9c46645e3d11a4eb9','NULL','4',1,'/static/movie/img/p2357401120.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10025,'危险行动','https://movie.douban.com/subject/1303058/','7.0',226,
-'http://www.imdb.com/title/tt0087144','NULL','NULL','NULL','NULL','NULL','法国 / 瑞士','1984-04-15',
-'休伯特·圣-麦卡里 达尼尔·奥勒布里斯基 让·雨果·安格拉德 米歇尔·皮科利 丽芙·乌曼','里夏尔·登博','剧情 惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMInyx9d64FUC-wqAOSXEdTN',
-'NULL','NULL','4',1,'/static/movie/img/p2162714533.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10026,'一见钟情','https://movie.douban.com/subject/1293040/','7.4',289,
-'http://www.imdb.com/title/tt0085370','NULL','NULL','NULL','NULL','NULL','法国','1983-04-06(法国)',
-'缪缪 伊莎贝尔·于佩尔 盖伊·莫辰特 让-皮埃尔·巴克里 罗宾·瑞努奇 帕特里克·波查 雅克琳·杜瓦安 克里斯汀·帕斯卡尔','黛安娜·克里斯','剧情 传记 战争',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzvmmnLhvdjKoqBklX-u9q9ZalGNXIkjcWCzvbL6GmREK',
-'magnet:?xt=urn:btih:359ded20389d3a0697f3f275e50ddbd39cffd864','NULL','4',1,'/static/movie/img/p2461613880.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10027,'维特根斯坦','https://movie.douban.com/subject/1394064/','7.8',1902,
-'http://www.imdb.com/title/tt0108583','NULL','NULL','NULL','NULL','NULL','英国 / 日本','1993-03-26',
-'卡尔·约翰逊 迈克尔·高夫 蒂尔达·斯文顿 莎莉·德克斯特 John Quentin Kevin Collins Clancy Chassay Nabil Shaban Lynn Seymour Donald McInnes 吉尔·贝肯 nm0550561 Gina Marsh Vanya Del Borgo Ben Scantlebury Howard Sooley','德里克·贾曼','剧情 同性 传记 历史',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKcMz-XResZ_PGcL3WcIamM',
-'NULL','NULL','4',1,'/static/movie/img/p1918826799.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10028,'全面追捕令','https://movie.douban.com/subject/1304856/','6.7',1420,
-'http://www.imdb.com/title/tt0074483','NULL','NULL','NULL','NULL','NULL','美国','1976-12-22',
-'克林特·伊斯特伍德 泰恩·黛莉 哈里·古蒂诺','詹姆斯·法戈','动作 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2205770654.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10029,'监狱生活','https://movie.douban.com/subject/3072779/','7.7',9953,
-'http://www.imdb.com/title/tt1117385','NULL','NULL','NULL','NULL','NULL','美国','2008-07-18',
-'斯蒂芬·多尔夫 马利索·妮可 Vincent Miller 安妮·阿彻 拉内尔·斯托瓦尔 方·基默 山姆·夏普德 强尼·莱维斯 哈罗德·佩里诺 Shawn Prince Chris Browning 尼克·齐兰德 格雷格·塞拉诺 杰克·沃克 内特·派克','里克·罗曼·沃夫','剧情 犯罪',
-'http://www.iqiyi.com/v_19rrn57b4g.html',
-'NULL','NULL','4',1,'/static/movie/img/p1210689821.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10030,'艾德·伍德','https://movie.douban.com/subject/1293683/','8.2',18258,
-'http://www.imdb.com/title/tt0109707','NULL','NULL','NULL','NULL','NULL','美国','1994-09-23(美国)',
-'约翰尼·德普 莎拉·杰茜卡·帕克 比尔·默瑞 马丁·兰道 帕特丽夏·阿奎特 杰弗瑞·琼斯 丽莎·玛丽','蒂姆·波顿','剧情 喜剧 传记',
-'http://www.iqiyi.com/v_19rrifpmva.html',
-'NULL','NULL','4',1,'/static/movie/img/p1704315869.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10031,'莫欺朋友妻','https://movie.douban.com/subject/1308161/','6.6',114,
-'http://www.imdb.com/title/tt0085529','NULL','NULL','NULL','NULL','NULL','法国','1983-08-31',
-'伊莎贝尔·于佩尔 科鲁彻 François Perrot','贝特朗·布里叶','喜剧 爱情',
-'http://www.iqiyi.com/v_19rrifr37p.html',
-'NULL','NULL','4',1,'/static/movie/img/s1432885.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10032,'妙药春情','https://movie.douban.com/subject/1293879/','7.2',778,
-'http://www.imdb.com/title/tt0044916','NULL','NULL','NULL','NULL','NULL','美国','1952-09-02',
-'加里·格兰特 金吉·罗杰斯 查尔斯·科本 玛丽莲·梦露','霍华德·霍克斯','喜剧 科幻',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1016404551.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10033,'红松鼠杀人事件','https://movie.douban.com/subject/1304830/','7.7',2963,
-'http://www.imdb.com/title/tt0106305','NULL','NULL','NULL','NULL','NULL','西班牙','1993-04-21',
-'埃玛·苏亚雷斯 南乔·诺沃 玛丽亚·巴兰科 卡拉·埃雷贾德 卡梅罗·戈麦兹 Cristina Marcos','胡利奥·梅德姆','剧情 喜剧 爱情 悬疑 音乐',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p704724426.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10034,'春闺风月','https://movie.douban.com/subject/1297918/','7.8',275,
-'http://www.imdb.com/title/tt0028597','NULL','NULL','NULL','NULL','NULL','美国','1937-10-21(美国)',
-'艾琳·邓恩 加里·格兰特 拉尔夫·贝拉米 Alexander D\'Arcy Cecil Cunningham 莫莉·拉蒙特','莱奥·麦卡雷','喜剧 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKJWVSdUMBiSkWVJWTGu3ix',
-'NULL','NULL','4',1,'/static/movie/img/p2303301240.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10035,'他喜欢的是你','https://movie.douban.com/subject/1308159/','6.1',246,
-'http://www.imdb.com/title/tt0326992','NULL','NULL','NULL','NULL','NULL','韩国','2002-08-08(韩国)',
-'郑俊镐 申恩庆 金汝珍 朴相勉 孔炯轸 金瑞亨','莫吉恩 Ji-eun Mo','喜剧 爱情',
-'http://www.iqiyi.com/v_19rrhsyav8.html',
-'NULL','NULL','4',1,'/static/movie/img/p2199605902.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10036,'王尔德','https://movie.douban.com/subject/1300029/','7.7',20093,
-'http://www.imdb.com/title/tt0120514','NULL','NULL','NULL','NULL','NULL','英国 / 德国 / 日本','1997-09-01(威尼斯电影节)',
-'斯蒂芬·弗雷 裘德·洛 瓦妮莎·雷德格瑞夫 詹妮弗·艾莉 杰玛·琼斯 朱迪·帕瑞福特 麦克·辛 佐伊·沃纳梅克 汤姆·威尔金森 艾恩·格拉法德 彼得·巴克沃斯 大卫·维斯特海德 奥兰多·布鲁姆 亚当·加西亚 约瑟夫·梅 詹姆斯·达西','Brian Gilbert','剧情 同性 传记 历史',
-'http://www.iqiyi.com/v_19rro062wc.html',
-'magnet:?xt=urn:btih:ef88f2bc5373789d82e1d46109c41e104595b8d5','NULL','4',1,'/static/movie/img/p1527574198.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10037,'潜影','https://movie.douban.com/subject/2357323/','5.9',86,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1981',
-'袁苑 迟志强 韩月乔','郭宝昌 黄玲','悬疑',
-'http://so.iqiyi.com/links/bu1fv1oRRL5kcvvjEx3YlgpbAPAO3neVYeQ97g9BvNwj7BQF5mkpqIlM9iOHRCM8',
-'NULL','NULL','4',1,'/static/movie/img/p2466947658.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10038,'在一起','https://movie.douban.com/subject/1306611/','7.6',237,
-'http://www.imdb.com/title/tt0203166','NULL','NULL','NULL','NULL','NULL','瑞典 / 丹麦 / 意大利','2001-03-03',
-'Lisa Lindgren 迈克尔·恩奎斯特 Emma Samuelsson Sam Kessel 古斯塔夫·汉马斯顿 Anja Lundkvist Jessica Liedberg 奥拉·拉佩斯 Axel Zuber 沙汀·罗尼 Olle Sarri Cecilia Frode Lars Frode Emil Moodysson Henrik Lundström','鲁卡斯·穆迪森','剧情 喜剧',
-'http://www.iqiyi.com/dianying/20130410/617c92964c1ce299.html',
-'magnet:?xt=urn:btih:c8436412677d58d4f5b9debc9f3b0a864ed86d54','NULL','4',1,'/static/movie/img/p794200000.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10039,'痞子大逃亡','https://movie.douban.com/subject/1295984/','6.3',173,
-'http://www.imdb.com/title/tt0120383','NULL','NULL','NULL','NULL','NULL','美国','1997-05-02(美国)',
-'基弗·萨瑟兰 金·迪肯斯 文森特·加洛','基弗·萨瑟兰','剧情 动作 爱情 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJowa46FaRKX2tOml_hUVbs',
-'NULL','NULL','4',1,'/static/movie/img/p2455935010.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10040,'蚊子海岸','https://movie.douban.com/subject/1295996/','7.9',426,
-'http://www.imdb.com/title/tt0091557','NULL','NULL','NULL','NULL','NULL','美国','1986-11-26',
-'哈里森·福特 海伦·米伦 安德烈·格雷戈里 瑞凡·菲尼克斯','彼得·威尔','剧情 惊悚 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1960074764.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10041,'记忆中的风琴','https://movie.douban.com/subject/1307895/','7.9',1571,
-'http://www.imdb.com/title/tt0235452','NULL','NULL','NULL','NULL','NULL','韩国','1999-03-27(韩国)',
-'全度妍 李秉宪 李美妍','李荣宰','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p638803434.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10042,'寂静太阳年','https://movie.douban.com/subject/1296917/','7.8',480,
-'http://www.imdb.com/title/tt0088009','NULL','NULL','NULL','NULL','NULL','德国 / 波兰 / 美国','1984-09(威尼斯电影节)',
-'斯科特·威尔森 玛雅·歌摩劳斯嘉 Hanna Skarzanka Ewa Dalkowska','克日什托夫·扎努西','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKCCDIMOWl-XnmipoHW5IEL',
-'NULL','NULL','4',1,'/static/movie/img/p1752578354.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10043,'三个未婚妈妈','https://movie.douban.com/subject/10813354/','4.0',1614,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-10-26(中国大陆)',
-'车永莉 爱新觉罗·启星 居文沛 苏有朋 黄磊 张嘉译','江平','剧情',
-'http://www.iqiyi.com/v_19rrlukuzs.html',
-'NULL','NULL','4',1,'/static/movie/img/p1744850457.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10044,'波尔多欲望天堂','https://movie.douban.com/subject/1304580/','7.8',2120,
-'http://www.imdb.com/title/tt0210717','NULL','NULL','NULL','NULL','NULL','西班牙 / 意大利','1999-09-04(蒙特利尔电影节)',
-'弗朗西斯科·拉瓦尔 何塞·科罗纳多 达夫内·费尔南德斯 埃乌拉利亚·拉蒙 玛丽维尔·贝尔杜 华金·克莱门特 Cristina Espinosa Josep Maria Pou Saturnino García Concha Leza Franco di Francescantonio Carlos Hipólito 曼纽尔·德·巴拉斯 Pedro Azorín 埃米利奥·古铁雷斯·卡巴 Joan Vallés Paco Catalá Mario De Candia Jaime Losada','卡洛斯·绍拉','剧情 传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1931047871.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10045,'龙在江湖','https://movie.douban.com/subject/1296518/','5.8',213,
-'http://www.imdb.com/title/tt0091428','NULL','NULL','NULL','NULL','NULL','香港','1989-06-21',
-'李国豪 孟海 王敏德','于仁泰 (Ronny Yu)','动作',
-'http://www.iqiyi.com/v_19rrmy82sw.html',
-'NULL','NULL','4',1,'/static/movie/img/p2362834695.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10046,'大婚告急','https://movie.douban.com/subject/2996625/','6.5',7373,
-'http://www.imdb.com/title/tt0491152','NULL','NULL','NULL','NULL','NULL','美国','2011-05-06(美国)',
-'金妮弗·古德温 凯特·哈德森 科林·伊格斯菲德 约翰·卡拉辛斯基 史蒂夫·豪威','卢克·格林菲德','剧情 喜剧 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1d2EoXI9xvhU_57cO8RbFXe-u_n611t4zoNAosvZ_iEy3VoVBxiswC9mlqNZ2WwWEWyxAVFKfWOqxafwgdd0610=',
-'magnet:?xt=urn:btih:08e5fa4b57f8db05cf77d624d78d5b7dda888529','NULL','4',1,'/static/movie/img/p830118091.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10047,'白日梦','https://movie.douban.com/subject/1481399/','6.9',159,
-'http://www.imdb.com/title/tt0058173','NULL','NULL','NULL','NULL','NULL','日本','1964-12-04',
-'路加奈子 石浜朗 松井康子','武智铁二 ','剧情 恐怖 奇幻',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4509339.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10048,'雨天','https://movie.douban.com/subject/1776344/','5.5',61,
-'NULL','NULL','NULL','NULL','NULL','NULL','韩国','0000-00-00',
-'Yu-Jin So Sung-Hwan Jung','Min Du-Sik','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1647466.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10049,'黄山来的姑娘','https://movie.douban.com/subject/1822222/','7.4',193,
-'http://www.imdb.com/title/tt0327899','NULL','NULL','NULL','NULL','NULL','中国大陆','1984-12',
-'李羚 丁一 张筠英','张圆','暂时无数据',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqQOJ9-n6BrdFV8oAGNSziexrolq2-_o5DIA3dTgdl7ha',
-'NULL','NULL','4',1,'/static/movie/img/s1684530.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10050,'投奔怒海','https://movie.douban.com/subject/1296557/','8.4',6607,
-'http://www.imdb.com/title/tt0084807','NULL','NULL','NULL','NULL','NULL','香港','1982-10-13',
-'林子祥 缪骞人 马斯晨 刘德华 奇梦石 郝嘉陵','许鞍华','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1byUdHDAok8B1aqqfo-CLO5Ifimj-ovV0ejDPgTdCB7j2v8OhJ0jUhOSsAvOmJaR5w==',
-'NULL','NULL','4',1,'/static/movie/img/p1539818131.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10051,'夺魂铃','https://movie.douban.com/subject/1469558/','7.4',436,
-'http://www.imdb.com/title/tt0164549','NULL','NULL','NULL','NULL','NULL','香港','1968-06-30',
-'张翼 秦萍 赵心妍 田琛 谷峰 林蛟 李允中 午马 杨志卿','岳枫','动作 武侠 古装',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1dn6AqMGxBUufsskfaLQe5STlgvPKF_N6031Huo988vGre88CHvtNsZqVjKmymjBfg==',
-'NULL','NULL','4',1,'/static/movie/img/p2335550990.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10052,'罗维雷将军','https://movie.douban.com/subject/1294393/','8.3',398,
-'http://www.imdb.com/title/tt0053856','NULL','NULL','NULL','NULL','NULL','意大利 / 法国','1959-10-07',
-'维托里奥·德·西卡 汉斯·海西默 维托里奥·卡布里奥利 南多·安卓利尼','罗伯托·罗塞利尼','剧情 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2211470032.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10053,'归心似箭','https://movie.douban.com/subject/1302573/','7.2',625,
-'http://www.imdb.com/title/tt0333527','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'赵尔康 斯琴高娃 马志刚 芦永 徐垚 翟春华 陈佩斯','李俊','战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1448274.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10054,'无赖老师','https://movie.douban.com/subject/1828438/','5.4',544,
-'http://www.imdb.com/title/tt0821517','NULL','NULL','NULL','NULL','NULL','韩国','2006-05-25',
-'郑俊浩 金孝珍','金东宇','喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2200537219.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10055,'人鱼传说','https://movie.douban.com/subject/1304431/','7.0',383,
-'http://www.imdb.com/title/tt0174918','NULL','NULL','NULL','NULL','NULL','日本','1984-04-14(日本)',
-'','池田敏春','剧情 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKMCcyDlAc26TeusRQTxz2p',
-'NULL','NULL','4',1,'/static/movie/img/p2254107276.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10056,'天若有情3烽火佳人','https://movie.douban.com/subject/1419918/','6.9',5392,
-'http://www.imdb.com/title/tt0117072','NULL','NULL','NULL','NULL','NULL','香港','1996-03-28',
-'刘德华 吴倩莲 方中信 樊志刚 梁柏坚 于永珍','杜琪峰','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4177000.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10057,'东京伤情故事特别篇','https://movie.douban.com/subject/26207007/','6.7',336,
-'http://www.imdb.com/title/tt4181944','NULL','NULL','NULL','NULL','NULL','日本','2014-12-30(日本)',
-'吉田钢太郎 高畑充希 片桐仁 高冈早纪','三木康一郎 Kôichirô Miki','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2211322705.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10058,'巴里·穆迪','https://movie.douban.com/subject/2050015/','6.3',648,
-'http://www.imdb.com/title/tt0482461','NULL','NULL','NULL','NULL','NULL','美国','2010-10-01',
-'帕特里克·威尔森 朱迪·格雷尔 科洛·塞维尼','克里斯·德·阿里恩佐 ','喜剧',
-'http://www.iqiyi.com/dianying/20130321/f346626dc2f1b77e.html',
-'magnet:?xt=urn:btih:2873202eca5eacc9302a2d6d3acc0fc00a679f80','NULL','4',1,'/static/movie/img/p575642569.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10059,'天生好手','https://movie.douban.com/subject/1297507/','7.6',284,
-'http://www.imdb.com/title/tt0087781','NULL','NULL','NULL','NULL','NULL','美国','1984-05-11',
-'罗伯特·雷德福 格伦·克洛斯 罗伯特·杜瓦尔 金·贝辛格 威尔福德·布利姆雷','巴瑞·莱文森','剧情 运动',
-'http://www.iqiyi.com/v_19rrlgtk7w.html',
-'NULL','NULL','4',1,'/static/movie/img/s2569785.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10060,'梵高与提奥','https://movie.douban.com/subject/1296444/','7.8',825,
-'http://www.imdb.com/title/tt0100873','NULL','NULL','NULL','NULL','NULL','法国 / 荷兰 / 英国 / 意大利 / 德国','1990-04-27',
-'蒂姆·罗斯 保罗·瑞斯 Adrian Brine Jean-François Perrier','罗伯特·奥特曼','剧情 传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2232050924.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10061,'大门','https://movie.douban.com/subject/1291846/','8.1',6726,
-'http://www.imdb.com/title/tt0101761','NULL','NULL','NULL','NULL','NULL','美国','1991-02-23',
-'方·基默 梅格·瑞恩 凯瑟琳·奎南 凯尔·麦克拉克伦 迈克尔·马德森 凯文·狄龙 弗兰克·威利 迈克尔·维克特 韦斯·斯塔迪 胡凯莉 马克·摩斯 丽莎·艾德尔斯汀 奥利佛·斯通','奥利佛·斯通','剧情 音乐 传记',
-'http://www.iqiyi.com/v_19rr9dyy1c.html',
-'NULL','NULL','4',1,'/static/movie/img/p1910909382.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10062,'越线','https://movie.douban.com/subject/5206091/','7.9',386,
-'http://www.imdb.com/title/tt0803029','NULL','NULL','NULL','NULL','NULL','巴西','2008-09-05',
-'Sandra Corveloni João Baldasserini Vinícius de Oliveira','Walter Salles','剧情 运动',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3407506.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10063,'活死人黎明','https://movie.douban.com/subject/1295578/','7.2',4432,
-'http://www.imdb.com/title/tt0077402','NULL','NULL','NULL','NULL','NULL','意大利 / 美国','1978-09-02',
-'David Emge 肯·佛瑞 斯科特·H·雷宁格 Gaylen Ross David Crawford','乔治·A·罗梅罗','动作 恐怖',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1SrAEml8qSylHvSC3uTBcjOB-PTQqQ88s_drLjXqzOX-3ox4A0ZX9nwcBMjBWstXbPxllwvyU11C_3zeE-2-V68=',
-'magnet:?xt=urn:btih:cebdf9651704152509682deabdb76beae6a90d6d','NULL','4',1,'/static/movie/img/p2187252960.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10064,'从今以后','https://movie.douban.com/subject/3025673/','7.2',20164,
-'http://www.imdb.com/title/tt1212419','NULL','NULL','NULL','NULL','NULL','美国','2010-09-12(多伦多电影节)',
-'马特·达蒙 布莱丝·达拉斯·霍华德 塞西尔·德·弗朗斯 米兰妮·让帕诺米 玛尔特·克勒尔 杰·摩尔 蒂埃里·钮维 戴克兰·康仑','克林特·伊斯特伍德','剧情 奇幻',
-'http://www.iqiyi.com/v_19rraoa378.html',
-'magnet:?xt=urn:btih:7c97cc017e88c7b7395031d012a9af51c403e449','NULL','4',1,'/static/movie/img/p1637192843.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10065,'秘密采访','https://movie.douban.com/subject/1302610/','7.9',91,
-'http://www.imdb.com/title/tt0344062','NULL','NULL','NULL','NULL','NULL','中国大陆','1989',
-'王志文 唐高齐 马世祥','王冀邢','惊悚',
-'http://so.iqiyi.com/links/bu1fv1oRRL5kcvvjEx3Ylquz5-9QvbA47WlehTFDvbcNlG2jZvOUr0LD7oKtfDJQ',
-'NULL','NULL','4',1,'/static/movie/img/s7054687.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10066,'嫉妒','https://movie.douban.com/subject/20468389/','6.8',516,
-'http://www.imdb.com/title/tt2511670','NULL','NULL','NULL','NULL','NULL','法国','2013-12-04(法国)',
-'路易·加瑞尔 安娜·莫格拉莉丝 丽贝卡·孔弗南 欧嘉·米尔施泰因 艾斯特·加莱尔 亚瑟·伊瓜尔 杰罗姆·于盖 埃里克·瑞拉特 罗伯特·巴齐尔 让·波米埃 伊曼纽拉·庞扎诺','菲利普·加莱尔','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2182949733.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10067,'短信一月追','https://movie.douban.com/subject/1875315/','4.7',2330,
-'http://www.imdb.com/title/tt0777723','NULL','NULL','NULL','NULL','NULL','中国大陆','2005-08-11',
-'张韶涵 古巨基 任泉 聂远','阿甘','爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Z7jEDqvvE3rJp7JQVWs72rDM8Ba_7HgJNRxOVh7VXjhw0f-6OcZSL2DDsoNAvX0ug==',
-'NULL','NULL','4',1,'/static/movie/img/p2361000684.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10068,'穿制服的姑娘','https://movie.douban.com/subject/2000702/','7.6',360,
-'http://www.imdb.com/title/tt0051964','NULL','NULL','NULL','NULL','NULL','西德 / 法国','1958-08-28',
-'罗密·施奈德 莉莉·帕尔默 克里斯汀·考夫曼 特蕾泽·吉泽 Blandine Ebinger Adelheid Seeck Sabine Sinjen 达尼克·帕蒂松 Marthe Mercadier Lou Seitz','Géza von Radványi','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJOU-bOekT3_9VZOut-qdkz',
-'NULL','NULL','4',1,'/static/movie/img/p2081843407.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10069,'牛棚','https://movie.douban.com/subject/1428363/','5.8',487,
-'http://www.imdb.com/title/tt0097985','NULL','NULL','NULL','NULL','NULL','中国','1989-09-07',
-'','戴思杰','剧情',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8Bip9uhDSA52siLzsFLxIyChsgZIqHv3GEyqQqy0BZMq',
-'NULL','NULL','4',1,'/static/movie/img/p2374956656.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10070,'汉克与麦克','https://movie.douban.com/subject/3079149/','6.9',253,
-'http://www.imdb.com/title/tt0814131','NULL','NULL','NULL','NULL','NULL','加拿大 / 美国','2008-01',
-'Thomas Michael Paolo Mancini 克里斯·克莱因 乔·曼特纳 玛吉·卡斯特','马修·克林克','喜剧 奇幻',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKtwvKdljvAxy3zN2_q-Vek',
-'magnet:?xt=urn:btih:bc9850397d8884e0e94739197b1dbbff0605b668','NULL','4',1,'/static/movie/img/p2376790705.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10071,'安吉里卡奇遇','https://movie.douban.com/subject/3287715/','7.1',792,
-'http://www.imdb.com/title/tt1282153','NULL','NULL','NULL','NULL','NULL','葡萄牙 / 西班牙 / 法国 / 巴西','2010-03-16',
-'碧拉尔·洛佩兹·德·阿亚拉 Leonor Silveira Filipe Vargas','曼努埃尔·德·奥利维拉','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKJ3LbpM_oJUeHT10Vw3VMc',
-'magnet:?xt=urn:btih:b40918fda9384ec60b3fa5907988a225b181a479','NULL','4',1,'/static/movie/img/p1296951028.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10072,'麦秋','https://movie.douban.com/subject/1401842/','8.8',4866,
-'http://www.imdb.com/title/tt0043313','NULL','NULL','NULL','NULL','NULL','日本','1951-10-03(日本)',
-'原节子 笠智众 淡岛千景 三宅邦子 菅井一郎 东山千荣子 杉村春子 井川邦子 二本柳宽 佐野周二 高桥丰子 宫口精二 高堂国典','小津安二郎','剧情 家庭',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8HMZz2C-NoioAGY0kTchrZfqDdrzZr-TayCd3vRvDG8t',
-'NULL','NULL','4',1,'/static/movie/img/p1994510596.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10073,'蛹','https://movie.douban.com/subject/3718499/','7.3',189,
-'http://www.imdb.com/title/tt1423922','NULL','NULL','NULL','NULL','NULL','西班牙','2011-03-09(西班牙)',
-'劳尔·阿雷瓦罗 卡洛斯·阿瓦雷兹-诺瓦 路易莎·加瓦萨 胡里安·毕亚格兰 罗伯托·阿拉莫  弗兰·佩雷阿 亚历克斯·安克吕罗 帕布洛·里贝罗','宝拉·奥提兹','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKte-rPddbeGcCDJgAbNYoO',
-'NULL','NULL','4',1,'/static/movie/img/p1454285693.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10074,'有机体的秘密','https://movie.douban.com/subject/1845260/','7.6',989,
-'http://www.imdb.com/title/tt0067958','NULL','NULL','NULL','NULL','NULL','西德 / 南斯拉夫','1971-10-13',
-'米莲娜·德拉维奇 Ivica Vidovic Jagoda Kaloper Tuli Kupferberg Zoran Radmilovic','杜尚·马卡维耶夫','剧情 喜剧 奇幻',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2173536421.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10075,'乔琪姑娘','https://movie.douban.com/subject/1299673/','7.4',57,
-'http://www.imdb.com/title/tt0060453','NULL','NULL','NULL','NULL','NULL','英国','1966-08-04',
-'詹姆斯·梅森 阿兰·贝茨 琳恩·雷德格瑞夫 夏洛特·兰普林','西尔维奥·纳里扎诺','剧情 喜剧 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLxhWKHkaDFvqkJvNBiCWbl',
-'NULL','NULL','4',1,'/static/movie/img/p2361200555.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10076,'卡斯特婆婆升天记','https://movie.douban.com/subject/1297667/','8.1',262,
-'http://www.imdb.com/title/tt0073424','NULL','NULL','NULL','NULL','NULL','西德','1975-07-07',
-'布里奇特·米拉 英格丽·卡文 玛吉特·卡斯滕森 卡尔海因茨·博姆 伊尔姆·海尔曼','赖纳·维尔纳·法斯宾德','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2204785945.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10077,'祖与占','https://movie.douban.com/subject/1292338/','8.4',19636,
-'http://www.imdb.com/title/tt0055032','NULL','NULL','NULL','NULL','NULL','法国','1962-01-23(法国)',
-'让娜·莫罗 奥斯卡·威内尔 亨利·赛尔','弗朗索瓦·特吕福','剧情 爱情',
-'NULL',
-'magnet:?xt=urn:btih:7a079ed7c47b52cac3bd16ff59e66283fdd0d555','NULL','4',1,'/static/movie/img/p555160366.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10078,'开天辟地','https://movie.douban.com/subject/1456782/','6.6',329,
-'http://www.imdb.com/title/tt0343885','NULL','NULL','NULL','NULL','NULL','中国大陆','1991',
-'邵宏来 孙继堂 王霙 佟瑞欣 夏正兴 啜二勇 龚力群 张冰 杜澎 金康民 孙滨 翟万臣 宋林林 蒋宝英 王佳艺 朱晨迪 丁嘉元 马迎春 王诗槐 郭浩 宋忆宁 战士强 胡光义 曹克明 洪融 卢问章 任广智 谭增卫 田纯 顾怀中 郭伟华 王琪 肖荣生 张毅然 魏宗万 耿歌 郑毓芝  祝士彬 袁国庆 杨红武 谭晓寅 侯天来 洪彬 王楠 丹尼尔·莫利特 韩韬 苏克 常蓝天 沈光玮 符冲 王卫平 曹力 李建华 戴兆安 金晖 张璐 赵森 钟辉 胡荣华 崔杰 郭亮 杰夫·米勒 保罗·莱姆歇 孙凤英 曹坤其 李长年 卢青 于慧 徐才根','李歇浦','剧情',
-'http://www.iqiyi.com/v_19rrnycij4.html',
-'NULL','NULL','4',1,'/static/movie/img/p2328136087.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10079,'蒙古精神','https://movie.douban.com/subject/1303040/','8.5',2215,
-'http://www.imdb.com/title/tt0103176','NULL','NULL','NULL','NULL','NULL','法国 / 苏联','1991-09-01',
-'Badema Bayaertu 弗拉基米尔·戈斯丘辛','尼基塔·米哈尔科夫','剧情',
-'http://www.iqiyi.com/v_19rrhgvdbw.html',
-'NULL','NULL','4',1,'/static/movie/img/p1432917712.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10080,'青春韶华','https://movie.douban.com/subject/25730878/','7.5',262,
-'http://www.imdb.com/title/tt3152602','NULL','NULL','NULL','NULL','NULL','意大利','2014-09-01(威尼斯电影节)',
-'埃里奥·杰马诺 伊莎贝拉·拉贡内瑟 埃尼奥·凡塔斯蒂奇尼 安娜·莫格拉莉丝','马里奥·马尔托内','传记 历史',
-'http://www.iqiyi.com/v_19rra3p1yc.html',
-'NULL','NULL','4',1,'/static/movie/img/p2199059789.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10081,'酒店','https://movie.douban.com/subject/1303091/','8.2',198,
-'http://www.imdb.com/title/tt0049259','NULL','NULL','NULL','NULL','NULL','法国 / 意大利','1956-08-03',
-'玛丽亚·雪儿 弗兰索斯·皮埃尔 玛丽霍尔特','雷内·克莱芒','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1069127665.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10082,'热血高速','https://movie.douban.com/subject/1307161/','5.9',213,
-'http://www.imdb.com/title/tt0339147','NULL','NULL','NULL','NULL','NULL','美国 / 加拿大','2004-10-14',
-'吉姆·卡维泽 罗娜·迈特拉 弗兰基·费森','罗伯特 哈蒙 (Robert Harmon)','动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMK6umYWcRnSk5qa3NZ6QHAS',
-'NULL','NULL','4',1,'/static/movie/img/p1606972713.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10083,'2人三足','https://movie.douban.com/subject/1306657/','6.8',1190,
-'http://www.imdb.com/title/tt0346161','NULL','NULL','NULL','NULL','NULL','香港','2002-01-17(香港)',
-'车婉婉 张家辉 朱茵 罗兰 吴浣仪 潘芳芳','赵崇基','剧情 喜剧',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKeO_qgv82we3hPUgl9CEul',
-'NULL','NULL','4',1,'/static/movie/img/p2328663870.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10084,'国王班底','https://movie.douban.com/subject/1482030/','7.1',4421,
-'http://www.imdb.com/title/tt0405676','NULL','NULL','NULL','NULL','NULL','德国 / 美国','2006-09-22',
-'西恩·潘 裘德·洛 安东尼·霍普金斯 凯特·温丝莱特 马克·鲁弗洛 派翠西娅·克拉克森 詹姆斯·甘多菲尼 杰基·厄尔·哈利 凯西·贝克','斯蒂文·泽里安','剧情 惊悚',
-'http://www.iqiyi.com/v_19rrk3pbws.html',
-'magnet:?xt=urn:btih:ddd435f86bbc3e49918c9460ec32c2eb9a5ea127','NULL','4',1,'/static/movie/img/p1133251922.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10085,'塞尔玛','https://movie.douban.com/subject/3089638/','7.2',4685,
-'http://www.imdb.com/title/tt1020072','NULL','NULL','NULL','NULL','NULL','英国 / 美国','2014-12-25(美国)',
-'大卫·奥伊罗 卡门·艾乔戈 蒂姆·罗斯 汤姆·威尔金森 吉奥瓦尼·瑞比西 亚历桑德罗·尼沃拉 小库珀·古丁 奥普拉·温弗瑞 科曼 迪伦·贝克 勒凯斯·斯坦菲尔德 肯特·法尔考 科瑞·雷诺兹 泰莎·汤普森','艾娃·德约列','剧情 传记 历史',
-'NULL',
-'magnet:?xt=urn:btih:a95ba3e1ccd13605cd76f45b134cac643fd771d1','NULL','4',1,'/static/movie/img/p2220218254.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10086,'孤筏重洋','https://movie.douban.com/subject/5155128/','7.1',3008,
-'http://www.imdb.com/title/tt1613750','NULL','NULL','NULL','NULL','NULL','英国 / 挪威 / 丹麦 / 德国 / 瑞典','2012-08-18(挪威电影节)',
-'帕尔·斯维尔·哈根 安德斯·巴斯莫·克里斯蒂安森 托拜厄斯·桑特尔曼 古斯塔·斯卡斯加德 奥德-马格努斯·威廉森 雅各布·奥福特布罗 阿格尼丝·基特尔森 彼得·怀特 霍·阿德里安·哈万 索伦·比尔马克 佩迪塔·埃弗里 伊恩 博纳 萨姆·查普曼 凯汀卡·埃格雷斯 理查德·特林德 曼努埃尔·考西 托德·博伊斯','乔阿吉姆·罗恩尼','历史 冒险',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1TYrQNcIfpO-gG4_i6WykzP2ffA5EK0NAI1UZm-V66rotgNBuugufLLoVfpc5fWVYw==',
-'magnet:?xt=urn:btih:f514fb16b61b6e586ac11559de2415c9f27748cf','NULL','4',1,'/static/movie/img/p1881304263.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10087,'爱封了','https://movie.douban.com/subject/6313287/','5.3',3692,
-'http://www.imdb.com/title/tt1773477','NULL','NULL','NULL','NULL','NULL','中国大陆 / 德国','2011-10-13(中国大陆)',
-'江一燕 弗罗里安·卢卡斯 邓家佳 何冰 吴大维 缇诺·麦威斯','唐丹','喜剧 爱情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGboFCgKE1idV-L5Oa2Fjk5fwVOHBnyakIUd3Z9muCyh8',
-'NULL','NULL','4',1,'/static/movie/img/p986810506.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10088,'网路末日战','https://movie.douban.com/subject/19949909/','7.3',90,
-'http://www.imdb.com/title/tt2189240','NULL','NULL','NULL','NULL','NULL','美国 / 加拿大','2012-09-25',
-'Missy Peregrym Olivier Martinez Sarah Lian','Diego Velasco','惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1728525892.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10089,'幽情秘恋','https://movie.douban.com/subject/1441563/','6.5',124,
-'http://www.imdb.com/title/tt0216578','NULL','NULL','NULL','NULL','NULL','法国','2000-11-22',
-'Sylvie Testud Julie-Marie Parmentier','Jean-Pierre Denis','剧情 传记 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2368413664.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10090,'大漠紫禁令','https://movie.douban.com/subject/1308095/','5.9',104,
-'http://www.imdb.com/title/tt0199441','NULL','NULL','NULL','NULL','NULL','中国大陆 / 台湾','0000-00-00',
-'周里京 濮存昕 朱宛宜 马恩然','方翔','冒险',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGXLuNAZcra1FnlESXALTB-zLFGh_tkUCES4INQbTxX7w',
-'NULL','NULL','4',1,'/static/movie/img/p2330480125.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10091,'挽歌','https://movie.douban.com/subject/3504940/','7.6',15611,
-'http://www.imdb.com/title/tt0974554','NULL','NULL','NULL','NULL','NULL','美国','2008-02-10',
-'佩内洛佩·克鲁斯 本·金斯利 派翠西娅·克拉克森 丹尼斯·霍珀 彼得·萨斯加德 黛布拉·哈里','伊莎贝尔·科赛特','剧情 爱情',
-'http://www.iqiyi.com/v_19rrhw913g.html',
-'magnet:?xt=urn:btih:4e5762bae9acf4e886be506de0c06a3e1eed480c','NULL','4',1,'/static/movie/img/p2184356017.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10092,'白白的世界','https://movie.douban.com/subject/5168406/','6.6',117,
-'http://www.imdb.com/title/tt1450635','NULL','NULL','NULL','NULL','NULL','塞尔维亚 / 德国 / 瑞典','2010-11-30',
-'佳斯娜·杜里奇 Jasna Djuricic 汉娜·塞利莫维奇 Hana Selimovic','Oleg Novkovic','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2170394044.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10093,'老表，你好嘢！','https://movie.douban.com/subject/3066874/','6.7',263,
-'http://www.imdb.com/title/tt0102263','NULL','NULL','NULL','NULL','NULL','香港','1991-09-14',
-'张坚庭 毛舜筠 关秀媚 林蛟 陈果 许绍雄','陈望华','喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2204873379.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10094,'受难记','https://movie.douban.com/subject/3602128/','5.2',958,
-'http://www.imdb.com/title/tt1396221','NULL','NULL','NULL','NULL','NULL','美国','2011-05-06(美国)',
-'米基·洛克 梅根·福克斯 比尔·默瑞 凯莉·林奇 瑞斯·伊凡斯 查克·林德尔 Chris Browning 罗利·科奇瑞恩 阿荣·希弗 罗伯特·维斯多姆 艾丽克斯·埃索','米奇·格雷泽','剧情 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p909107475.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10095,'埋伏','https://movie.douban.com/subject/1300019/','7.6',3750,
-'http://www.imdb.com/title/tt0151464','NULL','NULL','NULL','NULL','NULL','中国大陆','1997-01-14(中国大陆)',
-'冯巩 江珊 滕汝骏 张嘉译 牛振华 师小红 郭冬临 林海海 赵秀云 陈好 刘峻岭 姚英华','黄建新','剧情 喜剧',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzsKNcuR84RUZx8SxCp7iTEoTWJc8bvB1x3UNLqn9p2Py',
-'NULL','NULL','4',1,'/static/movie/img/p2373606238.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10096,'飞跃地心','https://movie.douban.com/subject/25913178/','3.7',109,
-'http://www.imdb.com/title/tt3469670','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-08-09(中国大陆)',
-'龚蓓苾 张芝华 金粮 杨宇涵 陈薪羽','陈苗','剧情 动画 儿童 灾难',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1cBF_yfpa3aFQ00amnohel_ng2HqaCLcBGtJrmkN4xOYfQT3ymCC759EGx7czMyQcg==',
-'NULL','NULL','4',1,'/static/movie/img/p2193345103.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10097,'忠于职守：边境巡逻','https://movie.douban.com/subject/2991620/','5.4',268,
-'http://www.imdb.com/title/tt0827521','NULL','NULL','NULL','NULL','NULL','美国','2008-03-04',
-'Jean-Claude Van Damme Scott Adkins Stephen Lord','Isaac Florentine','动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKJ5LQx7s97qt3N5oGVZ8zZ',
-'NULL','NULL','4',1,'/static/movie/img/p2237754526.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10098,'边城','https://movie.douban.com/subject/1305978/','7.8',5102,
-'http://www.imdb.com/title/tt0086878','NULL','NULL','NULL','NULL','NULL','中国大陆','1992-12-16(美国)',
-'冯汉元 戴呐 刘汉璞 白铭 刘魁 石磊 金风 袁思达 彭铭燕 潘玫 罗元明 陈宗达','凌子风','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGb3j6r23Wb7xt1bIGSurKNOism9A36XJfZVI6ektcODS',
-'NULL','NULL','4',1,'/static/movie/img/p2255490675.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10099,'女朋友','https://movie.douban.com/subject/1307563/','6.6',211,
-'http://www.imdb.com/title/tt0071929','NULL','NULL','NULL','NULL','NULL','香港 / 台湾','1974-12-12',
-'林青霞 秦祥林 萧芳芳','白景瑞','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1249779628.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10100,'虎猛警师','https://movie.douban.com/subject/1293676/','6.6',205,
-'http://www.imdb.com/title/tt0117774','NULL','NULL','NULL','NULL','NULL','美国','1996-04-19',
-'汤姆·贝伦杰 雷蒙德·克鲁斯 威廉·弗西斯 路易斯·古兹曼','罗伯特·曼德尔','剧情 动作 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2838029.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10101,'奥巴马新政','https://movie.douban.com/subject/5265478/','7.6',39,
-'http://www.imdb.com/title/tt1613313','NULL','NULL','NULL','NULL','NULL','美国','2010',
-'Jim Gilmore Will Lyman Arun Rath','Michael Kirk','纪录片',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4670233.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10102,'再生惊魂','https://movie.douban.com/subject/1306304/','6.5',28,
-'http://www.imdb.com/title/tt0101368','NULL','NULL','NULL','NULL','NULL','美国','0000-00-00',
-'','Damon Santostefano','恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1545056425.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10103,'索朗芝怎么了？','https://movie.douban.com/subject/2345021/','6.8',154,
-'http://www.imdb.com/title/tt0068416','NULL','NULL','NULL','NULL','NULL','意大利 / 西德','1972-03-09',
-'Fabio Testi Karin Baal','Massimo Dallamano','悬疑 惊悚 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2357407148.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10104,'黑三角','https://movie.douban.com/subject/1307910/','7.1',806,
-'http://www.imdb.com/title/tt0339127','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'凌元 雷明 张平 刘佳','刘春霖','动作',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGaFSX3V3vZy8-_WYonCnCeKrNoluVaWGoMoXNoupHTav',
-'NULL','NULL','4',1,'/static/movie/img/p2223030245.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10105,'赤胆情','https://movie.douban.com/subject/3063352/','6.8',131,
-'http://www.imdb.com/title/tt0094856','NULL','NULL','NULL','NULL','NULL','香港','1988-01-21',
-'李修贤 郑裕玲 林威 王小凤','陈会毅','动作 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1SDHrQjo0_Lh6yERruT3qwwMSxczBr7Fuq4opY5zVMiLUzWRJkDwE66JX1rMlDFuvw==',
-'NULL','NULL','4',1,'/static/movie/img/p2264997084.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10106,'天云山传奇','https://movie.douban.com/subject/1291864/','7.7',2162,
-'http://www.imdb.com/title/tt0081632','NULL','NULL','NULL','NULL','NULL','中国大陆','1981-11-14',
-'石维坚 施建岚 王馥荔 仲星火 洪学敏','谢晋','剧情',
-'http://www.iqiyi.com/v_19rrny4x9w.html',
-'NULL','NULL','4',1,'/static/movie/img/p2412704750.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10107,'英雄时代','https://movie.douban.com/subject/5157188/','5.0',1105,
-'http://www.imdb.com/title/tt1590950','NULL','NULL','NULL','NULL','NULL','英国','2011-05-20(英国)',
-'肖恩·宾 丹尼·戴尔 阿卡塞尔·亨涅 伊莎贝拉·米珂 詹姆斯·达西 威廉·休斯顿 John Dagleish','Adrian Vitoria','动作 惊悚 战争 冒险',
-'http://www.iqiyi.com/v_19rrmxq9mw.html',
-'magnet:?xt=urn:btih:3bf564872fa40859452d0a4d19c72686cbec00c5','NULL','4',1,'/static/movie/img/p767131267.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10108,'鬼作秀2','https://movie.douban.com/subject/1299767/','7.3',2433,
-'http://www.imdb.com/title/tt0092796','NULL','NULL','NULL','NULL','NULL','美国','1987-05-01(美国)',
-'汤姆·萨维尼 乔治·肯尼迪 多萝西·拉莫尔 霍特·麦克卡兰尼 Dean Smith','米高 哥历克 (Michael Gornick)','喜剧 科幻 惊悚 恐怖 奇幻',
-'http://www.iqiyi.com/v_19rrhnvlo8.html',
-'NULL','NULL','4',1,'/static/movie/img/p2230146901.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10109,'极限救援','https://movie.douban.com/subject/3118930/','6.2',1921,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'李晨 谢园 齐奎 国歌 苗芳','孔笙','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGb3j6r23Wb7xt1bIGSurKNMLGwOhBlcwWyzz1f8F2Da0',
-'NULL','NULL','4',1,'/static/movie/img/s3880874.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10110,'定理','https://movie.douban.com/subject/1297130/','7.7',1387,
-'http://www.imdb.com/title/tt0063678','NULL','NULL','NULL','NULL','NULL','意大利','1968-09-07',
-'西尔瓦娜·曼加诺 特伦斯·斯坦普 马西莫·吉洛蒂 安妮·维亚泽姆斯基 劳拉·贝蒂','皮埃尔·保罗·帕索里尼','剧情 悬疑 情色',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ0n9OWVrnc-1wWVbkRe0y5',
-'magnet:?xt=urn:btih:98092dd03f8d6d47c5426a7081267585d32e48e9','NULL','4',1,'/static/movie/img/p2340167411.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10111,'家庭主夫团','https://movie.douban.com/subject/3773727/','5.7',48,
-'http://www.imdb.com/title/tt1389781','NULL','NULL','NULL','NULL','NULL','美国','0000-00-00',
-'George Lopez Eddie Serrano Daniela Bobadilla','William Dear','暂时无数据',
-'NULL',
-'magnet:?xt=urn:btih:cd5c208d12fd451c25ec917ab6ecd07ecbc99611','NULL','4',1,'/static/movie/img/s3893296.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10112,'网络时代的爱情','https://movie.douban.com/subject/1766324/','7.0',164,
-'http://www.imdb.com/title/tt0289996','NULL','NULL','NULL','NULL','NULL','中国大陆','1998',
-'胡静 孙逊 陈建斌','金琛','爱情',
-'http://www.iqiyi.com/v_19rrkqfx8g.html',
-'NULL','NULL','4',1,'/static/movie/img/p2378553000.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10113,'奔向彩虹','https://movie.douban.com/subject/2305792/','6.6',148,
-'http://www.imdb.com/title/tt0819826','NULL','NULL','NULL','NULL','NULL','台湾','1977',
-'林青霞 秦祥林 蓝毓莉 李伟 陈莎莉 马永霖 曹健 张英颀 万山 韩甦','高山岚','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4423759.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10114,'穿制服的女孩','https://movie.douban.com/subject/1422193/','8.1',682,
-'http://www.imdb.com/title/tt0022183','NULL','NULL','NULL','NULL','NULL','德国','1931-11-27',
-'赫塔·提勒 多萝西·维克 Emilia Unda Gertrud de Lalsky Hedwig Schlichter Erika Mann Else Ehser Ellen Schwanneke Charlotte Witthauer','列昂蒂内·萨冈','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLC8wgnRHph4ctM07kDXOfs',
-'NULL','NULL','4',1,'/static/movie/img/s6894963.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10115,'骆驼祥子','https://movie.douban.com/subject/1307970/','7.9',6475,
-'http://www.imdb.com/title/tt0084280','NULL','NULL','NULL','NULL','NULL','中国大陆','1982',
-'张丰毅 斯琴高娃 殷新 颜彼得 李唐 韩焱 高放','凌子风','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqS6G5DwskWnjFLVZZhvAO88t7kKWVC3mHcLBM2xURl77',
-'NULL','NULL','4',1,'/static/movie/img/p2291959899.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10116,'迷墙','https://movie.douban.com/subject/1296157/','8.7',34082,
-'http://www.imdb.com/title/tt0084503','NULL','NULL','NULL','NULL','NULL','英国','1982-05-22(戛纳电影节)',
-'鲍勃·吉尔道夫 Christine Hargreaves James Laurenson 埃里诺·大卫 Kevin McKeon 鲍勃·霍斯金斯 David Bingham 珍妮·赖特 Alex McAvoy Ellis Dale James Hazeldine Ray Mort Margery Mason Robert Bridges 迈克尔·英塞恩','艾伦·帕克','剧情 动画 奇幻',
-'NULL',
-'magnet:?xt=urn:btih:891aef007e56c713c30d0ae54bdc708aa6a41975','NULL','4',1,'/static/movie/img/p1555715207.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10117,'幻想的婚礼','https://movie.douban.com/subject/3540106/','7.4',126,
-'http://www.imdb.com/title/tt1310654','NULL','NULL','NULL','NULL','NULL','法国 / 阿尔及利亚','2008-12-10',
-'Lyes Salem Sarah Reguieg Mohamed Bouchaïb','Lyes Salem','喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2378458915.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10118,'盲人电影院','https://movie.douban.com/subject/5273311/','7.0',585,
-'http://www.imdb.com/title/tt2111368','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'刘园园 王劲松 周一围 金士杰 热依扎','路阳','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1QO5ZPk86SZbG516Cc94hN5-W_yw4hhEjXUFY2a9CTMndY9M8a4ZIE8W7-qaxYQoSg==',
-'NULL','NULL','4',1,'/static/movie/img/p2196485327.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10119,'英雄连','https://movie.douban.com/subject/20431750/','5.1',1632,
-'http://www.imdb.com/title/tt2555426','NULL','NULL','NULL','NULL','NULL','美国','2013-02-16(美国)',
-'汤姆·塞兹摩尔 Tom Sizemore 维尼·琼斯 尼尔·麦克唐纳','唐·迈克尔·保罗','动作 战争',
-'http://www.iqiyi.com/dianying/20130503/da1e4f409d59e62d.html',
-'magnet:?xt=urn:btih:fcc0a19abf938e4a04bff5856fb2858688ddb525','NULL','4',1,'/static/movie/img/s24476344.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10120,'午夜蕾丝','https://movie.douban.com/subject/1950254/','7.1',69,
-'http://www.imdb.com/title/tt0054084','NULL','NULL','NULL','NULL','NULL','美国','1960-10-13',
-'多丽丝·黛 雷克斯·哈里森 约翰·加文','David Miller','悬疑 惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKxhGuZQaBc8c4Lg-RCxBhP',
-'NULL','NULL','4',1,'/static/movie/img/p2198016413.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10121,'血衣天使','https://movie.douban.com/subject/1303806/','5.8',229,
-'http://www.imdb.com/title/tt0105862','NULL','NULL','NULL','NULL','NULL','香港','1988-10-28',
-'关之琳 夏文汐 尔冬升 林琪欣 汤镇业','李志毅','惊悚 恐怖',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzs6Xpmg-bogtEmfmztEQ_E4Ir2Feoce2uj5hS6Ppgd30',
-'NULL','NULL','4',1,'/static/movie/img/p2348551975.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10122,'我本清白','https://movie.douban.com/subject/26682799/','7.2',145,
-'http://www.imdb.com/title/tt1655117','NULL','NULL','NULL','NULL','NULL','法国 / 瑞士','2010-09-15',
-'安托万·迪莱里 马吕斯·科卢奇 璐·德·拉格 Léna Breban Frédérique Tirmont','Eric Woreth','剧情 悬疑 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJWV7HiI0xXBqFol5mia7zz',
-'NULL','NULL','4',1,'/static/movie/img/p2293429599.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10123,'神偷燕子李三','https://movie.douban.com/subject/2239246/','6.2',911,
-'http://www.imdb.com/title/tt0282135','NULL','NULL','NULL','NULL','NULL','香港','1996',
-'元彪 朱茵 徐锦江','萧笙','剧情 动作 奇幻',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIVB2mpbU7t61MjbgfY9Me_',
-'NULL','NULL','4',1,'/static/movie/img/s2846151.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10124,'西便制','https://movie.douban.com/subject/1294191/','8.1',1034,
-'http://www.imdb.com/title/tt0108192','NULL','NULL','NULL','NULL','NULL','韩国','1993-04-10(韩国)',
-'金明坤  吴侦孩 金圭铁','林权泽','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2182196217.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10125,'玻璃枪的爱','https://movie.douban.com/subject/1302037/','6.4',240,
-'http://www.imdb.com/title/tt0112543','NULL','NULL','NULL','NULL','NULL','香港','0000-00-00',
-'任达华 叶童 张耀扬','黎继明 (Kai Ming Lai)','动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLZ-WEcZRRqdz_wuIezAurL',
-'NULL','NULL','4',1,'/static/movie/img/p2347940282.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10126,'血肉磨坊','https://movie.douban.com/subject/2072111/','6.2',42,
-'http://www.imdb.com/title/tt0078877','NULL','NULL','NULL','NULL','NULL','香港','1979',
-'姜大卫 谭道良 陈惠敏 樊梅生 王钟','鲍学礼','暂时无数据',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLFe2JktiNXCN24X_WS6PO9',
-'NULL','NULL','4',1,'/static/movie/img/s3086995.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10127,'88分钟','https://movie.douban.com/subject/1754927/','6.5',14677,
-'http://www.imdb.com/title/tt0411061','NULL','NULL','NULL','NULL','NULL','德国 / 美国 / 加拿大','2007-03-01(以色列)',
-'阿尔·帕西诺 特里尔比·格洛弗 艾丽西亚·维特 莉莉·索博斯基 艾米·布伦尼曼 威廉·弗西斯 黛博拉·卡拉·安格 本·麦肯锡 尼尔·麦克唐纳 莱雅·卡里恩斯 史蒂芬·莫耶 克里斯托弗·雷德曼 布莱登·佛雷切 迈克尔·艾克朗德 凯利·格泽尔 克里斯蒂娜·科普兰 Tammy Hui Vicky Huang 维多利亚·坦南特 米哈尔·雅尼 保罗·坎贝尔','乔恩·阿维奈','剧情 悬疑 惊悚',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMznwhvlxSK5JWw1iawnAO4roJtBgFZ3hsGWgJfE7ND56o',
-'magnet:?xt=urn:btih:1fe1ea059ee1137c2818660ef36bfc42eecc7a72','NULL','4',1,'/static/movie/img/p1255261361.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10128,'漂流街','https://movie.douban.com/subject/1302774/','5.9',246,
-'http://www.imdb.com/title/tt0246498','NULL','NULL','NULL','NULL','NULL','日本','2000-09-15(日本)',
-'李嘉欣 吉川晃司 及川光博','三池崇史','剧情 惊悚 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLxSiFmwR_Ef_KS1oXZWsnP',
-'NULL','NULL','4',1,'/static/movie/img/s1514032.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10129,'布利特','https://movie.douban.com/subject/1293192/','7.6',1025,
-'http://www.imdb.com/title/tt0062765','NULL','NULL','NULL','NULL','NULL','美国','1968-10-17(美国)',
-'史蒂夫·麦奎因 罗伯特·沃恩 杰奎琳·比塞特 唐·戈登 西蒙·奥克兰 诺曼·费尔 罗伯特·杜瓦尔 乔格·斯坦福·布朗 Justin Tarr Carl Reindel Felice Orlandi 维克·泰拜克 Robert Lipton Ed Peck Pat Renella','彼得·叶茨','动作 悬疑 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2241427979.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10130,'迷情记','https://movie.douban.com/subject/1302727/','6.5',183,
-'http://www.imdb.com/title/tt0074991','NULL','NULL','NULL','NULL','NULL','美国','1976-09-01',
-'克里夫·罗伯逊 詹妮薇芙·布卓 约翰·利特高','布莱恩·德·帕尔玛','剧情 悬疑 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2200855250.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10131,'冷瞳','https://movie.douban.com/subject/10478675/','2.6',919,
-'http://www.imdb.com/title/tt3374864','NULL','NULL','NULL','NULL','NULL','中国大陆','2013-10-31(中国大陆)',
-'孙祖扬 周秀娜 张诗絮 李灿森 刘羽琦 黄又南 刘锡明 洪天照','蒋国权','悬疑 惊悚',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8HbnYfKWVm1yONW6uk0jqORW8lsmD3_iJgPxBKGvv_7S',
-'NULL','NULL','4',1,'/static/movie/img/p2153214713.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10132,'霹雳雷神','https://movie.douban.com/subject/3346862/','3.2',222,
-'http://www.imdb.com/title/tt1260572','NULL','NULL','NULL','NULL','NULL','USA','2009-04-11',
-'Zachery Ty Bryan Mac Brandt Daz Crawford','Todor Chapkanov','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2283581565.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10133,'芳芳','https://movie.douban.com/subject/1293377/','8.1',65416,
-'http://www.imdb.com/title/tt0106866','NULL','NULL','NULL','NULL','NULL','法国','1993-06-16',
-'苏菲·玛索 文森特·佩雷斯 马里恩·德尔特梅 布鲁诺·托德契尼','亚历山大·雅丁','喜剧 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJYgdieA2Th3GreQbyiF0hA',
-'NULL','NULL','4',1,'/static/movie/img/p1023890205.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10134,'爱您爱到杀死您','https://movie.douban.com/subject/1302607/','6.3',1937,
-'http://www.imdb.com/title/tt0128033','NULL','NULL','NULL','NULL','NULL','香港','1997-08-12',
-'黎明 郑秀文 吴君如 黄伟文 郑祖 谷德昭 黎耀祥 黄卓玲 林尚义 林雪 八两金 田启文','李力持','喜剧 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLZC4Hp95cnht6_chve7Qkg',
-'NULL','NULL','4',1,'/static/movie/img/p2237394782.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10135,'天地无限','https://movie.douban.com/subject/1305964/','7.8',2483,
-'http://www.imdb.com/title/tt0316356','NULL','NULL','NULL','NULL','NULL','美国','2003-08-15(美国)',
-'罗伯特·杜瓦尔 凯文·科斯特纳 安妮特·贝宁 迈克尔·刚本 迈克尔·杰特 迭戈·卢纳 詹姆斯·拉索 亚布拉哈姆·本鲁比 迪恩·麦克德蒙特 金·寇兹 Herb Kohler 彼得·麦克内尔 Cliff Saunders Patricia Stutz 朱利安·瑞钦斯','凯文·科斯特纳','剧情 爱情 西部',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1ZkXOnMER_yC6d8VfA1RdzTH_8ebVzjCnVghwuXUjnhe5efI3SB1IZLKOTFDWod_Rg==',
-'magnet:?xt=urn:btih:e21493afc653a0fd47c5f4b01857265806033505','NULL','4',1,'/static/movie/img/p828432530.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10136,'生人勿近之问米','https://movie.douban.com/subject/1479934/','5.8',719,
-'NULL','NULL','NULL','NULL','NULL','NULL','香港','0000-00-00',
-'朱茵 钱嘉乐 尹天照 罗兰 张文慈 苑琼丹 雷宇扬','郑伟文','恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ9gkzw6viETpBMAOFaWb-t',
-'NULL','NULL','4',1,'/static/movie/img/p2251490088.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10137,'血蝉','https://movie.douban.com/subject/2992769/','7.0',556,
-'http://www.imdb.com/title/tt1175523','NULL','NULL','NULL','NULL','NULL','中国大陆','2007-10-01',
-'洪启发 赵会会 张雷','彭韬','剧情',
-'http://www.iqiyi.com/v_19rrh70hlo.html',
-'NULL','NULL','4',1,'/static/movie/img/p2188585301.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10138,'阿浅来了特别篇：破锅配烂盖','https://movie.douban.com/subject/26773933/','6.8',55,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-04-23(日本)',
-'三宅弘城 ともさかりえ 山内圭哉 友近 桐山照史 野々すみ花 清原果耶 上杉祥三 風吹ジュン 波瑠 玉木宏','西谷真一','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2353334750.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10139,'暗恋99天','https://movie.douban.com/subject/11604102/','5.6',8795,
-'http://www.imdb.com/title/tt3376596','NULL','NULL','NULL','NULL','NULL','香港','2013-01-11(中国大陆)',
-'黄宗泽 邓丽欣 森美 赵柯 苏耀宗 黄俊淇 阮小仪','火火','喜剧 爱情',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8Bip9uhDSA52siLzsFLxIyDJihf0iJNFpl2pqe8jr-Xd',
-'NULL','NULL','4',1,'/static/movie/img/p1832197925.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10140,'镖行天下之牡丹阁','https://movie.douban.com/subject/2347262/','6.3',505,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'周群达 吴晓敏 池华琼','邓衍成','暂时无数据',
-'http://so.iqiyi.com/links/iDYCAkmRMemaUWHrzfuxfqcm8Oaz5LKfBEhEfcJwQLHZpAoZTQkhuaQOlvP-0oaU',
-'NULL','NULL','4',1,'/static/movie/img/s2809149.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10141,'忠狗德拉姆','https://movie.douban.com/subject/2031410/','8.5',245,
-'http://www.imdb.com/title/tt0227963','NULL','NULL','NULL','NULL','NULL','美国','2000-06-09',
-'Bobby Edner','Sean McNamara','剧情 家庭 儿童',
-'http://so.iqiyi.com/links/wv9kivRX33_g_Ymf8pA3qRU4uJ-3W6xD18TKemLfrUDf2Hu5DPIxPZ0QOgTtL-l3zRaLEcuKhNfuuNpTSioCXA==',
-'NULL','NULL','4',1,'/static/movie/img/p2223389180.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10142,'求偶一支公','https://movie.douban.com/subject/1304529/','7.1',1759,
-'http://www.imdb.com/title/tt0287583','NULL','NULL','NULL','NULL','NULL','韩国','2001-01-13(韩国)',
-'全度妍 薛耿求','朴兴植','剧情 喜剧 爱情',
-'http://www.iqiyi.com/dianying/20100813/n29847.html',
-'NULL','NULL','4',1,'/static/movie/img/p638798887.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10143,'老师嫁老大','https://movie.douban.com/subject/2979687/','6.5',1868,
-'http://www.imdb.com/title/tt1182615','NULL','NULL','NULL','NULL','NULL','马来西亚 / 新加坡','2008-02-07',
-'范文芳 李国煌 刘谦益 黄国强 林德荣','梁智强','喜剧',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKyk_cFNgLdtsC7Wo25wxRr',
-'NULL','NULL','4',1,'/static/movie/img/p1973458047.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10144,'香奈儿','https://movie.douban.com/subject/3236520/','8.0',23317,
-'http://www.imdb.com/title/tt1094661','NULL','NULL','NULL','NULL','NULL','意大利 / 法国 / 英国','2008-10-05',
-'雪莉·麦克雷恩 巴博拉·伯布洛瓦 Brigitte Boucher Alice Cambournac 西塞丽·卡塞儿','Christian Duguay','传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p781926821.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10145,'欢迎回家，罗斯科·杰金斯','https://movie.douban.com/subject/1939903/','6.3',441,
-'http://www.imdb.com/title/tt0494652','NULL','NULL','NULL','NULL','NULL','美国','2008-02-08',
-'马丁·劳伦斯 詹姆斯·厄尔·琼斯 玛格丽特·艾弗瑞 乔伊·布赖恩特 塞德里克·凯尔斯','马尔科姆·D·李','喜剧 爱情 家庭',
-'http://www.iqiyi.com/v_19rrmyai94.html',
-'NULL','NULL','4',1,'/static/movie/img/p2386476783.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10146,'农业小饿女','https://movie.douban.com/subject/26590960/','6.5',92,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2015-12-16(日本)',
-'前田亚季 芹那 バービー 苅谷俊介 曽川留三子 阿部亮平 田中幸太朗 小久保寿人','東山充裕','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2298587618.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10147,'鲸鱼与青鳉鱼','https://movie.douban.com/subject/3120337/','7.4',49,
-'http://www.imdb.com/title/tt1849788','NULL','NULL','NULL','NULL','NULL','日本','2008-05-09',
-'田中邦衛 志田未来 高橋克實 余貴美子 八千草薫','西浦正记','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3148211.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10148,'神探磨辘','https://movie.douban.com/subject/1863731/','5.9',362,
-'http://www.imdb.com/title/tt0111167','NULL','NULL','NULL','NULL','NULL','香港','1994-06-08',
-'刘青云 钟丽缇 吴镇宇 伍咏薇 叶竞生','张志成','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1bZlf8uBtGpOJFsR7RrXjkXjq3ThGp_KefJaTkCfZWj463huyw2oh1tfAmU4U9FBnw==',
-'NULL','NULL','4',1,'/static/movie/img/s4279285.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10149,'透纳先生','https://movie.douban.com/subject/21319853/','7.4',5547,
-'http://www.imdb.com/title/tt2473794','NULL','NULL','NULL','NULL','NULL','英国 / 法国 / 德国','2014-05-15(戛纳电影节)',
-'蒂莫西·斯波 保罗·杰森 多萝西·阿特金森 玛丽昂·贝利 卡尔·约翰逊 鲁斯·西恩 Sandy Foster Amy Dawson 莱丝利·曼维尔 马丁·萨维奇 理查德·布雷默','迈克·李','剧情 传记',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJjde6G9d3ESdyBKUcUoCFs',
-'magnet:?xt=urn:btih:b8a8837a0faebc2c14bf7260ee2c78f2ec8aadc2','NULL','4',1,'/static/movie/img/p2209080093.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10150,'十八般武艺','https://movie.douban.com/subject/1307630/','7.6',733,
-'http://www.imdb.com/title/tt0084671','NULL','NULL','NULL','NULL','NULL','香港','1982-01-21(香港)',
-'刘家辉 小侯 惠英红 傅声','刘家良','剧情 动作 武侠 古装',
-'http://www.iqiyi.com/v_19rraq6myw.html',
-'NULL','NULL','4',1,'/static/movie/img/p2344557093.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10151,'战地诗篇','https://movie.douban.com/subject/3035076/','6.4',309,
-'http://www.imdb.com/title/tt0904127','NULL','NULL','NULL','NULL','NULL','加拿大','2008-06-06',
-'Jonathan Scarfe Nina Dobrev','Damian Lee','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3017402.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10152,'狗日子','https://movie.douban.com/subject/1297082/','7.5',688,
-'http://www.imdb.com/title/tt0290661','NULL','NULL','NULL','NULL','NULL','奥地利','2001-11-09',
-'玛利亚·霍夫斯塔尔 Alfred Mrva Erich Finsches Gerti Lehner Franziska Weisz','尤里西·塞德尔','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2154167897.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10153,'永不消逝的电波','https://movie.douban.com/subject/1431694/','7.7',4021,
-'http://www.imdb.com/title/tt0352008','NULL','NULL','NULL','NULL','NULL','中国大陆','1958',
-'孙道临 袁霞 王心刚 陆丽珠','王苹','战争',
-'http://www.iqiyi.com/v_19rrn6rl2o.html',
-'NULL','NULL','4',1,'/static/movie/img/p2323623934.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10154,'幪面大侠','https://movie.douban.com/subject/1531980/','5.6',73,
-'http://www.imdb.com/title/tt0211513','NULL','NULL','NULL','NULL','NULL','香港','1967-02-18',
-'方盈 张燕 朴鲁植 田丰 蒋光超','严俊','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3087743.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10155,'战地巫师','https://movie.douban.com/subject/10457306/','6.9',1810,
-'http://www.imdb.com/title/tt1820488','NULL','NULL','NULL','NULL','NULL','加拿大','2012-02-17(德国)',
-'Alain Lino Mic Eli Bastien 瑞秋·玛瓦赞 Serge Kanyinda Mizinga Mwinga Ralph Prosper Jean Kabuya','阮金','剧情 战争',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKGAg8P6kmjpE2K6XOnIidS',
-'NULL','NULL','4',1,'/static/movie/img/p1586992421.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10156,'青年人打游戏，老年人打太极','https://movie.douban.com/subject/20270508/','6.6',84,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-08-19',
-'武术 赵俊英 于建龙 沈爱平 胡晨阳 张阳丹 高丹凤 贾宏彬 苏志华 王强','上官醉','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2341168785.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10157,'赌命法则','https://movie.douban.com/subject/1307928/','7.0',328,
-'http://www.imdb.com/title/tt0220580','NULL','NULL','NULL','NULL','NULL','西班牙','2001-11-09',
-'莱昂纳多·斯巴拉格利亚 欧塞维奥·庞塞拉 Mónica López','胡安·卡洛斯·弗雷斯纳迪罗','剧情 惊悚',
-'http://www.iqiyi.com/dianying/20120131/1c72cb407d8701ba.html',
-'NULL','NULL','4',1,'/static/movie/img/p1594150338.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10158,'永失我爱','https://movie.douban.com/subject/1303148/','7.1',3616,
-'http://www.imdb.com/title/tt0185028','NULL','NULL','NULL','NULL','NULL','中国','1994',
-'徐帆 郭涛 剧雪','冯小刚','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGVPS_f18Mlw7B2YXLkAa_r62YE5L3YhtCyEx625v33uN',
-'NULL','NULL','4',1,'/static/movie/img/p2230370394.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10159,'狮与虎与五个男人','https://movie.douban.com/subject/2330193/','7.3',402,
-'http://www.imdb.com/title/tt1351670','NULL','NULL','NULL','NULL','NULL','日本','2004-12-25(日本)',
-'中居正广 木村拓哉 稻垣吾郎 草剪刚 香取慎吾 本乡奏多 唐泽寿明 秦透哉 阿部宽','中岛哲也','喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2785215.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10160,'Sweets!','https://movie.douban.com/subject/23780798/','5.7',198,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2012-12-07(日本)',
-'樱庭奈奈美 桥本爱 奥田惠梨华 川畑光瑠 罇真佐子','福島勇次','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1932859468.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10161,'香魂女','https://movie.douban.com/subject/1304534/','7.9',3958,
-'http://www.imdb.com/title/tt0108608','NULL','NULL','NULL','NULL','NULL','中国大陆','1993-02',
-'伍宇娟 雷恪生 斯琴高娃 陈宝国','谢飞','剧情',
-'http://so.iqiyi.com/links/iDYCAkmRMemaUWHrzfuxftTT4YcvO33d22fTP_GSoOFOrGoD5jTI9cU2eBSrzvOy',
-'NULL','NULL','4',1,'/static/movie/img/p1759104680.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10162,'非常爱情','https://movie.douban.com/subject/1307967/','7.1',282,
-'http://www.imdb.com/title/tt0260898','NULL','NULL','NULL','NULL','NULL','中国大陆','2000-09-19',
-'柳云龙 袁立 龚蓓苾','吴天明','剧情 爱情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqf5ouyR75hM2HggXxge2j9uqx_B1CYJmO2IBF0B_m_7n',
-'NULL','NULL','4',1,'/static/movie/img/s3937596.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10163,'警戒结束','https://movie.douban.com/subject/6128922/','7.9',17934,
-'http://www.imdb.com/title/tt1855199','NULL','NULL','NULL','NULL','NULL','美国','2012-09-21(美国)',
-'杰克·吉伦哈尔 迈克尔·佩纳 安娜·肯德里克 亚美莉卡·费雷拉 弗兰克·格里罗 大卫·哈伯 科迪·霍恩 娜塔丽·马丁内斯','大卫·阿耶','剧情 动作 犯罪',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8Bip9uhDSA52siLzsFLxIyDDq2K3waWlhcZucHS4-kiu',
-'NULL','NULL','4',1,'/static/movie/img/p1710215706.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10164,'天涯寻梦','https://movie.douban.com/subject/1304559/','8.1',1418,
-'http://www.imdb.com/title/tt0190798','NULL','NULL','NULL','NULL','NULL','西班牙','2000-04-21',
-'María Galiana Ana Fernández Carlos Álvarez-Nóvoa Antonio Dechent Paco De Osca','Benito Zambrano','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1500568.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10165,'铁观音勇破爆炸党','https://movie.douban.com/subject/2350114/','6.3',153,
-'http://www.imdb.com/title/tt0062668','NULL','NULL','NULL','NULL','NULL','香港','1968-05-30',
-'何莉莉 唐菁 沈依 罗维 樊梅生','罗维','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2074573154.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10166,'广东小老虎','https://movie.douban.com/subject/1294079/','6.0',680,
-'http://www.imdb.com/title/tt0068000','NULL','NULL','NULL','NULL','NULL','香港','0000-00-00',
-'成龙 石天 陈鸿烈 舒佩佩 田丰 韩国材 火星 关聪 袁日初 袁小田 元彪 钱月笙','金鑫','剧情 喜剧 动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLEdUB4JGkC9mDc3ezp9Y8C',
-'NULL','NULL','4',1,'/static/movie/img/p2357069798.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10167,'9号谋杀案','https://movie.douban.com/subject/1308704/','6.8',2967,
-'http://www.imdb.com/title/tt0261983','NULL','NULL','NULL','NULL','NULL','美国','2001-08-10',
-'大卫·卡罗素 Stephen Gevendon 保罗·吉尔福伊尔 乔什·卢卡斯 Peter Mullen','Brad Anderson','悬疑 恐怖',
-'http://www.iqiyi.com/v_19rro51dsk.html',
-'NULL','NULL','4',1,'/static/movie/img/p621200688.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10168,'陆之鱼','https://movie.douban.com/subject/5968387/','6.7',977,
-'http://www.imdb.com/title/tt1789898','NULL','NULL','NULL','NULL','NULL','日本','2012-02-18(日本)',
-'西岛秀俊 森山未来 津川雅彦 裕木奈江 泷藤贤一 新井浩文 涩川清彦','伊势谷友介','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJeTfwkLUsSEuq8J5-i83hU',
-'NULL','NULL','4',1,'/static/movie/img/p1484306170.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10169,'毁灭号地车','https://movie.douban.com/subject/2346913/','6.4',207,
-'http://www.imdb.com/title/tt0086047','NULL','NULL','NULL','NULL','NULL','香港','1983-04-15',
-'刘德华 严秋华 刘美君 岳华 钱慧仪 萧若元 吴回 蒋丽萍 刘国诚','霍耀良','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2345267866.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10170,'百分百啱Feel','https://movie.douban.com/subject/3042107/','6.6',925,
-'http://www.imdb.com/title/tt0126801','NULL','NULL','NULL','NULL','NULL','香港','1996-12-21',
-'郑伊健 郑秀文 梁咏琪 葛民辉 张达明 邱淑贞 许志安 罗家英 谢天华 兰茜','马伟豪','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3952786.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10171,'有人在吗？','https://movie.douban.com/subject/2362223/','7.8',3078,
-'http://www.imdb.com/title/tt1130088','NULL','NULL','NULL','NULL','NULL','英国','2008-09-07',
-'比尔·米尔纳 安-玛莉·杜芙 伊丽莎白·斯普里格斯 莱斯利·菲利普斯 西尔维亚·西姆斯 罗斯玛丽·哈里斯 大卫·莫瑞瑟 皮特·沃恩 迈克尔·凯恩 Ralph Riach Linzey Cocker Thelma Barlow Carl McCrystal Andrew Turner Oliver Leach','约翰·克劳利','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIPM3NSEooW-6s4GG8zJR_J',
-'NULL','NULL','4',1,'/static/movie/img/p845455029.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10172,'默文·卡拉','https://movie.douban.com/subject/1420042/','7.4',228,
-'http://www.imdb.com/title/tt0300214','NULL','NULL','NULL','NULL','NULL','英国 / 加拿大','2002-11-01',
-'萨曼莎·莫顿 凯瑟琳·麦克德莫特 Linda McGuire','琳恩·拉姆塞','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2369022.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10173,'省港旗兵3：逃出香港','https://movie.douban.com/subject/1786413/','6.1',1828,
-'http://www.imdb.com/title/tt0098314','NULL','NULL','NULL','NULL','NULL','香港','1989-01-12(香港)',
-'刘德华 徐锦江 李美凤 莫少聪','麦当杰','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2224511143.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10174,'火魔战车','https://movie.douban.com/subject/1307126/','5.6',111,
-'http://www.imdb.com/title/tt0091499','NULL','NULL','NULL','NULL','NULL','美国','1986-07-25',
-'艾米利奥·艾斯特维兹 帕特·亨格尔 Laura Harrington 雅德丽·史密斯','斯蒂芬 金 (Stephen King)','动作 科幻 惊悚 恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKqaeHuyquaORF9Zf1p84jW',
-'NULL','NULL','4',1,'/static/movie/img/s3627633.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10175,'贞子3D','https://movie.douban.com/subject/19971692/','4.2',1161,
-'http://www.imdb.com/title/tt2440362','NULL','NULL','NULL','NULL','NULL','日本','2013-08-30(日本)',
-'泷本美织 濑户康史 大泽逸美 平澤宏々路 大西武志 石原里美 山本裕典 田山凉成','英勉','恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI9FP7vmf_s_H-NwKXDG2W1',
-'magnet:?xt=urn:btih:bc25aab9c9737f22f408a6bfce2528a07d822225','NULL','4',1,'/static/movie/img/p2024671149.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10176,'君子好逑','https://movie.douban.com/subject/1293584/','7.4',910,
-'http://www.imdb.com/title/tt0048356','NULL','NULL','NULL','NULL','NULL','美国','1955-04-11(美国)',
-'欧内斯特·博格宁 贝琪·布莱尔 杰里·帕里斯 乔·马特尔 凯伦·斯提尔','德尔伯特·曼','剧情 爱情',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzprlclV-RBXkZRP35NNtVda-wBsPQcSX0zucPtjq2QS7',
-'magnet:?xt=urn:btih:0d367e1dce4ff551d31dad2535c2fcbff3788ae8','NULL','4',1,'/static/movie/img/p2101921230.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10177,'瞒天计划','https://movie.douban.com/subject/24878250/','6.3',865,
-'http://www.imdb.com/title/tt3083008','NULL','NULL','NULL','NULL','NULL','英国 / 法国','2015-09-13(多伦多电影节)',
-'本·福斯特 吉约姆·卡内 克里斯·奥多德 李·佩斯 达斯汀·霍夫曼 杰西·普莱蒙 布莱恩·格林伯格 J·D·埃弗摩尔 劳拉·唐奈里 乔治·利昂·马丁内斯 安库塔·布雷班 萨姆·霍尔 伊莲·卡西迪 爱德华·霍格 拉斯科·阿特金斯','斯蒂芬·弗雷斯','剧情 传记 运动',
-'http://www.iqiyi.com/v_19rrlqw8z4.html',
-'magnet:?xt=urn:btih:d9509ab2d93ef94eb55ba5d9ff62d4d2dd5f0394&dn=The.Program.2015.LiMiTED.720p.BluRay.x264-VETO','NULL','4',1,'/static/movie/img/p2265205508.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10178,'飞龙斩','https://movie.douban.com/subject/2152969/','5.5',141,
-'http://www.imdb.com/title/tt0074521','NULL','NULL','NULL','NULL','NULL','香港','1976-04-24',
-'罗烈 刘永 樊梅生 谷峰 欧阳莎菲','何梦华','动作',
-'http://so.iqiyi.com/links/bu1fv1oRRL5kcvvjEx3YlqvT6rc6lvD_W7sSpSotv15bIvL-HKL7tR0KB0_W5OuX',
-'NULL','NULL','4',1,'/static/movie/img/s3034363.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10179,'等待一年半','https://movie.douban.com/subject/26747921/','5.8',57,
-'http://www.imdb.com/title/tt5625178','NULL','NULL','NULL','NULL','NULL','日本','2016-04-15(日本)',
-'菊川怜 雛形あきこ 戸次重幸 前川泰之 ふせえり 松澤一之 近江谷太朗 春海四方 渋川清彦 寺田農 翁倩玉 石田ひかり','西浦正記','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2326915813.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10180,'全顺粉女士绑架事件','https://movie.douban.com/subject/2371861/','6.8',1482,
-'http://www.imdb.com/title/tt1445057','NULL','NULL','NULL','NULL','NULL','韩国','2007-09-12(韩国)',
-'姜成辰 罗文熙 朴相勉 刘海镇','金相展','喜剧',
-'http://www.iqiyi.com/v_19rrh43p90.html',
-'NULL','NULL','4',1,'/static/movie/img/p2088275804.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10181,'致命紫罗兰','https://movie.douban.com/subject/1474203/','5.4',10830,
-'http://www.imdb.com/title/tt0370032','NULL','NULL','NULL','NULL','NULL','美国','2006-03-03',
-'米拉·乔沃维奇 卡梅隆·布莱特 威廉·菲德内尔','科特·维莫','动作 科幻',
-'http://www.iqiyi.com/v_19rrk2w82g.html',
-'magnet:?xt=urn:btih:06e8ddd79e6cee1f6ec4b89d75d8890c49762166','NULL','4',1,'/static/movie/img/p1052127293.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10182,'我爱你','https://movie.douban.com/subject/1308288/','7.1',25693,
-'http://www.imdb.com/title/tt0342555','NULL','NULL','NULL','NULL','NULL','中国大陆','2003-01(圣丹斯电影节)',
-'徐静蕾 佟大为 王学兵 杜澎 潘星谊','张元','爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1XFLuVE3wwtN3KNMQ7RphqtbDj-klkm4BGIwbk8E0K037jY6zMJl1wbmGzzbyUIBjw==',
-'NULL','NULL','4',1,'/static/movie/img/p486563269.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10183,'天使与我同桌','https://movie.douban.com/subject/1302606/','7.8',1215,
-'http://www.imdb.com/title/tt0099040','NULL','NULL','NULL','NULL','NULL','新西兰 / 澳大利亚 / 英国','1990-09-20',
-'凯瑞·福克斯 Alexia Keogh Karen Fergusson Iris Churn Kevin J. Wilson','简·坎皮恩','剧情 传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2211497019.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10184,'印第安夏日','https://movie.douban.com/subject/1300444/','7.5',339,
-'http://www.imdb.com/title/tt0293280','NULL','NULL','NULL','NULL','NULL','韩国','2001-05-05(韩国)',
-'李美妍 朴信阳','卢孝祯','剧情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2214420881.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10185,'爱斗大','https://movie.douban.com/subject/3004250/','5.4',1348,
-'http://www.imdb.com/title/tt1179057','NULL','NULL','NULL','NULL','NULL','香港','2008-01-17',
-'文咏珊 江若琳 罗仲谦 谭凯琪 李曼筠','七条','喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2364819876.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10186,'深蓝','https://movie.douban.com/subject/1307138/','6.4',238,
-'http://www.imdb.com/title/tt0279331','NULL','NULL','NULL','NULL','NULL','美国 / 英国 / 德国','2003-02-21',
-'库尔特·拉塞尔 斯科特·斯比德曼 迈克尔·米歇尔 布莱丹·格里森 文·瑞姆斯 达什·米霍克','罗恩·谢尔顿','剧情 动作 惊悚 犯罪',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGYVGbym7YYWoGGtZtEzaFyNWos3lcy-mmShZs4qNTJDJ',
-'magnet:?xt=urn:btih:9a077d478030dd9c8701559ed3f6c8e7151245e2','NULL','4',1,'/static/movie/img/p626588520.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10187,'艺术家与模特','https://movie.douban.com/subject/3130050/','7.3',37,
-'http://www.imdb.com/title/tt0047840','NULL','NULL','NULL','NULL','NULL','美国','1955-11-07',
-'Dean Martin Jerry Lewis Shirley MacLaine Dorothy Malone Eddie Mayehoff Eva Gabor Anita Ekberg','弗兰克·塔许林','喜剧 歌舞',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1b51Z8CF5KNsrIr2r1Cxze7wlVvtoOiPmovZnD-eAHQnwO2GwKZ-xqI7KhzJEwVOMgbvCwBKnwJ3YqmH0hvDcik=',
-'NULL','NULL','4',1,'/static/movie/img/p2179220057.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10188,'熊的故事','https://movie.douban.com/subject/1300334/','9.1',18332,
-'http://www.imdb.com/title/tt0095800','NULL','NULL','NULL','NULL','NULL','法国 / 美国','1988-10-19(法国)',
-'巴特熊 Youk the Bear 切基·卡尤 杰克·华莱士 André Lacombe','让-雅克·阿诺','剧情',
-'NULL',
-'magnet:?xt=urn:btih:bce0d10945b1f270cf34fed5ab15ec9e55d59212','NULL','4',1,'/static/movie/img/p2454268056.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10189,'朱花之月','https://movie.douban.com/subject/6101719/','6.6',197,
-'http://www.imdb.com/title/tt1896753','NULL','NULL','NULL','NULL','NULL','日本','2011-09-03',
-'大岛叶子 小水藤太 Tôta Komizu 明川哲也 树木希林','河濑直美','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1174905556.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10190,'犀利人妻','https://movie.douban.com/subject/10461368/','5.5',6185,
-'http://www.imdb.com/title/tt2455730','NULL','NULL','NULL','NULL','NULL','台湾','2012-12-31(中国大陆)',
-'隋棠 温升豪 王宥胜 小小彬 蔡淑臻 朱芯仪 马念先 唐立淇','王珮华','爱情',
-'http://www.iqiyi.com/dianying/20130321/5a102a5b6ff224fe.html',
-'NULL','NULL','4',1,'/static/movie/img/p1625336618.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10191,'客途秋恨','https://movie.douban.com/subject/1308304/','8.4',5041,
-'http://www.imdb.com/title/tt0099927','NULL','NULL','NULL','NULL','NULL','香港 / 台湾','1990-04-27(香港)',
-'陆小芬 张曼玉 李子雄 田丰','许鞍华','剧情',
-'http://www.iqiyi.com/dianying/20120822/e44c0fa92716e8a0.html',
-'NULL','NULL','4',1,'/static/movie/img/p2197624980.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10192,'第一次的亲密接触','https://movie.douban.com/subject/1424748/','5.4',4723,
-'http://www.imdb.com/title/tt0355449','NULL','NULL','NULL','NULL','NULL','台湾 / 中国大陆','2001-02-09(中国大陆)',
-'张震 陈小春 舒淇 田海蓉 马千珊 傅淼','金国钊','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKkm_0ylB6a_vQghGSYEpt0',
-'NULL','NULL','4',1,'/static/movie/img/p2225875815.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10193,'真相至上','https://movie.douban.com/subject/2335122/','8.3',20465,
-'http://www.imdb.com/title/tt1073241','NULL','NULL','NULL','NULL','NULL','美国','2008-09-08(多伦多电影节)',
-'凯特·贝金赛尔 马特·狄龙 维拉·法米加 安吉拉·贝塞特 大卫·休默 阿伦·阿尔达 诺亚·怀尔','罗德·拉里','剧情 惊悚',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8Bip9uhDSA52siLzsFLxIyBVQN7ETMc8YJnixZsFxrl-',
-'magnet:?xt=urn:btih:9f3b886038c0c4975b9f398517d79d70a501be42','NULL','4',1,'/static/movie/img/p769052768.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10194,'空中小姐','https://movie.douban.com/subject/1303183/','7.0',208,
-'http://www.imdb.com/title/tt0211467','NULL','NULL','NULL','NULL','NULL','香港','1959-06-04',
-'葛兰 叶枫 张扬 乔宏','易文 (Wen Yi)','爱情',
-'http://www.iqiyi.com/v_19rrn6r26o.html',
-'NULL','NULL','4',1,'/static/movie/img/s3087963.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10195,'天使与魔鬼','https://movie.douban.com/subject/1927369/','7.2',73850,
-'http://www.imdb.com/title/tt0808151','NULL','NULL','NULL','NULL','NULL','美国 / 意大利','2009-05-15(美国)',
-'汤姆·汉克斯 伊万·麦克格雷格 阿耶莱特·祖里尔 斯特兰·斯卡斯加德 皮尔弗朗西斯科·法维诺 尼古拉·雷·卡斯 阿明·缪勒-斯塔尔 托尔·林德哈特 大卫·帕斯奎斯 科西莫·福斯科 维克多·阿尔菲 科特·罗文斯 鲍勃·耶基斯','朗·霍华德','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrifuxec.html',
-'magnet:?xt=urn:btih:9702bfdbd39a3744c220cc03157075d75307f2c5','NULL','4',1,'/static/movie/img/p786228964.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10196,'完美的爱','https://movie.douban.com/subject/5366661/','3.4',277,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2011-10-04(中国大陆)',
-'徐啸力 杨杏 李亮 李雪梅 王胜利 马志安 王立新 臧照华','王择谚','剧情 爱情',
-'http://www.iqiyi.com/v_19rrmwz59g.html',
-'NULL','NULL','4',1,'/static/movie/img/p714742067.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10197,'黑寡妇','https://movie.douban.com/subject/1297246/','6.0',118,
-'http://www.imdb.com/title/tt0090738','NULL','NULL','NULL','NULL','NULL','美国','1987-02-06',
-'德博拉·温格 泰莉莎·拉塞尔 萨米·弗雷','鲍勃·拉菲尔森','惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrn3yts0.html',
-'NULL','NULL','4',1,'/static/movie/img/p2235315070.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10198,'破碎之城','https://movie.douban.com/subject/3078391/','5.6',3978,
-'http://www.imdb.com/title/tt1235522','NULL','NULL','NULL','NULL','NULL','美国','2013-01-18(美国)',
-'马克·沃尔伯格 罗素·克劳 凯瑟琳·泽塔-琼斯 杰弗里·怀特 巴里·佩珀 阿隆娜·塔尔 娜塔丽·马丁内斯 詹姆斯· 兰索恩','艾伦·休斯','剧情 惊悚 犯罪',
-'NULL',
-'magnet:?xt=urn:btih:c90650cec26794093681c5b37fe2e121aa2f508e','NULL','4',1,'/static/movie/img/p1729011590.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10199,'玉面侠','https://movie.douban.com/subject/1493678/','5.4',134,
-'http://www.imdb.com/title/tt0211759','NULL','NULL','NULL','NULL','NULL','香港','1971-04-09',
-'何莉莉 高远 潘迎紫 谷峰 樊梅生','严俊','冒险 武侠 古装',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1bw-IDLmcFtf2etO156mT3_puVEhcJW4PHYuZ4nJ-U5gblLCMzRRu4QhgnKgeo9lrw==',
-'NULL','NULL','4',1,'/static/movie/img/p2220034688.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10200,'我为我生存(SP)','https://movie.douban.com/subject/1441061/','7.8',260,
-'http://www.imdb.com/title/tt0330075','NULL','NULL','NULL','NULL','NULL','日本','1997-01-03(日本)',
-'中居正广 木村拓哉 岸谷五朗 广末凉子 鹤田真由 濑户朝香 稻垣吾郎 草剪刚 香取慎吾 铃木保奈美 松隆子 唐泽寿明','永山耕三','剧情 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1458405.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10201,'相见恨晚','https://movie.douban.com/subject/1294364/','7.9',4458,
-'http://www.imdb.com/title/tt0037558','NULL','NULL','NULL','NULL','NULL','英国','1945-11-26',
-'西莉亚·约翰逊 特瑞沃·霍华德 斯坦利·霍洛威 Joyce Carey Everley Gregg Margaret Barton','大卫·里恩','剧情 爱情',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMznwhvlxSK5JWw1iawnAO4rpyDpY6Yr2ALDtMoVXlAlBG',
-'NULL','NULL','4',1,'/static/movie/img/p1684762005.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10202,'烈火战车','https://movie.douban.com/subject/1295316/','6.7',6944,
-'http://www.imdb.com/title/tt0113651','NULL','NULL','NULL','NULL','NULL','香港','1995-12-14(香港)',
-'刘德华 梁咏琪 吴大维 秦沛 钱嘉乐 徐锦江 柳影紅 夏萍','尔冬升','剧情 动作',
-'http://www.iqiyi.com/v_19rrn3hla8.html',
-'NULL','NULL','4',1,'/static/movie/img/p2246992664.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10203,'蓝霹雳','https://movie.douban.com/subject/1292572/','6.4',267,
-'http://www.imdb.com/title/tt0085255','NULL','NULL','NULL','NULL','NULL','美国','1983-02-05',
-'罗伊·沙伊德尔 沃伦·奥茨 坎迪·克拉克 丹尼尔·斯特恩 Paul Roebling David Sheiner 乔·桑托斯 马尔科姆·麦克道威尔 Ed Bernard Jason Bernard Mario Machado 詹姆斯·墨塔夫','约翰·班德汉姆','剧情 动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrn3le1o.html',
-'NULL','NULL','4',1,'/static/movie/img/p2101441948.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10204,'西部执法者','https://movie.douban.com/subject/1292944/','7.8',862,
-'http://www.imdb.com/title/tt0075029','NULL','NULL','NULL','NULL','NULL','美国','1976-06-30',
-'克林特·伊斯特伍德 桑德拉·洛克 奇夫·丹·乔治 比尔·麦金尼 约翰·沃侬 Paula Trueman 山姆·伯顿斯 Geraldine Keams 伍德罗夫·帕弗雷 Joyce Jameson Sheb Wooley 罗亚尔·达诺 马特·克拉克 John Verros 威尔·萨姆森','克林特·伊斯特伍德','剧情 动作 惊悚 西部 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1419564866.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10205,'黑暗边缘','https://movie.douban.com/subject/3073647/','6.8',7601,
-'http://www.imdb.com/title/tt1226273','NULL','NULL','NULL','NULL','NULL','美国 / 英国','2010-01-29',
-'梅尔·吉布森 雷·温斯顿 丹尼·赫斯顿 Bojana Novakovic 肖恩·罗伯茨','马丁·坎贝尔','剧情 惊悚 犯罪',
-'http://www.iqiyi.com/dianying/20120110/376d083f97061688.html',
-'magnet:?xt=urn:btih:c3d9f15268d85ca3ac48898d9d599172f48dabef','NULL','4',1,'/static/movie/img/p769242953.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10206,'双面特工','https://movie.douban.com/subject/1921991/','6.8',4178,
-'http://www.imdb.com/title/tt0401997','NULL','NULL','NULL','NULL','NULL','美国','2007-02-16',
-'克里斯·库珀 瑞恩·菲利普 劳拉·琳妮 卡洛琳·达芙娜 盖瑞·科尔 丹尼斯·海斯伯特 凯瑟琳·奎南 布鲁斯·戴维森 乔纳森·沃顿 Tom Barnett Jonathan Potts 大卫·胡班 Catherine Burdon 斯科特·吉布森 Courtenay J. Stevens 克莱尔·斯通 乔纳森·凯兹','比利·雷','剧情 传记 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML4KjcEE-W1ngGMNJR8F3L2',
-'magnet:?xt=urn:btih:56dbcb23b1811be4ea4af31c4e3bec58f0450f96','NULL','4',1,'/static/movie/img/p1226508538.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10207,'列宁格勒牛仔征美记','https://movie.douban.com/subject/1316560/','8.4',5585,
-'http://www.imdb.com/title/tt0097728','NULL','NULL','NULL','NULL','NULL','芬兰 / 瑞典','1989-03-24(芬兰)',
-'马蒂·佩龙帕 吉姆·贾木许 Kari Väänänen Sakke Järvenpää 萨卡里·库斯曼嫩 Silu Seppälä Mato Valtonen Olli Tuominen Richard Boes','阿基·考里斯马基','喜剧 音乐',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJE57fKMD_KpSaaYUanAqEr',
-'NULL','NULL','4',1,'/static/movie/img/p1652558241.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10208,'忠臣藏1/47','https://movie.douban.com/subject/1779915/','7.6',620,
-'http://www.imdb.com/title/tt0302413','NULL','NULL','NULL','NULL','NULL','日本','2001-12-28',
-'木村拓哉 佐藤浩市 深津絵里 堤真一 岡田准一 松雪泰子 松隆子 小林聰美 渡邊謙 妻夫木聪','河毛俊作','剧情 历史',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s6774633.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10209,'家庭教师解开！杀人方程式的推理练习','https://movie.douban.com/subject/25727437/','5.4',138,
-'http://www.imdb.com/title/tt2402947','NULL','NULL','NULL','NULL','NULL','日本','2013-05-20(日本)',
-'菊川怜 小泉孝太郎 葛山信吾 国生小百合 保阪尚希 吉川爱 森次晃嗣 志村東吾 宅麻伸','岡田寧','悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2151522072.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10210,'蓝烟火','https://movie.douban.com/subject/1298439/','6.1',347,
-'http://www.imdb.com/title/tt0300242','NULL','NULL','NULL','NULL','NULL','香港','2000-12-02',
-'许志安 梁咏琪 梁汉文 马德钟','勞劍華','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1455295.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10211,'医者','https://movie.douban.com/subject/26219197/','6.3',83,
-'http://www.imdb.com/title/tt4162016','NULL','NULL','NULL','NULL','NULL','日本','2016-01-09(日本)',
-'平山あや 榎木孝明 長谷川初範 池田有希子 星野凱士 上野優華 諒太郎 岡雅史 佐久間としひこ 古川孝 白崎映美 テツ トモ','永江二朗','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ1pOkciHC4hb-RRLcu7vxu',
-'NULL','NULL','4',1,'/static/movie/img/p2286440036.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10212,'鸦片','https://movie.douban.com/subject/21661846/','5.7',72,
-'http://www.imdb.com/title/tt2641648','NULL','NULL','NULL','NULL','NULL','法国','2013-05-24(戛纳电影节)',
-'马里莎·贝伦森 茱莉·德帕迪约 阿丽尔·朵巴丝勒 薇拉莉·邓泽里 格莱戈尔·科林  杰瑞米·埃尔卡伊姆','阿丽尔·朵巴丝勒','同性 歌舞',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2153094425.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10213,'野兽之死','https://movie.douban.com/subject/1959218/','7.9',280,
-'http://www.imdb.com/title/tt0314913','NULL','NULL','NULL','NULL','NULL','日本','1980-10-04(日本)',
-'松田优作 小林麻美','村川透','剧情 动作 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2187912303.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10214,'孔夫子','https://movie.douban.com/subject/2295854/','7.5',799,
-'http://www.imdb.com/title/tt1616538','NULL','NULL','NULL','NULL','NULL','中国大陆','1940-12-19(中国大陆)',
-'唐槐秋 张翼 司马英才 裴冲 屠光启 李景波 苗祝三 徐立 慕容婉儿','费穆','剧情 传记 历史 古装',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2176924848.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10215,'白痴','https://movie.douban.com/subject/1302514/','8.1',347,
-'http://www.imdb.com/title/tt0051762','NULL','NULL','NULL','NULL','NULL','苏联','1959-02-07',
-'尤里·雅科夫列夫 Yuliya Borisova Nikita Podgornyj Leonid Parkhomenko Raisa Maksimova Vera Pashennaya Nikolai Pazhitnov Kalvdia Polovnikova 伊万·柳别兹诺夫 柳德米拉·伊万诺娃 Vladimir Muravyov Sergei Martinson Pavel Strelin 格利高里·什皮格利 Galina Samokhina Raisa Kurkina','伊万·佩里耶夫','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI2syjCj0XYaQErSFATezj0',
-'NULL','NULL','4',1,'/static/movie/img/s1648253.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10216,'余下的就是沉默','https://movie.douban.com/subject/3217646/','7.7',243,
-'http://www.imdb.com/title/tt0839967','NULL','NULL','NULL','NULL','NULL','罗马尼亚','2007-06-09',
-'Marius Florea Vizante Ovidiu Niculescu Mirela Zeta','Nae Caranfil','剧情 喜剧',
-'http://so.iqiyi.com/links/bu1fv1oRRL5kcvvjEx3YlszD4SnVOqvNdv7nC8Jy6TDWMeMbuKDsEhBulEzpo82M',
-'NULL','NULL','4',1,'/static/movie/img/p1096278705.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10217,'狐狸猎手','https://movie.douban.com/subject/3011022/','7.2',17541,
-'http://www.imdb.com/title/tt1100089','NULL','NULL','NULL','NULL','NULL','美国','2014-05-19(戛纳电影节)',
-'史蒂夫·卡瑞尔 查宁·塔图姆 马克·鲁弗洛 西耶娜·米勒 瓦妮莎·雷德格瑞夫','贝尼特·米勒','剧情 传记 运动',
-'http://www.iqiyi.com/v_19rrnwr1t0.html',
-'magnet:?xt=urn:btih:86c0c483aa5c6ce33322f10c2b88307f434722a2','NULL','4',1,'/static/movie/img/p2208497877.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10218,'特命指挥官乡间彩香','https://movie.douban.com/subject/26891456/','6.2',63,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-10-22(日本)',
-'松下奈绪 铃木亮平 高岛政伸 大友康平 真剑佑 神田正輝 竹中直人 内田裕也 稻垣吾郎','神徳幸治','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2391489646.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10219,'我对你有感觉','https://movie.douban.com/subject/1307709/','6.5',183,
-'http://www.imdb.com/title/tt0168045','NULL','NULL','NULL','NULL','NULL','香港','1997-02-27',
-'张智霖 葛民辉 黄子华','舒琪 (Kei Shu (I))','喜剧',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1VMKagDkB8Sh-tIhpB239Hw7QJ5Bj_CNw-bN6-pBAAj69LRqChZbYJO-wLO6fd7d8Q==',
-'NULL','NULL','4',1,'/static/movie/img/s3081145.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10220,'尖峰时刻','https://movie.douban.com/subject/1292624/','6.8',45420,
-'http://www.imdb.com/title/tt0120812','NULL','NULL','NULL','NULL','NULL','美国','1998-09-18(美国)',
-'成龙 克里斯·塔克 汤姆·威尔金森 Tzi Ma 马克·罗斯顿 肯·梁 伊丽莎白·佩纳','布莱特·拉特纳','喜剧 动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rra748dk.html',
-'magnet:?xt=urn:btih:6af1c2a7098d5bbbf9e59639480ee8b89dce5c2c','NULL','4',1,'/static/movie/img/p2220721953.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10221,'保镖','https://movie.douban.com/subject/1303587/','7.8',1231,
-'http://www.imdb.com/title/tt0064067','NULL','NULL','NULL','NULL','NULL','香港','1969-12-28',
-'姜大卫 狄龙 李菁 井淼 谷峰','张彻','动作 爱情 悬疑 灾难 武侠',
-'http://www.iqiyi.com/dianying/20121211/646d4a1d5a4f2ee9.html',
-'NULL','NULL','4',1,'/static/movie/img/p2348227625.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10222,'绝地计划','https://movie.douban.com/subject/1293741/','7.2',471,
-'http://www.imdb.com/title/tt0120324','NULL','NULL','NULL','NULL','NULL','法国 / 德国 / 日本 / 英国 / 美国','1998-12-11',
-'比尔·帕克斯顿 布里吉特·芳达 比利·鲍伯·松顿 布兰特·布里斯科','山姆·雷米','剧情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2388291533.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10223,'夕照街','https://movie.douban.com/subject/1304060/','7.8',799,
-'http://www.imdb.com/title/tt0328492','NULL','NULL','NULL','NULL','NULL','中国大陆','1983-09-12',
-'陈佩斯 Peisi Chen 迟志强','王好为','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMK7D-hnRPfxFv0YjkVu_f3R',
-'NULL','NULL','4',1,'/static/movie/img/p2239278217.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10224,'边缘战士','https://movie.douban.com/subject/1299133/','6.1',510,
-'http://www.imdb.com/title/tt0091828','NULL','NULL','NULL','NULL','NULL','美国','1986-06-06',
-'阿诺·施瓦辛格 凯思琳·哈罗德 萨姆·沃纳梅克 布兰奇·贝克 达伦·麦克加文 保罗·希纳尔 史蒂芬·希尔 埃德·劳特尔 Joe Regalbuto 罗伯特·戴维','约翰·伊文','动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrho7qp4.html',
-'NULL','NULL','4',1,'/static/movie/img/p2249528208.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10225,'疯猴','https://movie.douban.com/subject/1961959/','7.6',567,
-'http://www.imdb.com/title/tt0079147','NULL','NULL','NULL','NULL','NULL','香港','1979-10-05',
-'小侯 惠英红 刘家良 罗烈 孙树培','刘家良','动作',
-'http://www.iqiyi.com/v_19rrmy7tu4.html',
-'NULL','NULL','4',1,'/static/movie/img/p2038269042.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10226,'我的名字是乔','https://movie.douban.com/subject/1298816/','7.4',200,
-'http://www.imdb.com/title/tt0151691','NULL','NULL','NULL','NULL','NULL','英国 / 德国 / 意大利 / 法国 / 西班牙','1998-09-23',
-'彼得·穆兰 Louise Goodall Gary Lewis','肯·洛奇','剧情 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1ZSPS1R2CX6-CXe1zQ2PtM9Lg0ZOkxZdzqbh6qoFJnQ8NPTYPgr4GF_9UvMyBq7qrQ==',
-'NULL','NULL','4',1,'/static/movie/img/p2361384207.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10227,'现代应召女郎','https://movie.douban.com/subject/1303979/','7.1',879,
-'http://www.imdb.com/title/tt0105856','NULL','NULL','NULL','NULL','NULL','香港','1992-07-30',
-'刘嘉玲 冯宝宝 罗美薇 周慧敏 陈宝莲 李子雄 许志安 郑伊健 张凤妮','黄志','暂时无数据',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJePMUHJIU3t7c5tzPMMJop',
-'NULL','NULL','4',1,'/static/movie/img/p2228399809.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10228,'山楂树之恋','https://movie.douban.com/subject/4151110/','6.6',179648,
-'http://www.imdb.com/title/tt1554523','NULL','NULL','NULL','NULL','NULL','中国大陆','2010-09-16(中国大陆)',
-'周冬雨 窦骁 奚美娟 李雪健 姜瑞佳 于新博 萨日娜 成泰燊 吕丽萍 孙海英 王劲松','张艺谋','剧情 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1T2nPhqxALfrQ9MzHJPbxI1l7U5a04MOy4S5TVAshmENLcqypN4r_WAsuwmuQB77hg==',
-'NULL','NULL','4',1,'/static/movie/img/p620234122.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10229,'猜谜杀手','https://movie.douban.com/subject/1951034/','6.2',360,
-'http://www.imdb.com/title/tt0486028','NULL','NULL','NULL','NULL','NULL','波兰 / 美国','2006-12-01',
-'','Robby Henson','剧情 悬疑 惊悚 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2295362712.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10230,'古惑大律师','https://movie.douban.com/subject/1307667/','6.7',685,
-'http://www.imdb.com/title/tt0099709','NULL','NULL','NULL','NULL','NULL','香港','1990-11-02',
-'梁家辉 刘嘉玲 郑裕玲 张坚庭 吴家丽','张坚庭','剧情 犯罪',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzprlclV-RBXkZRP35NNtVdbtGlR62VnBk7A9ZnX4-96Y',
-'NULL','NULL','4',1,'/static/movie/img/p2204696404.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10231,'雷锋','https://movie.douban.com/subject/1472234/','6.4',1517,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1965-03-05(中国大陆)',
-'董金棠 杨贵发 党同义 杨秦华 于纯绵 苏友邻 周保平 何延凤 景春寒 杨成轩 言小朋 徐力 曲云','董兆琪','剧情 传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2435541140.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10232,'生命是个奇迹','https://movie.douban.com/subject/1416895/','8.8',3688,
-'http://www.imdb.com/title/tt0322420','NULL','NULL','NULL','NULL','NULL','塞尔维亚和黑山 / 法国 / 意大利','2004-05-14',
-'斯拉夫科·斯提马科 娜塔莎·塔普什科维奇 乌克·科斯蒂奇 亚力克斯桑德·贝奇科 米尔亚娜·卡拉诺维奇 Vesna Trivalic 尼科拉·科约 达沃尔·贾尼奇 Dana Todorovic Vanessa Glodjo','埃米尔·库斯图里卡','剧情 喜剧 爱情 战争',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLojo8ImB2hegZ3B1LsEbnK',
-'NULL','NULL','4',1,'/static/movie/img/p1764946900.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10233,'武训传','https://movie.douban.com/subject/1432824/','7.9',1768,
-'http://www.imdb.com/title/tt0457630','NULL','NULL','NULL','NULL','NULL','中国大陆','1951-02-21(中国大陆)',
-'赵丹 黄宗英 周伯勋 张翼 吴茵 王蓓 蒋天流','孙瑜','剧情 传记',
-'http://www.iqiyi.com/v_19rrmb4mr8.html',
-'NULL','NULL','4',1,'/static/movie/img/p1576044853.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10234,'鬼娃回魂','https://movie.douban.com/subject/1300077/','6.8',8673,
-'http://www.imdb.com/title/tt0094862','NULL','NULL','NULL','NULL','NULL','美国','1988-11-09',
-'凯瑟琳·海克丝 克里斯·萨兰登 艾力克斯·文森特 布拉德·道里夫 Dinah Manoff','汤姆·霍兰德','悬疑 惊悚 恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML80XuFMAGElfq5QvVVXqc1',
-'NULL','NULL','4',1,'/static/movie/img/p1302801606.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10235,'你在时间的彼方','https://movie.douban.com/subject/3118933/','6.7',69,
-'http://www.imdb.com/title/tt5156462','NULL','NULL','NULL','NULL','NULL','日本','1995-09-18',
-'木村拓哉 持田真樹 野際陽子','中嶋豪','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3146989.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10236,'基因决定我爱你','https://movie.douban.com/subject/2052973/','5.7',11784,
-'http://www.imdb.com/title/tt1010409','NULL','NULL','NULL','NULL','NULL','台湾','2007-08-31',
-'余男 何润东 关颖 彭于晏 林依伦','李芸婵','喜剧 爱情 科幻',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb8Lx9kD6p9oTWYbHwZdbJWrex8Tky-8HTiTfbP5JmWJU',
-'NULL','NULL','4',1,'/static/movie/img/p507578573.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10237,'最爱','https://movie.douban.com/subject/1304100/','7.6',2598,
-'http://www.imdb.com/title/tt0092301','NULL','NULL','NULL','NULL','NULL','香港','1986-07-24(香港)',
-'张艾嘉 缪骞人 林子祥 李丽珍 鲍汉琳 翁世杰 钟景辉 罗美薇','张艾嘉','剧情 爱情',
-'http://www.iqiyi.com/dianying/20110627/ede303b69df4ea66.html',
-'magnet:?xt=urn:btih:b3c84ea89948edb0a4f87c6cf587fd4c5c8fdc49','NULL','4',1,'/static/movie/img/p1105515000.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10238,'苏醒的亚当','https://movie.douban.com/subject/1951227/','7.3',376,
-'http://www.imdb.com/title/tt0479341','NULL','NULL','NULL','NULL','NULL','德国 / 美国 / 以色列','2008-12-12',
-'杰夫·高布伦 威廉·达福 德里克·雅各比','保罗·施拉德','剧情 战争',
-'NULL',
-'magnet:?xt=urn:btih:c65bcb6ced4e777220d0deffe55ff16c5b0f5e1a','NULL','4',1,'/static/movie/img/p1687140170.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10239,'蜘蛛巢城','https://movie.douban.com/subject/1294827/','8.4',8415,
-'http://www.imdb.com/title/tt0050613','NULL','NULL','NULL','NULL','NULL','日本','1957-01-15',
-'三船敏郎 山田五十铃 志村乔 千秋实','黑泽明','剧情 动作 惊悚 战争 奇幻',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1QH7umt6j7ozsBu4GklZhdzN5BxeOSSYiDUmnLIVkyC96IuNinp68mnt3m0RaAkrzw==',
-'NULL','NULL','4',1,'/static/movie/img/p647422117.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10240,'五毒','https://movie.douban.com/subject/1307605/','7.7',2149,
-'http://www.imdb.com/title/tt0077559','NULL','NULL','NULL','NULL','NULL','香港','1978-08-12',
-'郭追 孙建 江生 罗莽 鹿峰 韦白','张彻','动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJlQDa1D6FDhMEiZF90akwG',
-'NULL','NULL','4',1,'/static/movie/img/p2233634016.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10241,'战略特勤组','https://movie.douban.com/subject/2275370/','7.8',39502,
-'http://www.imdb.com/title/tt0914863','NULL','NULL','NULL','NULL','NULL','美国','2011-07-10(中国大陆)',
-'麦克·辛 塞缪尔·杰克逊 凯瑞-安·莫斯 布兰登·罗斯 Necar Zadegan 斯蒂芬·鲁特 吉尔·贝罗斯 马丁·唐文 Yara Shahidi','格雷格·乔丹','剧情 悬疑 惊悚',
-'http://www.iqiyi.com/dianying/20110724/c6ad33250d598273.html',
-'NULL','NULL','4',1,'/static/movie/img/p498359093.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10242,'魔鬼司令','https://movie.douban.com/subject/1296942/','7.0',5461,
-'http://www.imdb.com/title/tt0088944','NULL','NULL','NULL','NULL','NULL','美国','1985-10-04',
-'阿诺·施瓦辛格 瑞伊·道恩·冲 丹·哈达亚 弗农·威尔斯','马克·L·莱斯特','喜剧 动作 惊悚 冒险',
-'http://www.iqiyi.com/v_19rrhu4kgs.html',
-'NULL','NULL','4',1,'/static/movie/img/p2479172530.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10243,'寡妇村','https://movie.douban.com/subject/1773394/','6.4',236,
-'http://www.imdb.com/title/tt0097461','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'牛士军 陶泽如 谢园 于莉 郝嘉陵 梁玉瑾 陈琦 张帆','王进','剧情',
-'http://so.iqiyi.com/links/wv9kivRX33_g_Ymf8pA3qZ1mQKi-mqRrOgeNcL60n6xhYjhJWCB2jbSyGduxETYKfRkV9LBgtfeqr4fYZdy35Q==',
-'NULL','NULL','4',1,'/static/movie/img/p2376474480.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10244,'非洲猎豹','https://movie.douban.com/subject/2363154/','8.3',48,
-'http://www.imdb.com/title/tt0105298','NULL','NULL','NULL','NULL','NULL','南非','1998-05-08',
-'Brooke Shields Norman Anstey John Varty Elmon Mhlongo Themba Ndaba','Duncan McLachlan','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2218748345.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10245,'孔雀王朝','https://movie.douban.com/subject/2072115/','6.1',430,
-'http://www.imdb.com/title/tt0079591','NULL','NULL','NULL','NULL','NULL','香港','1979-05-30',
-'姜大卫 井莉 王钟 罗烈 陈萍','楚原','动作 武侠',
-'http://www.iqiyi.com/v_19rr9q5di4.html',
-'NULL','NULL','4',1,'/static/movie/img/s3029628.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10246,'黑血','https://movie.douban.com/subject/2130556/','8.2',119,
-'http://www.imdb.com/title/tt0293069','NULL','NULL','NULL','NULL','NULL','美国 / 英国','2012-09(美国)',
-'瑞凡·菲尼克斯 乔纳森·普雷斯 朱迪·戴维斯','乔治·斯鲁依泽','惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKPcdWKkkU3VjZMoxtRtF4X',
-'NULL','NULL','4',1,'/static/movie/img/p1843313242.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10247,'六颗子弹','https://movie.douban.com/subject/11639147/','6.2',3407,
-'http://www.imdb.com/title/tt1975249','NULL','NULL','NULL','NULL','NULL','美国','2012-09-11(美国)',
-'尚格·云顿 乔·弗拉尼甘 Bianca Van Varenberg Anna-Louise Plowman Kristopher Van Varenberg lia sinchevici','厄尼·巴巴拉什','动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrnaoo88.html',
-'NULL','NULL','4',1,'/static/movie/img/p1738134244.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10248,'大叔，我爱你','https://movie.douban.com/subject/10827168/','5.4',7609,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2013-01-11(中国大陆)',
-'张智霖 付梦妮 翁虹 野营 郭美孜 董文军 孙斌 张咏荷 董琪 朱莉叶','胡崇曦','喜剧 爱情',
-'http://www.iqiyi.com/dianying/20130606/c46b4fc6e6026127.html',
-'NULL','NULL','4',1,'/static/movie/img/p1816934635.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10249,'狼兵吼','https://movie.douban.com/subject/26827878/','2.7',149,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2016-08-03(中国大陆)',
-'刘德凯 谢苗 徐冬梅 何云龙 王侃 刘旭 孙岩 姬晨牧 邱东江 隋抒洋 沈依灵 韩朔 李姿淇 周瑞','张新武','动作 战争',
-'http://so.iqiyi.com/links/iDYCAkmRMemaUWHrzfuxfujk1Et2AeKc_KW1eEPSFlglKSRENQaJbR-iBdUp3l2S',
-'NULL','NULL','4',1,'/static/movie/img/p2370966366.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10250,'乞爱之人','https://movie.douban.com/subject/26874504/','7.1',567,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2017-01-11(日本)',
-'筱原凉子 广濑爱丽丝 铃木梨央 杉本哲太 室毅 平山浩行 寺岛进 丰原功补 木村多江 上川隆也','谷口正晃','家庭',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2404907024.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10251,'一个人的遭遇','https://movie.douban.com/subject/1307028/','7.9',388,
-'http://www.imdb.com/title/tt0053317','NULL','NULL','NULL','NULL','NULL','苏联','1959-10-23',
-'谢尔盖·邦达尔丘克 Pavel Boriskin 济娜伊达·基里延科','谢尔盖·邦达尔丘克','剧情 传记 战争',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8HbnYfKWVm1yONW6uk0jqOQjeQonVQpdnEGTHn4w5O-K',
-'NULL','NULL','4',1,'/static/movie/img/s4651001.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10252,'下午五点','https://movie.douban.com/subject/1307903/','7.6',271,
-'http://www.imdb.com/title/tt0363303','NULL','NULL','NULL','NULL','NULL','伊朗 / 法国','2003-08-20',
-'Agheleh Rezaie Abdolgani Yousefrazi Razi Mohebi Marzieh Amiri','莎米拉·玛克玛尔巴夫','剧情',
-'http://so.iqiyi.com/links/bu1fv1oRRL5kcvvjEx3Ylh781E-dS677AQiAMUUiSyQO1_jy-a8ERj7Bt5tfwz-L',
-'NULL','NULL','4',1,'/static/movie/img/s1322320.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10253,'步步惊魂','https://movie.douban.com/subject/1305883/','7.3',485,
-'http://www.imdb.com/title/tt0062138','NULL','NULL','NULL','NULL','NULL','美国','1967-08-30',
-'李·马文 安吉·迪金森  凯勒·欧康纳 约翰·沃侬','约翰·保曼','剧情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2219230444.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10254,'华丽家族','https://movie.douban.com/subject/1578551/','8.3',528,
-'http://www.imdb.com/title/tt0384246','NULL','NULL','NULL','NULL','NULL','日本','1974-01-26',
-'佐分利信 月丘梦路 仲代达矢 京町子','山本萨夫','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIQGjr3RKjr_LSzZT5ThnT1',
-'NULL','NULL','4',1,'/static/movie/img/p2333042699.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10255,'猛鬼血魔','https://movie.douban.com/subject/1479975/','4.7',49,
-'NULL','NULL','NULL','NULL','NULL','NULL','香港','2001-07-02',
-'吴家丽 尹天照 刘锡明','蒋国权','恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMK5Rk_gBr7PorMqV5wo-H_E',
-'NULL','NULL','4',1,'/static/movie/img/s1497647.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10256,'柏林艳史','https://movie.douban.com/subject/1299143/','7.8',480,
-'http://www.imdb.com/title/tt0040367','NULL','NULL','NULL','NULL','NULL','美国','1948-06-20',
-'琪恩·亚瑟 玛琳·黛德丽 约翰·伦德','比利·怀德','喜剧 爱情',
-'http://www.iqiyi.com/v_19rrldqpt0.html',
-'NULL','NULL','4',1,'/static/movie/img/p2184785357.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10257,'单身的人上天堂','https://movie.douban.com/subject/10600262/','6.0',707,
-'NULL','NULL','NULL','NULL','NULL','NULL','韩国','2012-06-21',
-'崔允素','曹圣奎','剧情 爱情',
-'http://www.iqiyi.com/v_19rrhod7d8.html',
-'NULL','NULL','4',1,'/static/movie/img/p2173868013.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10258,'人生游戏','https://movie.douban.com/subject/25775596/','6.1',60,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2013-12-22(日本)',
-'森岡龍 新川優愛 池田鉄洋','金井紘','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2164930574.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10259,'失落的一封信','https://movie.douban.com/subject/1301664/','6.9',107,
-'http://www.imdb.com/title/tt0086988','NULL','NULL','NULL','NULL','NULL','法国','1984-01-18(法国)',
-'卡特琳·德纳芙 米歇尔·塞罗尔 让·路易·特兰蒂尼昂','Francis Girod','剧情',
-'http://www.iqiyi.com/v_19rrhfe0dc.html',
-'NULL','NULL','4',1,'/static/movie/img/s1457717.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10260,'陆小凤传奇之决战前后','https://movie.douban.com/subject/2136213/','7.2',5252,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2007-01-30(中国大陆)',
-'张智霖 何润东 严宽 刘诗诗','邓衍成','动作 武侠 古装',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqWrW8gEi-skqDIp-f_UrXMq-ZCmcHcj5BY9ZZb1PBLPt',
-'NULL','NULL','4',1,'/static/movie/img/p2198397088.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10261,'濠情岁月','https://movie.douban.com/subject/1804442/','5.8',271,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'方力申 邓丽欣 爱新觉罗启星 李秋芬','陈逸峰','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1677726.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10262,'电车凶案','https://movie.douban.com/subject/1858107/','6.3',56,
-'http://www.imdb.com/title/tt0069402','NULL','NULL','NULL','NULL','NULL','Italy','1973-09(意大利)',
-'恩佐·塞鲁西科 帕乌拉·特德斯科 Pierluigi Aprà Gildo Di Marco Tom Felleghy Marcello Fusco Luciana Lehar Emilio Marchesini Fulvio Mingozzi Corrado Olmi Salvatore Puntillo 玛利亚·特德斯奇 彼埃德罗·扎勒蒂尼','达里奥·阿金托','悬疑 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3640572.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10263,'遗愿清单','https://movie.douban.com/subject/1867345/','8.5',116048,
-'http://www.imdb.com/title/tt0825232','NULL','NULL','NULL','NULL','NULL','美国','2007-12-25(多伦多电影节)',
-'杰克·尼科尔森 摩根·弗里曼 西恩·海耶斯 贝弗利·陶德 罗伯·莫洛 Alfonso Freeman Verda Bridges 伊恩·安东尼·代尔 诺尔·古格雷米','罗伯·莱纳','剧情 喜剧 冒险',
-'http://www.iqiyi.com/v_19rrjcjae8.html',
-'NULL','NULL','4',1,'/static/movie/img/p708613284.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10264,'八墓村','https://movie.douban.com/subject/2310059/','7.3',2812,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2004-10-01',
-'稻垣吾郎 小日向文世 藤原龙也 凉 Ryô 吹越满 永泽俊矢 绘泽萠子 岛香织 浅野和之 笹野高史','星护','悬疑 恐怖 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI74CnrxbOOY5-WMvnLB8Ew',
-'NULL','NULL','4',1,'/static/movie/img/s4401859.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10265,'饲养乌鸦','https://movie.douban.com/subject/1303813/','8.5',2595,
-'http://www.imdb.com/title/tt0074360','NULL','NULL','NULL','NULL','NULL','西班牙','1976-01-26',
-'杰拉丁·卓别林 莫妮卡·兰德尔 Florinda Chico 安娜·托伦特 赫克多·艾戴里欧 Germán Cobos 米尔塔·米勒 Josefina Díaz Conchita Pérez Mayte Sanchez','卡洛斯·绍拉','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKMKaNcqg-RbPSjp1NImsTi',
-'NULL','NULL','4',1,'/static/movie/img/p2211479651.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10266,'最后的球季','https://movie.douban.com/subject/1897947/','7.5',354,
-'http://www.imdb.com/title/tt0449018','NULL','NULL','NULL','NULL','NULL','美国','2007-10-12',
-'西恩·奥斯汀 Jesse Henecke 鲍沃斯·布斯','大卫·M·埃文斯','剧情 运动',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2698311.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10267,'少林四小龙','https://movie.douban.com/subject/3148548/','3.9',93,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2008-10-28',
-'杨芳涵 姚杰元 毕诗考 黄习恒 杨钫涵 王娇','朱赵伟','剧情 动作',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqXa14YrZloG84FA1o05HxfHHrOGlLm79GHvD7L9ZbP_i',
-'NULL','NULL','4',1,'/static/movie/img/s3205881.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10268,'日本故事','https://movie.douban.com/subject/1340520/','6.6',127,
-'http://www.imdb.com/title/tt0304229','NULL','NULL','NULL','NULL','NULL','澳大利亚','2003-09-25',
-'托妮·科莱特','Sue Brooks','剧情 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s7028214.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10269,'吉娅','https://movie.douban.com/subject/1304613/','7.9',13316,
-'http://www.imdb.com/title/tt0123865','NULL','NULL','NULL','NULL','NULL','美国','1998-01-31',
-'安吉丽娜·朱莉 伊丽莎白·米切尔 费·唐纳薇 梅塞迪丝·鲁尔 Eric Michael Cole Kylie Travis 路易斯·基亚姆布拉沃 John Considine 斯科特·科恩 Edmund Genest','迈克尔·克里斯托弗','剧情 爱情 同性 传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1917873110.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10270,'处刑的房间','https://movie.douban.com/subject/1479543/','7.5',314,
-'http://www.imdb.com/title/tt0049642','NULL','NULL','NULL','NULL','NULL','日本','1956-06-28(日本)',
-'若尾文子 川口浩 长谷部庆次 梅若正義 中村伸郎 伊東光一 宮戸美知子','市川昆','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2435298435.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10271,'白宫管家','https://movie.douban.com/subject/3292949/','7.4',21573,
-'http://www.imdb.com/title/tt1327773','NULL','NULL','NULL','NULL','NULL','美国','2013-08-16(美国)',
-'福里斯特·惠特克 奥普拉·温弗瑞 大卫·奥伊罗 小库珀·古丁 泰伦斯·霍华德 简·方达 约翰·库萨克 詹姆斯·麦斯登 敏卡·凯利 罗宾·威廉姆斯 亚历克斯·马内塔 列维·施瑞博尔','李·丹尼尔斯','剧情 传记',
-'http://www.iqiyi.com/v_19rrhx0gkw.html',
-'magnet:?xt=urn:btih:a5c197b095ff35cced782ea08c60950de61e1698','NULL','4',1,'/static/movie/img/p2064208720.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10272,'红色娘子军','https://movie.douban.com/subject/1424630/','7.2',5429,
-'http://www.imdb.com/title/tt0472622','NULL','NULL','NULL','NULL','NULL','中国大陆','1961',
-'祝希娟 王心刚 向梅 金乃华 牛犇 陈强','谢晋','战争',
-'http://www.iqiyi.com/v_19rrn6lsmc.html',
-'NULL','NULL','4',1,'/static/movie/img/p2044374611.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10273,'蓝','https://movie.douban.com/subject/1417428/','8.5',4449,
-'http://www.imdb.com/title/tt0106438','NULL','NULL','NULL','NULL','NULL','英国 / 日本','1993-10-03',
-'John Quentin 尼吉尔·特瑞 德里克·贾曼 蒂尔达·斯文顿','德里克·贾曼','剧情 同性 传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2042159740.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10274,'工厂女孩','https://movie.douban.com/subject/1898357/','7.6',8742,
-'http://www.imdb.com/title/tt0432402','NULL','NULL','NULL','NULL','NULL','美国','2006-12-29',
-'西耶娜·米勒 盖·皮尔斯 海登·克里斯滕森 吉米·法伦 塔拉·萨莫斯 米娜·苏瓦丽','乔治·海肯卢珀','剧情 传记',
-'NULL',
-'magnet:?xt=urn:btih:641c0322056214baf7b40286737591460b80eea9','NULL','4',1,'/static/movie/img/p956995786.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10275,'黑金','https://movie.douban.com/subject/3672012/','8.1',65,
-'http://www.imdb.com/title/tt1389977','NULL','NULL','NULL','NULL','NULL','美国','2009',
-'Lowell Bergman Joe DeFrancesco Sam Kennedy','Lowell Bergman','纪录片',
-'http://www.iqiyi.com/dianying/20120808/850892d1245a41b8.html',
-'NULL','NULL','4',1,'/static/movie/img/s4670235.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10276,'杉原千亩','https://movie.douban.com/subject/26219196/','6.7',486,
-'http://www.imdb.com/title/tt4162012','NULL','NULL','NULL','NULL','NULL','日本 / 波兰 / 美国','2015-12-05(日本)',
-'唐泽寿明 小雪 波利斯·席克 阿格涅兹卡·格罗乔斯卡 小日向文世 西泽瑞·鲁卡斯瑟维克茨 迈克尔·茹拉夫斯基 塚本高史 安杰伊·布卢门菲尔德 泷藤贤一 泽比纽·扎马洲斯基','赛林·葛拉克','传记 历史 冒险',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJRnC-zbl_cvHwdNYfqzXWX',
-'magnet:?xt=urn:btih:e6833c8b8f2c53bae07241b8504c9b2a8194ba61','NULL','4',1,'/static/movie/img/p2266511396.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10277,'跑马地的月光','https://movie.douban.com/subject/1914928/','6.7',1131,
-'http://www.imdb.com/title/tt0416107','NULL','NULL','NULL','NULL','NULL','香港','2000-12-07',
-'张智霖 佘诗曼 江希文 苏永康 蔡一智 姚乐怡 李蕙敏 李卓颖 黄百鸣 吴文忻 王合喜 林志豪 唐文龙','钟澍佳','爱情',
-'http://www.iqiyi.com/v_19rrj5y2g4.html',
-'NULL','NULL','4',1,'/static/movie/img/p2096806212.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10278,'红日','https://movie.douban.com/subject/2033873/','7.1',428,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1963-05-01(中国大陆)',
-'张伐 高博 中叔皇 李农 里坡','汤晓丹','剧情 战争',
-'http://www.iqiyi.com/v_19rrhod9e8.html',
-'NULL','NULL','4',1,'/static/movie/img/p593293444.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10279,'卢尔德','https://movie.douban.com/subject/3640682/','7.1',778,
-'http://www.imdb.com/title/tt1405809','NULL','NULL','NULL','NULL','NULL','奥地利 / 法国 / 德国','2009-09-01',
-'西尔薇·泰斯图德 蕾雅·赛杜 布鲁诺·托德契尼 依琳娜·卢雯宋','杰茜卡·豪丝娜','剧情',
-'NULL',
-'magnet:?xt=urn:btih:6577799b6b91d180ce5919d19e65a69bcdeb8af4','NULL','4',1,'/static/movie/img/p547496745.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10280,'摇滚芭比','https://movie.douban.com/subject/1301926/','8.7',4964,
-'http://www.imdb.com/title/tt0248845','NULL','NULL','NULL','NULL','NULL','美国','2001-07-20',
-'约翰·卡梅隆·米切尔 米利亚姆·肖尔 安德列·马丁 阿尔贝塔·瓦特森 迈克尔·皮特','约翰·卡梅隆·米切尔','剧情 喜剧 同性 音乐',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p696969988.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10281,'蒋筑英','https://movie.douban.com/subject/1464592/','7.3',540,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1992',
-'巍子 奚美娟 毕彦君 田岷 顾岚','宋江波','剧情 家庭 传记',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGb3j6r23Wb7xt1bIGSurKNNlNFQh_lFj5pGDZZwK4h_g',
-'NULL','NULL','4',1,'/static/movie/img/p2173764726.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10282,'科学新发现：宇宙之死','https://movie.douban.com/subject/4250436/','7.6',213,
-'http://www.imdb.com/title/tt1350276','NULL','NULL','NULL','NULL','NULL','美国','2008-10-16',
-'','Daniel H. Birman','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4148590.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10283,'战争游戏2：死亡代码','https://movie.douban.com/subject/3012017/','5.7',795,
-'http://www.imdb.com/title/tt0865957','NULL','NULL','NULL','NULL','NULL','美国','2008-07-29',
-'马特·兰特尔 Chuck Shamata 马克西姆·罗伊 Gary Reineke 科鲁姆·费奥瑞','斯图尔特·格兰德','剧情 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3152602.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10284,'十二金牌','https://movie.douban.com/subject/2311475/','7.2',304,
-'http://www.imdb.com/title/tt0192601','NULL','NULL','NULL','NULL','NULL','香港','1970-01-07',
-'岳华 秦萍 井淼','程刚','剧情 动作 爱情 武侠 古装',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJhLWb3cHSBCPWP7bZocv8U',
-'NULL','NULL','4',1,'/static/movie/img/p2196351100.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10285,'陈奂生上城','https://movie.douban.com/subject/1302089/','7.3',274,
-'http://www.imdb.com/title/tt0340623','NULL','NULL','NULL','NULL','NULL','中国大陆','1982',
-'村里 宋春林 田英 齐桂荣 刘冠雄','王心语','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGb3j6r23Wb7xt1bIGSurKNNTmbmi8Yk76dJSFG6be3Gi',
-'NULL','NULL','4',1,'/static/movie/img/p2376143264.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10286,'冷酷的心','https://movie.douban.com/subject/1305095/','8.1',1813,
-'http://www.imdb.com/title/tt0061518','NULL','NULL','NULL','NULL','NULL','墨西哥','1968-08-22',
-'胡里奥·阿莱曼 安赫丽卡·玛丽亚 曼努埃尔·吉尔 比阿特丽斯·巴兹 米格尔·马西亚 何塞·巴伐利亚 Sara Guasch Sandra Chávez 拉斐尔·拉马斯 Antonio Bravo 孔苏埃洛·弗兰克 卡洛斯·阿戈斯蒂 Eduardo MacGregor 维克托·阿尔科塞尔 安东尼奥·拉克塞尔 特蕾莎·韦拉斯盖斯','蒂托·戴维森','剧情 爱情 冒险',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2229940535.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10287,'早安巴比伦','https://movie.douban.com/subject/1303854/','7.2',199,
-'http://www.imdb.com/title/tt0093104','NULL','NULL','NULL','NULL','NULL','意大利 / 法国 / 美国','1987-05-13',
-'文森特·斯帕诺 Joaquim de Almeida Greta Scacchi','保罗·塔维亚尼','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKjy_7gRq_4q76ppeeUs8jT',
-'NULL','NULL','4',1,'/static/movie/img/s3695128.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10288,'柠檬树','https://movie.douban.com/subject/2935729/','8.0',3311,
-'http://www.imdb.com/title/tt1172963','NULL','NULL','NULL','NULL','NULL','以色列 / 德国 / 法国','2008-02-08',
-'西娅姆·阿巴斯 Rona Doron Ali Suliman Rona Lipaz-Michael Tarik Kopty','Eran Riklis','剧情',
-'http://www.iqiyi.com/v_19rrhvq294.html',
-'NULL','NULL','4',1,'/static/movie/img/p2193712405.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10289,'必需品','https://movie.douban.com/subject/1292490/','6.6',322,
-'http://www.imdb.com/title/tt0107665','NULL','NULL','NULL','NULL','NULL','美国','1993-08-27',
-'马克斯·冯·叙多 艾德·哈里斯 邦妮·比蒂丽娅 阿曼达·普拉莫 J·T·沃尔什 雷·迈克金农','Fraser Clarke Heston','剧情 惊悚 恐怖 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKO1PHcJ7IZLisLNXq_xWKs',
-'NULL','NULL','4',1,'/static/movie/img/p2216083189.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10290,'黑幕风云','https://movie.douban.com/subject/1441089/','7.0',91,
-'http://www.imdb.com/title/tt0243904','NULL','NULL','NULL','NULL','NULL','英国 / 美国','2003-01-30',
-'彼得·奥图尔','Patrick Harkins','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3017755.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10291,'我希望在地狱里仍有酒喝','https://movie.douban.com/subject/3158433/','5.8',696,
-'http://www.imdb.com/title/tt1220628','NULL','NULL','NULL','NULL','NULL','美国','2009-09-25',
-'Jesse Bradford Matt Czuchry Keri Lynn Pratt','Bob Gosse','喜剧',
-'NULL',
-'magnet:?xt=urn:btih:a3ac1f609fbae1d6a341d5f44b1579556042c04b','NULL','4',1,'/static/movie/img/p2195189825.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10292,'坎特伯雷故事集','https://movie.douban.com/subject/1303731/','7.3',2661,
-'http://www.imdb.com/title/tt0067647','NULL','NULL','NULL','NULL','NULL','意大利 / 法国','1972-09-02',
-'休·格里夫斯 弗兰科·奇蒂 皮埃尔·保罗·帕索里尼 Derek Deadman','皮埃尔·保罗·帕索里尼','剧情 喜剧 情色 同性',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2372323656.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10293,'世界奇妙物语','https://movie.douban.com/subject/2281668/','8.2',565,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','1995-04-03(日本)',
-'黑木瞳 木村拓哉 友坂理惠 石黑贤 不破万作 小木茂光 志垣太郎 鷲尾いさ子 桥爪功','土方政人','剧情 悬疑 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2740839.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10294,'不沉的骨头','https://movie.douban.com/subject/6094926/','9.0',233,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2003-03-08',
-'杉浦直树 神木隆之介 池内博之 酒井若菜 木村多江 佐伯直之 小林すすむ','村瀬健','剧情 儿童',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4701830.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10295,'艳光四射歌舞团','https://movie.douban.com/subject/1416896/','6.7',802,
-'http://www.imdb.com/title/tt0436789','NULL','NULL','NULL','NULL','NULL','台湾','2004-12-04(香港同性电影节)',
-'陈煜明 钟以庆 马翊肮 赖昱锜 王明璋','周美玲','剧情 同性',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1648833.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10296,'上帝的贝雷帽：手塚治虫的黑杰克创作秘话','https://movie.douban.com/subject/24879975/','7.1',271,
-'http://www.imdb.com/title/tt3099516','NULL','NULL','NULL','NULL','NULL','日本','2013-09-24(日本)',
-'草剪刚 佐藤浩市 大岛优子 田中圭 冈田义德 真岛秀和 浅利阳介 中村靖日 大竹浩一 松尾谕 又吉直树 麻生祐未 小日向文世','三宅喜重','传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2191228344.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10297,'边城喋血记','https://movie.douban.com/subject/1295932/','7.7',63,
-'http://www.imdb.com/title/tt0041198','NULL','NULL','NULL','NULL','NULL','美国','1949-10-28',
-'里卡多·蒙特尔班 George Murphy 霍华德·达·席尔瓦 James Mitchell','安东尼·曼','剧情 犯罪 黑色电影',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3747235.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10298,'韩半岛','https://movie.douban.com/subject/1891052/','6.0',905,
-'http://www.imdb.com/title/tt0473490','NULL','NULL','NULL','NULL','NULL','韩国','2006-07-13(韩国)',
-'车仁表 安圣基 文成根 赵宰贤 姜信日 金相中','康佑硕','剧情 悬疑 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2160799668.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10299,'冬暖','https://movie.douban.com/subject/3286766/','7.8',150,
-'http://www.imdb.com/title/tt0186699','NULL','NULL','NULL','NULL','NULL','台湾','1969-01-09(台湾)',
-'归亚蕾 田野 马骥 孙越 赵群 费云 雷峻 方玲','李翰祥','剧情',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb6x_lFpitEsdiSdk2UZYvAvEVtRxZxhzxyFqO3urdeSM',
-'NULL','NULL','4',1,'/static/movie/img/p2393186730.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10300,'事件救命医2～IMATの奇跡～','https://movie.douban.com/subject/25886453/','7.6',271,
-'http://www.imdb.com/title/tt3733078','NULL','NULL','NULL','NULL','NULL','日本','2014-06-15(日本)',
-'玉木宏 田中圭 貫地谷しほり 伊武雅刀 水野美紀 高橋克典 森口瑤子 清水章吾 大東駿介 杉咲花 山崎一','根本和政','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2187313621.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10301,'寂寞芳心','https://movie.douban.com/subject/3443074/','8.6',13282,
-'http://www.imdb.com/title/tt1322930','NULL','NULL','NULL','NULL','NULL','土耳其','2008-11-07',
-'梅莉丝·柏坎 杰玛勒·胡那勒 Yildiz Kültür Serif Bozkurt Gözde Kansu','查恩·厄尔马克','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ7c2FBnbM1BJKB5Zm8Zkw0',
-'NULL','NULL','4',1,'/static/movie/img/p1389070372.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10302,'背负春天','https://movie.douban.com/subject/21267670/','7.1',1470,
-'http://www.imdb.com/title/tt2576858','NULL','NULL','NULL','NULL','NULL','日本','2014-06-14(日本)',
-'松山ケンイチ 蒼井優 豊川悦司 檀ふみ 小林薫 新井浩文 吉田栄作 池松壮亮 安藤サクラ 仲村トオル 市毛良枝 井川比佐志 石橋蓮司 夏八木勲','木村大作','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKrgB93dE83-EREICTZoxQz',
-'magnet:?xt=urn:btih:ebc66771e7c11d187468257623d5b8f9a672788f','NULL','4',1,'/static/movie/img/p2163542104.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10303,'押解的故事','https://movie.douban.com/subject/1812198/','7.4',932,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'傅彪 戈治钧 李占河 李云娟','齐星','暂时无数据',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb45oqhXDMqb3rebD-rox90AAc3RTvCaay2jNAMx_qB13',
-'NULL','NULL','4',1,'/static/movie/img/s1680911.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10304,'活死人之夜','https://movie.douban.com/subject/1297295/','6.7',1416,
-'http://www.imdb.com/title/tt0100258','NULL','NULL','NULL','NULL','NULL','美国','1990-10-19',
-'托尼·托德 Patricia Tallman Tom Towles McKee Anderson William Butler','汤姆·萨维尼','恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMITadCsiPr4_A3bNVzBzehz',
-'NULL','NULL','4',1,'/static/movie/img/p2182915844.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10305,'天生胆小','https://movie.douban.com/subject/1428301/','7.4',1929,
-'http://www.imdb.com/title/tt0340396','NULL','NULL','NULL','NULL','NULL','中国','1994',
-'葛优 梁天 谢园 李媛媛 马羚','彦小追','剧情',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGVPS_f18Mlw7B2YXLkAa_r5Dn0pamnNkoNyD-z1c9Lx4',
-'NULL','NULL','4',1,'/static/movie/img/p2464619261.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10306,'老那','https://movie.douban.com/subject/5268675/','7.6',280,
-'http://www.imdb.com/title/tt1713439','NULL','NULL','NULL','NULL','NULL','中国大陆','2010-10-18(中国大陆)',
-'刘浩','刘浩','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqcqtld_Yq72nqbSXhMSt-xcoMZZly80yWIbG4A4xEd_M',
-'NULL','NULL','4',1,'/static/movie/img/p666008607.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10307,'汉城大逃亡','https://movie.douban.com/subject/1830418/','5.1',116,
-'http://www.imdb.com/title/tt0286017','NULL','NULL','NULL','NULL','NULL','韩国','1995-12-30',
-'李秉宪 李璟荣','金成洙','动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2213953878.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10308,'托斯卡纳艳阳下','https://movie.douban.com/subject/1307052/','8.1',30184,
-'http://www.imdb.com/title/tt0328589','NULL','NULL','NULL','NULL','NULL','美国 / 意大利','2003-09-26(美国)',
-'戴安·琳恩 雷欧·波瓦 吴珊卓 琳赛·邓肯 Vincent Riotta','奥黛丽·威尔斯','剧情 喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p510725258.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10309,'巴斯克维尔的猎犬','https://movie.douban.com/subject/1806876/','7.6',88,
-'http://www.imdb.com/title/tt0031448','NULL','NULL','NULL','NULL','NULL','美国','1939-03-31',
-'巴斯尔·拉斯博 尼格尔·布鲁斯 理查德·格林','西德尼.兰菲尔德','剧情 悬疑 惊悚 恐怖 犯罪',
-'http://so.iqiyi.com/links/APVlP5MdJsWGL-F-44oLItiBIngWChxIJ-0FozucIKWdnDpOPhMlq4VZncvuVaWVDdtnJu3-RXvwiXFxtPcbYQ==',
-'magnet:?xt=urn:btih:86e8c11fec01be7d39c94dc9257d03a6d0952d69','NULL','4',1,'/static/movie/img/s4022692.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10310,'布拉格','https://movie.douban.com/subject/1968632/','7.7',497,
-'http://www.imdb.com/title/tt0855975','NULL','NULL','NULL','NULL','NULL','丹麦','2007-07-02',
-'Mads Mikkelsen','Ole Christian Madsen','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLDLkmQ8ps0DG54sjPxKofS',
-'NULL','NULL','4',1,'/static/movie/img/p1202895216.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10311,'性教育','https://movie.douban.com/subject/26018625/','5.1',145,
-'http://www.imdb.com/title/tt2751310','NULL','NULL','NULL','NULL','NULL','美国','2014-11-07',
-'海利·乔·奥斯蒙 劳拉·哈灵 格伦·鲍威尔 艾比·艾略特 洛伦扎·伊佐 乔治·艾德斯 马特·沃尔什 拉蒙尼·莫里斯 帕克·扬 凯文·赫尔南德斯 克里斯·威廉姆斯 雷·圣蒂亚戈 瑞塔 帕维什·齐纳 J.拉罗斯','Isaac Feder','喜剧 爱情',
-'NULL',
-'magnet:?xt=urn:btih:8ee74d565f32016bb84a5e926fa6d90a6e660c26','NULL','4',1,'/static/movie/img/p2201657697.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10312,'柳如是','https://movie.douban.com/subject/6078003/','6.9',10665,
-'http://www.imdb.com/title/tt2460590','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-03-08(中国大陆)',
-'万茜 秦汉 冯绍峰 凌峰 铁政','吴琦','剧情 爱情 传记 古装',
-'http://www.iqiyi.com/v_19rr7hfr4c.html',
-'NULL','NULL','4',1,'/static/movie/img/p1437356935.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10313,'曾经','https://movie.douban.com/subject/2053515/','8.3',192797,
-'http://www.imdb.com/title/tt0907657','NULL','NULL','NULL','NULL','NULL','爱尔兰','2006-07-15',
-'格伦·汉塞德 玛可塔·伊尔格洛娃 Alaistair Foley George Hendrick Hugh Walsh','约翰·卡尼','剧情 爱情 音乐',
-'http://www.iqiyi.com/dianying/20130711/90b6c59d9c96167a.html',
-'magnet:?xt=urn:btih:93a71bb552e2ae8242669fde8e1c11e00a5f5fbe','NULL','4',1,'/static/movie/img/p2173720203.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10314,'Reverse~警视厅搜查一课Team','https://movie.douban.com/subject/20451378/','5.3',134,
-'http://www.imdb.com/title/tt3357300','NULL','NULL','NULL','NULL','NULL','日本','2013-04-05',
-'松坂桃李 杏 池内博之 笛木優子 六平直政 満島真之介 鈴木浩介 鶴見辰吾 笹野高史 原田夏希 竹富聖花 相島一之 神尾佑 世良公則','岩本仁志','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s24937730.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10315,'情欲关系','https://movie.douban.com/subject/1438638/','6.5',97,
-'http://www.imdb.com/title/tt0104204','NULL','NULL','NULL','NULL','NULL','日本','1992-10-17',
-'内田裕也 宫泽理惠 北野武','若松孝二','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p877293947.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10316,'愛情故事','https://movie.douban.com/subject/2259327/','5.4',108,
-'http://www.imdb.com/title/tt0882981','NULL','NULL','NULL','NULL','NULL','新加坡','2006-05-25',
-'林依輪 陳毓芸 李之晴 陳玲 林姚妏 王智國 楊尚斌','唐永健','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1681608.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10317,'山狗1999','https://movie.douban.com/subject/1307804/','4.9',217,
-'http://www.imdb.com/title/tt0278408','NULL','NULL','NULL','NULL','NULL','香港','1999-10-30',
-'黄秋生 梁敏仪 黎骏 曾德华 梁焯满','刘宝贤','恐怖',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8I79Xypqizgt9wnl0lq4szU0EDwIB6Yd_ohGxeXBn9SB',
-'NULL','NULL','4',1,'/static/movie/img/p2319790235.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10318,'白玫瑰','https://movie.douban.com/subject/1305815/','7.5',1255,
-'http://www.imdb.com/title/tt0106345','NULL','NULL','NULL','NULL','NULL','香港','1992-11-12(香港)',
-'张曼玉 张耀扬 叶玉卿 姚炜 徐少强 陈辉虹 王敏德 ','赵良骏','动作 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLiSZTVtG1hl1Bz1is5LRG9',
-'NULL','NULL','4',1,'/static/movie/img/s1428860.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10319,'我对青春无悔','https://movie.douban.com/subject/1301260/','7.4',758,
-'http://www.imdb.com/title/tt0039090','NULL','NULL','NULL','NULL','NULL','日本','1946-10-29',
-'原节子 藤田进 大河内传次郎','黑泽明','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1a9E_uUDbiPtu2MJ2c3s6QhDJedLPyA2rcUD_umSZFT7HAhFYPgldp1a4KqzaU1w2w==',
-'NULL','NULL','4',1,'/static/movie/img/p2205012823.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10320,'应召女郎','https://movie.douban.com/subject/1899039/','6.9',77,
-'http://www.imdb.com/title/tt0193646','NULL','NULL','NULL','NULL','NULL','香港','1973-04-19',
-'丁佩 恬妮 李琳琳 金霏 陈曼玲','龙刚','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2339683521.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10321,'替身杀手','https://movie.douban.com/subject/1293227/','5.7',4212,
-'http://www.imdb.com/title/tt0120008','NULL','NULL','NULL','NULL','NULL','美国','1998-02-06(美国)',
-'周润发 米拉·索维诺 迈克尔·鲁克 尤尔根·普洛斯诺 蒂尔·施威格','安东尼·福奎阿','剧情 动作 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2203984083.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10322,'境遇','https://movie.douban.com/subject/6852378/','5.9',944,
-'http://www.imdb.com/title/tt1986194','NULL','NULL','NULL','NULL','NULL','日本','2011-12-03',
-'松雪泰子 りょう 沢村一樹 東幹久 田畑智子 岸部一徳 白川由美 西村雅彦 野際陽子 いしだあゆみ','若松節朗','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2135800933.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10323,'外卖','https://movie.douban.com/subject/3079416/','7.0',262,
-'http://www.imdb.com/title/tt0391483','NULL','NULL','NULL','NULL','NULL','美国','2004-01-18',
-'Charles Jang Jeng-Hua Yu Wang-Thye Lee Justin Wan','肖恩·贝克','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1281751556.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10324,'大盗查理','https://movie.douban.com/subject/1297895/','7.5',47,
-'http://www.imdb.com/title/tt0069865','NULL','NULL','NULL','NULL','NULL','美国','1973-09-19',
-'Andrew Robinson 沃尔特·马修 Walter Matthau 乔·唐·巴克','唐·希格尔','剧情 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4641279.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10325,'美丽的慢生活','https://movie.douban.com/subject/26652098/','6.8',160,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2015-12-24(日本)',
-'常盘贵子 北村一辉 小日向文世','源孝志','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2286517759.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10326,'鲁迅','https://movie.douban.com/subject/1459399/','7.0',750,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2005-09-09(中国大陆)',
-'濮存昕 张瑜 夏志卿 汤杰 赵胜胜 傅亨 范志菱','丁荫楠','传记 历史',
-'http://www.iqiyi.com/v_19rrho7zu4.html',
-'NULL','NULL','4',1,'/static/movie/img/p1219322439.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10327,'20世纪的乡愁','https://movie.douban.com/subject/1851904/','7.3',447,
-'http://www.imdb.com/title/tt0118536','NULL','NULL','NULL','NULL','NULL','日本','1997-07-26',
-'广末凉子 圆岛努 余贵美子','原将人','暂时无数据',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML_3LVZRhDwSuzT0fyZFWzJ',
-'NULL','NULL','4',1,'/static/movie/img/p1765487247.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10328,'天上的恋人','https://movie.douban.com/subject/1306631/','7.3',1962,
-'http://www.imdb.com/title/tt0348048','NULL','NULL','NULL','NULL','NULL','中国','2002',
-'刘烨 陶虹 董洁 冯恩鹤','蒋钦民','剧情',
-'http://so.iqiyi.com/links/e7u4hJrkRo6pyU78rzWXSK1T9Q1_K8-QjTUI5T1mWzNx13WD1IGD1OIz0wmkxx4p',
-'NULL','NULL','4',1,'/static/movie/img/p1327835590.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10329,'最后一颗钻石','https://movie.douban.com/subject/24381556/','6.5',122,
-'http://www.imdb.com/title/tt3136752','NULL','NULL','NULL','NULL','NULL','法国','2014-04-30',
-'伊万·阿达勒 贝雷尼斯·贝若 Antoine Basler Jacques Spiesser','Eric Barbier','动作 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIXlD1zEkEdARGtnRJLc8VT',
-'magnet:?xt=urn:btih:6a73f9c804bee1b3819c524d878abdd73266cad3','NULL','4',1,'/static/movie/img/p2181798317.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10330,'鬼娃回魂2','https://movie.douban.com/subject/1293798/','6.6',4005,
-'http://www.imdb.com/title/tt0099253','NULL','NULL','NULL','NULL','NULL','美国','1990-11-09',
-'艾力克斯·文森特 珍妮·艾加特 格里特·格雷厄姆 克里斯汀·爱丽斯 布拉德·道里夫 格蕾丝·扎布里斯基 彼得哈斯克尔 贝丝·格兰特 格雷格·格曼 Raymond Singer Charles Meshack Stuart Mabray Matt Roe Herbie Braha Don Pugsley','John Lafia','惊悚 恐怖',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Sj-zEn8RnLT7eY8wsGwG2ZhgkPRK7n3Bh-V0rh6Eu0dZ_DrxmMRz_xJoEedHVICAY-X7vpvoGflr76BFR6zeA4=',
-'NULL','NULL','4',1,'/static/movie/img/p2210573820.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10331,'复活','https://movie.douban.com/subject/2346400/','8.3',133,
-'http://www.imdb.com/title/tt0054449','NULL','NULL','NULL','NULL','NULL','苏联','1962-03-23',
-'塔玛拉·西耶米娜（Tamara Syomina） 耶夫基尼·马特维耶夫（Yevgeni Matveyev） 帕维尔·马斯萨利斯基 （Pavel Massalsky）','Mikhail Shvejtser','剧情',
-'http://www.iqiyi.com/v_19rrm77v1o.html',
-'magnet:?xt=urn:btih:0890e17a16907254d302c8663587149b716a7be1','NULL','4',1,'/static/movie/img/s4523776.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10332,'床下有人2','https://movie.douban.com/subject/25910152/','2.8',1436,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2014-08-22(中国大陆)',
-'殷果儿 李鹤楠 陈圆 宋伟 陈嘉敏 孙心娅 李卓远 钟超','袁杰','悬疑 惊悚',
-'http://www.iqiyi.com/v_19rrneyvfw.html',
-'magnet:?xt=urn:btih:8c5c4372b1dec3acc336bfe668bd34b83d52f8a2','NULL','4',1,'/static/movie/img/p2188949248.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10333,'小醉拳','https://movie.douban.com/subject/1294220/','5.8',505,
-'http://www.imdb.com/title/tt0115002','NULL','NULL','NULL','NULL','NULL','香港','1994',
-'李若彤 季天笙 陈卓 熊欣欣 黄一山 沈威 刘锡明','肖荣','动作 古装',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqdIhvBWJJQzXvTTcAgSTQ6UHnAtxaqf38UQpNylY1zkG',
-'NULL','NULL','4',1,'/static/movie/img/s1741786.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10334,'变态冻尸','https://movie.douban.com/subject/3078338/','3.5',397,
-'http://www.imdb.com/title/tt1234667','NULL','NULL','NULL','NULL','NULL','日本','2008-06-21',
-'吉原纱香 赤井沙希 紺野千春 佐藤宽子 萤雪次朗','小泽仁志','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1241744012.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10335,'烈火战车2：极速传说','https://movie.douban.com/subject/1300317/','6.5',4191,
-'http://www.imdb.com/title/tt0234105','NULL','NULL','NULL','NULL','NULL','香港','1999-12-18',
-'郑伊健 张柏芝 林熙蕾 谭耀文 任达华 林晓峰 陈豪 车婉婉 姜大卫 柯受良','刘伟强','动作 惊悚',
-'http://www.iqiyi.com/v_19rrho7fb4.html',
-'NULL','NULL','4',1,'/static/movie/img/p2354868018.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10336,'终极猎杀','https://movie.douban.com/subject/1303508/','7.3',197,
-'http://www.imdb.com/title/tt0171410','NULL','NULL','NULL','NULL','NULL','美国','1999-04-17',
-'约翰·库萨克 约翰·古德曼','约翰 巴德姆 (John Badham)','剧情 西部',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1511080938.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10337,'我爱断背衫','https://movie.douban.com/subject/1484809/','7.1',162,
-'http://www.imdb.com/title/tt0461760','NULL','NULL','NULL','NULL','NULL','英国 / 香港','2006-01-31(荷兰鹿特丹电影节)',
-'Chowee Leow Steven Lim Gareth Rhys Davis Neil Collie John \'Ebon-knee\' Campbell Mark Hampton Paul Cox David Cary David Tse 李顺文 Shirley Chantrell Paul Courtenay Hyu David Leigh Mark Wakeling James Bridgeman','杨曜恺','喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2412830.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10338,'郭明义','https://movie.douban.com/subject/6013758/','4.7',737,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','2011-07-15(中国大陆)',
-'侯勇 姜宏波 李沁 冯远征','陈国星','剧情 传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1086151857.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10339,'伊丽莎白2：黄金时代','https://movie.douban.com/subject/1827042/','7.3',14389,
-'http://www.imdb.com/title/tt0414055','NULL','NULL','NULL','NULL','NULL','英国 / 法国 / 德国 / 美国','2007-11-02(英国)',
-'凯特·布兰切特 劳伦斯·福克斯 詹迪·莫拉 杰弗里·拉什 约翰·斯拉普内尔 苏珊·林奇 萨曼莎·莫顿 艾比·考尼什 瑞斯·伊凡斯 埃迪·雷德梅恩 克里夫·欧文','谢卡尔·卡普尔','剧情 传记 历史 战争',
-'http://www.iqiyi.com/v_19rrhyyht8.html',
-'magnet:?xt=urn:btih:39588daf40f8b852a3f7c6f0799ea68596050396','NULL','4',1,'/static/movie/img/p871466571.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10340,'义薄情天','https://movie.douban.com/subject/1950111/','7.1',332,
-'http://www.imdb.com/title/tt0482857','NULL','NULL','NULL','NULL','NULL','美国 / 加拿大','2006-06-25',
-'Bill Baksa Caroline Chan 托马斯·哈登·丘奇 罗伯特·杜瓦尔 Philip Granger Peter Skagen','沃尔特·希尔','西部',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIGJD02F6mfoEVrmfYf2ytl',
-'magnet:?xt=urn:btih:154d59c89c20db04d94218fed0b47e522e2ac775','NULL','4',1,'/static/movie/img/p2175833956.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10341,'过关斩将','https://movie.douban.com/subject/1292626/','6.6',3134,
-'http://www.imdb.com/title/tt0093894','NULL','NULL','NULL','NULL','NULL','美国','1987-11-13',
-'阿诺·施瓦辛格 玛利亚·康柯塔·阿隆索 Jim Brown 杰西·温图拉 Dweezil Zappa','保罗·迈克尔·格拉泽','动作 科幻 惊悚',
-'http://www.iqiyi.com/v_19rrnp1ufc.html',
-'NULL','NULL','4',1,'/static/movie/img/p1965546522.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10342,'罪之密语','https://movie.douban.com/subject/2074727/','6.6',110,
-'http://www.imdb.com/title/tt0929806','NULL','NULL','NULL','NULL','NULL','Lithuania','2007-03-02',
-'Rasa Samuolyte Kostas Smoriginas Aleksas Kazanavicius','Algimantas Puipa','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2397992.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10343,'圣歌','https://movie.douban.com/subject/1771925/','7.3',5227,
-'http://www.imdb.com/title/tt0309832','NULL','NULL','NULL','NULL','NULL','法国','2002-11-09',
-'Gérald Laroche 菲利普·劳登巴赫 科洛维斯·科尔尼拉','Eric Valette','悬疑 恐怖 奇幻',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI-SBr7V55YfPV-IUfuY_hu',
-'NULL','NULL','4',1,'/static/movie/img/p2167950958.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10344,'死者田园祭','https://movie.douban.com/subject/1366165/','8.9',4899,
-'http://www.imdb.com/title/tt0071406','NULL','NULL','NULL','NULL','NULL','日本','1974-12-28',
-'菅贯太郎 高野浩幸 八千草薰 三上宽 兰妖子 原田芳雄','寺山修司','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLSDMiAaDW1H05EeJ40cCBk',
-'NULL','NULL','4',1,'/static/movie/img/p2158806405.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10345,'结束后的开始','https://movie.douban.com/subject/4273729/','6.5',133,
-'http://www.imdb.com/title/tt1591123','NULL','NULL','NULL','NULL','NULL','法国','2010-05-26(法国)',
-'Emmanuelle Béart 米夏埃尔·科恩 Léopold Kraus','米夏埃尔·科恩','爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1615401946.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10346,'庄稼之岛','https://movie.douban.com/subject/25911449/','7.4',553,
-'http://www.imdb.com/title/tt1863192','NULL','NULL','NULL','NULL','NULL','格鲁吉亚 / 德国 / 法国 / 捷克 / 哈萨克斯坦 / 匈牙利','2014-07-09(卡罗维发利电影节)',
-'伊利亚斯·萨尔曼 塔梅尔·莱文特 玛丽亚姆·比特里什维力 伊拉克利·萨姆西亚','乔治·奥瓦什威利','剧情 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2207237437.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10347,'公平游戏','https://movie.douban.com/subject/3073202/','6.9',3966,
-'http://www.imdb.com/title/tt0977855','NULL','NULL','NULL','NULL','NULL','美国 / United Arab Emirates','2010-11-05(美国)',
-'娜奥米·沃茨 西恩·潘 泰·布利尔 Vanessa Chong Stephanie Chai Sonya Davison Anand Tiwari Jessica Hecht Norbert Leo Butz Rebecca Rigg','道格·里曼','剧情 动作 惊悚 传记',
-'http://www.iqiyi.com/v_19rrifu7zb.html',
-'NULL','NULL','4',1,'/static/movie/img/p625671395.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10348,'狂吻俄罗斯','https://movie.douban.com/subject/1962939/','6.5',560,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1994',
-'牛振华 冯巩 马精武 叶列娜·波尔什科娃 王茜','徐庆东','暂时无数据',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqTRxYRX4wxP49gdR909nw-tyn9DeM-oHMvW7dT2PqYRk',
-'NULL','NULL','4',1,'/static/movie/img/p2409895245.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10349,'我好奇之黄','https://movie.douban.com/subject/1401623/','6.7',595,
-'http://www.imdb.com/title/tt0061834','NULL','NULL','NULL','NULL','NULL','瑞典','1967-10-09',
-'莱娜·尼曼 维尔戈特·斯耶曼 伯杰·阿斯特 Peter Lindgren','维尔戈特·斯耶曼','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2329639816.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10350,'螳螂','https://movie.douban.com/subject/1785255/','6.1',372,
-'http://www.imdb.com/title/tt0078360','NULL','NULL','NULL','NULL','NULL','香港','1978-06-28',
-'姜大卫 黄杏秀 刘家辉 李丽丽 徐少强','刘家良','剧情 动作',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqe8eP_dazk60PeiM-UW3rG4PII4buP0Km1jNwZrYTb7n',
-'NULL','NULL','4',1,'/static/movie/img/p2457039234.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10351,'布尔什维克的虚弱','https://movie.douban.com/subject/1915124/','7.7',1054,
-'http://www.imdb.com/title/tt0385703','NULL','NULL','NULL','NULL','NULL','西班牙','2003-10-31',
-'路伊斯·托沙 玛尔·雷格拉斯 玛利亚·巴尔维德','Manuel Martín Cuenca','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKREDxNDSk5sIURhb4lOndx',
-'NULL','NULL','4',1,'/static/movie/img/p2175156337.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10352,'五郎八卦棍','https://movie.douban.com/subject/1666889/','7.0',1815,
-'http://www.imdb.com/title/tt0086606','NULL','NULL','NULL','NULL','NULL','香港','1984-02-17',
-'傅声 刘家辉 李丽丽 惠英红 王龙威','刘家良','剧情 动作 武侠 古装',
-'http://www.iqiyi.com/v_19rrho6750.html',
-'NULL','NULL','4',1,'/static/movie/img/p2083103794.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10353,'双生杀手','https://movie.douban.com/subject/1305532/','6.5',86,
-'http://www.imdb.com/title/tt0099951','NULL','NULL','NULL','NULL','NULL','英国','1990-04-27',
-'Gary Kemp Martin Kemp Billie Whitelaw','彼得·梅达克','剧情 惊悚 传记 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s24468464.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10354,'校园鬼降疯','https://movie.douban.com/subject/3568456/','4.0',77,
-'http://www.imdb.com/title/tt1307930','NULL','NULL','NULL','NULL','NULL','Malaysia','0000-00-00',
-'Liyana Jasmay','James Lee','恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s11127835.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10355,'危狱惊情','https://movie.douban.com/subject/3706862/','5.8',5994,
-'http://www.imdb.com/title/tt1423995','NULL','NULL','NULL','NULL','NULL','美国','2010-10-08',
-'爱德华·诺顿 罗伯特·德尼罗 米拉·乔沃维奇 弗兰西丝·康罗伊 安维尔·乔卡亚 Liam Ferguson Pepper Binkley','约翰·卡兰','剧情 惊悚',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzo54w0OoliQVWum1fhVojSxfEKQ1JvDo3GLgd2iMx8ou',
-'magnet:?xt=urn:btih:55dc402b35a5fe3ad1eca3927277045e69653b0a','NULL','4',1,'/static/movie/img/p641877993.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10356,'鬼娃新娘','https://movie.douban.com/subject/1293035/','6.7',6372,
-'http://www.imdb.com/title/tt0144120','NULL','NULL','NULL','NULL','NULL','美国 / 加拿大','1998-10-16',
-'詹妮弗·提莉 布拉德·道里夫 凯瑟琳·海格尔','于仁泰','喜剧 惊悚 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1688601184.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10357,'女人的胜利','https://movie.douban.com/subject/3327338/','7.2',137,
-'http://www.imdb.com/title/tt1034324','NULL','NULL','NULL','NULL','NULL','美国','2009',
-'Marley Shelton Carla Gugino Ellen Burstyn David Boreanaz','Tim Chambers','剧情 运动',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1252874615.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10358,'殉难者','https://movie.douban.com/subject/3012009/','6.8',6703,
-'http://www.imdb.com/title/tt1029234','NULL','NULL','NULL','NULL','NULL','法国 / 加拿大','2008-09-03',
-'莫贾娜·埃尔阿劳维 米兰妮·让帕诺米 Catherine Bégin Robert Toupin 帕翠西卡·图拉斯内 朱丽叶特·高斯林 泽维尔·多兰 Louise Boisvert Jean-Marie Moncelet Jessie Pham Erika Scott Isabelle Chasse Emilie Miskdjian Tony Robinow Anie Pascale','Pascal Laugier','剧情 惊悚 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2175244760.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10359,'止杀令','https://movie.douban.com/subject/21357362/','5.1',3218,
-'http://www.imdb.com/title/tt3176304','NULL','NULL','NULL','NULL','NULL','中国大陆','2013-03-22(中国大陆)',
-'赵有亮 涂们 李小冉 耿乐 余少群 中泉英雄 朴艺珍 徐锦江','王坪','剧情 动作 历史 战争',
-'http://www.iqiyi.com/dianying/20130412/2a11a0e271943269.html',
-'magnet:?xt=urn:btih:59e07ea366b0bb303779fd88e8d10b6899bc5bb3','NULL','4',1,'/static/movie/img/p1884684938.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10360,'马克斯','https://movie.douban.com/subject/1300574/','7.5',184,
-'http://www.imdb.com/title/tt0290210','NULL','NULL','NULL','NULL','NULL','匈牙利 / 加拿大 / 英国','2002-09-10',
-'约翰·库萨克 John Cusack 凯文·马克德 Kevin McKidd Ulrich Thomsen 诺亚·泰勒 Noah Taylor','门诺 迈依杰斯 (Menno Meyjes)','剧情 战争',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI0mSx1siSaAik5BMisRNSf',
-'NULL','NULL','4',1,'/static/movie/img/s3750615.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10361,'恋爱、花火、摩天轮','https://movie.douban.com/subject/1303767/','7.8',126,
-'http://www.imdb.com/title/tt0119475','NULL','NULL','NULL','NULL','NULL','日本','1997-02-15',
-'长冢京三 松岛菜菜子 酒井美纪 生濑胜久','砂本量','剧情 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s25496693.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10362,'勾魂蛇魔女','https://movie.douban.com/subject/1480388/','3.6',109,
-'NULL','NULL','NULL','NULL','NULL','NULL','香港','2002',
-'彭丹 颜仟汶 刘锡明','缪建德','惊悚 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2326178422.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10363,'迷网杀机','https://movie.douban.com/subject/3147952/','3.9',149,
-'http://www.imdb.com/title/tt1194606','NULL','NULL','NULL','NULL','NULL','德国','2008-07-17',
-'Alexandra Paul David Chokachi Robyn Lively David Moretti Bart Johnson','Rex Piano','惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3183934.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10364,'给我承诺','https://movie.douban.com/subject/1766041/','7.9',1451,
-'http://www.imdb.com/title/tt0479519','NULL','NULL','NULL','NULL','NULL','塞尔维亚 / 法国','2007-05-26',
-'马诺伊洛维奇 莉吉嘉娜·贝拉格杰 亚力克斯桑德·贝奇科 Marija Petronijevic 埃米尔·库斯图里卡','埃米尔·库斯图里卡','喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3142660.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10365,'活死人之夜','https://movie.douban.com/subject/1297996/','7.3',3798,
-'http://www.imdb.com/title/tt0063350','NULL','NULL','NULL','NULL','NULL','美国','1968-10-01',
-'Duane Jones Judith O\'Dea Karl Hardman Marilyn Eastman Keith Wayne Judith Ridley Kyra Schon','乔治·A·罗梅罗','悬疑 恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMITadCsiPr4_A3bNVzBzehz',
-'NULL','NULL','4',1,'/static/movie/img/p2198351595.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10366,'我的生命','https://movie.douban.com/subject/26696543/','7.5',89,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-03-23(日本)',
-'北村一輝 木村佳乃 横山歩 木南晴夏 北川弘美 大山蓮斗 竜雷太 升毅 伊吹吾郎 高畑淳子 佐々木蔵之介','国本雅広','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2320524129.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10367,'同居蜜友','https://movie.douban.com/subject/1297787/','6.5',7246,
-'http://www.imdb.com/title/tt0286623','NULL','NULL','NULL','NULL','NULL','香港','2001-06-09',
-'郑秀文 梁朝伟 周丽淇 李耀明 夏萍 李枫 森美','马伟豪','爱情',
-'http://www.iqiyi.com/v_19rrnwn3mg.html',
-'NULL','NULL','4',1,'/static/movie/img/p549923725.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10368,'放大','https://movie.douban.com/subject/1310176/','8.4',17756,
-'http://www.imdb.com/title/tt0060176','NULL','NULL','NULL','NULL','NULL','英国 / 意大利 / 美国','1966-12-18',
-'瓦妮莎·雷德格瑞夫 莎拉·米尔斯 戴维·海明斯 周采芹','米开朗基罗·安东尼奥尼','剧情 悬疑 惊悚',
-'http://so.iqiyi.com/links/p9IqaAE3uBDroFuM-CtFFyn-PL3dRkIQ5Gy3uu9udg8jT3Gmo54V_G0LAaoXI5IAwLf6W_wEkwIH8rzw-nnPuKYjfccMsBl9j_36B7ce0S5x8Ve30pm94YQwBJDv1WFz',
-'NULL','NULL','4',1,'/static/movie/img/p548426395.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10369,'莫扎特传','https://movie.douban.com/subject/1293399/','8.6',62862,
-'http://www.imdb.com/title/tt0086879','NULL','NULL','NULL','NULL','NULL','美国','1984-09-19',
-'汤姆·休斯克 F·默里·亚伯拉罕 伊丽莎白·贝里奇 罗伊·多特里斯 杰弗瑞·琼斯','米洛斯·福尔曼','剧情 音乐 传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p595764767.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10370,'尸踪现场','https://movie.douban.com/subject/1793921/','5.8',793,
-'http://www.imdb.com/title/tt0473356','NULL','NULL','NULL','NULL','NULL','美国','2007-08-04',
-'理查·基尔 克莱尔·丹妮丝 艾薇儿·拉维尼 卡迪·斯特瑞兰德','刘伟强','剧情 悬疑 惊悚 犯罪',
-'NULL',
-'magnet:?xt=urn:btih:3cdcd9c8bf9d7b59edaf6a52dbc91de17467539b','NULL','4',1,'/static/movie/img/p1040166038.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10371,'白蛇传','https://movie.douban.com/subject/2252682/','6.8',200,
-'http://www.imdb.com/title/tt0193745','NULL','NULL','NULL','NULL','NULL','香港','1962-10-02',
-'林黛 赵雷 杜娟 杨志卿 尤光照','岳枫','剧情 音乐 奇幻 古装',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2331634981.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10372,'控制','https://movie.douban.com/subject/2078906/','7.9',10845,
-'http://www.imdb.com/title/tt0421082','NULL','NULL','NULL','NULL','NULL','英国 / 美国 / 澳大利亚 / 日本','2007-10-05(英国)',
-'萨姆·赖利 萨曼莎·莫顿 亚历山德拉·玛丽亚·拉腊 乔·安德森 托比·凯贝尔','安东·寇班','剧情 音乐 传记',
-'http://www.iqiyi.com/v_19rrmx6vds.html',
-'magnet:?xt=urn:btih:2b4d79d3ef3cf1de269e95adb3e28c4cdbf40903','NULL','4',1,'/static/movie/img/p1074927485.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10373,'驱逐智能设计论','https://movie.douban.com/subject/3034550/','7.2',201,
-'http://www.imdb.com/title/tt1091617','NULL','NULL','NULL','NULL','NULL','美国','2008-04-18(美国)',
-'Ben Stein Lili Asvar Peter Atkins','内森·弗兰库斯基','纪录片',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3016532.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10374,'奇遇','https://movie.douban.com/subject/1389923/','8.3',5252,
-'http://www.imdb.com/title/tt0053619','NULL','NULL','NULL','NULL','NULL','意大利 / 法国','1960-05-15(戛纳电影节)',
-'加布里埃尔·费泽蒂 莫尼卡·维蒂 蕾雅·马萨利 Dominique Blanchar Renzo Ricci 詹姆斯·亚当斯 Dorothy De Poliolo Lelio Luttazzi Giovanni Petrucci Esmeralda Ruspoli','米开朗基罗·安东尼奥尼','剧情 悬疑',
-'NULL',
-'magnet:?xt=urn:btih:c27651943045559a980d53e0fcff7897a2bdced9','NULL','4',1,'/static/movie/img/p2342918199.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10375,'虎与龙SP','https://movie.douban.com/subject/3118848/','9.2',4661,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2005-01-09',
-'长濑智也 冈田准一 伊东美咲 塚本高史 苍井优 西田敏行 北村一辉','金子文纪','剧情 喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p809505182.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10376,'伦敦','https://movie.douban.com/subject/1474204/','6.6',837,
-'http://www.imdb.com/title/tt0449061','NULL','NULL','NULL','NULL','NULL','英国 / 美国','2005-09-03',
-'杰西卡·贝尔 克里斯·埃文斯 杰森·斯坦森 莉莉·索博斯基 乔伊·布赖恩特','Hunter Richards','剧情 爱情',
-'http://so.iqiyi.com/links/99o4kBuRLFk8iR4ZenvqfyrIrUhXVAxsPNWtRYqBkFLyJEkTl7Wzdc59wDOwLPVWloFR2l2EGI-wW-8djQHG8g==',
-'NULL','NULL','4',1,'/static/movie/img/s1810251.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10377,'灵婴','https://movie.douban.com/subject/1305914/','7.2',932,
-'http://www.imdb.com/title/tt0078908','NULL','NULL','NULL','NULL','NULL','加拿大','1979-05-25',
-'奥列佛·里德 萨曼莎·艾加 阿特·欣德尔 亨利·贝克曼 Nuala Fitzgerald','大卫·柯南伯格','科幻 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1941680139.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10378,'大海盗','https://movie.douban.com/subject/1305849/','7.9',653,
-'http://www.imdb.com/title/tt0068442','NULL','NULL','NULL','NULL','NULL','香港','1973-07-27',
-'狄龙 姜大卫 罗维 Wei Lo 谷峰 Feng Ku 田青','张彻','剧情 动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLzTP1Lpy-z7AK_uU3srLg1',
-'NULL','NULL','4',1,'/static/movie/img/s3033287.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10379,'苦海余生','https://movie.douban.com/subject/1303355/','7.5',184,
-'http://www.imdb.com/title/tt0075406','NULL','NULL','NULL','NULL','NULL','英国','1976-12-22',
-'费·唐纳薇 奥斯卡·威内尔 李·格兰特 马尔科姆·麦克道威尔 Brian Gilbert','斯图尔特·罗森博格','剧情 战争',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ3X4WHtnsfdd5-raSRzOTJ',
-'NULL','NULL','4',1,'/static/movie/img/s1930935.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10380,'月光诗篇','https://movie.douban.com/subject/20521014/','8.0',1452,
-'http://www.imdb.com/title/tt2217458','NULL','NULL','NULL','NULL','NULL','巴西','2013-08-09(巴西)',
-'格劳瑞·皮尔丝 米兰达·奥图 特雷西·米登道夫 Marcello Airoldi 罗拉·科克 Tânia Costa Marianna Mac Niven Marcio Ehrlich 特里特·威廉斯 Anna Bella','布鲁诺·巴列托','同性 传记',
-'NULL',
-'magnet:?xt=urn:btih:50254dd0fdd9e9d04038225a3b030b9c3dbbffe9','NULL','4',1,'/static/movie/img/p2158251717.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10381,'幸福退休日','https://movie.douban.com/subject/26580019/','6.3',115,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2015-10-18(日本)',
-'佐藤浩市 石黑贤 石田百合子 大东骏介 真野惠里菜 神保悟志  八岛智人 竹中直人 梅沢富美男 菊池桃子 浅野温子','秋山純','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2271093767.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10382,'六楼后座2家属谢礼','https://movie.douban.com/subject/3082396/','6.5',5574,
-'http://www.imdb.com/title/tt1236332','NULL','NULL','NULL','NULL','NULL','香港','2008-04-24',
-'田原 罗仲谦 江若琳 农夫 曾志伟 林嘉欣 卢巧音 周俊伟','黄真真','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p916244428.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10383,'摇篮曲','https://movie.douban.com/subject/3293639/','8.1',139,
-'http://www.imdb.com/title/tt0325602','NULL','NULL','NULL','NULL','NULL','Georgia','1994',
-'Nato Murvanidze Niko Tavadze Nino Abuladze Maya Bagrationi Kakhi Kavsadze 奥塔·麦格文图克哈特塞西 Zura Qavtaradze Archil Tsitsishvili','Nana Janelidze','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3981429.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10384,'决杀令','https://movie.douban.com/subject/1960318/','5.9',177,
-'http://www.imdb.com/title/tt0076241','NULL','NULL','NULL','NULL','NULL','香港','1977-08-20',
-'姜大卫 宗华 井莉 陈惠敏 韦弘','孙仲','动作 冒险',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKAtB72KUs2H526yYiKPYVY',
-'NULL','NULL','4',1,'/static/movie/img/s3030595.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10385,'跨国银行','https://movie.douban.com/subject/2170915/','6.4',9393,
-'http://www.imdb.com/title/tt0963178','NULL','NULL','NULL','NULL','NULL','美国 / 德国 / 英国','2009-02-13(美国)',
-'克里夫·欧文 娜奥米·沃茨 阿明·缪勒-斯塔尔 乌尔里奇·汤姆森 布莱恩·F·奥博恩','汤姆·提克威','动作 悬疑 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrifwqm7.html',
-'NULL','NULL','4',1,'/static/movie/img/p775148304.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10386,'一八九四·甲午大海战','https://movie.douban.com/subject/6080772/','5.2',5848,
-'http://www.imdb.com/title/tt5371612','NULL','NULL','NULL','NULL','NULL','中国大陆','2012-07-06(中国大陆)',
-'陆毅 夏雨 杨立新 孙海英 龚洁 吕丽萍 郭家铭','冯小宁','剧情 历史 战争',
-'http://www.iqiyi.com/dianying/20120811/19cbf7fa0491b3be.html',
-'NULL','NULL','4',1,'/static/movie/img/p1598097230.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10387,'难得有情郎','https://movie.douban.com/subject/3065595/','7.0',259,
-'http://www.imdb.com/title/tt5964628','NULL','NULL','NULL','NULL','NULL','香港','1991',
-'张敏 陈淑兰 吴大维 黄一山 孙兴 柳影紅 叶荣祖 陈龙','陈望华','剧情 爱情 奇幻',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzvSnzUl1CHcsPDJWpnf2BzND8WRHYZvfv5_MkrZmLzhw',
-'NULL','NULL','4',1,'/static/movie/img/p2364474305.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10388,'养鬼吃人2','https://movie.douban.com/subject/1295402/','7.3',1947,
-'http://www.imdb.com/title/tt0095294','NULL','NULL','NULL','NULL','NULL','英国','1988-09-09',
-'Clare Higgins Ashley Laurence Kenneth Cranham Imogen Boorman Doug Bradley','Tony Randel','剧情 惊悚 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1964210977.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10389,'人与神','https://movie.douban.com/subject/4307492/','7.8',1974,
-'http://www.imdb.com/title/tt1588337','NULL','NULL','NULL','NULL','NULL','法国','2010-09-08(法国)',
-'朗贝尔·维尔森 迈克尔·朗斯代尔 萨巴纳·奥扎尼 奥利维尔·雷堡汀 雅克·赫林 菲利普·劳登巴赫 洛伊克·比雄 泽维尔·玛利 让-玛丽·弗兰','夏维尔·毕沃斯','剧情',
-'NULL',
-'magnet:?xt=urn:btih:6b5214880174a3bf998205d713ad1c6d88edc67b','NULL','4',1,'/static/movie/img/p695536109.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10390,'越位','https://movie.douban.com/subject/1825608/','7.8',880,
-'http://www.imdb.com/title/tt0499537','NULL','NULL','NULL','NULL','NULL','伊朗','2006-05-26',
-'Sima Mobarak-Shahi Shayesteh Irani Ayda Sadeqi','贾法·帕纳西','剧情 喜剧 运动',
-'http://www.iqiyi.com/v_19rrn7h4og.html',
-'NULL','NULL','4',1,'/static/movie/img/p2197737590.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10391,'苹果','https://movie.douban.com/subject/1305467/','7.8',586,
-'http://www.imdb.com/title/tt0156901','NULL','NULL','NULL','NULL','NULL','伊朗 / 法国','1998-05-27',
-'Massoumeh Naderi Zahra Naderi Ghorban Ali Naderi','莎米拉·玛克玛尔巴夫','剧情',
-'http://www.iqiyi.com/v_19rrhuojvs.html',
-'NULL','NULL','4',1,'/static/movie/img/s1325555.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10392,'俏皮女学生','https://movie.douban.com/subject/1307088/','5.6',54,
-'http://www.imdb.com/title/tt0084050','NULL','NULL','NULL','NULL','NULL','香港','0000-00-00',
-'温碧霞 吴雅婷 乔宏 麦德和 龙刚 岑建勋','麦当杰 (Michael Mak)','暂时无数据',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8KlmjO5R8zHoSvXgIwRSc-0AV-v416i1J3hEYCQYyP6K',
-'NULL','NULL','4',1,'/static/movie/img/s11147262.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10393,'荣归','https://movie.douban.com/subject/1295688/','7.4',202,
-'http://www.imdb.com/title/tt0077362','NULL','NULL','NULL','NULL','NULL','美国','1978-12-07',
-'简·方达 强·沃特 布鲁斯·邓恩 佩内洛普·米尔福 罗伯特·卡拉丁 罗伯特·金蒂 Kathleen Miller','哈尔·阿什贝','剧情 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2579558.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10394,'巧克力','https://movie.douban.com/subject/26715198/','7.2',225,
-'http://www.imdb.com/title/tt4400038','NULL','NULL','NULL','NULL','NULL','法国','2016-02-03(法国)',
-'奥玛·赛 詹姆斯·提瑞 克劳迪德·埃斯曼 奥利维埃·古尔梅 弗雷德里克·皮耶罗 诺薇米·洛夫斯基 阿丽丝·德·朗克桑 阿莱克斯·德斯卡 奥利维尔·雷堡汀 蒂博·德·蒙塔朗贝尔 海伦娜·苏贝兰德 夏维尔·毕沃斯','罗什迪·泽姆','剧情 传记',
-'NULL',
-'magnet:?xt=urn:btih:9fe2d70cf5883ead77ad3e7644f0331f8423fa68','NULL','4',1,'/static/movie/img/p2313435412.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10395,'恶魔娃娃','https://movie.douban.com/subject/1995011/','7.3',810,
-'http://www.imdb.com/title/tt0092906','NULL','NULL','NULL','NULL','NULL','美国','1987-05-22',
-'Ian Patrick Williams Carolyn Purdy-Gordon','斯图尔特·戈登','恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJjX0NPC-XeQF_X8lWU5n9i',
-'NULL','NULL','4',1,'/static/movie/img/p2354737520.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10396,'小兵张嘎','https://movie.douban.com/subject/1461964/','7.8',22219,
-'http://www.imdb.com/title/tt6485574','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'安吉斯 张莹 葛存壮 吴克勤 王澍','崔嵬','剧情 儿童 战争',
-'http://www.iqiyi.com/v_19rrhdh72w.html',
-'NULL','NULL','4',1,'/static/movie/img/p2314095621.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10397,'不毛地带','https://movie.douban.com/subject/1307818/','7.9',229,
-'http://www.imdb.com/title/tt0368734','NULL','NULL','NULL','NULL','NULL','日本','1976-08-14',
-'仲代达矢 北大路欣也 丹波哲郎 秋吉久美子','山本萨夫','剧情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1828768711.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10398,'歌厅','https://movie.douban.com/subject/1296282/','8.8',4045,
-'http://www.imdb.com/title/tt0068327','NULL','NULL','NULL','NULL','NULL','美国','1972-02-13(美国)',
-'丽莎·明奈利 麦克尔·约克 赫尔穆特·格里姆 乔尔·格雷 弗里茨·维伯 马里莎·贝伦森 Elisabeth Neumann-Viertel Helen Vita Sigrid von Richthofen Gerd Vespermann 劳夫·沃尔特','鲍勃·福斯','剧情 爱情 歌舞',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1345340636.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10399,'岛根的律师','https://movie.douban.com/subject/2154333/','6.0',130,
-'http://www.imdb.com/title/tt1070865','NULL','NULL','NULL','NULL','NULL','日本','2007-07-14',
-'仲间由纪惠 香川照之 八岛智人 梶芽衣子 竹中直人 樋口可南子','林徹','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2612028.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10400,'激情床伴','https://movie.douban.com/subject/1301739/','7.7',342,
-'http://www.imdb.com/title/tt0093776','NULL','NULL','NULL','NULL','NULL','英国','1987-05-08',
-'加里·奥德曼 阿尔弗雷德·莫里纳 瓦妮莎·雷德格瑞夫 华莱士·肖恩 琳赛·邓肯 朱丽·沃特斯 James Grant 弗兰西斯·巴贝 西恩·帕特维 Dave Atkins 玛格丽特·提扎克 埃瑞克·理查德 内尔·德贞 Rosalind Knight 理查德·威尔森 斯蒂文·麦金托什 罗格·洛伊德-派克 卡尔·约翰逊 德里克·贾曼','斯蒂芬·弗雷斯','剧情 喜剧 传记',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML5EergWZD9ALWG6vH2Nzn7',
-'NULL','NULL','4',1,'/static/movie/img/p478576330.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10401,'杨贵妃','https://movie.douban.com/subject/1299090/','6.5',290,
-'http://www.imdb.com/title/tt0058760','NULL','NULL','NULL','NULL','NULL','香港','1962-05-31(香港)',
-'严俊 李丽华 李香君 杨志卿','李翰祥','剧情',
-'NULL',
-'magnet:?xt=urn:btih:088956c245c9d8f08f26b654b5cf1a9de0820089','NULL','4',1,'/static/movie/img/p2331465023.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10402,'一见钟情','https://movie.douban.com/subject/2993102/','5.5',196,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'陆毅 范冰冰 雪村 海清 马伊琍','夏钢','暂时无数据',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIwXdzU6FVv7i6XB8O85GR8',
-'magnet:?xt=urn:btih:359ded20389d3a0697f3f275e50ddbd39cffd864','NULL','4',1,'/static/movie/img/s2929722.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10403,'狼的夏天','https://movie.douban.com/subject/1427813/','7.9',136,
-'http://www.imdb.com/title/tt0356154','NULL','NULL','NULL','NULL','NULL','挪威','2003-04-29',
-'Julia Pauline Boracco Braathen Samuel Fröler Frank Robert Andreassen','Peder Norlund','剧情 家庭 冒险',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIZVqu_hZrl0j6Vk3NyBTm7',
-'NULL','NULL','4',1,'/static/movie/img/p2334092982.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10404,'完美情人','https://movie.douban.com/subject/1408137/','6.0',2350,
-'http://www.imdb.com/title/tt0304922','NULL','NULL','NULL','NULL','NULL','香港','2001-11-22',
-'张家辉 李嘉欣 吴启华 孙佳君 任葆琳 梁敏仪 林雪 车婉婉','阮世生','喜剧 爱情 奇幻',
-'http://www.iqiyi.com/dianying/20120320/92e1661806641c23.html',
-'NULL','NULL','4',1,'/static/movie/img/s1416700.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10405,'地下怪物','https://movie.douban.com/subject/2070439/','5.1',80,
-'http://www.imdb.com/title/tt0087015','NULL','NULL','NULL','NULL','NULL','美国','1984-08-31',
-'约翰·赫德 丹尼尔·斯特恩 Christopher Curry 金·格雷斯特','Douglas Cheek','科幻 恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMK792uTFLTURnMVGxe9SdQi',
-'NULL','NULL','4',1,'/static/movie/img/p2224363081.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10406,'赵氏孤儿','https://movie.douban.com/subject/3546019/','5.8',113624,
-'http://www.imdb.com/title/tt1726738','NULL','NULL','NULL','NULL','NULL','中国大陆','2010-12-04(中国大陆)',
-'葛优 王学圻 黄晓明 范冰冰 海清 赵文浩 王翰 赵文卓 鲍国安 张丰毅','陈凯歌','剧情 动作 历史 武侠 古装',
-'http://www.iqiyi.com/dianying/20110112/3f6207d9183a1e13.html',
-'NULL','NULL','4',1,'/static/movie/img/p819200277.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10407,'出笼马骝','https://movie.douban.com/subject/1779026/','5.7',158,
-'http://www.imdb.com/title/tt0078969','NULL','NULL','NULL','NULL','NULL','香港','1979-05-05',
-'程小东 侯朝声 关东 林辉煌 赵志凌','罗马','剧情 动作',
-'http://www.iqiyi.com/v_19rrmybub0.html',
-'NULL','NULL','4',1,'/static/movie/img/p2355103146.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10408,'警视厅捜査一课9系','https://movie.douban.com/subject/26126023/','7.8',106,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2014-10-05(日本)',
-'渡瀬恒彦 井ノ原快彦 羽田美智子 津田寛治 吹越満 田口浩正 高岡早紀 林泰文 原田佳奈 中山仁 阪田マサノブ 田崎トシミ','新村良二','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2243534985.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10409,'八千里路云和月','https://movie.douban.com/subject/1434273/','7.4',922,
-'http://www.imdb.com/title/tt0471087','NULL','NULL','NULL','NULL','NULL','中国大陆','1947-02-02',
-'白杨 陶金 石羽 高正 周峰 黄晨','史东山','剧情',
-'http://www.iqiyi.com/v_19rrn6svcw.html',
-'NULL','NULL','4',1,'/static/movie/img/p2178700508.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10410,'蝙蝠传奇','https://movie.douban.com/subject/1306997/','7.1',896,
-'http://www.imdb.com/title/tt0079454','NULL','NULL','NULL','NULL','NULL','香港','1978-08-07',
-'狄龙 凌云 刘永 尔冬升 井莉','楚原','剧情 动作 武侠 古装',
-'http://www.iqiyi.com/v_19rrmycgpg.html',
-'NULL','NULL','4',1,'/static/movie/img/p2342928694.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10411,'张思德','https://movie.douban.com/subject/1938260/','6.5',1753,
-'http://www.imdb.com/title/tt5164854','NULL','NULL','NULL','NULL','NULL','中国大陆','2004',
-'吴军 唐国强 邹爽 宋运成 郑昊','尹力','剧情',
-'http://www.iqiyi.com/v_19rrn34998.html',
-'NULL','NULL','4',1,'/static/movie/img/p1222101877.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10412,'哈啦上菜','https://movie.douban.com/subject/1468712/','6.2',669,
-'http://www.imdb.com/title/tt0348333','NULL','NULL','NULL','NULL','NULL','美国','2005-05-12',
-'瑞恩·雷诺兹 安娜·法瑞丝 贾斯汀·朗','Rob McKittrick','喜剧',
-'NULL',
-'magnet:?xt=urn:btih:3a630f50e61f8d95f43a76a6ef270bdfbf7a5ed3','NULL','4',1,'/static/movie/img/p1454268828.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10413,'宅男之恋','https://movie.douban.com/subject/19943993/','6.6',998,
-'http://www.imdb.com/title/tt2407064','NULL','NULL','NULL','NULL','NULL','日本','2013-06-08(日本)',
-'星野源 夏帆 平泉成 森山良子 柳俊太郎 竹内都子 古馆宽治 大杉涟 黑木瞳','市井昌秀','暂时无数据',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Ux0tMDQnT7fuTN23bWsxHK9xm7I3IsABvUZIQls287jmNJgV0as48dlFpd8u6Hg0w==',
-'NULL','NULL','4',1,'/static/movie/img/p1876354023.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10414,'身在其中','https://movie.douban.com/subject/1963710/','6.5',5131,
-'http://www.imdb.com/title/tt0856288','NULL','NULL','NULL','NULL','NULL','法国','2007-06-13',
-'碧翠斯·黛尔 娜莎丽·罗赛 Alysson Paradis François-Régis Marchasson Jean-Baptiste Tabourin 塔哈·拉希姆','亚历山大·布斯蒂罗','惊悚 恐怖',
-'http://www.iqiyi.com/v_19rro00s9c.html',
-'magnet:?xt=urn:btih:af7a6b93ea33c6aa41ce10414c6aec6c090e57ed','NULL','4',1,'/static/movie/img/p1122785660.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10415,'甜蜜之家','https://movie.douban.com/subject/2228600/','6.3',70,
-'http://www.imdb.com/title/tt0141861','NULL','NULL','NULL','NULL','NULL','日本','1989-01-21(日本)',
-'宫本信子 山城新伍 伊丹十三','黑泽清','恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML9lKzWHucZZyYNHHbKoFJpbmxu_l5WQ_aldx3t5C80zQ==',
-'NULL','NULL','4',1,'/static/movie/img/p1806174380.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10416,'舞台姐妹','https://movie.douban.com/subject/1424632/','7.7',1401,
-'http://www.imdb.com/title/tt0081553','NULL','NULL','NULL','NULL','NULL','中国大陆','1964',
-'谢芳 曹银娣 上官云珠','谢晋','剧情',
-'http://www.iqiyi.com/v_19rrhwvgkk.html',
-'NULL','NULL','4',1,'/static/movie/img/p2186250181.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10417,'幻影英雄','https://movie.douban.com/subject/1300343/','7.3',4154,
-'http://www.imdb.com/title/tt0107362','NULL','NULL','NULL','NULL','NULL','美国','1993-06-18',
-'阿诺·施瓦辛格 F·默里·亚伯拉罕 阿尔特·卡尼 查尔斯·丹斯 Frank McRae 汤姆·诺南 罗伯特·普罗斯基 安东尼·奎恩 梅塞迪丝·鲁尔 奥斯汀·奥布莱恩 伊恩·麦克莱恩 Professor Toru Tanaka 琼·普莱怀特 Keith Barish 凯伦·达菲','约翰·麦克蒂尔南','喜剧 动作 奇幻 冒险',
-'http://www.iqiyi.com/v_19rrkytrng.html',
-'NULL','NULL','4',1,'/static/movie/img/p2196874153.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10418,'我控诉','https://movie.douban.com/subject/2282371/','8.7',99,
-'http://www.imdb.com/title/tt0010307','NULL','NULL','NULL','NULL','NULL','法国','1919-04-25',
-'Romuald Joubé Séverin-Mars Maryse Dauvray','阿贝尔·冈斯','战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3208010.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10419,'圣罗兰传','https://movie.douban.com/subject/21370611/','7.1',3663,
-'http://www.imdb.com/title/tt2707848','NULL','NULL','NULL','NULL','NULL','法国','2014-05-17(戛纳电影节)',
-'加斯帕德·尤利尔 杰瑞米·雷尼耶 路易·加瑞尔 蕾雅·赛杜 艾梅琳·瓦拉德 阿蜜拉·卡萨 米莎·莱斯科特 赫尔穆特·贝格 瓦莱丽亚·布诺妮-泰特琪 薇拉莉·邓泽里 杰丝敏·特丽卡 多米尼克·桑达 布拉迪·科贝特','贝特朗·波尼洛','剧情 同性 传记',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLFt4FAklLsXFlasnxYI0vw',
-'magnet:?xt=urn:btih:99a8e971b0beca5b8fafc58c2449297c5599219c','NULL','4',1,'/static/movie/img/p2200664036.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10420,'怪医杜立德','https://movie.douban.com/subject/1298291/','6.7',7717,
-'http://www.imdb.com/title/tt0118998','NULL','NULL','NULL','NULL','NULL','美国','1998-06-26',
-'艾迪·墨菲 奥西·戴维斯 奥利弗·普莱特 彼得·博伊尔 理查德·希夫','贝蒂·托马斯','喜剧 家庭',
-'http://www.iqiyi.com/v_19rrifkz0z.html',
-'NULL','NULL','4',1,'/static/movie/img/p2329693960.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10421,'钱不够用','https://movie.douban.com/subject/2079294/','7.1',109,
-'http://www.imdb.com/title/tt0125468','NULL','NULL','NULL','NULL','NULL','新加坡','1998-05-07',
-'Jack Neo Mark Lee Henry Thia','Teck Lock Tay','喜剧',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2403923.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10422,'通往明日之爱','https://movie.douban.com/subject/6560653/','4.7',53,
-'http://www.imdb.com/title/tt1939650','NULL','NULL','NULL','NULL','NULL','日本 / 中国大陆','2012-03-31(日本)',
-'市井紗耶香 鹿凌桀 八千草薫 大森絢音','香月秀之','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMI3EEUkaxszLNkgtvKbP1eH',
-'NULL','NULL','4',1,'/static/movie/img/p2174360579.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10423,'新灵犬莱西','https://movie.douban.com/subject/1296399/','8.4',1046,
-'http://www.imdb.com/title/tt0110305','NULL','NULL','NULL','NULL','NULL','美国','1994-07-22',
-'汤姆·盖里 海伦·斯雷特 乔恩·坦尼','丹尼尔·皮特里','剧情 冒险',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKSW3g7zyLp5S_jAw2qD9KC',
-'NULL','NULL','4',1,'/static/movie/img/s4700064.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10424,'小杂种','https://movie.douban.com/subject/1306336/','7.0',119,
-'http://www.imdb.com/title/tt0070932','NULL','NULL','NULL','NULL','NULL','香港','1973-06-02(香港)',
-'宗华 李丽丽 刘丹','楚原','动作 爱情 武侠',
-'http://so.iqiyi.com/links/bu1fv1oRRL5kcvvjEx3YlmYW5Z-hEl0B_JK47q3q6C_MG5Yt-kYwnZXG4mMnuYpa',
-'NULL','NULL','4',1,'/static/movie/img/s3029642.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10425,'孽吻','https://movie.douban.com/subject/1295264/','6.7',167,
-'http://www.imdb.com/title/tt0102220/','NULL','NULL','NULL','NULL','NULL','英国 / 美国','1991-04-26',
-'Sandra Margot Sean Young Lia Chang Matt Dillon James Bonfanti','James Dearden','悬疑 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rrhl3ucw.html',
-'NULL','NULL','4',1,'/static/movie/img/p2366761897.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10426,'德黑兰43年','https://movie.douban.com/subject/1305533/','8.6',1074,
-'http://www.imdb.com/title/tt0081609','NULL','NULL','NULL','NULL','NULL','苏联 / 法国 / 瑞士 / 西班牙','1981-07-08',
-'纳塔利娅·别洛赫沃斯季科娃 尤尔根斯·库尔特 伊戈尔·柯斯托列夫斯基 克劳迪·贾德 阿尔缅·哲加尔哈尼扬 乔治·热雷 Albert Filozov 阿兰·德龙 尼古莱·格陵柯 Mike Marshall 格列布·斯特里仁诺夫 Jess Hahn Jacques Roux 伊芙莲嘉 奥莱加·费多罗','亚历山大·阿洛夫','剧情 爱情 战争',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1502374.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10427,'山水有相逢','https://movie.douban.com/subject/1298124/','7.7',2712,
-'http://www.imdb.com/title/tt0114412','NULL','NULL','NULL','NULL','NULL','香港','1995-11-16(香港)',
-'刘青云 袁咏仪 蔡少芬 孙佳君 吴镇宇 张达明 谷德昭 谢天华','马伟豪','喜剧',
-'http://www.iqiyi.com/v_19rrmy9nak.html',
-'NULL','NULL','4',1,'/static/movie/img/p2470014629.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10428,'十三号星期五6','https://movie.douban.com/subject/1294180/','6.1',676,
-'http://www.imdb.com/title/tt0091080','NULL','NULL','NULL','NULL','NULL','美国','1986-08-01',
-'Thom Mathews Renée Jones David Kagen Jennifer Cooke','汤姆·麦克洛克林','喜剧 惊悚 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2209367424.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10429,'我最爱的季节','https://movie.douban.com/subject/1297539/','7.7',287,
-'http://www.imdb.com/title/tt0107471','NULL','NULL','NULL','NULL','NULL','法国','1993-05-14(法国)',
-'卡特琳·德纳芙 达尼埃尔·奥德耶 马蒂·维拉龙嘉','安德烈·泰希内','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p711626544.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10430,'阴阳路12：美容尸','https://movie.douban.com/subject/1479894/','5.0',425,
-'http://www.imdb.com/title/tt0311939','NULL','NULL','NULL','NULL','NULL','香港','2001-10-18',
-'罗兰 张慧仪 邝文洵 黎骏 唐家辉 张豪龙','叶伟英','喜剧 悬疑 恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJNLYxJn9s_KJJkvjws2YXH',
-'NULL','NULL','4',1,'/static/movie/img/p2192892566.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10431,'乘客','https://movie.douban.com/subject/2133422/','6.6',21864,
-'http://www.imdb.com/title/tt0449487','NULL','NULL','NULL','NULL','NULL','美国 / 加拿大','2008-10-24(美国)',
-'安妮·海瑟薇 帕特里克·威尔森 克里·杜瓦尔 大卫·摩斯 黛安·韦斯特 安德鲁·布劳尔','罗德里格·加西亚','剧情 爱情 悬疑 惊悚',
-'NULL',
-'magnet:?xt=urn:btih:8b7e598132f7fb8f965f29d36bb2ad65839a5c89','NULL','4',1,'/static/movie/img/p777910201.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10432,'乐队来访','https://movie.douban.com/subject/2079017/','8.1',4377,
-'http://www.imdb.com/title/tt1032856','NULL','NULL','NULL','NULL','NULL','以色列 / 法国 / 美国','2007-05-19',
-'罗内特·艾尔卡贝兹 塞森·加布埃 乌瑞·加夫利尔 Saleh Bakri Rinat Matatov Tomer Yosef','艾伦·科勒林','剧情 喜剧 音乐',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKTySLV7UbC3CCdLRt3JXBT',
-'NULL','NULL','4',1,'/static/movie/img/p2342401058.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10433,'行走的最佳方式','https://movie.douban.com/subject/1416950/','7.6',218,
-'http://www.imdb.com/title/tt0074888','NULL','NULL','NULL','NULL','NULL','法国','1977-09-09',
-'Patrick Dewaere Patrick Bouchitey Christine Pascal','克劳德·米勒','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJ1jKhb2GXLWI1mFvmudbMX',
-'NULL','NULL','4',1,'/static/movie/img/s1445971.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10434,'单刀直入','https://movie.douban.com/subject/4922398/','6.7',4639,
-'http://www.imdb.com/title/tt1545759','NULL','NULL','NULL','NULL','NULL','法国','2012-03-08(中国大陆)',
-'吉尔·勒卢什 罗什迪·泽姆 热拉尔·朗万 埃伦娜·安纳亚','弗雷德·卡瓦耶','动作 惊悚 犯罪',
-'http://www.iqiyi.com/v_19rr9wtx4w.html',
-'magnet:?xt=urn:btih:c58bac34897a781f95c726ea55cf461dc2b6f4af','NULL','4',1,'/static/movie/img/p1173059571.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10435,'漫长的婚约','https://movie.douban.com/subject/1292234/','8.1',49059,
-'http://www.imdb.com/title/tt0344510','NULL','NULL','NULL','NULL','NULL','法国 / 美国','2004-10-27',
-'奥黛丽·塔图 加斯帕德·尤利尔 多米尼克·皮侬 安德烈·杜索里埃 迪基·奥尔加多 玛丽昂·歌迪亚 朱迪·福斯特 让-皮埃尔·达鲁森 科洛维斯·科尔尼拉 德尼·拉旺 杰罗姆·基歇尔 艾尔伯特·杜邦迪 让-保罗·卢弗 依琳娜·卢雯宋 茱莉·德帕迪约 米歇尔·罗班 切基·卡尤 让-克劳德·德鲁菲斯 伯利·兰内尔 福德莉奇·贝尔','让-皮埃尔·热内','剧情 爱情 悬疑 战争',
-'http://www.iqiyi.com/v_19rra8orr0.html',
-'magnet:?xt=urn:btih:cfcd2dd6cebcb9f6a27bef78f29545df6454c665','NULL','4',1,'/static/movie/img/p803957472.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10436,'挑战者','https://movie.douban.com/subject/1299584/','6.2',3586,
-'http://www.imdb.com/title/tt0112772','NULL','NULL','NULL','NULL','NULL','香港','1995-07-29(韩国)',
-'刘德华 关之琳 吴倩莲 姜大卫 秦沛','林岭东','剧情 动作',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2352231671.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10437,'说谎者比利','https://movie.douban.com/subject/1427349/','7.6',338,
-'http://www.imdb.com/title/tt0056868','NULL','NULL','NULL','NULL','NULL','英国','1963-08',
-'汤姆·康特奈 Wilfred Pickles 莫娜·沃什伯恩 艾塞尔·格里菲斯 芬利·柯里 朱莉·克里斯蒂','约翰·施莱辛格','剧情 喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2211628964.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10438,'迷失东京','https://movie.douban.com/subject/1291835/','7.7',127509,
-'http://www.imdb.com/title/tt0335266','NULL','NULL','NULL','NULL','NULL','美国 / 日本','2003-08-29(特柳赖德电影节)',
-'斯嘉丽·约翰逊 比尔·默瑞 吉奥瓦尼·瑞比西 竹下明子 安娜·法瑞丝 凯瑟琳·兰伯特','索菲亚·科波拉','剧情 爱情',
-'http://www.iqiyi.com/v_19rrhxx5lg.html',
-'magnet:?xt=urn:btih:30a0e40a57cbe569e078175c7fdc6d3b02278892','NULL','4',1,'/static/movie/img/p1910903111.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10439,'玉堂春','https://movie.douban.com/subject/1480066/','7.4',393,
-'http://www.imdb.com/title/tt0056711','NULL','NULL','NULL','NULL','NULL','香港','1964-09-30(香港)',
-'乐蒂 赵雷 高宝树 李菁 田丰','胡金铨','爱情 古装 戏曲',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqTWCB0O9h6dfHCR0kbv0E4xzmbsRQtRrgJ7NTdRWVwR8',
-'NULL','NULL','4',1,'/static/movie/img/p2216974437.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10440,'蔓延','https://movie.douban.com/subject/1427354/','6.5',826,
-'http://www.imdb.com/title/tt0461539','NULL','NULL','NULL','NULL','NULL','中国','2004-10-21',
-'于博 胡晓光 王亚梅 娜仁其木梅','何建军','剧情 喜剧 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3672524.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10441,'红玫瑰白玫瑰','https://movie.douban.com/subject/1297036/','7.7',17396,
-'http://www.imdb.com/title/tt0110053','NULL','NULL','NULL','NULL','NULL','香港 / 中国大陆 / 台湾','1994-12-10',
-'陈冲 叶玉卿 赵文瑄 史戈 林燕玉 赵畅 李冰冰','关锦鹏','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMK87vBS494Fr6xpZHr76wU-',
-'NULL','NULL','4',1,'/static/movie/img/p2197949156.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10442,'不需要爱情','https://movie.douban.com/subject/1937305/','6.5',4561,
-'http://www.imdb.com/title/tt0904068','NULL','NULL','NULL','NULL','NULL','韩国','2006-11-09(韩国)',
-'文根英 金柱赫 陶智媛','李澈河','爱情',
-'http://www.iqiyi.com/v_19rrmyd6k8.html',
-'NULL','NULL','4',1,'/static/movie/img/p700718125.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10443,'故乡：女儿的旅程','https://movie.douban.com/subject/5979003/','7.7',544,
-'http://www.imdb.com/title/tt1821481','NULL','NULL','NULL','NULL','NULL','日本','2011-07-05(日本)',
-'堀北真希 松平健 风吹淳 高冈奏辅 中越典子 美山加恋 温水洋一','平野真','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYML8nIq72TBJ6w6a2SKKyAAJ',
-'NULL','NULL','4',1,'/static/movie/img/s6793617.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10444,'蓝色果冻海','https://movie.douban.com/subject/2079020/','7.9',1952,
-'http://www.imdb.com/title/tt0807721','NULL','NULL','NULL','NULL','NULL','法国 / 以色列','2007-06-28',
-'Sarah Adler Tsipor Aizen Bruria Albek 阿西·达扬 埃特加·凯雷特','Shira Geffen','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLKp_OUqrndi_Goa-erZRuq',
-'NULL','NULL','4',1,'/static/movie/img/p2475184016.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10445,'午夜','https://movie.douban.com/subject/2042301/','7.8',134,
-'http://www.imdb.com/title/tt0031647','NULL','NULL','NULL','NULL','NULL','美国','1939-04-05(美国)',
-'唐·阿米契 克劳黛·考尔白 约翰·巴里摩尔 Francis Lederer 玛丽·阿斯特 Elaine Barrie 赫达·霍珀 Rex O\'Malley','米切尔·莱森','喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2400835452.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10446,'稻草人','https://movie.douban.com/subject/1308607/','8.5',2033,
-'http://www.imdb.com/title/tt0092829','NULL','NULL','NULL','NULL','NULL','台湾','1987-10-23(台湾)',
-'卓勝利 张柏舟 吴炳南 文英 杨贵媚 柯俊雄 林美照','王童','喜剧 历史 战争',
-'http://www.iqiyi.com/v_19rrl945kc.html',
-'magnet:?xt=urn:btih:141ae198ab0d7ee1b06ad7e847fc8d8008353259','NULL','4',1,'/static/movie/img/p2461104465.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10447,'女杀油地狱','https://movie.douban.com/subject/3216949/','7.2',293,
-'http://www.imdb.com/title/tt0105060','NULL','NULL','NULL','NULL','NULL','日本','1992-05-23',
-'樋口可南子 藤谷美和子 堤真一 井川比佐志 岸部一德','五社英雄','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIgj8sAUl2TDn4Rdq2sopUy',
-'NULL','NULL','4',1,'/static/movie/img/p1483298544.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10448,'窃遇偷香','https://movie.douban.com/subject/2071191/','7.3',436,
-'http://www.imdb.com/title/tt0815457','NULL','NULL','NULL','NULL','NULL','西班牙','2007-06-22',
-'Juan José Ballesta María Valverde','Jaime Marques','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIj4bUrm9Kr3bJwzLK2uVC4',
-'NULL','NULL','4',1,'/static/movie/img/p462982917.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10449,'非诚勿扰2','https://movie.douban.com/subject/4271894/','6.5',222303,
-'http://www.imdb.com/title/tt1810602','NULL','NULL','NULL','NULL','NULL','中国大陆','2010-12-22(中国大陆)',
-'葛优 舒淇 孙红雷 姚晨 安以轩 邵兵 廖凡 邬逸聪 关晓彤 窦文涛 赵宝刚 乐嘉 张馨予 王希维 李晨','冯小刚','喜剧 爱情',
-'http://www.iqiyi.com/dianying/20110131/54decf7ac6a059f0.html',
-'NULL','NULL','4',1,'/static/movie/img/p725272302.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10450,'巴士站','https://movie.douban.com/subject/1296898/','7.0',110,
-'http://www.imdb.com/title/tt0310826','NULL','NULL','NULL','NULL','NULL','韩国','2002-03-08(韩国)',
-'金太祐 金敏贞','李美缘','剧情 爱情',
-'http://so.iqiyi.com/links/99o4kBuRLFk8iR4Zenvqf-pZhHwM_um5JFO4HhEG8vAg9LB8HcVFBm_BXWtfOvk3c4rPBIgNL3Bq0RWqZv3rIw==',
-'NULL','NULL','4',1,'/static/movie/img/p1783573853.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10451,'大进军——解放大西北','https://movie.douban.com/subject/3403158/','5.9',132,
-'http://www.imdb.com/title/tt6761516','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'吕晓禾 傅英 周洁 古月 赵恒多 秦昭 石境 杜雨露 郑在石 李龙吟 潘凡 阎雨生 程建勋 侯正民 袁志顺 刘洋 陈锐 赵彦民 高长利 于键 鲁玉杰 刘龙 张春祥 陈小芳','韦林玉','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2457155819.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10452,'血染的舞鞋','https://movie.douban.com/subject/2978117/','6.4',71,
-'http://www.imdb.com/title/tt0087759','NULL','NULL','NULL','NULL','NULL','意大利','1984-04-20',
-'Olga Karlatos Ray Lovelock','Lucio Fulci','剧情 悬疑 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4685441.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10453,'孝子贤孙伺候着','https://movie.douban.com/subject/1462243/','8.0',4530,
-'http://www.imdb.com/title/tt0353017','NULL','NULL','NULL','NULL','NULL','中国大陆','1993',
-'陈佩斯 赵丽蓉 丁嘉丽 魏宗万 刘江 ','陈佩斯','喜剧',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLBzpwWXY2bVqzF1XAxza-t',
-'NULL','NULL','4',1,'/static/movie/img/p2376859119.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10454,'爱人别出声','https://movie.douban.com/subject/1302234/','6.6',112,
-'http://www.imdb.com/title/tt0102900','NULL','NULL','NULL','NULL','NULL','美国','1991-09-25',
-'格列塔·斯卡奇 汤姆·贝伦杰 鲍勃·霍斯金斯','沃尔夫冈·彼德森','悬疑 惊悚 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2222670265.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10455,'蔷薇的葬礼','https://movie.douban.com/subject/1449471/','8.1',2168,
-'http://www.imdb.com/title/tt0064068','NULL','NULL','NULL','NULL','NULL','日本','1969-09-13(日本)',
-'池畑慎之介 土屋嘉男 东惠美子 栗津洁 藤田敏八 原正孝 小松方正 仲村纮一 蜷川幸雄 筱田正浩','松本俊夫','剧情 同性',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8BDhJW4urKgQIHz85YBHppnV9tfYQXfEu2sQe46znrcF',
-'NULL','NULL','4',1,'/static/movie/img/p2469280620.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10456,'新精武门','https://movie.douban.com/subject/2154245/','6.1',1151,
-'http://www.imdb.com/title/tt0075439','NULL','NULL','NULL','NULL','NULL','香港 / 台湾','1976-07-08',
-'成龙 苗可秀 罗维 陈星','罗维','剧情 动作',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1R9BJnhEhnpDEV4v8cK-N074_tD9_ZEM0lQXO6bHBKuNniXi9Cih4kbYwLOPUDEsPw==',
-'NULL','NULL','4',1,'/static/movie/img/p2190389559.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10457,'我的恐怖女友','https://movie.douban.com/subject/1826431/','5.8',755,
-'http://www.imdb.com/title/tt0788052','NULL','NULL','NULL','NULL','NULL','韩国','2006-04-06(韩国)',
-'朴勇宇 崔江熙 曹恩智','孙在坤','剧情 喜剧 爱情 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p728582624.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10458,'午夜行凶','https://movie.douban.com/subject/1422357/','6.0',74,
-'http://www.imdb.com/title/tt0355987','NULL','NULL','NULL','NULL','NULL','美国','2004-06-20',
-'詹姆斯·克伦威尔 James Cromwell 鲁特格尔·哈尔 Rutger Hauer 唐纳德·萨瑟兰 Donald Sutherland','托比·胡珀 Tobe Hooper','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2327746822.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10459,'撒旦之外','https://movie.douban.com/subject/5151093/','7.1',270,
-'http://www.imdb.com/title/tt1666168','NULL','NULL','NULL','NULL','NULL','法国','2011-10-19',
-'奥罗拉·布鲁坦 David Dewaele Alexandra Lematre','布鲁诺·杜蒙','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1231727120.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10460,'浪漫主义者','https://movie.douban.com/subject/3627296/','6.5',3637,
-'http://www.imdb.com/title/tt1403988','NULL','NULL','NULL','NULL','NULL','美国','2010-09-10',
-'凯蒂·霍尔姆斯 安娜·帕奎因 乔什·杜哈明 伊利亚·伍德 迪安娜·阿格隆 亚当·布罗迪','Galt Niederhoffer','剧情 喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p579094201.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10461,'二子开店','https://movie.douban.com/subject/1304560/','7.5',14680,
-'http://www.imdb.com/title/tt0350897','NULL','NULL','NULL','NULL','NULL','中国','1987(中国大陆)',
-'陈强 陈佩斯 黄玲 金萍 梁天 安雯 崔斌 李楠','王秉林 ','剧情 喜剧',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb8uPPZdCC3I66ejfbJCizYu4mzhegNKHdr5or4jwaflE',
-'NULL','NULL','4',1,'/static/movie/img/p1606070684.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10462,'查理之国','https://movie.douban.com/subject/25867860/','7.5',359,
-'http://www.imdb.com/title/tt3244512','NULL','NULL','NULL','NULL','NULL','澳大利亚','2013-10-12(澳大利亚阿德莱德电影节)',
-'大卫·古皮利 卢克·福特 博亚娜·诺瓦科维奇 加里·思韦特 Peter Djigirr Bobby Bunungurr Frances Djulibing Jennifer Budukpuduk Gaykamangu Peter Minygululu Ritchie Singer Garry Waddell J.B. Williams','洛夫·德·希尔','剧情',
-'NULL',
-'magnet:?xt=urn:btih:bc468bd7e0c29dc5cfa13ae76ed0dd351d66ff03','NULL','4',1,'/static/movie/img/p2181611196.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10463,'弟弟','https://movie.douban.com/subject/4848700/','7.6',59,
-'http://www.imdb.com/title/tt5169144','NULL','NULL','NULL','NULL','NULL','日本','1990-04-30',
-'斉藤由貴 木村拓哉 鈴木ヒロミツ 八木昌子 中条静夫 香山美子','脇田時三','暂时无数据',
-'NULL',
-'magnet:?xt=urn:btih:16a44f790355db2176ec626d300dc1ff2d18544f','NULL','4',1,'/static/movie/img/s4373571.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10464,'甘甜蜜汁','https://movie.douban.com/subject/3189558/','5.7',60,
-'http://www.imdb.com/title/tt0291308','NULL','NULL','NULL','NULL','NULL','日本','1991-02',
-'高樹麗 今泉浩一','佐藤寿保','剧情 情色',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2255367237.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10465,'荒野浪子','https://movie.douban.com/subject/1294263/','7.0',401,
-'http://www.imdb.com/title/tt0068699','NULL','NULL','NULL','NULL','NULL','美国','1973-04-19',
-'克林特·伊斯特伍德 弗娜·布鲁姆 玛丽亚娜·希尔 米奇·瑞恩 杰克·金','克林特·伊斯特伍德','惊悚 西部',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLBhAHUhB5hNCHZH-fCT0vl',
-'NULL','NULL','4',1,'/static/movie/img/p2364437358.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10466,'神经大侠','https://movie.douban.com/subject/4325964/','6.2',51,
-'http://www.imdb.com/title/tt0199015','NULL','NULL','NULL','NULL','NULL','香港','1982-05-22',
-'文雪儿 孟元文 惠英红 元德 陈鎏 蒋金 金彪  高雄 顾文宗','鲁俊谷','喜剧 动作 武侠',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKIFIq93mKwpbXSqUz26PM2',
-'NULL','NULL','4',1,'/static/movie/img/s4653850.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10467,'天使的胆量之红色闪光','https://movie.douban.com/subject/3032343/','6.0',56,
-'http://www.imdb.com/title/tt0224237','NULL','NULL','NULL','NULL','NULL','日本','1994-09-10(日本)',
-'川上麻衣子 根津甚八 速水典子','石井隆','剧情 惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s3007677.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10468,'他们微笑的样子','https://movie.douban.com/subject/1306546/','8.0',317,
-'http://www.imdb.com/title/tt0139951','NULL','NULL','NULL','NULL','NULL','意大利','1998-10-02',
-'恩里克·洛维索 Francesco Giuffrida Rosaria Danzè Claudio Contartese Domenico Ragusa','吉安尼·阿梅利奥','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2158665619.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10469,'史前巨鸟','https://movie.douban.com/subject/3218859/','3.6',120,
-'http://www.imdb.com/title/tt1047544','NULL','NULL','NULL','NULL','NULL','美国','2008-04-19',
-'Jamie Elle Mann Brian Krause Tohoru Masamune','Kevin Gendreau','暂时无数据',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzuHBP-ytgsAF6jKSL3oneMbFZaTLF71geLRMGYaeZp7m',
-'NULL','NULL','4',1,'/static/movie/img/p1133100231.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10470,'白影SP','https://movie.douban.com/subject/5414915/','8.6',110,
-'http://www.imdb.com/title/tt1703121','NULL','NULL','NULL','NULL','NULL','日本','2003-01-02',
-'中居正广 竹内结子','金子文纪','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s4576200.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10471,'如来神掌(上集)','https://movie.douban.com/subject/2029110/','7.7',109,
-'http://www.imdb.com/title/tt3290630','NULL','NULL','NULL','NULL','NULL','香港','1964-02-27',
-'林凤 于素秋 曹达华 关海山 柠檬','凌云','动作 武侠 古装',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2319301285.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10472,'解码安妮·帕克','https://movie.douban.com/subject/3822672/','6.6',270,
-'http://www.imdb.com/title/tt1464191','NULL','NULL','NULL','NULL','NULL','美国','2013-04-04(美国)',
-'亚伦·保尔 爱丽丝·伊芙 玛姬·格蕾斯 拉什达·琼斯 凯特 米库契 海伦·亨特 玛丽·谢尔顿 本·麦肯锡 萨曼莎·莫顿 理查德·希夫 布莱德利·惠特福德 寇瑞·斯托尔 查德·林德伯格','Steven Bernstein','剧情',
-'NULL',
-'magnet:?xt=urn:btih:0d0f5ade0ae114e0cc768e8f12edba78d83b223e','NULL','4',1,'/static/movie/img/p2179092642.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10473,'上流阶级：富久丸百货店外商部','https://movie.douban.com/subject/26260810/','7.5',972,
-'http://www.imdb.com/title/tt4238158','NULL','NULL','NULL','NULL','NULL','日本','2015-01-16(日本)',
-'竹内结子 斋藤工 竹中直人 田中哲司 浅野优子 渡边一计 高畑淳子 草刈正雄 森口瑶子 倍赏美津子 松雪泰子','泽田镰作','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2219243525.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10474,'中华丈夫','https://movie.douban.com/subject/1477440/','7.6',867,
-'http://www.imdb.com/title/tt0080172','NULL','NULL','NULL','NULL','NULL','香港','1978-12-30',
-'刘家辉 袁小田 仓田保昭 水野结花','刘家良','剧情 动作 武侠 古装',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMIkK4Cvq-b1u9RAbFzbChSe',
-'NULL','NULL','4',1,'/static/movie/img/p2190469811.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10475,'蓝白红三部曲之红','https://movie.douban.com/subject/1292047/','8.7',56263,
-'http://www.imdb.com/title/tt0111495','NULL','NULL','NULL','NULL','NULL','法国 / 波兰 / 瑞士','1994-05-12(戛纳电影节)',
-'伊莲娜·雅各布 让·路易·特兰蒂尼昂 Frédérique Feder 让-皮耶·罗利特 塞缪尔·勒·比汉 朱丽叶·比诺什 朱莉·德尔佩 贝努特·里格恩特 泽比纽·扎马洲斯基','克日什托夫·基耶斯洛夫斯基','剧情 爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1SLU0HPqYHf7_M-DIXvTChxMoSQHQUlhvb9zjwGGkoHc0I5LUHxVmM-NmTIb52PDjw==',
-'magnet:?xt=urn:btih:4396378753515e4c1105336fdf6130303664f289','NULL','4',1,'/static/movie/img/p2173726043.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10476,'一眼瞬间，再见爱','https://movie.douban.com/subject/4312236/','5.6',2080,
-'http://www.imdb.com/title/tt1611115','NULL','NULL','NULL','NULL','NULL','日本','2010-06-19(日本)',
-'北川景子 大塚寧々 岡田将生 史朗 永島暎子 深水元基 千崎若菜 清水美沙 田口トモロヲ 徳井優 森下能幸 ジョニー吉長 菅井きん','矶村一路','爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1Z3Uiq4KnVzn6GA4QqM4qCAcm5OBFZb-eK5ofJDLufZa-lOeKptqecOb76in9WjJvg==',
-'NULL','NULL','4',1,'/static/movie/img/p624580865.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10477,'别无所求','https://movie.douban.com/subject/2125209/','7.2',118,
-'http://www.imdb.com/title/tt0935113','NULL','NULL','NULL','NULL','NULL','德国 / 法国','2007-10-18',
-'Paula Kalenberg Marie-Luise Schramm','Julia von Heinz','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2461614677.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10478,'城堡','https://movie.douban.com/subject/1439126/','6.6',494,
-'http://www.imdb.com/title/tt0120075','NULL','NULL','NULL','NULL','NULL','德国 / 奥地利','1997-09-06',
-'乌尔里希·穆埃 苏珊娜·罗莎 弗兰克·捷林','迈克尔·哈内克','剧情 悬疑',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2192617570.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10479,'登入火星','https://movie.douban.com/subject/22265181/','4.7',874,
-'http://www.imdb.com/title/tt2674430','NULL','NULL','NULL','NULL','NULL','美国','2016-06-03(美国)',
-'桑娜·莱瑟 马克·斯特朗 查尔斯·贝克 安德斯·丹尼尔森·李','Mark Elijah Rosenberg','剧情 科幻 惊悚',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1e2_OLK-DCrSWfRS4n3JQiCvf9_eN5ryjZBAoTA2FYCC6oAy77WFJV5lS0kDt6jRfnnt7wyUgI9u6k5-I65qvxY=',
-'magnet:?xt=urn:btih:fe4bec9e28be632c0e4cc8eab9897d122e1a1536','NULL','4',1,'/static/movie/img/p2342879199.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10480,'打开梵蒂冈之门','https://movie.douban.com/subject/1795597/','8.1',242,
-'http://www.imdb.com/title/tt0810429','NULL','NULL','NULL','NULL','NULL','美国','2001-11-21',
-'','John B. Bredar','暂时无数据',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s1665915.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10481,'聂耳','https://movie.douban.com/subject/1300199/','7.1',540,
-'http://www.imdb.com/title/tt0183576','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'赵丹 张瑞芳 王蓓 邓楠 赵抒音 黄宗英 夏天 关宏达 韩非 陈述 仲星火 高博','郑君里','剧情',
-'http://www.iqiyi.com/v_19rrn71asw.html',
-'NULL','NULL','4',1,'/static/movie/img/s1974044.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10482,'改朝换代','https://movie.douban.com/subject/1929436/','7.1',7038,
-'http://www.imdb.com/title/tt0431197','NULL','NULL','NULL','NULL','NULL','美国 / 德国','2007-09-28',
-'杰米·福克斯 詹妮弗·加纳 杰森·贝特曼 克里斯·库珀 Ashraf Barhom','彼得·博格','剧情 动作 惊悚',
-'http://www.iqiyi.com/v_19rrhyn6hs.html',
-'magnet:?xt=urn:btih:310f21ae8383cd1676bdcfb315188c0dde5d6a42','NULL','4',1,'/static/movie/img/p1020579397.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10483,'BBC地平线：陨石真相大揭密','https://movie.douban.com/subject/24889889/','7.8',44,
-'http://www.imdb.com/title/tt2748192','NULL','NULL','NULL','NULL','NULL','英国','2013-03-03(英国)',
-'Iain Stewart Mark Boslough Steven R. Chesley ...','Oliver Bootle','纪录片 历史',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2274891232.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10484,'海峡','https://movie.douban.com/subject/1308463/','7.7',369,
-'http://www.imdb.com/title/tt0215887','NULL','NULL','NULL','NULL','NULL','日本','1982-10-16(日本)',
-'高仓健 三浦友和 吉永小百合 森繁久弥','森谷司郎','剧情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMInNBPKcj8Bs84ftkI2STof',
-'NULL','NULL','4',1,'/static/movie/img/p2261463092.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10485,'孤独的妻子','https://movie.douban.com/subject/1468782/','7.8',306,
-'http://www.imdb.com/title/tt0057935','NULL','NULL','NULL','NULL','NULL','印度','1964-04-17',
-'Soumitra Chatterjee Madhabi Mukherjee Shailen Mukherjee Shyamal Ghoshal','萨蒂亚吉特·雷伊','剧情 爱情',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKxkrFx7_c5rbf_tRVVO_Bf',
-'NULL','NULL','4',1,'/static/movie/img/p2071609682.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10486,'死角','https://movie.douban.com/subject/1305204/','7.0',431,
-'http://www.imdb.com/title/tt0064213','NULL','NULL','NULL','NULL','NULL','香港','1969-07-12',
-'狄龙 姜大卫 李菁 井淼','张彻','剧情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1V2vHJW7bsdW4jKajXBugqSgIUpsMmP_R9BDy_ClKV-40hfOU_wo6s70D_rhPrxcMg==',
-'NULL','NULL','4',1,'/static/movie/img/s3029571.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10487,'索命逍遥楼','https://movie.douban.com/subject/3598220/','6.0',80,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','1990-01-01',
-'杨凤一 黄国强 王赤','李文化','剧情 武侠 古装',
-'http://so.iqiyi.com/links/_HvSf1QsVKqldHgZtFuwGd54OGlhPKtZKYc70NzZjuNn9FeO-GU05-rRuErvtdHq',
-'NULL','NULL','4',1,'/static/movie/img/p2417301131.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10488,'黑狱风云','https://movie.douban.com/subject/1295138/','6.6',70,
-'http://www.imdb.com/title/tt0080474','NULL','NULL','NULL','NULL','NULL','美国','1980-06-20',
-'罗伯特·雷德福 亚非特·科托 简·亚历山大 大卫·凯斯 摩根·弗里曼','斯图尔特·罗森博格','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2369576.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10489,'雷霆战警','https://movie.douban.com/subject/1298104/','5.8',7095,
-'http://www.imdb.com/title/tt0266408','NULL','NULL','NULL','NULL','NULL','香港','2000-12-21',
-'郭富城 王力宏 藤原纪香 林心如 刘兆铭','唐季礼','动作',
-'http://so.iqiyi.com/links/qcAdm6fzqd2Da5AHK1fa8I79Xypqizgt9wnl0lq4szVj09SLxAqpUFM1CCrwkOzi',
-'NULL','NULL','4',1,'/static/movie/img/p2203717463.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10490,'亡命之旅','https://movie.douban.com/subject/3432662/','5.1',75,
-'http://www.imdb.com/title/tt1045191','NULL','NULL','NULL','NULL','NULL','美国 / 加拿大','2007-06-17',
-'奥黛塔·安纳布尔 小安东尼奥·萨巴图','唐纳德·怀尔','剧情 悬疑 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2124180977.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10491,'天才与白痴','https://movie.douban.com/subject/1298003/','7.4',2402,
-'http://www.imdb.com/title/tt0100776','NULL','NULL','NULL','NULL','NULL','香港','1975-08-21',
-'乔宏 许冠文 许冠杰','许冠文','喜剧',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLIY7wtGtApx72XFlLmRyhG',
-'NULL','NULL','4',1,'/static/movie/img/p1387177677.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10492,'杏林血泪','https://movie.douban.com/subject/1301743/','7.8',65,
-'http://www.imdb.com/title/tt0099242','NULL','NULL','NULL','NULL','NULL','美国','1989-09-16',
-'加里·奥德曼 丹尼斯·霍珀 弗兰西斯·麦克多蒙德','米克·杰克逊','剧情 传记',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1815097661.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10493,'XX','https://movie.douban.com/subject/2134058/','7.2',432,
-'http://www.imdb.com/title/tt0229059','NULL','NULL','NULL','NULL','NULL','日本','1996-01-12',
-'真梨邑恵 渡边真起子 大杉涟','池田敏春','情色 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2167353955.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10494,'神偷次世代','https://movie.douban.com/subject/1298869/','5.8',5717,
-'http://www.imdb.com/title/tt0272822','NULL','NULL','NULL','NULL','NULL','香港','2000-11-24',
-'黎明 舒淇 陈小春 李灿森 郑雪儿 尹子维 龙刚 杜德伟 王合喜','叶伟信','动作',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1bsdJM9buz8XcKxxQKkwXVKoq09Mj962TtOJbBi8wV5dxHG9nt13c62yNA4QLEDykg==',
-'NULL','NULL','4',1,'/static/movie/img/s4149386.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10495,'破浪','https://movie.douban.com/subject/1292468/','8.1',8822,
-'http://www.imdb.com/title/tt0115751','NULL','NULL','NULL','NULL','NULL','丹麦 / 瑞典 / 法国 / 荷兰 / 挪威 / 冰岛 / 西班牙','1996-05-03(戛纳电影节)',
-'艾米丽·沃森 斯特兰·斯卡斯加德 凯特琳·卡特利吉 让-马克·巴尔 阿德里安·劳林斯 Jonathan Hackett Sandra Voe 乌多·奇尔 Mikkel Gaup Roef Ragas Phil McCall Robert Robertson Desmond Reilly Sarah Gudgeon 芬利·威尔士','拉斯·冯·提尔','剧情 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2210775224.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10496,'阴阳路18：鬼上身','https://movie.douban.com/subject/1301994/','4.5',211,
-'http://www.imdb.com/title/tt0369032','NULL','NULL','NULL','NULL','NULL','香港','2003-02-27',
-'罗兰 唐文龙 雷宇扬 任港秀 吴志雄 陈颖妍 唐家辉 张豪龙','林华勋','恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMKX44PmUjrDKP8n2FxtZT1e',
-'NULL','NULL','4',1,'/static/movie/img/p2192892508.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10497,'侦探物语','https://movie.douban.com/subject/2271613/','6.0',102,
-'http://www.imdb.com/title/tt1114757','NULL','NULL','NULL','NULL','NULL','日本','2007-09-29',
-'中山一也 真木藏人 長谷川朝晴 菊池亜希子 井上晴美','三池崇史','剧情 喜剧 悬疑 惊悚 恐怖 犯罪',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJJW0pkDpLIHvD64Xr56iMB',
-'NULL','NULL','4',1,'/static/movie/img/p825640658.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10498,'斗爱','https://movie.douban.com/subject/3566552/','7.0',2457,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国','2009-04-15',
-'钟汉良 爱戴 刘斌 孙田莉子 章婷婷 黎宣 郑逸桐','张挺','暂时无数据',
-'http://www.iqiyi.com/v_19rr72vjv4.html',
-'NULL','NULL','4',1,'/static/movie/img/s3665038.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10499,'G4特工','https://movie.douban.com/subject/1298125/','5.9',2023,
-'http://www.imdb.com/title/tt0206990','NULL','NULL','NULL','NULL','NULL','香港','1997-11-27',
-'张智霖 黄秋生 李若彤 陈法蓉 王敏德  程峰 张睿羚','林超贤','动作',
-'http://www.iqiyi.com/dianying/20110104/0b4e84f8314e6f78.html',
-'NULL','NULL','4',1,'/static/movie/img/s3616307.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10500,'世纪邪风暴','https://movie.douban.com/subject/1306215/','7.2',214,
-'http://www.imdb.com/title/tt0135659','NULL','NULL','NULL','NULL','NULL','加拿大 / 美国','2000-09-05',
-'','克雷格 R. 巴克斯利 (Craig R. Baxley)','剧情 恐怖 惊栗',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p1930588769.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10501,'101次求婚','https://movie.douban.com/subject/2243575/','7.4',159,
-'http://www.imdb.com/title/tt0109006','NULL','NULL','NULL','NULL','NULL','韩国','1993-06-19(韩国)',
-'文成根 金喜爱','吴锡根','喜剧 爱情',
-'http://www.iqiyi.com/dianying/20130321/1ddfeb732c56810c.html',
-'NULL','NULL','4',1,'/static/movie/img/p2327079046.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10502,'阴阳路11：撩鬼攞命','https://movie.douban.com/subject/1479893/','4.7',229,
-'http://www.imdb.com/title/tt0297441','NULL','NULL','NULL','NULL','NULL','香港','2001-05-17',
-'罗兰 谭小环 李炜尚 唐家辉 张豪龙 麦家琪 陈明君','杨允敬','恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2192892599.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10503,'咒怨：完结篇','https://movie.douban.com/subject/26328118/','4.7',2349,
-'http://www.imdb.com/title/tt4458368','NULL','NULL','NULL','NULL','NULL','日本','2015-06-20(日本)',
-'平爱梨 桐山涟 小野乃乃香 柳百合菜 松浦雅 中原果南 小林飒 绯田康人 黑岛结菜 袴田吉彦 佐佐木希 矢吹春奈','落合正幸','悬疑 恐怖',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJQNAg65i652snarEacwehY',
-'magnet:?xt=urn:btih:b327b6373a988a0d964a295fff6a5b677a485771&dn=Ju-on.The.Final.Curse.2015.720p.BluRay.x264-WiKi&tr=http%3A%2F%2Ftracker.trackerfix.com%3A80%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2710&tr=udp%3A%2F%2F9.rarbg.to%3A2710','NULL','4',1,'/static/movie/img/p2240143718.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10504,'迷色布局','https://movie.douban.com/subject/1298595/','5.6',87,
-'http://www.imdb.com/title/tt0119196','NULL','NULL','NULL','NULL','NULL','美国','1998-01-23',
-'肯尼思·布拉纳 艾伯丝·戴维兹 小罗伯特·唐尼 达丽尔·汉纳 汤姆·贝伦杰 法米克·詹森 罗伯特·杜瓦尔','罗伯特·奥特曼','惊悚',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2160689121.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10505,'黑板','https://movie.douban.com/subject/1304952/','8.1',3030,
-'http://www.imdb.com/title/tt0246266','NULL','NULL','NULL','NULL','NULL','伊朗 / 意大利 / 日本','2000-09-01',
-'Said Mohamadi Behnaz Jafari 巴赫曼·戈巴迪','莎米拉·玛克玛尔巴夫','剧情 战争',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJy7g4R46t58zZqoDKidFu5',
-'NULL','NULL','4',1,'/static/movie/img/p2306123676.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10506,'儿子的大玩偶','https://movie.douban.com/subject/1302912/','8.1',3003,
-'http://www.imdb.com/title/tt0085503','NULL','NULL','NULL','NULL','NULL','台湾','1983-09-02(台湾)',
-'陈博正 杨丽音 崔福生 卓胜利 江霞 颜正国','侯孝贤','剧情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2224029127.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10507,'行骗天下','https://movie.douban.com/subject/1307663/','6.8',2206,
-'http://www.imdb.com/title/tt0310910','NULL','NULL','NULL','NULL','NULL','加拿大 / 德国 / 美国','2003-04-25',
-'爱德华·伯恩斯 蕾切尔·薇兹 摩里斯·切斯塔特 勒兰德·奥瑟 路易斯·隆巴迪 保罗·吉亚玛提 达斯汀·霍夫曼','詹姆斯·弗雷','惊悚 犯罪',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1ZELfafcuNrBqy9e0Lp3ETxz88Si82F0ZBkMWP6PHYauiL4J2VJDyTUo4gzg3iu_A8r2Lw2m2EyQRpQHecfjnpI=',
-'NULL','NULL','4',1,'/static/movie/img/p1708139670.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10508,'刑警栋居的伪完美犯罪','https://movie.douban.com/subject/26765187/','6.2',138,
-'NULL','NULL','NULL','NULL','NULL','NULL','日本','2016-04-23(日本)',
-'東山紀之 貫地谷しほり 浅見れいな 柴本幸 葛山信吾 金子昇 大塚千弘 天宮良 きたろう 森本レオ','村川透','犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2330736066.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10509,'同根生','https://movie.douban.com/subject/1298803/','6.5',311,
-'http://www.imdb.com/title/tt0098490','NULL','NULL','NULL','NULL','NULL','香港','1989-01-07(香港)',
-'刘德华 林威 温碧霞 陈惠敏 谷峰 冼灝英 沈威','王龙威','动作',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMLO0a1caIcSNm5cFji5KeiO',
-'NULL','NULL','4',1,'/static/movie/img/s3085104.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10510,'龙拳','https://movie.douban.com/subject/1299487/','6.1',1237,
-'http://www.imdb.com/title/tt0079484','NULL','NULL','NULL','NULL','NULL','香港 / 台湾','1979-04-21',
-'成龙 田俊 苗可秀','罗维 (Wei Lo)','剧情 动作',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1bIL_K-iNrnGhrmJ1A0yjwrOEft1Oek3EWSlowfbI6GoyEmDmRTkXAopNMEjPRTp7w==',
-'NULL','NULL','4',1,'/static/movie/img/p2166689052.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10511,'叛逆情缘','https://movie.douban.com/subject/1908035/','6.0',81,
-'http://www.imdb.com/title/tt0114082','NULL','NULL','NULL','NULL','NULL','香港','1995-09-01',
-'周华健 叶童 钟丽缇 张国强 刘兆铭 苑琼丹 岳华 黎彼得 林保怡 梁思敏','譚朗昌','爱情',
-'http://so.iqiyi.com/links/XbRSkTltDxflFlg-Vmxp1S7ED_6UxyOGaIPVOGf_lgV-dizMH0iIBncnDKbwZZisLp6xXn6mlBcoUecErYnaxw==',
-'NULL','NULL','4',1,'/static/movie/img/s3090770.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10512,'我的美丽乡愁','https://movie.douban.com/subject/1483000/','5.8',1636,
-'http://www.imdb.com/title/tt0453313','NULL','NULL','NULL','NULL','NULL','中国','2002-12-27',
-'徐静蕾 陈晓东 刘璇 艾丽娅 罗家英 崔林','俞钟','剧情',
-'http://so.iqiyi.com/links/6xLrY2g3C6dwqJpJN-vtqS6G5DwskWnjFLVZZhvAO89HSMF4OZ-du28zx2UTCCrb',
-'NULL','NULL','4',1,'/static/movie/img/p2375020612.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10513,'金发尤物','https://movie.douban.com/subject/2078908/','4.9',556,
-'http://www.imdb.com/title/tt0893509','NULL','NULL','NULL','NULL','NULL','加拿大','2007-05-17',
-'Pamela Anderson Denise Richards Emmanuelle Vaugier','Dean Hamilton','喜剧 犯罪',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/s2552986.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10514,'杀手的挽歌','https://movie.douban.com/subject/5342506/','5.5',649,
-'http://www.imdb.com/title/tt1723047','NULL','NULL','NULL','NULL','NULL','法国','2011-02-23',
-'梅拉尼·罗兰 Clovis Cornillac','Jérôme Le Gris','惊悚',
-'http://so.iqiyi.com/links/fyabD1frjGJWna8N6-fDF2Q1VX309iaB14Tg-DvlYMJiPHkHc-hsmFjndBiWAwqD',
-'magnet:?xt=urn:btih:8b9a14bf1b19b080bf5ba396ef8520d7f284093e','NULL','4',1,'/static/movie/img/p1427064652.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10515,'B型男友','https://movie.douban.com/subject/1394520/','6.2',14155,
-'http://www.imdb.com/title/tt0452972','NULL','NULL','NULL','NULL','NULL','韩国','2005-02-03(韩国)',
-'李东健 韩智慧 申伊 白日燮 郑丽媛 李贤宇 金海坤','崔锡元','喜剧 爱情',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p731924468.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10516,'鬼屋穿梭人','https://movie.douban.com/subject/4305325/','6.1',46,
-'http://www.imdb.com/title/tt0096153','NULL','NULL','NULL','NULL','NULL','美国','1992',
-'Adam Ant Richard Blade Gail O\'Grady Harold Pruett Bunty Bailey','Rafal Zielinski','悬疑 恐怖',
-'NULL',
-'NULL','NULL','4',1,'/static/movie/img/p2357401083.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10517,'西域大都护','https://movie.douban.com/subject/11627078/','3.5',35,
-'NULL','NULL','NULL','NULL','NULL','NULL','中国大陆','0000-00-00',
-'高子沣 郭达 阿依诺尔','李小龙','暂时无数据',
-'http://so.iqiyi.com/links/-gDPkyqNivgnr4r3tJFzb0DNdkmivifs9DKkMm3XhVR_pC2hQsWOH45EDPWtXq9S',
-'NULL','NULL','4',1,'/static/movie/img/s24563205.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10518,'朋友','https://movie.douban.com/subject/1303496/','7.1',182,
-'http://www.imdb.com/title/tt0070523','NULL','NULL','NULL','NULL','NULL','香港','1974-06-29',
-'姜大卫 傅声 李丽丽 韦弘','张彻','剧情 动作 武侠',
-'http://so.iqiyi.com/links/g49obPdKTgs7I__YdUKMzvC8fLWAk-vXHw_TxaCeHeIuC-pRjeywlIKRo8agCvrk',
-'magnet:?xt=urn:btih:e2508913f5823e56d80444a620fabae49c9a48d6','NULL','4',1,'/static/movie/img/s3029580.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
-(10519,'重返荣耀','https://movie.douban.com/subject/1300548/','7.5',2944,
-'http://www.imdb.com/title/tt0146984','NULL','NULL','NULL','NULL','NULL','美国','2000-11-03',
-'威尔·史密斯 马特·达蒙 查理兹·塞隆 布鲁斯·麦克吉尔 乔·格拉什','罗伯特·雷德福','剧情 喜剧 爱情',
-'http://www.iqiyi.com/v_19rrn506g4.html',
-'NULL','NULL','4',1,'/static/movie/img/p972360206.jpg','NULL','NULL','NULL','NULL','NULL','NULL'),
+# movies = [
 
+# ]
 
+# cur.executemany("insert into movie_movie values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", movies)
 
-
-
-
-]
-
-cur.executemany("insert into movie_movie values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", movies)
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:964a96f37729392221502cd8fe20a9389960045d' where movie_name='变脸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:78fe1ba0fceae1152750b9034b457372cfb1786c' where movie_name='碟中谍2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:043819240a90136c8f9088707d3d0fe5ddab1cc2' where movie_name='碟中谍'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cb67300a3de5d497daff406959a1fe06cd8e8c52' where movie_name='空军一号'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0b5ea9d414ee8bad71c2a98cfc1738f18ab8c42f' where movie_name='空中监狱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2a4dc34d40d8d48fc5e25ee69697cf6479ebb12a' where movie_name='胭脂扣'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:49544453f84aa112a045919f674f0f5929da8b49' where movie_name='蓝色大门'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:34f192a813f22d2c707fa911d1aa7259267aa61e' where movie_name='第36个故事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:862295f14a271ae9fe0ec527ff10c15753c35ce1' where movie_name='金枝玉叶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6a749d31e3150d27e6bda29fe32ce66ff7a7c9ca' where movie_name='蓝宇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:654f396dca1c6bdca7b903130ad847f36c1992b4' where movie_name='魂断蓝桥'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2f9f5d2854af90f1d48d63f74f6f7f47d090fe96' where movie_name='九降风'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4d3f4c61b9c60d604f907436bf47904289d1141d' where movie_name='蒂凡尼的早餐'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cfe0db2f561ec1ecaa7a29979283e7529da02c98' where movie_name='碟中谍3'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:245717ae32b5091a50841ea3e92a6109b7085c9a' where movie_name='龙凤配'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0bd9a84831c9c09c6caab8139ab0c7d0b82686c5' where movie_name='武状元苏乞儿'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2da23632f0f661eb2d305a86b14ac115bd788070' where movie_name='苏州河'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c13e9d4a078fd07883ad95800362d170ccc31acb' where movie_name='金枝玉叶2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1482de0f8974c526ae04bc2980d242fb2dc3397a' where movie_name='如果·爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:21d961d4b6cf8dafb39aaa8f34b4f82e45470835' where movie_name='暖暖内含光'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bbc1a4b27ac1e7b833afa652de0745febd0036a5' where movie_name='窈窕淑女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2dc2d8d6ab25d43e014f520f0f795f028b72bb91' where movie_name='偷天换日'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dde6a9a6a3022ebcc5f117f63c15d28ec5f58e7e' where movie_name='最好的时光'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ac0ef100b00639e98eda6453168a797225cc17c7' where movie_name='四月物语'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:353afba3fe6f1f172496622c3ae97d40f766e9d4' where movie_name='新不了情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:52fe8f9ebd70f43519f8e6a44872f931a4b07636' where movie_name='生死时速'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:751e8a248f38b03abe2c8074f4e858cb2a438a04' where movie_name='练习曲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0277145bfa1c184214609a62b2923d0bc19714fe' where movie_name='雨人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:65eac76054085dbd717485e22bfae8015af25991' where movie_name='茜茜公主'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a2ba6d2e86e9e34f4dad9d409bfde92aba115a4d' where movie_name='爱再来一次'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9b421f7ac2e05b1b6c45827254dc8d07685d3357' where movie_name='亲爱的伽利略'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fddcdd3fbe0ac898a175b5ca06db03891291654e' where movie_name='他其实没那么喜欢你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ea2e9b8e26d3f02301c0affab3000e98b3af169b' where movie_name='与狼共舞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0a7c4fdbad06d91c9100047555d30b26a7875c42' where movie_name='天使爱美丽'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:10681647f4466af804689dbca0463870d596d409' where movie_name='廊桥遗梦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eaf1bd4ab45802ac57e578222b5e45316ec74b59' where movie_name='渺渺'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4fc168ce78875f4f852487ebb9e468266ae2518f' where movie_name='云中漫步'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2c31cfb75fe2a7197b407f6b65ac01502df08a49' where movie_name='新最佳拍档'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c73765f3088b98004570d6d29f4b17835cf09649' where movie_name='艋舺'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:90c1195b4a010c93150620f0e7cddfff8cc9fd12' where movie_name='雏菊'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ce1846783a04ac7a551610869d9ad8d18789c106' where movie_name='盛夏光年'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9586145a5149d9445c271b34e4a175e1c589fe2c' where movie_name='只是爱着你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5054f1123f7224efa927ba84ef7b70d32e31dd1b' where movie_name='钢琴课'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6c52467af598b92e072f0c9786eda2bd6f13ab4e' where movie_name='爱很大'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:51e914d8c4efa87709c217e132dd4317e967c88a' where movie_name='浮草'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0a5baad73476046832f136d801b7e78d785b7320' where movie_name='醉拳'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e2a6a3ffd94f84cb74d7c080330c1e404156f7a1' where movie_name='囧男孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fbc32d2aa40966faa523a23a088c217e3b9f2a8f' where movie_name='娜娜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4a4ce4df4e3ac7c497c56b76d0c1de0c5db63ede' where movie_name='小毕的故事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0a9b0041ad2efae99804445ce133900600364c2d' where movie_name='鸦片战争'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:77bfd3fb5ba606e5f5e8801640169d18263121e8' where movie_name='百变星君'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0243d723544b1e6af56f49dd7d7472564c04e18b' where movie_name='步履不停'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5387ac6d9051c23c0707fc12896e3f12795c3f93' where movie_name='扶桑花女孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e5668ed1bebe8e5b12f24a010acb4be2c72d1aba' where movie_name='我是谁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d469e639ba4e794549c401dcc401a4f6c5980c40' where movie_name='卡萨布兰卡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e171dacf2ba53a2ea8a6ffd96a25a12b9f3e91f6' where movie_name='坏孩子的天空'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4bfcce361e3290183de374b8b8c32b2c8dc0d3a4' where movie_name='王牌特工：特工学院'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fb238ccdade115999ff088d5e81b6240ea1f0fc4' where movie_name='这里的黎明静悄悄'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7a460ccbcf79d0c67614a533e63a438d8dc09ea6' where movie_name='苦雨恋春风'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7406880938240ec2cb150d6b4d5e2aa1ae48a489' where movie_name='战争与和平'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:06e20c7436879e3ccaa0d269f47c1774802e2557' where movie_name='一夜风流'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b16c649fca147f9f413f3d80f4016b33b2a94713' where movie_name='六楼后座'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fa768693d24c87ca8b0afc6ebe02bfe06e602869' where movie_name='逃学威龙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f2e3a83959b12f74ded8938f34caab3a8de76b68' where movie_name='黑潮'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:31325b166c22225f93ac8e88363f490989de7987' where movie_name='阳光小美女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d4c0a26f1ad088ee9333c1b8d4ebc8a6932f5ebe' where movie_name='伦敦上空的鹰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a584f29ac7f74b275dd3e129abf98f5ebe6a791c' where movie_name='不列颠之战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aa85d971d527e8686c5cbc7dfb0755773bc53e01' where movie_name='纽约，我爱你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:097f86a9e941d614347652469d05e4bece82ffde' where movie_name='壁花少年'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:008fc60a2ae7843554c5914189f89c50857542dc' where movie_name='第一次'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f3a70c610edbdcf2e158bb6e266abb354d309a7c' where movie_name='红番区'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0dcefbb9c2a53ab2836384891de71dd31e69360c' where movie_name='野草莓'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c024de9590900a3af0ac374f139b21e5d24cc426' where movie_name='蛇形刁手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8c37918485ff63f97a0948601541f92351770426' where movie_name='天使之城'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ba2a12a144546238e7613a93aa422027fdec6271' where movie_name='下一站，说爱你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8d7eb040b585dee1e8341f628e97b3dd7e3ba62f' where movie_name='解放'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:42a01b325bea167a500ef0a89407ecdd63b944d2' where movie_name='简爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c54b87dab71b6accecff03e49b42840914890246' where movie_name='偷天陷阱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7dbe85b6bd03f25e883f4fd6e4887d5257ebd6d9' where movie_name='成为简·奥斯汀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a343d62d956f6a8f45335d13d04e62739f6e4f94' where movie_name='银行大劫案'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:77aa9492a67f7e441364651e0744b274908fd3bb' where movie_name='霍华德庄园'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4db3d95a3096279094a365dda8c8e07af86611e2' where movie_name='结婚礼服'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:365ddf12d39f03263c3de388f952e3152ea774fe' where movie_name='茜茜公主2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:114ea93e9013aa1c6a0e6e6ed3c1e00ee46ad55a' where movie_name='弗兰西丝·哈'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8eb2bccf299ef97722a8f7416ecc57dc00ca5e80' where movie_name='沉睡的青春'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7af05861c443e2f28859f217da87bb4f9897e9d6' where movie_name='穿普拉达的女王'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:65a37387fd6aa622bf30b2243e990dc73a5b3587' where movie_name='九品芝麻官'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:765265480eef13e7f9e4d630905740f0efef43d9' where movie_name='怪兽电力公司'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:517d13eaf02045c3452ba84abceb7e3570961fe9' where movie_name='偶滴神啊'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:77c55e66119d1d348aae45afe6ec033bba1a11f4' where movie_name='巴黎淘气帮'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3fac621261e4e2c12505af08503029c1d7b9ed45' where movie_name='疯狂的石头'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8d6363491839e76ab6689c7a2c03de79d07868f6' where movie_name='马达加斯加2：逃往非洲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c1e9ff8b5c0de08948e06431f80e9d5b316e73bb' where movie_name='27套礼服'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:56d5ffead53bec4afb590bc3b40a6d8cba6d9bd1' where movie_name='赌圣'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2ba13faa0fe0d1c99fbed1df9244e2ddd892b5e7' where movie_name='结婚大作战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:416a309f760df64dec23fc3162e03c6cd25213ca' where movie_name='修女也疯狂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b041eeb5f79439445158c647ce2eb40c5216a6a' where movie_name='大腕'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8894e05ad1b617c816c068df119a891a791b898c' where movie_name='虎口脱险'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:252a35b9570dbbd1b5eef7c8c4544e1a70b80b2f' where movie_name='晚餐游戏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0349b9495cf098431f0c970afea6339a54e928b5' where movie_name='朗读者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8513ac83bd8889730352f657d5e2e911bf5d397d' where movie_name='起名风波'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f5172cd51cf094bebc95e764b23a91059522008c' where movie_name='百货战警'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9608cac58fa9a0488c16251113427787dcfac039' where movie_name='没完没了'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b32251aaabd9721537da6f01947f52f7b189eedd' where movie_name='劈腿困境'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f0ee7687f8a15c9414916a59482e54f878579f38' where movie_name='关于史蒂夫的一切'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:72d524a0b6c61885a1f16695e76adbad097712ad' where movie_name='大英雄'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:36c9b88eb85569ed0d620a93b4f2966f35f2be75' where movie_name='有话好好说'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:080d089b2ed5b9f667f74ba9d9ce9da519a03191' where movie_name='整编特工'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:46a631ac5f2e8b2d434c0022a321e455a378837f' where movie_name='好莱坞交易'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2fe0d137ba19ead171b3fa403e824f0c106dd2b6' where movie_name='天外来客'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8a0765fe257e74ebb8d93355bc2897204c3a92aa' where movie_name='总统拍挡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4d5c28f1a7689d291109236f618ca8f056b5b14d' where movie_name='疯狂的芯片'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e2ec129cf46be11a0ff88dd66a184bd62e7ba404' where movie_name='大海之外'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7ef5e53970f1d3178d4a393efcea741ceea036d6' where movie_name='哈拉猛男秀2:欧洲种马'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5e59b002ab65704ab25e99247e55c0ba5cee5d7c' where movie_name='我去世的吃醋女友'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:caa0fe248ff0400a6c9ec1c18bfd207c7c96a240' where movie_name='的士速递'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fcb9058073d2e46f8df661a33c03b49206dffd4d' where movie_name='赌侠2：上海滩赌圣'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6f94174af132b68bb361871ae725d8ff1fd834aa' where movie_name='动物园看守'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:81dce5f3f25a0ebef7659bec428977c39f7e82d6' where movie_name='哈罗俄亥俄'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0403321cf446aa2fcf76e15ef1ec73d0eed2d460' where movie_name='谁又杀了帕米拉·萝丝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c265e80a4977e5a312c272599dc67b6f41f03abf' where movie_name='混合宿舍3：破坏性爱规则'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5a1f2b1358ffa1e91d2626ece47d52c3bfb00912' where movie_name='杜什一家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f55dc81bdec7c225c53f16b8cb66d5c09e0a40a2' where movie_name='雷诺911'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e4692e82a8f70f2891fc7e67c0067a51c2e650b3' where movie_name='未婚女子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:92f812c940ce9da22b62fc9b976bcd221f025274' where movie_name='美味关系'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:24ac39f901e2a475c7c716c7f7737083d5b9c322' where movie_name='孕期完全指导'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:656e04c8ab6e57cd5354f9f5e2a83d194a46b47a' where movie_name='狩猎聚会'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:05f100dabcf5803348248dcafa6d7db7017f69ea' where movie_name='歌声俪影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0205a74c00dbc1ed17cef93f663d91e7e1f1b450' where movie_name='开心大冒险'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9b55552506b870c9f1eb84502f92eec6e0ea99a5' where movie_name='101真狗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:00e32d297c14eefa52ec628fdba1a166041aa78b' where movie_name='彩票追击令'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b5b8db5c4eac1fd4b735bc75404c7b3fe6527730' where movie_name='亨利和他的六个老婆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f7ef218f1902c25f930e5cc0ddbc49b264bd8699' where movie_name='同居三人行'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:36c10d6dc5506536d24528b8d57279a7ab0de540' where movie_name='黄金马车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ebc44ca50ac31ba66d13f8ffdd7b258c27f4aa50' where movie_name='人面兽心'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9d31b8d2b06d7819adf81ce6dd099aca2831f15e' where movie_name='小子布里斯'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bfb352c87673eb53cc697be51b287d699347a0c0' where movie_name='变相怪杰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6b16b12b9e0f949d89d5c822fafb7a502c5f9116' where movie_name='一个购物狂的自白'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ca202c8ad35f93f1f8a01689806c484d3967aa3b' where movie_name='长大成人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:80a55c81a297a112c06899796005ec747c9d89d2' where movie_name='史多姆贝格大电影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c6680c4a496276e074635bb4f1a5de749b3ecf3b' where movie_name='神偷艳贼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:50902daed4391e942c82dd8424f4e5c5a36208de' where movie_name='分手男女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9d1503a19a3f21c4bc8371a5c3a63620b689a30f' where movie_name='斗气老顽童'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:86aafd061d2efacc2cb2688b5f01102285e3f681' where movie_name='玩转好莱坞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bd06455cfe909a71e8ff934dc3dccd9b75192fe5' where movie_name='战地军魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:79a1c4e5537912e6e172b7c9b75158ab4d79d18a' where movie_name='热情如火'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4e85edaf8a8c8b8d7ef4db126d8ebeef684c5e41' where movie_name='恋爱学分'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1674065424eeedc1674260d0c97ff351068e2054' where movie_name='米克的近路'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dc5a1db7b60537421f7533df7a09379bd8e96aea' where movie_name='大兵保镖'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:abc70e489c48b4cfa83a0c7a80256f1e8e2d9683' where movie_name='四喜临门'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:068dac8106066ef16cd416b650e350610dc353d4' where movie_name='玉女风流'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a8640b32e7f758f528e67b624ef7a9e886d88ce6' where movie_name='摇滚之神'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f355df36515744bcd1030c1e3d3d046b7c56fc01' where movie_name='逐梦郁金香'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ab579be8e062f1053f63f75604d25f9b44834189' where movie_name='维纳斯与足球'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7652754ff27f780b90f9bd2f547423a5e5ca08aa' where movie_name='蛮好侦探'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6a1c53ec20dafc37d4ad62f7dcf32aee21ef648c' where movie_name='花田喜事2010'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5f836b5a6fe0cf367a022567b2eae8461df6483b' where movie_name='一九四一'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c95a774c6572678af80a0ce1d117d566599e1050' where movie_name='我最好的朋友'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:10ea4202752c7b4fc9e00b27a526537909a27583' where movie_name='毛驴县令之母鸡打鸣'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:188959238dd517ff4a89f5e5a763558b27c4735c' where movie_name='喜酒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2ea14780e615d83538f55bb5cdd66de30deb89f5' where movie_name='新郎不是我'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8b461b80d611472ec65d536959fee55a2e49d901' where movie_name='我要当警察'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9eeeaa792a44e2d1f0f1b52688857d43b36a4135' where movie_name='大话王'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:497d91a55c65c99c025be88b67a83762b09249df' where movie_name='鳄鱼邓迪在洛杉矶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:77a42de171bfa01797e72c5fbbeec2e5c4a4ffaa' where movie_name='反斗神鹰2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b4b253f3207b914837043d7518902c35503c8cbb' where movie_name='狂欢宴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:76da1c54735983ac0162607d6976a7d2187512b8' where movie_name='爱不胜防'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b64488e0db9ba18b4bccc162ee804f77e43bb763' where movie_name='顽主'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:af75099e44fa759f60a5faaa33b97a9286d4efe0' where movie_name='霹雳娇娃'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f89c3adeca577ddddd9deed0641bb8ab5ed1f697' where movie_name='传教士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:13811ffe96fa71bea707c7e850f96fee6fac7559' where movie_name='过气校园明星'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eb18f1514755c4945f338a6a6b63382cfcd59ab6' where movie_name='空中大灌篮'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c67ba121594964228461021b51906754fd847ac4' where movie_name='我们所知道的生活'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fa091b68cb5bc5e515aef24252f3d06e4e10b494' where movie_name='巴里布'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:db0cd458f0127cf9756e54ce462bb842fce50e4e' where movie_name='非常嫌疑犯'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5dc63394d7960fb67942c0ea81d2d2661758b848' where movie_name='变形金刚4：绝迹重生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2024c1cda1f33f090bebebd0919f9361bf2f8f84' where movie_name='小岛惊魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8bc9dcd8bed061cafd8aac12255bb13dd72f063c' where movie_name='雷神'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:59d590d91920472cd13ff7c1614cacb06fc46fdc' where movie_name='心理游戏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1a02c271135d3719af069eb0ab46545c4669e36a' where movie_name='闪灵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:53a3e39947a33998968b45dbf550de8262b70961' where movie_name='王牌对王牌'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f13d09e5ae053f3e773306e0120e507192630540' where movie_name='终结者：创世纪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:693a5854c0026599cb445a31a334750032559f04' where movie_name='侏罗纪公园2：失落的世界'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c00ae5d552ab8f2f7c7b2727800b76fd29f8b9d9' where movie_name='妙想天开'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2cf69b918eb3bee3120f3fed8550bc83d96fb8f3' where movie_name='复仇者联盟2：奥创纪元'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0b4ae271bac4966fdb734a476624b79fd98af262' where movie_name='蝙蝠侠：黑暗骑士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:88418fa60ae0d8dd51825ecdc413aa392eff3cf0' where movie_name='群鸟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:58a949fcab9cc2b34b0b57d121ad727833b9696c' where movie_name='夺魂索'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:13feb724e2ecf9b904a65d835d41fb13b9b5b122' where movie_name='西北偏北'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d4c6598027eeb0913511b255b074bff160505b55' where movie_name='危情十日'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fcc1b5798b30b44ae4f36f9a3ca575547d0b482e' where movie_name='爱德华大夫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0f16323c06ba19acb2b2f535eba337fc0b0dc45b' where movie_name='蝴蝶梦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:305577d59eba6f271034b1d67935dff79eda186e' where movie_name='飞向太空'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:780f05ed489dd7ce7e24914f662b1a2edd5a35ec' where movie_name='人猿星球'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0b8c1c4d9b775eece7adcb2ac5b524cd2a9bc9ef' where movie_name='超级少女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1f2cb7b2013556dd602c049f4b0f8554efd883f2' where movie_name='龙卷风'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:735029f0ce5b44186267e44b95d940853da09be4' where movie_name='电话谋杀案'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6e7b53c0f610c0ab51d8b748195aad263c423e61' where movie_name='被时间遗忘的土地'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4d03b1bf83dd71faa6f37f7fb326ad906d0e3b0f' where movie_name='世界旦夕之间'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c597d6fada8dd0d5dcba30e5c65f09b31f0dfa23' where movie_name='热泪伤痕'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7198e4f44140d5d7e08ac14376ac7cb7e5e3987a' where movie_name='天地大冲撞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:22716cad56222e31de087d67a1be3f30c78facb1' where movie_name='守法公民'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d98e776633bcb724f8ec9e4faf083f3703fe2b00' where movie_name='对垒特工'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0138fa7f32b2a3dcd59b413a99abbeb20a3ded78' where movie_name='领航员'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:058ae4e94296bc3aae9a5237add49cd27b44027c' where movie_name='辣手摧花'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9679663aca6beae9261148686e3795522afce080' where movie_name='录影带谋杀案'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6f350f17910982893326ef83ba3c91d854d6cd8e' where movie_name='决战猩球'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:191e446b7e4e1e55968fda88a4375a981bf7b355' where movie_name='破绽'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9c585e9b0b683111402557cda4e08deb81a5b697' where movie_name='偌大虚无'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:504d356071f85282e48f0299032ae1a09cff3798' where movie_name='生死格斗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e69218bc9446d75e81b919e9db55840d2835c52f' where movie_name='杀手之王'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dd597771a6005f3320506ed0ec725bd7038738ce' where movie_name='中南海保镖'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:21d9d885cd6923d165aaa9787a5f23722a7c7c37' where movie_name='2012'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5980f74e24724e3dd75bfaeb936237cb68fe34f4' where movie_name='擒凶记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6f8fb0890bb2df059c44619a326af2f17ff63d48' where movie_name='魔精4'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dc3b0737a5e0e59429d66581ab997a3412d7beca' where movie_name='极度恐慌'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4803ac39cc258d92ec6219be255bd02e59775c81' where movie_name='不道德的审判'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:331ae4bfd321c76bbcfc085cabce2e859f8b444f' where movie_name='谋杀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fba56ae1d7ae57672698ef8a626d66aaf0a5bd78' where movie_name='午夜凶铃'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:15fbf3cdec0e12f829d4e20ccb0049b0fe1984f1' where movie_name='第二指令'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:195137740fa051e3c999f91b9d9b7537cbf584fb' where movie_name='密杀指令'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:66927c87f3c5546a3ad2b54ba59842cb2f10fdd5' where movie_name='最后一个人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f4797ec98c40a988ff1c9c4f834f14d8202d9d85' where movie_name='黑猫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1d65dfec850ab8e45a3d8279d06e9b7a70942d5d' where movie_name='十万火急'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0e68a0a015004233e52dd016e52da57677c79527' where movie_name='星际旅行5：终极先锋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5e36e5d9d50fa30318db1235271e5a5da99f1e58' where movie_name='威尼斯疑魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a921ee499a8f32e66ec46da3d472c44e97d42f55' where movie_name='方世玉续集'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f943b8d8ec6b88c412c613746ae7f32affa3087f' where movie_name='生化总动员'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6a7a16bdca18d451048550e391dd6ed0fd9406e8' where movie_name='神秘河'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f3d4f6383e2357ccde7b955561becb9a801c4926' where movie_name='后窗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:579528cb87b28acaeea979da48b6a1e251e2aa12' where movie_name='宇宙访客'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f9e106421804f9c9a191494c34aef4d9771a0e36' where movie_name='霹雳火'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b293200ed7f2a367f202e50e694ca7e4e82de70e' where movie_name='幻体：续命游戏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a79ee2e3ad93e180259aedc483e28fbd0c956709' where movie_name='基拉拉的反攻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3464fbc9dbcf9043321fff7550e9cc37dadbf7d3' where movie_name='特务迷城'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:33fde146cae8acd03d01802079ac12e91b8fc9d2' where movie_name='潜伏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c1e59ea27026c25da3ab197910bd511c8250ce38' where movie_name='没有面孔的眼睛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:56fc3b82c3709d9bd45ddadd262f00826be7125e' where movie_name='火星任务'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f088905dd1fe6a398a69c08464f00346dd1e0f86' where movie_name='人狼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b2fb16f05afef1746b7a54e1d0578280254f1fb7' where movie_name='玩命记忆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c3e0295f88d30868ad8c1d2716ca4f87a2521fd4' where movie_name='机器战警'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:42f901bc01b3cbf9d07c0b0491f84a4ee5350cd2' where movie_name='唐人街'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:43df517c6d3bc1a24a07f7c8b070a86a00b1d28b' where movie_name='地心抢险记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d4139da82eccdc9463d4c3f7d5193a215fac937b' where movie_name='天崩地裂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:66c8aea7312d11721a8c412a7811548c82f639ca' where movie_name='地心游记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b3b9304cee19ebd5e83916a62bb63694cfa16b5' where movie_name='环游地球八十天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bc02d403635d56cdc6c4fb9d1c152c486210d017' where movie_name='完美风暴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:985377b556f3bcd3a831a4358fd7b5ea1d4802fb' where movie_name='双重赔偿'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:08f850b161f3fe7833a8628b97f4a55640654df0' where movie_name='侏罗纪公园'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f49fc476c599b6437c206f96c8b62fecb0fee415' where movie_name='同流者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:30bc25b31d980ca1cef7d46fb20e3457e1a37a03' where movie_name='极度深寒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f537148339de177772f36c31328bf06583bfbd43' where movie_name='哥斯拉决战太空哥斯拉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cb0d25ad56d89baa872e00d9baeec6b9ebf07afd' where movie_name='疯狂约会美丽都'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8868d3f99474392343d417fcd5569ec41dd7630b' where movie_name='毒火巨蟒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:498f4bce945589283f9d2046b416b617d0538cce' where movie_name='灵魂狂欢节'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:67803ebfd72f0dc4797bdee4beb7f5687f647186' where movie_name='捍卫正义'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ba40813d772bbd85b94f0efedcb2350c5f065f4e' where movie_name='一石二鸟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:78953bbc3a50d5e58bc65574fe4a4f7b7825d96f' where movie_name='甲方乙方'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b814bacf9edbf78780fb164a988ac7e913cd36c3' where movie_name='光猪六壮士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6af574daccb96d9ce77d77bfe36e27205f3e9dfe' where movie_name='荒蛮故事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:309ce1a7f20ce6794c39b1946d878433d65dff4c' where movie_name='陆军野战医院'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:54e1f1186d4ef3a15cbbf64a3c2252dc22102175' where movie_name='闻香识女人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2e8598556e42b3fda948dab905b533c8515fe497' where movie_name='亡灵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8ae4ec51e57a3c1c1aba4f6184e6500d8e3ff6c1' where movie_name='破事儿'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3a03c937c0a8e3ea028bebf8bfcbb3861d580476' where movie_name='僵尸肖恩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:edb572285e5e81f87655c278112660404ede95d2' where movie_name='玩乐时间'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8f04de2220f73a8a301dd90654887bd26749bedc' where movie_name='奇爱博士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8ef61b85eb367ae410d60dbcdd362fdd68b0635f' where movie_name='七个神经病'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b81bbce64d71400a9f259eb37a3d900f4bdc1345' where movie_name='子弹横飞百老汇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c611393cdf808168a8e848dacb6a911a2bfcba22' where movie_name='新生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:056449d0cd8c1e6da39180ee5223b2eefe0c45a6' where movie_name='一条叫旺达的鱼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:88f57878af12b830bc88d875e67ecaba0601c4b9' where movie_name='有关时间旅行的热门问题'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f9ec19102bdda1d7265fca92ef70d13edbfcb245' where movie_name='呆头鹅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:adec9369f5ebae8c862982536e3f184f82035e08' where movie_name='香蕉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5eee76ba7c2ddf8ca7ee30310a8703ce7a42b29f' where movie_name='大丈夫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dca35e0201db5932867f0a90f38921ca1bab0c3b' where movie_name='无线电时代'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:29559de52873cb930b0136d1170e8f678b053c1c' where movie_name='航海家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f29d87376b994b71dfb8ebc51a913180109df386' where movie_name='黑店狂想曲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c379b3e9bf28d56105a89161cc24521889cfd5a0' where movie_name='亚当斯一家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6d7192432f7334adf4892a6cc873ae79813ed080' where movie_name='亚当斯一家的价值观'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7ac1b179142456c538db83b9bf391faf2d888e0e' where movie_name='火星人玩转地球'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:52c8a0a38923ba080e931348cf2ae5b622ea9eda' where movie_name='火球'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:05eedb64f53f0676d04c74de0195a489840e1f4f' where movie_name='谋杀绿脚趾'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2b930dd74eefd346add2ee013696de6e0b366fcf' where movie_name='群尸玩过界'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9a044bbb3069f8a0a0dd2ba99acf897755a0756a' where movie_name='第三类接触'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cdadb7f109d3ac751ff9e7d77c19f045cf7ad971' where movie_name='洋葱电影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c6ca3989b489cf9d81db91a17d3bb400d9b9b0b2' where movie_name='青春梦工场'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e88a3d3b7095fb76558f119f1e9fd71997959963' where movie_name='香港制造'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:956dbed3be308cd0264776700bc640ecc486b51e' where movie_name='史格芬顿先生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:abe0884618ba677b865fd96bbc03f64224cfd760' where movie_name='娇凤痴鸾'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5722f83b5f2811eafd0ca2f28530686543ca8201' where movie_name='黑道快餐店'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1dc0e7db629addbad80956645ae755ecad4d2f12' where movie_name='小姑居处'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ed043d9abf20cfcdaa80884386f2f9dc42aa80d3' where movie_name='回到未来'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:510ddbf4cdb9b0fc3591573a52443c0224bfd411' where movie_name='甜蜜与卑微'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8e84cea05119caf9d98bbd32e45b01a5018c643f' where movie_name='五月傻瓜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:daefadaf09a51ec0194d77db131e585da47b598d' where movie_name='活跳尸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6daa632421044b8d2b54c64519e1bdcc5cd5b06e' where movie_name='派恩少校'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3c8500dde7ce3e2e3f0fb7862745c20777c046ae' where movie_name='疯狂高尔夫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:25e2c586bb83c1d8a236d2e0a7434d991d184854' where movie_name='牛郎血泪美人恩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bf176d3e23c752fba3fca0f868355172a416462d' where movie_name='卡兹别克的女飞行员'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4fd6baea6fe73595790d56ab87eb1bb7e95e1087' where movie_name='缺席的人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d5ba62308a61b5475e946a83c1d9b29a8045cd8f' where movie_name='黑眼睛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7ddf87a3ecc852747b570aef921b867854006c77' where movie_name='活跳尸2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2ec53cec9ae550810e3ddd2acaed96f8c056ecb6' where movie_name='万世魔星'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4900a232ac38e421a913270b14140544acdce5ad' where movie_name='解构爱情狂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:919923b37fe31392d9d2d1062b41833b14ffe178' where movie_name='巨蟒与圣杯'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5449986dc90c305689686a05764e5db9b1e78c8a' where movie_name='晚宴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:72b8672fa6ecb36feb3948ea327e2b9fed40d2c2' where movie_name='抚养亚利桑纳'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:050d91dbafffacb2b8ff01da250dee81cc695b76' where movie_name='玉蝎子的魔咒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c6680c4a496276e074635bb4f1a5de749b3ecf3b' where movie_name='神偷艳贼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3ab1096c97bf92255462b054dd3562f83d98e015' where movie_name='无辜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d53c94779800828dcb2f6d8313d3f65f110835aa' where movie_name='诺娜和埃斯特'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9c5b295b5e9182154afd0b20093e1d2d6824012a' where movie_name='三个时代'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5b6fa625719222f70b6b09ba7ec97e59384abd8c' where movie_name='你逃我也逃'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e05cc3c986d248a24116632455c49691b5487acd' where movie_name='呖咕呖咕对对碰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ee487716cb58844a354780a2d58225f4fb22b057' where movie_name='人生七部曲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:78defa868d6e77690bc3f54a1a4edaf563c56569' where movie_name='影城噩梦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9b6ffeaa0fe995127779754bbad1d1e171f84ed0' where movie_name='江湖告急'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f8e84b35f0a6a409d0d8df8f34d44270c273ffca' where movie_name='爱情外一章'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c52adab52f831f802e618c5ae13d2debc50fbb17' where movie_name='爱听闻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:011103b858851380331a07485fbcba7f3e99f11c' where movie_name='黄金梦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4cb73850b8f5306c7e2cf4258e057998e4c32938' where movie_name='金鸡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f710f5c159b8323ff28ac68e5d2ded427013c8e7' where movie_name='花园'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f53387549a3ca122f72df259d42ee93200983f71' where movie_name='海上恋舞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:42a73f6f1db724ad2416cda6442f0cf94f568348' where movie_name='贼博士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d860981a32ff9c906cd8fe9be8cf16a986b2a391' where movie_name='回到未来2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:224402a0837a52c4304746f14103ffa0c440fedc' where movie_name='坏品位'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6c6190e59c94c6bd3ad1fb681c1b8cdf6b5338d7' where movie_name='影子大亨'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e4d2823b2e11b95faf2c7efb57381f11cd4b2574' where movie_name='奇招尽出'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e76720cc2f88755f03b2bc156615ee83bf5e512b' where movie_name='风烛泪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5dc95f4e53aa458ac34ddf6df067161e9da70b7a' where movie_name='打雀英雄传'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:224fac74df750951429102974d771fcfe3cff23c' where movie_name='七擒七纵七色狼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5bfe2c507a4814c5eab008eb783cd6c50802c350' where movie_name='舞姫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e6284bb3f5b2ff8602e9dc9faae4418ec984b865' where movie_name='不怕死'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ec1f8752a727d5f7969882248d89dc0919c9c837' where movie_name='金屋泪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:72bd766f587b6a4dc46bc71d2d9c65df9e971b92' where movie_name='猛鬼舔人2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:95f503df80c8baadec8fa2c7bb660efd18de34ef' where movie_name='第七天堂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ca567e6c2361387b3764b2e716dd996e9376285e' where movie_name='一个字头的诞生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:929be2bfae328f87e4d1d5425c0f8311e1e89721' where movie_name='雌雄莫辨'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cd812ee114dcdfc49f5bdb7f9faec1bc60881ebe' where movie_name='美国总统'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:567ed92564b94275b374483e46af168137801091' where movie_name='罗马之恋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:929be2bfae328f87e4d1d5425c0f8311e1e89721' where movie_name='雌雄莫辨'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:90e2e1b2e70b8cf84c07bd0a9e745de92cd31efc' where movie_name='篮子里的恶魔3'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6dab169c4510b2c49c633e8ad274a98f01cca8b4' where movie_name='傻瓜大闹科学城'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d95faa0006b089f362f41687cc5e6ba07887989a' where movie_name='大不列颠医院'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5f55e41736aa27b9ec089fca06cccf96a4a9fe67' where movie_name='危险关系'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c82783a040310544ce76421256230ae3eaf2931f' where movie_name='人鼠之间'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e3403960daa382bd9a5bc94c340df1f05371b3fe' where movie_name='天使湾'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:871ad74b4f634a3e7d464901ac3854ebe6f0a024' where movie_name='漂流'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e4b4f91100b9ee113807ac3d71c5b964157b9bdd' where movie_name='地球之夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d928b23dd997349e55f1ddc2f9e7cfc7b4ec3618' where movie_name='恐怖分子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:676cd2b5e280127685c8b8e2066eb97aebfdb203' where movie_name='自由'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bda8dfcec9b66e37dc1a439ede3eb0ef3308c1b1' where movie_name='守夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:16cc359b762dd929382c188a2c7d2111e82fa043' where movie_name='酒业风云'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:78e3b25d92c697e89e9a072475476502575180bb' where movie_name='印第安信使'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c2d9d0de91242ea98d4aa17a4aba040b31a63356' where movie_name='四月三周两天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:900f43435db0436bff40cc7daf0c5d155a8564e1' where movie_name='没有过去的男人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e420745c48985fb991874730a03bdf11cb162b91' where movie_name='战国妖姬'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f9e13168f6d439d52c5b704ca80b1a765f3afe27' where movie_name='柠檬伏特加'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4dddcaae048ccdd9aac1d0b45f4da8791a74a157' where movie_name='吉野理发之家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8e29aa5292baec065b8ce947f03ba0c8a4d5eeb3' where movie_name='罗塞塔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:80c78ae8ea338fe4af9c80dbcc8c563b9325d853' where movie_name='野性的证明'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6014342c898926dbe255abbf0af170380ed07c87' where movie_name='猎鹿人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b6c33e216a2dd9a2650dd9c6b1e79184c2e2ec97' where movie_name='谷子和鲻鱼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:af4c1c3e83d4d17133ece677dab782f6e2582703' where movie_name='最后一班地铁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7c13f30ba836c83cd57f4f10d12cbb2e0f460c88' where movie_name='尼基与弗洛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f7d33ca05e44d2d852b222a4e44bac7d4153a05c' where movie_name='金色大门'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a8967c32ebe2cd4ce71bdb6f40bfa3f0d1cc3b32' where movie_name='北方'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1746a37075d812b20fb05accedb958bb8a64d4f4' where movie_name='影子拳手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fd1ead0b680baedb9e4b6652c6640c142f9fbcd1' where movie_name='更高境界'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:32cc0e603eac940e5b0173e84cfc8b1b6ebe3669' where movie_name='伪直男'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:160e3f7a82f07c3a0741dc68db73237074d7925b' where movie_name='正午'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1e17e44c19874776570659f1bcbc0375cea255de' where movie_name='撞车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eabf07789fce65a9eb4769683e11714b3a1cac87' where movie_name='秋天的故事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ce39cdd23168d2fed77ae08a9870060be13f4775' where movie_name='我也想要'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b29c65e1e2491775ca2c8e2931f7210114f91b3c' where movie_name='自梳'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9dfec6f59edec93d878f5883ea7c35b7d177ed6d' where movie_name='海炭市叙景'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:26eb5f3685927288b34fd1f7308b65035cdb33d0' where movie_name='抛开自我空间'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:12539706bd0c2ba1a1ee6b2bdd561e794aa81110' where movie_name='旧爱新欢'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:622e84e0d5f9026eeabb37da77820e92418f0035' where movie_name='叛国作家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:21c6d008fb5f61900a0a4cd6e4c5b4264e49796e' where movie_name='在小丑面前'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d1c19fb16d21fde62fd12c5a092149408d6de2b0' where movie_name='搜索者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c7b078755b9dee869e6bcb41a6c76bc2c8870e82' where movie_name='山巅的呼唤'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4e8802f037ff19ca1a2273ab7d13d1dbad3b1fd6' where movie_name='西线无战事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fae04c35afa4ca31e539902066794ff772ee8e97' where movie_name='美丽夏天之雾之岛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:481e9917fd9c069b95fea32c2701b622244b290f' where movie_name='21克'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:15da8619961feb895973b5aba8de7081bec7eb82' where movie_name='桂河大桥'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e054c87b424449c189c336f93e0168db94f9687b' where movie_name='四次'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f1c72c77df5760e0a3de303130a403c3a92b9218' where movie_name='萨拉邦德'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:58f350c7aa42e6c1edaa552aeaf57c1ab2df8305' where movie_name='沙囊'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5518f004ae4814871691cb10a74314e5deb452cd' where movie_name='光彩年华'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7965088870c89913855894ca3991c8bce312b0f8' where movie_name='印度之行'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1e67cf02917c35c0f06b4cc4c547327d91fdcece' where movie_name='野战排'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ad33862c1784d1497afa9ff01ffc61778c5b18f0' where movie_name='光阴的故事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1ca9aecacffdacc3bbe6ff811559190e590bfc03' where movie_name='生之欲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:87d5d4ea71c3ad419e1353d682e28f693b0f18b7' where movie_name='巴勒莫狂花'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a2d4738b5544c37e018d2009a2c07d170c011917' where movie_name='群英会'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:61fb4e7b3e7038f756bcb5b24a024855fa9901fa' where movie_name='吗啡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a9ae3ae90cb19c615d56ea4ef428f0454d119869' where movie_name='丑角'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0c6ebf92f4e32d9e5b5ad88b9ccd9a97c9cf199f' where movie_name='彗星美人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3668e6c70eec45027d02033ec878dfb68ffc3331' where movie_name='娱人日记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7f679c50ac1704154c991e99a59464f4e4db610b' where movie_name='警戒线上'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d5fdb1337d7751e06a5e14247fb11d6ea2c9427a' where movie_name='蓬门碧玉红颜泪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5039fee68780e498686e6dcc768cffea6e532523' where movie_name='远方'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eaf76fba42153dcb94515d571383740d5cedd885' where movie_name='愤怒的葡萄'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:81c8619f81986a4a7654b9ddd7a94826f533a9e5' where movie_name='仆人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:db580e6ac926e010d11113d671813915578d0f14' where movie_name='同性之光'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fa4b41d9bdda6baf785e2314ce2ce5b73c8758e2' where movie_name='琴子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d6db3d9f812e1e9dd9ea83f130db4560d8b44f91' where movie_name='赤胆屠龙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:46559fbccdf8dc7cd471146ce8d5c1cbc6171ea5' where movie_name='叛舰喋血记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:465ebb64748d59d39188bce7e815bd1a8c6207ee' where movie_name='飞不了的沉默'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b74ab9585adf77830598f8cc094ef8d28c47d69c' where movie_name='闭幕'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c6634616ab7c700543b91253bb3de19d0923d74e' where movie_name='亚特兰大号'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1fc7896e55a885568927dc6394e4fe0d1035b902' where movie_name='影子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7bda7673d15c0b03e1f76a3234696c2d26eab972' where movie_name='大幻影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1833b7b0e7840e7c3698b48862999794d9f6d3af' where movie_name='火柴厂女工'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ccbd799df12af5267d0d5c9d1ca68cf95a6bfb77' where movie_name='心灵印记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eddf524f411897a6bd85c4577c5a2852692ad248' where movie_name='浮云世事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e499c7171853c3a32cce4e164020c084c31ef6e5' where movie_name='我聘请了职业杀手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:92ed77e1e1bf2072d6d6d10e43b98c84290124a0' where movie_name='窗户'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:345c5d22f49e178b881b6d6a0c7168be0a1a48ca' where movie_name='雅法'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4bbdb64eb596a8c2bc5fd714c82014f8e13c7d3a' where movie_name='银行经理'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:365a4b6ed54bb6906fb5d68fe5a09dbaca54ba8f' where movie_name='虎豹小霸王'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:642a7cc5870a784d7768c3183904cd8ad3895267' where movie_name='西行的单车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d5ec91dbf2e35ca6cee4604efddd11a73b725f60' where movie_name='安妮·李斯特的秘密日记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2b89e3d58a4fcff9065574308853863f31b5eabb' where movie_name='县警对暴力组织'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4c2a555c8ae3c00145b3aadad80c3d7b8fbd3904' where movie_name='孤独'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a3af065549020ea5f8f9d4c4b33720197e18ac04' where movie_name='前进青春'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ec84e29721d16e8671a54a7d83ccb017bf086964' where movie_name='冰冻之地'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4c13678019327bb0c3948dcee32abf779cc0a8dc' where movie_name='失去的周末'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2dcd7cb171a8351d499189d40ab5c3cb9d53e3d7' where movie_name='独行杀手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f1d2c74ca224e8e9379f644e32f40910aa5edf72' where movie_name='悸动'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:76a8367a0586bda15e46c6f6b4120f29e051427a' where movie_name='欲望号街车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:90941c9c3509c35ffe9b16b0aec1682d78a13200' where movie_name='爱情是狗娘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b206afe92b8857d33a263e3c31f0a90756e010ea' where movie_name='爱巢'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0b7508647694fc16fdb035e41b74d6d20471ed4e' where movie_name='一切很安静'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5b0cb431a283f0b356d79b63357dae6de18b140e' where movie_name='白夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ae3f8887125461fbeb3eadc47e42278c3a6c12f2' where movie_name='女收藏家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6d5b30486c7f5144e21b6112d6d5e8696b7594c0' where movie_name='魔笛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a1348097c75dc2ddc7328dedb30f2a9844d24bb1' where movie_name='苔丝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f000bf7528a0bc06c99ad2cc50dde11b8db7f046' where movie_name='时时刻刻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a3feae7879b3e59a90c7497cb550fed255898616' where movie_name='茉莉花'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9f9ac4894468bcc202d8faf7ea8296612efa1a49' where movie_name='荷尔蒙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:083cb2e5c0e027b9d39f442dae00deb0161327e6' where movie_name='缘分天注定'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:875bfc965e6d7cf61bf3232a4b32851ead667ff4' where movie_name='电子情书'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9df24c0bc5da496f8b75cfa0d5857b66b3f4e3e7' where movie_name='金玉盟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:57a6cfef1d835d93ac0093989b0983fdf94016fd' where movie_name='彩虹女神'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e58450c4bc93f070655c43075f7ae2affcd67232' where movie_name='半生缘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8eeaba486ac669ea9ff98a59089c10c7162631b1' where movie_name='音为爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0ea1fa22321a8cfb85309687c957fe4cb47b034c' where movie_name='李米的猜想'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:20d1b679c410349338626ca06bee76e73438e5be' where movie_name='千禧曼波'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c1bdd9f2e75eab2516d4856b17e9aaeedbff9c85' where movie_name='风柜来的人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d43dd9191e0b6f38c645b3c844ebdd864ac84088' where movie_name='当哈利遇到莎莉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ffa89d6db53aac907c76f60facec432646cc0abd' where movie_name='晚春'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:749e23ffcc872d32165729efda13b5a95b467146' where movie_name='猛龙过江'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e2b163f714dc485c0a8820f90812b26c47600b77' where movie_name='再见我们的幼儿园'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7300bf4adebd071d2d12734d32b1ad02c6181b55' where movie_name='我的初恋情人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:805cd8d299e89e036df5cbf67d12a95409315d75' where movie_name='郎心似铁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:447dfebead6ca163c57eeaa71a48dc202819a14e' where movie_name='晴天娃娃'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:133de26804dcc78b92681eacea7899726cb60210' where movie_name='穿越时空爱上你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:201fb2df4fe03d50f068f82a6620fb36ddf17631' where movie_name='看得见风景的房间'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:18d137c35f052d990b7fc9d763be49ce0b075401' where movie_name='警察故事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b168e57af524d1970d3ce35667fddc0cb5cc2f21' where movie_name='新抢钱夫妻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:128f15c9c9b507537ba0b6b44d5adbc6f5d19fa9' where movie_name='神探飞机头'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4c95bc66c43ed21fa369f17b933b4b2aa52eeb9d' where movie_name='你怎么知道'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5d8cf261401ae4d30436fa099de17745c9a1f276' where movie_name='不宜生育'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:30d7605a5f39ed48bb7b636851e69a4b4ec00ccd' where movie_name='别惹佐汉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b2bd4ae0386ec3c1edb83c216f3d7e6de7b7ba03' where movie_name='闪亮的日子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5530b152e880325f9ac6b545f9e928a5f6798915' where movie_name='烟花'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:348598792936afd2253b9140017b3878d1c57233' where movie_name='绿色性丑闻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:382002455b1fcb14e3f6dd18e73e32b0be44edb1' where movie_name='你看起来好像很好吃'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f13998e192150c14738c385e6113e3d946f79818' where movie_name='萤火虫之墓'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:06e472ef8575e22cce494d7fdbe086f947701c3c' where movie_name='勇敢者的游戏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b6cec66c0ade2b04fd96b822865111fc7d658528' where movie_name='战鸽总动员'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a88df80872065c114ce73cab69f0b16ea8285914' where movie_name='哪吒闹海'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:19672f61bb39a80a7425885891f7eca78fe2b11f' where movie_name='公寓'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:84350a305225e922dc0320a2b605dd57fd3ccfda' where movie_name='寻龙诀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:23e4a009fc4a337da7f6f6bbd97c24782c027d3c' where movie_name='魔术师和兔子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3bdcc236c67981a7fd92411092853cdbe7df87f2' where movie_name='听到涛声'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3a5ac1b65a5705b3fa3679e6fb7732d853e3ff0d' where movie_name='探戈'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9c34fabb830d0243fa4240b1cb9d4274b3bd1a14' where movie_name='电焊工波力'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ad2e854c611d317c33fcb20643c25e07b74638e8' where movie_name='黑暗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:63b445da0fe84c9b02d303355791fec7c2d6775d' where movie_name='东京教父'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5ce666978a51eb09ab2722b5f0b2ad70b98d3e23' where movie_name='平衡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:18a4dbce7367682e2f233d1366e1dba743e15fc2' where movie_name='萤火之森'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e8f78b685b9f5e042b01fcfe618322e3384d1235' where movie_name='其他'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a75f2773ea693f0243943492afb9b8af13b5e82d' where movie_name='碟中谍5：神秘国度'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c508bcfcf117ab932b0ed6c8ecb27792754980ca' where movie_name='落叶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:29bb35b274def1acbd1c0b89b57a0c53f6b733a2' where movie_name='天才嘉年华'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:58415262c6aaa3fdb18f168c9b79459ecb77fc57' where movie_name='回忆三部曲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9f2fbc9dafc975b323dae35670006f6e242bfffb' where movie_name='碟中谍4'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:75ce72e7dca6c5b6bb3a353afd95b44a2979ae33' where movie_name='帝国的毁灭'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0018fc6d9eb631721f9530756d9331b420473207' where movie_name='成为约翰·马尔科维奇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5fec2ca9b9f05dfe4f6db2b574b39f76da655f71' where movie_name='墨水心'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a1b81d20ab1ee07e86b593ca8b9fd84b745e76f1' where movie_name='最长的一天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b2217848464a988ee43053382e4d0c37ddda42ce' where movie_name='迷宫物语'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:816e4d3745f7887c7983d282312c0459695cc932' where movie_name='冰河世纪：猛犸象的圣诞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:77b91135ec5a912f7ee70aafec5046ac05200438' where movie_name='僵尸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8e66cbe31f9dbd29be46bc76a08911efb0bc9a70' where movie_name='鬼乱5'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:453cc1842628279be5b68ccd572caf81e88afe98' where movie_name='幻影凶间'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4de16592b8b16130a4624a3c56c11bd0dda96c0b' where movie_name='香颂鬼屋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:def6b3e05dcde37015d7eb33c6cf8e322ac3fbae' where movie_name='鬼妻2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ac4cc48082e9ba24c03d93b1896ff3257ab46a19' where movie_name='惨死'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6c97c77652c0086f92db9d2cbb5ffcf4709548e7' where movie_name='白目怪谈'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6a1a8a431e1deccc28a478c5527d60b4eefc25a8' where movie_name='预兆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8eab582301a4e5af4798718d6589aa936804ee50' where movie_name='死神的十字路口'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a1b7c5cc3aaf6ec5e53256a3dc658b6fea74e56f' where movie_name='送死'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:054989e3493135668d245d7b9a05b4a0cf802b9a' where movie_name='魔鬼教师'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e60668b903dd65fb95910100acfa5955e4ab33f6' where movie_name='鬼女魔咒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c0475ad694067e4600abad4fe39c01aee4ff1f61' where movie_name='恶魔的艺术3：鬼影随行'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:48bddc735e224911049cf6e5d710a4ca13b64519' where movie_name='母亲的双眼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9855348258759fa528e4faa10fe796fce4908c0c' where movie_name='灵虐'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b4680b2e9d26332e6faef69e84174cb90ab90227' where movie_name='灵异咒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ba556188056dc3ceac86d117a44e529c0646e793' where movie_name='凶魅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d9b88bd346ee241637ef0e0d19eec3eb45c19617' where movie_name='传说中的故乡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d46cb381f080a5ea1539bbf0dc8a8593d3d3e08e' where movie_name='禁止心跳'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:faa1224913d8e924d47b5593b6cbd7bf8a70840c' where movie_name='富江之终极复仇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0f802b89e90379a25ab3ad257e548f0458ea9010' where movie_name='凶相'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0ec321ea9fb556d93be1d6b27d10caa50f138a06' where movie_name='诡魔童'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:24f57e49f1b2ac7956133b1ed5a5b78b974d03a9' where movie_name='鬼哭神嚎'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e8aef7affe1b314085a8d4d907ba191268e860ee' where movie_name='富江'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:24f57e49f1b2ac7956133b1ed5a5b78b974d03a9' where movie_name='鬼哭神嚎'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6f046a6838391ded6032df70b8c6001c947dcca3' where movie_name='传染歌'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5e0b77ed15ce1c9849ce5f751fc98944360396f9' where movie_name='恐怖废墟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c36f17fd39c47e8056f9aef9b6f85707d463719f' where movie_name='血宴2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bfa4545739abd41ea6672f5ee4457c582138d641' where movie_name='有客到'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b80b6273fc36d6686398ef4a9257fa712a957b8' where movie_name='死亡占卜2：恶灵始源'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d1bc87453d498bb4815ea2206e2eccaec1e4b111' where movie_name='坟墓舞者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bcfc5a744e6282bb6df1a4150f065dd3297d175c' where movie_name='着魔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eac565f34aa9a2d0a5ab98148f8caa311014f541' where movie_name='恶魔咆哮4'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dc804aa3065d2ec88d738f8d5435dba6b9c86f9a' where movie_name='血婴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cba32720c5cee65366138c23c4aa33691a31a0c5' where movie_name='连体阴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:686b4e5bc46172aaec28884248046a322588c85a' where movie_name='求死不能'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f98b91ea65354cf5000b70994da4994f9b5d5cab' where movie_name='尸骨无存2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:32e9fcb0f7e697bf4c9b7991e7071270585ff6f7' where movie_name='恐怖欢乐屋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2022ab5915ce419d7f0cc8def098b5566fb6c0d3' where movie_name='鬼铃'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e8ac37125ae206bfbd12b115203cd6db789e14dd' where movie_name='死者的学园祭'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6e600794ddeb0cd10f6a72e853ab77cf8949323e' where movie_name='鬼友女伴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fcd61ed2eb5cc8c8a0f537921446f44caf86dbd3' where movie_name='女劫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:79eabace9dc407d2adfe9571c89ffeb73c096d73' where movie_name='土拨鼠'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d3d8d7018f69b3314bfc0b545758f595552a9501' where movie_name='幽灵鬼屋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6f3172d0a46cdd241d54e49a1288deb42f725160' where movie_name='堕入地狱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9e95b94a79b798e3ae56c19e2e53da6c2822606b' where movie_name='至死不渝的爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:815835cd0ab9d46c6051e5e4e3741cc43ca2bac0' where movie_name='乌巴尔多泰尔扎尼恐怖秀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5100d6177c66924e094f0617d650f4f4bd4c86f8' where movie_name='裂口女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:052b974ae34eb5ee3600ac6bb853eafa2be68c8b' where movie_name='三更'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:05bb9b818fab4eed2da81c7824b93d8cfde69696' where movie_name='血的圣宴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:095ef027a43d7ebf5626db2cede6b41251ce3a11' where movie_name='七诱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0ed8e18aba4fc5f48201ee6fe67d6d0e03685521' where movie_name='死亡经历'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c291b6dcb16d6f7fd73d567ff8aa7f84267e1fe5' where movie_name='猛鬼列车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:90fd1a79c82f59dd545f1692ad81200387ac7f3e' where movie_name='浴血凶宅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:19ee630b1f09bf1e57b60ba6b45edee1ce55f393' where movie_name='鬼怨'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:93f582bf2ab665d131389e81d2babb3060de087c' where movie_name='灵魂密码'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bb3bfe85c83d9392c8e84e43461bb531e850509e' where movie_name='无限富江'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3cd6e05e5843d12a87c72fdca9a8258961a71810' where movie_name='阿娘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:faafb7c523d882bf50db6558e74e2f6aad2452e9' where movie_name='仓库十三小时'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b45d376c77d9534ad70fb6a56bac2e25d1c57007' where movie_name='三更2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4125edf2a0c6aa73b623f656f9481a1f3df23ce3' where movie_name='死水'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cf8aaee9d3410ac2db42a2c1c759f4aa58171184' where movie_name='荒野恶林'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8c8843d378af5772352beedc99e3715b3eecd22f' where movie_name='夺魂医生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a7bbc0f3060561325e474d7a5434d8acb7624911' where movie_name='卡车惊魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d5f84c9cb5ec4e8818b6a4d0de49787e44c05908' where movie_name='妄想症'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:01f4a71e9dfa87521ac752f9093465522a6dfb53' where movie_name='血肉狂魔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:19672f61bb39a80a7425885891f7eca78fe2b11f' where movie_name='公寓'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8b5a75ddf3df2c0a0277f85febcde8271459e028' where movie_name='亡灵咒怨'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f83e7af4ac47c57a76861b3ddad52226cdc6c1f4' where movie_name='饺子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0d5b3ec7b10611b78dfa9b9fe41c3f184f886da4' where movie_name='缠身'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:276e1e5e8df494af7d4a5bd7cbe05fd3ce7ae5d3' where movie_name='致命吸血鬼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1bd59dac02cab70ee77675b22a69e81aa8c9c189' where movie_name='恶魔咆哮3：地狱门前'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1eb57968c118f0ec7f7ec9bfc9cc442f00f387a2' where movie_name='重回血腥死亡营'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cc02d691a407c0c24ed8e9af3f68715e82a84172' where movie_name='陶器人形'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cd79fbd2d42cc1b02ef73332ebe157efcb9d5acd' where movie_name='床下魔怪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2a81eb59f6c6e3fb2879989288950edd6796021f' where movie_name='魔鬼艾德'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4a995482e8017a5066c3b86e46fa5a121cf0a4b0' where movie_name='感染'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:58eef9cc3395187fa03886ef2f3c89b1bce55673' where movie_name='橡皮头'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1069fb88881f9d803305b462e1bfda71408276e7' where movie_name='鬼银幕'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ebbe2a6d41e6a40f63c232a301535efa2bc3670e' where movie_name='东京超恐怖传说'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:33637738f99ed562b19a2b57f5077b2874c2d835' where movie_name='催眠'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:345295c16fbd882eb82c31f9c2a02e2a8b29a4cb' where movie_name='梵蒂冈录像带'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:46760024551f41adf83a9c1b44585c73d3c26457' where movie_name='深入阴宅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:099eda7eec9f3601c48b1cd1befb9a579c36af35' where movie_name='黑暗的幽灵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f2c3f11f75405d30cfa7b95ceb14f9e65a88f3d0' where movie_name='笔仙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:51eacaace11ce5263c30217d74fa49997c1905f3' where movie_name='险恶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:002b53215ad82933c89cd6bafa198fe15e1360a4' where movie_name='最后一班'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fbc54333e2f01874dec7c8ca5973c8460f7889a5' where movie_name='鬼蜮失魂地'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9e9de2b2137c1439e20901da69817717405143b3' where movie_name='红沙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6727b9d7153b6d620ddeb272fcbd4b290712ceb8' where movie_name='蚊子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5f1bb2dd1b841532a6f8f468b770e1869b3c2fd8' where movie_name='总有一天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2719cbe54940b0b38ea369e2fa9ddbcd5b48690c' where movie_name='伴我同行'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d4914dc3cbf242c8db9d56f56d16537d96e9814f' where movie_name='逃离德黑兰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:414765389389f50a696293813c033635624bd221' where movie_name='无敌幸运星'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4c3ff46f94d82901b4fa9e1d64f4c34c90cc30e8' where movie_name='逃学威龙2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5774b7acfbb45e63392f7b166255283794d789df' where movie_name='铁线虫入侵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a33fca1b5ada9b3e54032a703484adfb39464950' where movie_name='炙热'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7e134c733a59609feadc4c26e680f55dc8ac07ef' where movie_name='狗脸的岁月'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:af4d5ca73000fcd8c53b9c951823d5924a2270b6' where movie_name='你的名字。'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6226b37c302d5403c09341dcdfcf4a837e4d58e9' where movie_name='万万没想到'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a8e7770ad89c74322e6a39ca9c6a119f6da1ac8a' where movie_name='合约杀手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3d664b853da8f25b9c3fa55659f3647bd52a237c' where movie_name='爱情与灵药'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7fd043ac75008d0a514dd35836a0785c2b920eb6' where movie_name='金橘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0dae0f14ae50a1927b32066a19cd3f2f42b1c6c8' where movie_name='一诺千金'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e2522b2494b3d2b80d1208eb8bddc56bb23cea80' where movie_name='算死草'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f75b488a13dde034a60ed1a85368e5222f16833f' where movie_name='老男孩猛龙过江'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6b82afb158d0bb2095f16427f2f334fef0982226' where movie_name='宝莱坞荧幕女杰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c4e0c0213d6a4c313f3892fd0412d4c21d8c5951' where movie_name='我们的故事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:78c1cd965dc702f0ae2ada770382d4074ddc1ecd' where movie_name='独家试爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c6827db7b1be593570eba1bcd7665d72e4e23267' where movie_name='邮差的白夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:18b81e706ea99f34fc024467606304432e16c60e' where movie_name='麻将'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aef6507deae589bf4b266041a37ed5c026c62df3' where movie_name='龙的传人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ab82c3c583563c198c9b277d155335301c615c33' where movie_name='季节'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0a70db8b96aa06faaaf831d081e01af6ef69f3ce' where movie_name='十分爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0c3bfdac1926bed55f282bcdd2e831c88052efe6' where movie_name='人在囧途'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:11410651b9efa88a0b3da5a4941b1979742fe28c' where movie_name='飞不起来的童年'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:51ae1a606490e0e541656a99cc77907ea856bb84' where movie_name='日本沉没'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4442bc6da55f8342b39356edffcdbc144c39fdc4' where movie_name='私人订制'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cff1077162bfe3c6047613aba8947296eb431d8d' where movie_name='三枪隐情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3cf1db41801cfd6bc566838d8aefb30322ba6736' where movie_name='傻瓜爱情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4bc465808e8e25dcf271bd137b24ca65e8831d80' where movie_name='济公'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c4ca3509f28bb76b2c634435df0f9c6bed5ca32f' where movie_name='低度开发的回忆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:21d37046ffb280efd501932178713b1324579d95' where movie_name='火之通途'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b2cfe12b4f59ecae7ba0e404b8c5af8d6ea02004' where movie_name='还愿之旅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:877f924effd08dd7eeb2cacd0b5592d556eaa9aa' where movie_name='101次求婚'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b1bd25b4409774e209ab9f9367028ee92c0a0ae' where movie_name='我杀了我妈妈'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9559b9e7c731b5a30964e438332ca83f05db6747' where movie_name='十全九美'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4787a95fcab86ed4a6cae90ef1f6b533008fca13' where movie_name='小萝莉的猴神大叔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:efa2f2a1d516096818f431411d5b41468a15a980' where movie_name='受难记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c5f12fb0e174a4fedc4c428d5997e62a7bbf48d4' where movie_name='机器人侵犯地球'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8ce339027335480de4ff9530e1f0c35b82c732a6' where movie_name='我脑中的橡皮擦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fda6dc7bb8bda75a2e7ae6453e80ea5b01a65438' where movie_name='伯德里纳特的新娘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0609c3abb94c62f42fb013673329eed3b5ecbdbd' where movie_name='幻想之爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8b9f0b2c099d45199c1e91f2dde59d6cf2729b6f' where movie_name='来来去去'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0c1c9b4cf515bf04dc3dccbeb21cfa83c380e5d7' where movie_name='斗艳'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:233d4dcc4c09382ef4f72ca0d951acf01909cd06' where movie_name='无人知晓'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5a77bd2caf52e5c6473568f6aba26a558b47ef07' where movie_name='我愿意'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7609b6a5d7c62a398aae790b10f5799e7eb700da' where movie_name='粉红帮'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b1411f2e99f886fa31572d42d685a1ee3df1bba8' where movie_name='少妇大战摇滚男孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d539d70d449548bc2d0729bfa68c58eb3dccec19' where movie_name='南极料理人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:89737d94b70bba59ed7328398c9afff1b12ce2e3' where movie_name='保持爱你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5f05208cd579bec026a3d657eb69a1e1b86ff9ee' where movie_name='社交网络'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b0250c19063b2e3cccf68d3a820afd703b7b6d61' where movie_name='古怪小子的神奇故事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b5df61eb4dc2ce6f41dec473105b79e2006db3ea' where movie_name='早见，晚爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ea15b76c10c483859d00f2661e37da87367ec5ef' where movie_name='拉斯维加斯往事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0c78c1d04837f52bc0bab75a39b1851d39bf4f87' where movie_name='神奇侠侣'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0cfb9c253978bec2d8d8a1763cecbc146389dafa' where movie_name='巴黎小情歌'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:513e806cb1219f74ea354256180ffa629c98a10e' where movie_name='三个男人一个摇篮'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4ee3dc6948ae70119c6937d5ad3db7ccd25fd36c' where movie_name='婚姻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a948daa23f9b001fdd399e8dc52343b011587b81' where movie_name='周围的事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a5019b68458dc2514bb0b9b615cb4cd45fcdf28d' where movie_name='君子协定'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d7df266731409a669e4add5e4d37373b49641510' where movie_name='紧急迫降'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:833dedabc21a761faa94b8fa488a2ae430e46386' where movie_name='壮志千秋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a411a020c34e1b0bcb9a3c4a9e7598a01a660b03' where movie_name='北京纽约'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2d97d1d0d0905cfdd87ae96595ca5c9392c017f5' where movie_name='露水红颜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dd92e98e0e8c53b768873abe06361a89e337d573' where movie_name='后事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:40100d5faf209c2b6d9ab4cb0dc19b0af834ef31' where movie_name='那年阳光灿烂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1d0d4c17da72db12a60e487ec27f3a03e1168b6a' where movie_name='荒废的车站'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:382e38bf0aa3cd439c3fd3ab93347024e657bc57' where movie_name='异形入侵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b74a4eb8a032621e715cf8e3f288c7e1cc9df26a' where movie_name='八部半'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e3634d230319033891177069e098a39f80451b42' where movie_name='狂风战神'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a5ace7e805d5f0151336423bbe481fc0ecebe88c' where movie_name='有顶天酒店'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dca45657d024b7df67a18ddd42aeb1fd40e87c0a' where movie_name='东成西就2011'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4436eec5d54b70d1eb7a1db0fae57ad140628953' where movie_name='烈火恩仇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cf64a8e579248d1159d8d5ee29adebfc785812fb' where movie_name='颤涌'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:51ae1a606490e0e541656a99cc77907ea856bb84' where movie_name='日本沉没'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a6e21f65849e4adf8d3e0f9cdbfa21ee2510f04a' where movie_name='在云端'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b0afcb7f677f582e6fc657c3e5f79fe1c05bea4f' where movie_name='成功的滋味'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1b010e43852556880679eb2bea41aa111106aeba' where movie_name='把希德叫醒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:91f814960e5d49d74108dbefdd6e55e9159214a8' where movie_name='盛夏的时光'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:67f00283a74ed1792cf1b9b4fb621e97bc0613d9' where movie_name='猫谜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:355b8fa51dfe811014cc8627d4ed46053ddb8d97' where movie_name='在屋顶上流浪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b17dcc95e5bc446ef511a172f5ce86a3c540664' where movie_name='恋爱通告'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:78cc8c659b3856eef0a671b9d17d0ebb85cf7393' where movie_name='分手信'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:695f26537d7d65a5765a6c41c184d7590f9d3e1a' where movie_name='一切安好'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7bd1e350afa00e8f93fa80e5f1e8ea4c98ed732f' where movie_name='杰出公民'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c1785eceabb9788aac0246bc893e50b7b6b79ca8' where movie_name='风雨哈佛路'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:144b2c7f9a18d4338abf2c0de6639135f5a3465b' where movie_name='浪潮'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0542bc98cb3f680e4e16b602f8dbad60ce53ba9a' where movie_name='爱国者日'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:28bd435fc315b9256a4b900fa73bca2e106b6192' where movie_name='弱点'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2969f5cb75d5f9f2e20df086c5c7806cbf6fc597' where movie_name='斗士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a05ce19a6d2149536ad67836fb6d6eeb4df8d2e9' where movie_name='怒火救援'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4baa7566b27ce1dd2424b91b925352df81933904' where movie_name='自闭历程'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:36b1f4a9cefa0c7f6b58dcd1c0904f1ee0a87c01' where movie_name='冰血暴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a181e5bde759e3c0d73b7280955cf6594b793d04' where movie_name='光荣之路'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2964f5eaa4b035bd8cf8c55865edec3db6e9332a' where movie_name='赤焰战场'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4357cf79d5501bf5d4c15a741e1f85d3de9a886e' where movie_name='四海本色'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1e276d09c4e9095bbe3d8cc87a173dec429adbbe' where movie_name='夜阑人未静'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c0497037fcab17cc8bca87b5394894aad534d287' where movie_name='追梦赤子心'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0e2c67d76f527781ce21094d1ef8d4133bcaa432' where movie_name='红圈'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2203a0900ff8dc5474e5ebf7d138c525e0b070c3' where movie_name='猎人之夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6f8e7f3669ade764c12f05c8dc4696c175cb186b' where movie_name='奔腾年代'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:db249d59e5aca2ca142efb6e4a1c9724e5c003ed' where movie_name='十字交锋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a503f83f0af05af011f13bb2cf21343f5f3b2626' where movie_name='你好，再见'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:891b0bfb16aea97dcc8aa91373ee68c5f2e58173' where movie_name='血溅虎头门'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:41b05359f3580bea9b42345c4e0564efb6ba8e98' where movie_name='爱人谋杀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9b160607f1f766b793448d8af9a137fa08e7d713' where movie_name='杀手之吻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d6b5ae53639e9f15dbdbadb0dcf4804ee836669f' where movie_name='疤面煞星'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4a5c135e98d95664dd37c16cac1af2303b3c61f5' where movie_name='我的军中情人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7425c2679eb8ee0ef5aec707e28dcb4a87d6d906' where movie_name='历劫佳人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7b79a11418966d11e0ab303c3386242f8b3923ce' where movie_name='阳光灿烂的日子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f38625e2dcdbe1e4f56309dfcf0a7714a18d7ae6' where movie_name='蒙娜丽莎的微笑'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3178842a50dc761d155524be0e0abef7dfb4d545' where movie_name='十七岁的单车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:352fd4c6370077fef48a8acb9b579de203caf6b0' where movie_name='火车怪客'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:56c117d98904fe1526830f4654f43e12bf951735' where movie_name='赌城风云'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:493a6f9fcf3958d059edfba66262fd776ca53466' where movie_name='纽约黑帮'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cdcaaaccde8acd410431a0bb241f0b65581dc873' where movie_name='挑战星期天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a8e7770ad89c74322e6a39ca9c6a119f6da1ac8a' where movie_name='合约杀手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f677f0a042dadf458c5ea306b43c9ab60a56bfcc' where movie_name='安妮·霍尔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8b3aa234502339151a8508745820d7fc3bf66734' where movie_name='米勒的十字路口'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:851ab9dc1f932d901069b8170307bc7675fe5940' where movie_name='冰上奇迹'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9901c6d131c6553037f9244f480319b83b692ecd' where movie_name='桃色血案'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3f2ada6821f56c8911508969d63aeeabb9061288' where movie_name='断头谷'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:048e898a287a1b6349d0c151c449c40863ae4b2d' where movie_name='心灵投手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:68d13908cc8a00a0d761afd5ae057b91c1340077' where movie_name='无间道风云'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:df87f0f333a804974e410c9d0deeb4384a146035' where movie_name='永远强大'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:873d5facdd95b90c6206d777de260f532016cc70' where movie_name='穷街陋巷'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1f98cb174a52d672f93d617a5fe057a4e6b3bd32' where movie_name='心底的逆流'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b4337a06c2e302b86efb4338ad9da532c51b1bee' where movie_name='忠奸人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:97dc6e3507818be1c62aaf008846d79d140d188d' where movie_name='泡沫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:32ae85c873610f81044dcf671cdd912822602efa' where movie_name='隐藏的恋情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e137125eaea682823e2edc5d0bfaed5e2128bea5' where movie_name='荡寇志'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aa2ed774fcd16a5fdcc2b98a097a0e9a80ed9569' where movie_name='拉贝日记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:69d4ec06b4d50e4c1922244b99ed2c204d46b782' where movie_name='飓风季节'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c829e4414268d474032eb6f1b1976cba4ca6d664' where movie_name='盗火线'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4e603a460549fb0d34104dfb3994accabe7f91b6' where movie_name='冷山'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f8ef920841dbe0c4f681fd782a0cb7630833fca2' where movie_name='不夜城'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:003a7bd1ab5af1519c5488b813ebbbd2524155a1' where movie_name='神枪手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3417c255bd73ff044cf7cec58840ad2e79401320' where movie_name='暗流'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:77aba510f8af4c5ca051a707635a5921d66ae910' where movie_name='神秘拼图'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e45ba36df4aafb033bfc9e3dfba3f183976a47cf' where movie_name='成长教育'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:767514275479cefeb354fa8d0c0410e2ae68eb9b' where movie_name='新少林五祖'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b60c5ec6a8802d2fc26693f021ca71445c178b1a' where movie_name='孔雀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:707d1e4c0d9c9d1b08e466f5da9a8139e5fc3409' where movie_name='给爸爸的信'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1862807e25397a92ed591cb3d6fb4db3865ee016' where movie_name='窃听大阴谋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7a3c58b658857fcbc0d0c235f3a9513d588bd0bd' where movie_name='铁面无私'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:17a2f92595a5eb96cdb98fa6e520b422ffcc007c' where movie_name='马耳他之鹰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4820f9533e9d917e35f9d4621bd39af7df0d8874' where movie_name='只是爱的问题'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:76f9ded1a91382c8bc9081b84f22a7e6c700d833' where movie_name='毕业生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c8a1067d4f58298a90e6dd4b1ae6c2c58bf1f5ab' where movie_name='发条橙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cef7b572f5c6d6ba04d2ddaecef684aad77525be' where movie_name='梦旅人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:56b1bf8a550b26beb70c6f138652c8b3dd41d8b0' where movie_name='可可西里'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:be207cb33892ee71c0f8ec63f1a9424295666600' where movie_name='黑街追辑令'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f6d86289b412f427f8a766d5b1a85dae9e66dd3d' where movie_name='第九道门'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:710edbc0a06702f6386bf41b4f74390b2b260d71' where movie_name='夺帅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fc8d3da26f55455a8e467f81d658a62a1adc7264' where movie_name='西部往事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:19967d78a45273d01382ba1069fda7bf0a9def5e' where movie_name='杀人狂魔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a181e5bde759e3c0d73b7280955cf6594b793d04' where movie_name='光荣之路'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3a850aba1c25f9c5936b68885f8a53ffd69bead2' where movie_name='洛城机密'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c48eac660061a60986d203c50a62d9eac29c3b75' where movie_name='歼匪喋血战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:53bb58b7362f3d724992cea95602d6690358a1ce' where movie_name='夜长梦多'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b8be899bc5edce2b23bad6a39e6ce668a47cec05' where movie_name='出租车司机'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:caf4edd5f73e4110a36f68fced85514015fbe791' where movie_name='龙虎门'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:081b364c4a3285599544e753d68435d7b0d8bc32' where movie_name='后继有人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:78acb234d7f9a8179faa4b3cb0261a0bcff5095b' where movie_name='沃伦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f846f8cdd907fadc7937a910c0ac90a57d027a8c' where movie_name='贺根森林战役'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:940dc564cd46d1ef4f56b4df51fa5594d0ede04c' where movie_name='天脉传奇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7a931b61c2858fc51b295d8cedbabc0a092f381a' where movie_name='哈特的战争'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2dac2b4100f963bbc4b012364608bacb37af3d6f' where movie_name='海底喋血战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c45a8262a9c3dea4ca71db14821c17940488dfe4' where movie_name='范迪门斯地'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:75f089f71f85319886a4daf398cbe8b2e6cfd511' where movie_name='隐蔽深林'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d8c2a7300a6fb9ebd001f5356a366f3b0eeca99c' where movie_name='高地战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2edb98df5c76a24e04f7a4fda7ddf634c30f98e6' where movie_name='二二六'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7bf848eaae307784cb606e84fe1f45efa8b33d4c' where movie_name='绘画还是做爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c9074c8d19e2186c5721d24e3edc6637231b0704' where movie_name='细细的红线'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:413d6625f995a8c81f471ff469fc6a327663f0e5' where movie_name='纵情欲海2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:21fdf9f203d5b308f726a8c53b2f33b672084c18' where movie_name='雪茫攻防战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4068badd9899d73bdc64f4bfb0426291e7cb1a20' where movie_name='公民凯恩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:33000c90877051b5354724ba262ec892360c20df' where movie_name='黄牛惨案'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:618088771d660001560fa76ecc946b1c707a37ce' where movie_name='日落大道'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:049bb8ebdc9fdd1e8220914e1bf13eb0ce5face2' where movie_name='光荣之子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d693e43e60c7353119bf88ed9637397736d9af06' where movie_name='乱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:57994773cd7ca4f6a98e5274e84d8606d66b7066' where movie_name='故乡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ccf93e36f5833a8d42e5217fc27becdcf41f2085' where movie_name='救命'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:60de7a9f5e71e6643587b5d09bcd9242f143ecce' where movie_name='华沙起义'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5810f3cc549bac56311d828b51643ffac0a38e03' where movie_name='大病人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:38039a2fbe7f26d52f0c3ca87b1d1d9dff8e0e4c' where movie_name='纽伦堡审判'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a1d51835aba6b95b1d1a81deb20983327913a8fe' where movie_name='鸿运女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f4b96ac12a1a0b4d9e4eb9edb84e3f128e472958' where movie_name='赐我一死'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ea025a8bc9db7cfc23b03fce4e65da39986f6aef' where movie_name='纽伦堡的审判'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8b01912095fed9267bc902cf89952c914e74bd74' where movie_name='忠臣藏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:247013683f806e1dd9535781510d91292cfb1ca8' where movie_name='欲望处女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:10e15198279cc1361d10ee8393d421ad00c47680' where movie_name='伯纳德行动'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:43adc1f056245fc14d2dc362edf07dfb4c328337' where movie_name='春宫电影人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3bb9c7fe14adf727140613dad438c2f9ea9085b7' where movie_name='间谍佐尔格'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3027005db25e9a2a7b23dedffe38a6e4624d6cf9' where movie_name='愤怒的公牛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:036539388c85f7627d006d51a36bc742ee07423a' where movie_name='72小时生死线'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7d67dbef6d74139fc9d5c5dff57a7c46e814ae4b' where movie_name='夺命剑'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eff2f75037b85bf4de7e29b6ac25922087272303' where movie_name='红色之州'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:870a2c3e6e5feaa39f79232b97ef32effd96cee0' where movie_name='完美计划'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:47c3706fca601062886b49bf0e0b0ea1ddd6638e' where movie_name='做爱后动物感伤'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b73557cdd35068a6949cfdbbe1704ec7f4855ef1' where movie_name='拉塞尔女孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e4f6fa69fd9abf30d5dbecf5f84e2fcdac61cd16' where movie_name='五支歌'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:417792ca531f7b8240ca4d17e33fca173a8d497c' where movie_name='誓不遗忘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9b36096a3153fd4f90053c74d905f85fe458ca60' where movie_name='深入敌后'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9558a057c36af0828843ae3a0ac339d951cd77be' where movie_name='情色地图'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:221d8d60150ae9212c2da98c8dec3cccfb798570' where movie_name='喀土穆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:34a390e4cdc3124c77bd143ffb3a8624235c09b8' where movie_name='枪手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:079931dd9ba79a8d89a83f653313ebfd9a26ec36' where movie_name='性賊　セックスジャック'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a61033fa50055a6a3b3af938c14a452c371d5323' where movie_name='希望与反抗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:059cc579ab4e1f7ae21adbeb9d01cfa92af7378b' where movie_name='华沙之战1920'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f55d215ea4ae4c4b9dc2b83bee13da4d3d315f9a' where movie_name='佐罗的面具'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f58df9bb24a4b50f090f7ceaab0a981a131f00a9' where movie_name='收件人不详'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:80d69379980aa9d731d52567b2f6ceac9f79d9ab' where movie_name='四处散落的碎片'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f6960c4cd0dbb43f7632f5b128b69101d75f418e' where movie_name='黑暗之下'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:10082d08a31c84d539cf54ac4edfbf092f0e6a64' where movie_name='五月五之战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0c750180f6c0880fe6c91e01e94ff6e4c1f199c1' where movie_name='椿三十郎'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cd35e16cd0745850bb4abeb88a04cd2624ba7824' where movie_name='影子武士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cfc564117934c735cb718a3a0dd0a2c91c49e763' where movie_name='黑冰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dfc798962041c686dee63db2aed8e8b14dc2250c' where movie_name='小矮妖的复仇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4c1e37e21bbd67d7e3f147787686318678362c1e' where movie_name='嗜睡症'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1800ab9d1e27c37af88a8606c65bcf24b5d096c2' where movie_name='纳瓦隆大炮'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3c502c12e5c0011b82b4f8af9d356182c56c9478' where movie_name='寂静的生活'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cff974c6855670daab3b551e42320189b4e57fa6' where movie_name='薄荷糖'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a7c92488f090553a7341838ba9e4fa9023c540d5' where movie_name='雷克雅未克鲸鱼大屠杀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:389c4369a46da188d60343f1897f75b06c6d5b7a' where movie_name='望风'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5190385008241b63a161c7d78da8e257e7620e59' where movie_name='丰乳镇娇妻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8571a48816f6c45650021f21bb14af69bcdff569' where movie_name='豪运'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:face8ec2ec325f5f164f1ffcc345f9ea1b2ab944' where movie_name='海岸线'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ab2eb3399f0880d8caa7782691b2736fa9a74ef5' where movie_name='青葡萄砂糖：17年前的约定'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3718f50af520e3db38fd08db8a77a4aa6d460a36' where movie_name='18道爱滋味'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6402e7d3cf4cc400f9959c05265d383927bdb60d' where movie_name='苦难'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dbec9e3c737b1fab4d7fdc1f84b1d3c986048cad' where movie_name='赛德克·巴莱(上)：太阳旗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d62543ce180ed245fc18eaa3d6d117b8e7e6f99d' where movie_name='大君主'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a88a02e825f501376688e6d8a0b7345cf47d688a' where movie_name='失认症'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ca336975e9df6540721c0b7a8f644ebd5bdd4e72' where movie_name='性女贞德'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ea768156ba354ab4ec64d1434ce146982e5601a4' where movie_name='乞赎的灵魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5601564d63c48011a2716026edd375594ee51d57' where movie_name='埃迪：梦游食人族'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a5f90500e6346e1ba1c944de8507dfb5599a5005' where movie_name='续座头市物语'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7ee5dda4d0e7f9b0e1bc19ad05e70fb9ad687b20' where movie_name='保佑'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aafd1493d5042c640ab4ebbd733b2129da1782f9' where movie_name='公平竞争'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b799f5b71a07fffe2f819c740b1febc3ac19a05c' where movie_name='灯火熄时'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5ba6bfe153a646f26bef78f6c65db0f351c17737' where movie_name='冰冻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:76c52f4aa001b121b51ec7731cde2649f1040629' where movie_name='阿基尔，上帝的愤怒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b08aff5fb3ca4e066fbe7b63d5d454a0324bc7d4' where movie_name='周末'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dd357e78f74be610449bba72d053a087ac7c65eb' where movie_name='火与剑'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f90e7db0f6d5281262ec9aa2f79333a1419e654c' where movie_name='停电夜杀手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c6b1b55517e4270d30deb5a20e48b4e0baa216c7' where movie_name='搭便车的人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9e58aad26cbd06b4719dabf5029978e5470ec1d0' where movie_name='漫长假期'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:344b7ac0a23a5ec9d5e2b6586c0909e965161575' where movie_name='奧古斯丁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f44d3586af6c0b3aa9cdabad6b697a7eec765b96' where movie_name='第三人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:21ae70241a20e8fc4fa4110c6db5e24f87ef3d92' where movie_name='亚麻色之性'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3657343003fb94e1e464b68b22e12fc4a6a0a30c' where movie_name='十岁半'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a946aaa312bdd7f48b5d540500c25ba2e980b50f' where movie_name='魔宫战士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f8b0796e42cb0247642900ca9d6a7d3114b3b731' where movie_name='钻石13'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e4d41db81e5c00f33215492c53e8206e98832f91' where movie_name='施陶芬贝格'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7c9b2ca7d7ba7c6f6f36096112dd8dbda9474bdc' where movie_name='猛男情结'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8f2811f39c515a799cc4f700e39ff1244ed467f5' where movie_name='他和她的孤独情事：他'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a1cc59167f8f678ff22c0079df9c84137bcae196' where movie_name='八月照相馆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:39916be7846b76863cfb0ef45974b77fb3a3f802' where movie_name='死亡列车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:80a9a2a89d0d719ef41df18890ea36e0fb563605' where movie_name='费加罗的婚礼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2030b373aa6271a5de2a24e8609cb0cb2578484f' where movie_name='审死官'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:66889d4cc189233af815cad37e6e2c2cbe8ec7da' where movie_name='欢乐喜剧人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:924d1049eb00913632d578c481bc1b88eb9e43c0' where movie_name='五女闹京城'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bdf7718796dfd6c32484830ae1ef8ed3afc200b4' where movie_name='从天“儿”降'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:99c6a5aa8b217672d5ab99bf1960404cb728be8e' where movie_name='定时器'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f7089d43395a1942b163161b73cb2a65eb9a5e5c' where movie_name='牛胆神偷'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4c5666c6f9b0513cead2cd3a146cb7bfab5332ed' where movie_name='美女敢死队'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:587afefb111262ac9bc4fb12ea36a9b0f3b4887c' where movie_name='王牌情敌'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:69e85fe78c6d847204802b456c6f9274f908cd78' where movie_name='唇唇欲动'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b0620f10a99e942f7f4290d92b46699fa60933b5' where movie_name='拼时代'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:63d6422face3bbacd73f1a1dae8baceee8b40187' where movie_name='我想和你好好的'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fe5e2ddd50b6808b107559f1d4db9a3466b4114e' where movie_name='雅加达'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:63f07ed30959abc07fcf9073f283e260deb3f7a8' where movie_name='练胆儿'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2ebcdfbc0e4fac89d7fdb239bc41169e776f1692' where movie_name='纯真年代'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8d9039c3bbb09b979623e35398aa35977c93852e' where movie_name='百星酒店'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5c2470b68a0f6d507cd5fbce42f4cbf9a731bd3c' where movie_name='开饭啦！'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:875ccfad27d80379057dd9f7cb567c56b1d28192' where movie_name='我的早更女友'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:478313e22e43d66b1d9343db2faef5f806145bc6' where movie_name='八星抱喜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8fc14ccf4d892e08a132724e0945b95fc74e9ad4' where movie_name='笑功震武林'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4d05af032b5bf8d286d962977086298931b7eb62' where movie_name='等你追我'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:08632c25eeb2707a15b388fc58b4ab45799dfdef' where movie_name='开心魔法'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9c2a103e07fc08d19c065f2592286ca19d7ac691' where movie_name='贫民英雄'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e90358fc42636650122f483ab71d2dac34691406' where movie_name='分手合约'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c1b2ec0526f85b7dbd5f46e8828a415dac66605e' where movie_name='星降大洗城'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:02e36b2a7ab57bc84f44e4ac25f2879c3a91c656' where movie_name='男人如衣服'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:951c7f608398d7cf73b4eb0430ae848ffe739748' where movie_name='奔驰的大葱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:35af4c62852665e329c93a8d813f351c1df32233' where movie_name='换爱七日'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1ecef757f9c40e5b55186782fc4cdc9ce70f1297' where movie_name='幸福快递'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:88754601dc0de0d682cb6d6f3d9735f951da3228' where movie_name='像风一样行走'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b1264ef03b2b22fe27a7ac844a43f17b4305c368' where movie_name='2012喜上加喜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:82adbac0e4e40b068cd2bc215118cb3501d53933' where movie_name='爱疯三次元'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:758598d3832abb9bd9a3973f9616816265b292cf' where movie_name='这样就好!!'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d4d53f71fc6f91b66957ef5bec2bc7c03c40c959' where movie_name='微信之艳遇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b6f2c4b1b038d31a620090bdbcdb5594e0f41434' where movie_name='TANITA社员食堂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eb75649b47767c5cf7094572a1426228bf51fb15' where movie_name='空姐'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d891224cb51e3517e66af584bc1890bc891b58cc' where movie_name='晚上兼职'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:359a578e0735c0674257a0b164200806cbb1057f' where movie_name='完美约会'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:659270b9aa3d58b25030d76b0eb9a898af182714' where movie_name='画壁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b8175f0438c6043044c8c3aa8e64492901c4d908' where movie_name='家有喜事2009'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:55726fa78f6a42a024f3d292e7b8dfa8e51992f4' where movie_name='漫才帮'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ae7dc3a2dc1d32feb19754dbabbc1f4ddd913031' where movie_name='咖啡馆的故事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:943156152e0d595ae084b6cd9dbf3588a46bd099' where movie_name='喜马拉亚星'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8c5d53a268c58d2787e4b169baaa4f4ac2f942d6' where movie_name='罪或罚'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e0daef48ed56d584998ff1bb19a1503392c331ac' where movie_name='大家的家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:74eca2c4084fa46329c0eb93d80c4970c382056c' where movie_name='太平轮(上)'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2d6587d90394dbd2dfddae9e8f5a0152e36f0d13' where movie_name='幕末太阳传'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ee6f4f572294de4d3dadfef4b9b93febdd1e7c94' where movie_name='关八战队'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ef03da0f41fcf71e1db3204d3cdee2e34afa54ce' where movie_name='山茶花'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d859e700ee46ccdb92d184bc26b6b19804c4d305' where movie_name='天国遥遥'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b4ea158112bbe716856d7abeb8d8a8b3f5b2e161' where movie_name='王牌制片家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0c1071fdc91a17c752ffd1fe8e481db5578c15e7' where movie_name='在池中'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c658d5c2d9d2dda5dc7e9d71a7f636f3dbff09e9' where movie_name='一路狂奔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:355b4706213420b7f47d0a6c26267fae01b6027e' where movie_name='能不能原谅你，我想想看'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b66a54b531bcbdfb19bac04f437884c39d35a112' where movie_name='热带惊雷'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ffac535c9091cd4965532702fc7a6eaa4149f16a' where movie_name='幸福额度'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2dc08a7671fe9c864971d2911df0b8d047ca38cb' where movie_name='皇家刺青'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:10ab93c66a6913699d8f828b67268dae99cbda8b' where movie_name='音恋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6a0e676ae37a4ce0a5a74bc5d590aec77bd74c4b' where movie_name='星闪闪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5b9dfe50d9806965cc251aac3ddadcf99295180c' where movie_name='深黑峡谷'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:33559498292652648699b1a34a7ddc50c3d71868' where movie_name='麻木'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:39711c7c692a34ca8f4f003b71d8073bcc5e2b89' where movie_name='迷失课后'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bb21c0cfa340cef9a740a1c023e5f9cb245a40ae' where movie_name='转转'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5dbe292b8faf911eea60fe01052940d567e5b2bc' where movie_name='书道女孩！我们的甲子园'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:46140f21be10eccc33725471957fa8459ca045a9' where movie_name='大胃王'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aea26bcc526c8f43c43d095a3582cc5a9cdaae3c' where movie_name='车在囧途'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b4e4276e1839ecd03ed9cb65c53988968368013b' where movie_name='杜拉拉升职记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cff804fd292e099eb99552a9c044afe9253f9be6' where movie_name='十六岁的武士道'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:88571884c6f8a4ba16258e541a9cfa180f0adfd2' where movie_name='我的老婆是赌圣'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7fc3877e210ae40229dd9e917d84c20a1237abc1' where movie_name='海边旅店'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:651f60917bb7cd186b0ee2a17c772a27f0e51012' where movie_name='邻家有爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cfe6a37fc388f0da6729fdb2032ccef28434dc01' where movie_name='维京人埃里克'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:081c9e2b69457a08ec4f012ec09d2bc118d63699' where movie_name='八个拔河女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:32828d1d5c1cbba3b9c66b1ffd2abf9a462c4b36' where movie_name='十号公路'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f01ccc3919a6c839549d0270373d2f7ba73abdae' where movie_name='三弦之恋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0f7b94ed0578f12351abadb2d5632d7f750051b3' where movie_name='自杀俱乐部'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7829edc19e67014fd85fcde0eeaabe597c9bb29b' where movie_name='马铃薯'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:86a44ceca1dcb22aaf8bf67c9ba3b13ac165f6a2' where movie_name='无厘头森林之第一次接触'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d164de22dc28ec500bb5f56c336220276519706d' where movie_name='青春年少'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:14557395356b541e90d4c5747c6d4ca3372374ec' where movie_name='海市蜃楼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:38594c94584f6f026b76363b3ab2de228b0648f3' where movie_name='消极的快乐，电锯的边缘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d13609982cc35947cf95a87001994314830873da' where movie_name='阿游小姐'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:83c35d749b092a5f32afbe9056f33b9a737d368a' where movie_name='塘鹅之血'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b99c40a25e2a679bb49ee74d88243da29318928f' where movie_name='鬼马狂想曲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:22368499acf3c6694aa5ae2cf759e5ff012cdb47' where movie_name='自由恋爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ea8e451a6eab3ec185565ab7ed59c374b827cf49' where movie_name='蛋糕合唱团'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d7b502f024c4a22749245f43a4f86df696b68afd' where movie_name='西班牙情事2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3e52e399c50ec8d5338f082b69d8814ea1218c2d' where movie_name='一部喜剧'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2c1046eb29e1c659394662e7a193982e3b3c04e1' where movie_name='派对女孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ca19989b32f236dc86676cc4a1c8c0c1b43204fc' where movie_name='山樱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8f351c1b8ffc8ca4e9bc5d7cbaa915c49bc7b74f' where movie_name='菜鸟总动员：毕业'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f9138fb353969e14b38259b8c0544eeb57b8d400' where movie_name='练·恋·舞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:80798467f19137419f168707f2ac8dbe4d0af640' where movie_name='飞行兔子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4429c8c640617c3d790ccb7632a78537278562d6' where movie_name='绝种好男人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:81dabf38226826a140c0504478e003b53e75a6ec' where movie_name='疾走马丁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7d4bcfd2f122539622d922b52664b5be3e4b4796' where movie_name='世界有时挺美好'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4f51789a95f433523f394a03f30f747db6c7b745' where movie_name='我的老爸是基佬'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0515529354256ced3559aa3163a1198d9c422256' where movie_name='乌龙特派员'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e1afe8d94e92d8bcf7bb411c4556d08906377639' where movie_name='比利的好莱坞之吻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b6755ed85e236bbd87138ae4643c2c4f125b8ccb' where movie_name='守灵夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e43a9f9e38f645c3c00958cb0be18778b84c2efc' where movie_name='GO!大暴走'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f33fc64fcd796e61d54b8894b546297ba11ba808' where movie_name='菜鸟总动员SP'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c64387a32d37d42b1a2a9f63804eced3bdd65aef' where movie_name='爱情喜剧'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d036c249c395745ca22a57af4a362cc8b2682a93' where movie_name='不要忘记我'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3d0c43c00a5c625ad165956f7ac17b57db334202' where movie_name='如果我告白的话'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:358ad9cc7d2901fd0e70c9893e320bf22aa344dc' where movie_name='仅此一夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7a00cb73deb45a7cc85e79cc933479a9778206e5' where movie_name='因为爱还未终结'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:99fd15cbe4dc35537fe88a9b5d4a898d1c04a404' where movie_name='黎明前与你相遇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c4ff84546322f0876e01fe2540365d1490e3a5b7' where movie_name='国王与我'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f45fea32cd5eb68fc753a0052da598472dffd7d6' where movie_name='金丝雀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b490f8f1b2861bd337e9175721f0a8e0dbc4c072' where movie_name='电车男'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1052412c4411b623692197bdd33b94c231f81f35' where movie_name='后青春期的痴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:caed1ff4ee41ddf45a3650d85c38a970968d3c8b' where movie_name='青春击球棒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:65288267f97f18e6b2d0ea73978062bce7198b2e' where movie_name='失忆少女物语'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:09e04050c44ba54d79cef3a2386d35daa9eb25f5' where movie_name='洗车房的故事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2788089a77f37680ae9fe7e5e699bab0925953e7' where movie_name='甜蜜18岁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:04ab70703ba3dfa4fe2c35ac36d8f25f82664ed4' where movie_name='下妻物语'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fba1e0fa1d1332a5f100a87afefe9316c32afacf' where movie_name='瞧这一家子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8b246149f3502a58e54d1253b025f461e3f108b9' where movie_name='爱在舞动'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6279bbd6c367f8bb366951d12f54edd9a71d7477' where movie_name='恶梦小姐'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:638db00ac2fdd33d040cf22136b6c99412be828f' where movie_name='黑暗之城Tarung'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cb407c76f7728ba40e84b81218569f114320a0ec' where movie_name='舞妓班'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:049f2bfcb28d1730fdc2807ae7f585003129a8a8' where movie_name='特丽丝塔娜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5e65f42a380a19e85cef948f3796e2a0bb3b5434' where movie_name='仿佛你消失了'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:54429a4be094c8207dd5d7cda04959f59f2a1ecd' where movie_name='父与子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:155429be251cd553354081a3a7cee31bb318a19e' where movie_name='爱要来了'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:674d0cbf37c271df6799030ef726c1640fd0dd1c' where movie_name='玻璃唇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3716d179b35cf517ce43d097d889b1fbb5270bfc' where movie_name='超级无敌追女仔II之狗仔雄心'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:88a438899dcacf13aa85a4621213e85feedf51ba' where movie_name='飞翔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:602a101963cadc160a798bee146504e1b3b0b580' where movie_name='暴风前夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d8076ec82316a0c00bcf79d3ac8ecbf5974eaee9' where movie_name='碎片'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ad6104f2868148a1ccbb27c79ee8c345dde87162' where movie_name='百家乐翻天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e14906d7fa63a74f72b53cac76f383111136cf2d' where movie_name='打破圈'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:081db3e45e72f994dd1658f92ef67ef4614fde48' where movie_name='代孕妈妈'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c473cef382967014306d3397a3e83a71931d49f1' where movie_name='公路狂飙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4abb3559bdb5a3f6f63ef675155ccd1cd13d7341' where movie_name='黄色的眼泪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:75b7a4ce2c638a305a3bcbeb8f7075d8de67b4fa' where movie_name='花与爱丽丝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ae80b5ee18fe21129eedc0533f75ac7ccd1bddc9' where movie_name='鲸鱼之夏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aeecdaf547adebdc5136b26e0b25cea6c6df744c' where movie_name='幼儿园警探'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7dd6e90c4ed33571f16c1e8927f4fbebfec92663' where movie_name='夜晚的远足'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:13d0e680434b7a783e753eb499c4f4fe419b657c' where movie_name='嫁个100分男人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d938a65315a44357f2dc22376e7aa0c69b2140cd' where movie_name='角色'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8031f2ff9a37f4acbf064527d7bbde52543a0ac4' where movie_name='卖座大电影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:578c56fd9b809485a599127e05af8f22ccf97954' where movie_name='漫游'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5b8b2453528317280f0f68b56ccc8364cc646490' where movie_name='恋上你的床'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:59b69b538c7b5c9d2aa5aab26a7ab0e19ac941e1' where movie_name='笑之大学'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a2f68da4933a153291af09595adcc958b93b8d07' where movie_name='请说爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:30ef01e1a4e714f6ecfd441d416716af06cfd0f7' where movie_name='愿被你爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:50ec2349cbffee6db66a0a6edbe67d57dbcc27bd' where movie_name='举起手来2：追击阿多丸号'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:64a5f1765975544a8a403c12b7574f30d18fdff5' where movie_name='下一个星期五'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cc8fce7abbb038d4ae2296cc6cbcacd78bbfb791' where movie_name='绝望'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:651f60917bb7cd186b0ee2a17c772a27f0e51012' where movie_name='邻家有爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:76f72ce8d4887ae1576bb4cfec11cd8e92f1972c' where movie_name='童言有忌'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:167159e5425ec5951bff4f39f87316df97930bd6' where movie_name='隐剑鬼爪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:20eae018d51afa7a7b6f9b83698be0996310e928' where movie_name='我们必胜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:51948a63fc3e8e4e6c69cd32c7f72a0a35c62336' where movie_name='常开野蔷薇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a2cb3cde948a4a6a8c729dfb33f1379e1697240f' where movie_name='恶意的诱惑'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5c44c89e90b6cdf4f16eff22eec4f4ac37c64295' where movie_name='沉月'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b4d31453888870ca8ea5f3163dd6f4f25baf597f' where movie_name='花好月圆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:de70e8f43872d7cb2beea1d250e7aa5795110fb3' where movie_name='叛逆骄阳'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7e59f0455e0829781a8915c1543dc725643c1841' where movie_name='我是你的英雄'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:033633e66b5eadb00a233b733cd1710a7ec807fc' where movie_name='搞鬼小筑'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:084f3a2f5f390fe47bdce44d60ec701361dcfab6' where movie_name='哈默尔恩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:377eaadcabae2f333fdec65896d28d0f100e837c' where movie_name='泪光闪闪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:79d4841e15be07e03465ba0f32093251eeb616ec' where movie_name='最后的天堂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c63baac8f6cc65892c82b8b9aa73877da68d8fe4' where movie_name='夜风'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:01098e5c27f405e2bf96b1f254629283fc0ee598' where movie_name='你的朋友'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b594ae3744aaabc916884e53dc98ff645cca0898' where movie_name='背着你跳舞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3158ade043b279eab2c23afafaf15dec5d342158' where movie_name='天涯海角'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:628f5080a1f3ce9a1d5c12a29d41f9bf3fe62c84' where movie_name='高速爱恋火'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bcde2610bd3f9d9f4fafaca992dc37685e6415e9' where movie_name='爱是漫长旅程'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9d9605845908dd71cc95c0923ca5373b2d8cc509' where movie_name='暴徒三兄弟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:caa5681922f138c37f81999d5193fc22c0ba8dfd' where movie_name='迷失海岸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fbc32d2aa40966faa523a23a088c217e3b9f2a8f' where movie_name='刺鱼的夏天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:413d254e6976c848d91e624f0a4f715e54453081' where movie_name='僵尸新人仔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:45c7f1766f576877ea4f90de473110ed8fe2561b' where movie_name='龙纹身的女鬼入镜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:14c43fa878c6249453b8b1262f062390306e1a68' where movie_name='消防员'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1fe551d50e1687ba4dd14193fbfbcf52aff7efff' where movie_name='金色情挑'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:79e4dd58e7545010ec53d94f36af7cf0fa3aeb91' where movie_name='明天也要作伴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c5c1be4b6ddc12f2a3afa4e923f1253aaaf74a3e' where movie_name='爱情新鲜人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:12fdcfad63e410f0baa40a74e075d56ae1c991e2' where movie_name='欲望熊市'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2e64439b93b85f7df5d26a69bfa96f624909e455' where movie_name='平凡情人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:48e35b6805b1e2ff7daf8be5e9ce0be56070d5e6' where movie_name='黑蝴蝶之家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:522ed30c24771cb0ba7d53e9dfed9f4511184c79' where movie_name='14岁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6711d2694dc49ddd9a9f16cfb1dd3f222a550d5e' where movie_name='火爆浪子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e52e01b7cfd814e2c2436bf427768fecb1658a54' where movie_name='爱爱囧事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e0823c38d2431357b02af95783db6acaf75a90be' where movie_name='青春荷尔蒙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:86316b4a809c91ea7aab4fbbc2b8b0e4e0398e2c' where movie_name='夜店北京2：女神禁区'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:753534d0f2cef9248c90ee6348a0a6ca43f90c78' where movie_name='光的棍'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3b9ff82df1fdc672fabeb24c4236cfcebf36b780' where movie_name='擒爱记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8468212ad8ad69c57dac62c9634e552bbfa45306' where movie_name='变身男女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bfa791c4bafbec8ff351b6180003bff098d16679' where movie_name='青春荷尔蒙2躁动时代'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:410e10b8547032ae9f95f45d44e8dab8f20e7314' where movie_name='亲家过年'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d7df49361bbcfe99e8f933c708a358e5bbdf9a0b' where movie_name='爱谁谁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2eea771b8f8b07c71febcd492c1b583a66389ad8' where movie_name='真心话大冒险'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1c44de6cb392709a84014fdd46eed730eaff174b' where movie_name='绑架大明星'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1f1748eee24c5c6b516ec02efb18ead3f94e1c2c' where movie_name='公主的诱惑'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4e5b4f4a475d9cd7922647e519c6ba6f207d9857' where movie_name='青春如期2：青春梦想'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:39133bf3e9450c8f8ca33b83e1711b5421a69998' where movie_name='最强囍事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:536303b44e29c3d78f266809e183c96f48826de0' where movie_name='4B青年之4楼B座'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7760dbed3dfd87170a8e1780b159f5acb339ebdd' where movie_name='我的美女老板'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ab933b52df8da85029d9569cecfa17c0011c1630' where movie_name='喜剧王'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:58bb29f967f69f6766ce602d9edcdc9aefb60f18' where movie_name='热爱岛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fbba51fb468cb74048ffe93274a73f3e07a50b53' where movie_name='幸福迷途'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:667a75a1a7765ca0220e57b69091e8a95d7170e7' where movie_name='越来越好之村晚'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0a69d60564eaba928f4305be90b656a1bc46c054' where movie_name='高海拔之恋Ⅱ'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:340ea31c101ebbbb30528f7868e355fe710188a8' where movie_name='结婚狂想曲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:967ee9fccb23d965aae425790a1fa03d16064dc1' where movie_name='跟我的前妻谈恋爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2eb5ea8546b9f1c20a851339017deda492e9a21e' where movie_name='我们约会吧'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:33bee72a6fcd5a708d11fbb47459052cf96c78e4' where movie_name='大片'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:df9469339fe7b196633d26a514ba38c55339c55b' where movie_name='庐山恋2010'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1cda6007ea0258630288f4a7f4465ffd99c3c3fc' where movie_name='HOLD住爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2c4730bf7e465a6b7d103c865eef255c9281ff66' where movie_name='隐婚男女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9b436d8caba190c9699521c31b5709942d4cd4e8' where movie_name='恋爱前规则'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b55d1d1e134ad687f0a4035a92f3a1bbe3f4dc6e' where movie_name='哭笑不得'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:129d2824a22ac43ba2af7d2e21c150d48676c634' where movie_name='姐妹2再见青春'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:71908aa4502404bc3b6ae5ea4e5849eaa5c20de5' where movie_name='恋爱恐慌症'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:146bff38ce77d4327b64e60ffb9cbd820c69ada3' where movie_name='青春好久不见'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0e679b4a819509b02d4167f687dc55718bad7f0c' where movie_name='201314'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:592ca88bd97ffa738c847d7baf67b30c93b43037' where movie_name='唐伯虎点秋香2之四大才子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:976438c802f3e2cce50ef9ba2d2bd0b1198dbc1e' where movie_name='伤心童话'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:897d680002f9d6d2c7e62f1570c9ec5835c67a82' where movie_name='分手达人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:517dd2d7cee7057310ad5c85f39ce3b729f50efc' where movie_name='梦幻岛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a0df03506b4725f4c492f9439901a2e11f373824' where movie_name='双人床条约'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aec6306abfeb7236241b6f04acf1866ad0496ea0' where movie_name='爱情呼叫转移Ⅱ：爱情左右'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6ffdb2741244e8bbf3e057dbb60cce94b782df83' where movie_name='熊猫大侠'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c88b7ef2ab27d1c0b2b0523526c43b9b51f5ed4c' where movie_name='阳光男孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:91fd8df9a49b4126528d543d8c37f95d0f7995b3' where movie_name='命运呼叫转移'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:20bf7504759040e2c8f99e6eefa7a3075e926667' where movie_name='夏日恋神马'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4577c272a10596e563e3a16e35c1cccca3aa0a1c' where movie_name='爱上女主播'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7300bf4adebd071d2d12734d32b1ad02c6181b55' where movie_name='爱得起'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e5d507bf24543dd1de32eb12d088a53bd8bf1fad' where movie_name='我心略野'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f8299fbc434f8b29a11abb80081fb2369cf75824' where movie_name='欲望歌手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:90bc4b241bad28e2182568e86fe6f5a95f5f95f2' where movie_name='合约情人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:10ae9f90857cf1c43e0ea9fc747bd8a824bb683f' where movie_name='回到爱开始的地方'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a132a76b4e944a77c3a1ee77e0dbb6657413b404' where movie_name='女人如花'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a0478a9730d46f4829773682b3eacae025d160b2' where movie_name='深圳在路上'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:759b98320af08d4e61fae3cdea5cb0f14a9ac6c7' where movie_name='龙凤店'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0ca308497db5f291b0feb495361cdea9961ec405' where movie_name='爱到底'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a7dc162f11b2f0c247161d95cd2a5dd855497451' where movie_name='我，十九岁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e85ff4d1a782decc37d09eba82e39ddd468f0a69' where movie_name='疯狂的蠢贼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d6787c72d40e5efc2ef3105509592a8345ff154d' where movie_name='明明'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b8fdf758a789fa27c2972512e46ba0aa3a0572d1' where movie_name='别跟我谈高富帅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7202b7aec52a853f1c0b917b30f6a8ac4fb718a7' where movie_name='乐翻天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:526828ce146093fd03d81fd1951968b1bd135731' where movie_name='乌龙戏凤2012'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:efb4d22af72851eed259231f7ec43e2c0290c58d' where movie_name='写爱于臂上'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ac06226de09252ca33bc259fd6706f65d731fd4e' where movie_name='初恋浅规则'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fcea09fcccc2c8276362d2f12423438bc841fdf3' where movie_name='扑克房'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:13a512d5bfc456c46f6ba0baaa12b973ca9b4ac4' where movie_name='Ricky'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6b5147c6796081a6754ddc1390232b1172107a65' where movie_name='公寓的烦恼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1bb3b253c31202da62625a5c2c56d6b66797b6ef' where movie_name='终极匹配'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d5650c4da1d2010c3c83504a052d8a3d4bd8262c' where movie_name='女人不坏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1a830fde43defe2328795572cffd754709271883' where movie_name='根西'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:64a5800d2c1dad69df119f5e64c350acf6332c19' where movie_name='伴我梦游'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9d24eea0addea21ad9b788c145f5987cbfccc9b8' where movie_name='剑蝶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6578ea306a9dbec2a523d073c8b6d1e9900ba518' where movie_name='爱情呼叫转移'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:46821d42995cc149b4efde49f69dc9c0489ca494' where movie_name='旅愁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:63a09495042d508c5cd4f12c2e4e5ff4306e7aaf' where movie_name='球来就打'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d637920fa5b29ec8fde894ca10299adfb6542566' where movie_name='嘴对嘴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b158da4e2669919fcf82386f5096e7567c56d381' where movie_name='粉色'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d0e47e5e03b47fb57729da9af0939624d6354fa7' where movie_name='触摸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9f8727ef42605760ce6d76c2a561c43173134f08' where movie_name='你和我'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ad4a551a1d2a87b5d76e7cfb3cfea9079419629d' where movie_name='恋人絮语'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e93accb79268c2a0d9f6567cad7da84e345fd383' where movie_name='香港机密'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:52f33d53e5dea239572f75658783a674f39b7d51' where movie_name='生命翻筋斗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d614474d0635a1f777f20686cc8c6502d85a4e71' where movie_name='艰难时世'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:24156543ff990f75dfff2437bd517db1f71d5eb5' where movie_name='惨淡的青春'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9ef55746488b03d422a813102da2fd862ef1bd6c' where movie_name='相拥而泣'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3b70f8c412d0e60f6543037b28127c60efd24f65' where movie_name='绿茶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bce6925b9eccc67db6fb2fc875d1dfcd997985cb' where movie_name='沉默的灵魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cf04e5e8cbcf2560efe1ac32a757f8ec1e1730ea' where movie_name='去南方'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:15a4fb6b5cb6227c54447c4960bc5db0c8a44a20' where movie_name='小市民'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a837c8d3666abd5706620f780f64aba60074f8e0' where movie_name='吮拇指的人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:efa607500a34036211cecfd725bb8bf920c6fb47' where movie_name='甜妹妹'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b4ff81dcb3f14be6a3568967d94a436d2d157ddd' where movie_name='斗牛犬之女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f600483fbb98a449780db3a988568dd592add4ed' where movie_name='谈笑生疯'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0b0c727df359a1ab463a6d688f70ccb556583d67' where movie_name='美色时代'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9bff17f8fd82274030d2c150b16123cd22160406' where movie_name='弗吉尼亚'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b3846bbe7ad06dc7e141107447df5a33f148c1e9' where movie_name='跳房子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5732d4dae307b835ab36b56e1092352e4aaa6b60' where movie_name='告别17岁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7edb588a7559a937d4c486d9f39409e5eef6290e' where movie_name='临终的信托'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:00c0a303b8dddd75c0d5a18ab2cebd38c15364e5' where movie_name='爱的发声练习'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4597bbdf67afcd66efa7fb4bb040ed742bacd7f1' where movie_name='日本的悲剧'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7e0821d31dc35fd252ceb46cac4b6d8e8f4beecd' where movie_name='火箭科学'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4968e336fbe4416156151b55ffc616294bcdb40e' where movie_name='弗朗德勒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f61bdb3b7aa90531e02b57d00b6e50e06481e548' where movie_name='伟大的梦想'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7ec4dc4fe8fa08e53558ef7167d3176389eec856' where movie_name='夏日之恋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ffdce40fcca37f20cf4b1cae47b6eefd507bf534' where movie_name='乌龙绝配'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8625e563b21bba5463aca5553ec58e2491bd9a66' where movie_name='马奇男孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:610d668f9998a88432fb917452bcddd7ba7507de' where movie_name='意乱情迷'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d197a398825a9acf3b30e4c2aae21275cb99a45c' where movie_name='逆女泰瑞丝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0bf08aad4cec4496f11f8a9e937e257cd1e0e36b' where movie_name='苹果核的滋味'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c2294d595e87581c7e9850b04433e05bfc335ca6' where movie_name='爱不再回来'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9f83cf37149d01b2b9a2d094950c71f012f7d53d' where movie_name='肥仔的性幻想'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:422d7bde15f7412a63af78adc73393ade7a8648d' where movie_name='不忠者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7e48d44a4951497e73d027cc477d7b0691151860' where movie_name='拉拉向前冲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1074f804b21858988f86d6070246ad5a4467020c' where movie_name='堕落街'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5bb087f3d2f27db3807fd2872e3dace4428ad2f3' where movie_name='给我一个爸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:173806d9b64a4ee056ec8686b5bb7ed227929e21' where movie_name='失落的泪珠钻石'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2d25342f99518c3956c4410bc39d509b60a2752d' where movie_name='阿根廷超级德比'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:db6cd60e71de69414cf684ed3627ea9aa16714e8' where movie_name='替天行道三人行'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2d51479ae5d4a6280589a0e459e16727295648a6' where movie_name='糖果'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:79dda9fee4bcc08e1e7bcf3db7d8c9d43b48b7f0' where movie_name='亲爱的温迪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:54d8c11e71e8ce68ebfb2fc10d96a8c07f7f9b71' where movie_name='橙衣梦想'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3e591f45183e77139a61895f7491563780534720' where movie_name='政坛混战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0357a683eb19ecffb0aa3ebff9dc290053b52ec6' where movie_name='我的朋友是明星'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e230bf47871f340a7fb2e635b54ea9081cb12da3' where movie_name='谨慎的女人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e7d85e6fe3180f4a3f3ae8d2720ea3b8fb9fb84f' where movie_name='索亚'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cc32fba4973e62ff2df3106bd42fd85820014eea' where movie_name='骨未成灰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9b130b047a7632b5f03526cf369c26d389bb268a' where movie_name='街头岁月'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e0f413fb1d817556d3f084fc8e38b538e4309062' where movie_name='心的决斗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d9920a98cfcf023c2b41b76cd4599f682d08aaf0' where movie_name='利蓝的美国'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:790c4a36c07bbecf0f190305ceb88c0db4f706f1' where movie_name='小孩与鹰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5628ef8bba0369e21bbbda8954f890ed4d06b653' where movie_name='省港旗兵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3961073dda3538793d2bf308db1901b2109f7c34' where movie_name='叻女夏令营'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3074eea2b883dd3168c79ee8d02f0341e9d3d983' where movie_name='迷乐英伦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3c90dc04f9277200ad4237c752be0648e714c857' where movie_name='地下铁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:73c6b42fb4a5119da9e2f5693c8466f73cc83934' where movie_name='水泥之夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ee192c73682ef0c3c73fc8866e8b23ddd6c9a912' where movie_name='奥霍顿'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a34281df6659c4220347c997399931682e7d16d0' where movie_name='迷失禁果'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b3b4c197e973dd93a95dbb487db61e6b1cdb466e' where movie_name='贱民'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b97ab77e1d7c2b495a5362b34edbebd63cc2ce7a' where movie_name='百万爱情宝贝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aca5e7f96869e09c1676d7ef2f1fbeecc9c1021c' where movie_name='再见我的微笑'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:60a4be2dbbb0c5bf4142435a26eba564c79e5c06' where movie_name='四壁之外'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4f3860e887a1c48fbb0d0430b393be4f33507f4d' where movie_name='街头美少女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d07832025d89f0ae56eb98d6278d390d6b214951' where movie_name='初恋风暴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d6647c0b78ddd931a0015ebfb8f873b7a60116c8' where movie_name='情寻猫脚印'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c0071d2ac351569234b155e25127f75f2b95e666' where movie_name='莫罗庄园'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2ec4f7c747bc55cc61b637917778177d345fd3af' where movie_name='花园派对'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:376566464f29b98044b28cc1424e0ee9b6892ef8' where movie_name='来自天国的加油声'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:44605fcdfa94284c3872d5828c8f15aa7769a645' where movie_name='娜娜的玫瑰战争'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:14996d082c6225115dc1891a13ae6c3b58f9dc7b' where movie_name='亨利小上帝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:92b320b4041325affeb206ed9c32001080db373c' where movie_name='天才小捣蛋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f923e19582a43515534659773c3262c10049c19f' where movie_name='分居'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4d0b26e621ed88a4ef666ed4223e1b68cc70cd9d' where movie_name='年少与轻狂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ea95d9afafbfcc8a3e2a0acc237afaa6c1c2adcb' where movie_name='大学新生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7b1bf1e5684f9f4b75195d2ab8b22d80900392d3' where movie_name='诱惑假期'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b9d2684adb29661c66f3ee7da2de0d243e0a835' where movie_name='疯狂与美丽'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b659021fa2b91d2234b281525ae1f88b8b99391' where movie_name='友·舞·爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:481d30a6cc7ab88d3ad7f7e4b262cc60dbf75675' where movie_name='莎翁情史'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5f2ebe739189df351c1bec7450d21e2c588c6855' where movie_name='冰上青春日记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1324458907430faa30f2a62981057865ec8ec6a6' where movie_name='克拉拉和我'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4424c5981551539c5082a9440309e99e6f87d234' where movie_name='甜蜜爱丽丝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2d12ba88ce422a4817664f179d0105c22ca461c2' where movie_name='死亡中惊醒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d59336dd8cf7626702ea6dbe867f0d2700b56cf8' where movie_name='爱的五种方式'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:338264abf4af4c2d3e94eb13ec3c37cf675b6b99' where movie_name='爱的面包魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1c36312d9eeee889cd149675b5ab05624d383f3a' where movie_name='我所认识的凶猛老虎'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:99ff6a2d8f928fbe143af31979fe672be9c852f8' where movie_name='新警探笑翻天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3c6bb4c0afd94e6a2bfd08c265f3487950094349' where movie_name='芭啦芭啦樱之花'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a9c32fccc853de3024eca3aa688a623086235ba7' where movie_name='谎言成真'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0c24bb9e8eed3660647a37aa724fb4a90e1d3dfc' where movie_name='逃亡乐队'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:33e02f909204246cf1f486a1018af603a01a758e' where movie_name='哥伦比亚马戏团'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:880a4b7895545c81f7adac3c1a44fd562fcf2635' where movie_name='沉寂的往事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ddd14126964c2015ef355127cf38727b663c07d9' where movie_name='忏悔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2e72ce898ff461b522a1b55d130726157710824d' where movie_name='替罪羊'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:097b5b666ebc0c056d39d8f669bb7e702e25d571' where movie_name='爱的秘密'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6555276732f475cbb964a2130c5a2d84d39cd832' where movie_name='拜金妙搭档'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5447aa8fd4a64cf9f2cbae3394e0eaa06f17c0ea' where movie_name='白色夹竹桃'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f6015f5b99849d596ec93dda293e5dbc08e02368' where movie_name='中央车站'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:222a7416eb0dc96566292e6b0b8c03e440ef3146' where movie_name='叛舰凯恩号'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ee194728b7bc0ec4ed7058588ceebe6cf22e1c42' where movie_name='如果'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:74fef308f634bf3a00f484bacf2f1e9ba3faf5f1' where movie_name='无因的反叛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f876af37e2d8374875a9a7820feecd75d7b03027' where movie_name='爱归来'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:196234b79d39ba9bdb51b54e8abd5a33fcbe317e' where movie_name='秋月'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:55b4d334b19570f2de0897cd1e7b6a4682015bbc' where movie_name='云水谣'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:577f122acb8a66fe787b30408b676d9cb7e66464' where movie_name='兄弟情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5330b456f04e9023257842d5886812aecc4d1103' where movie_name='寻找周杰伦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:06a0b91eaa9c082dee022bb7950ad705f884f975' where movie_name='警界双雄'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:72c15e03fb0880a2efb4d846e76ecb2a551e32a2' where movie_name='美丽的时节'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d464addf52daee8a1342924b66ea255f1b113591' where movie_name='情感'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2eaa5ce63482ac1c904b321fb3384b7fdd655164' where movie_name='性躯干'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:30647765cb17a9f9f71c33872b938bf7285c6242' where movie_name='接吻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c5910aa99dd704bc73d09f6dbaf826c7b654ed61' where movie_name='冬冬的假期'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:23d00824c6abe76cee1f23041fe714d94636d91c' where movie_name='寻找西蒙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dc604d8a36089ef6fc0620a4630032d32f597e0e' where movie_name='狂情错爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:340607e492f660e0c1e4ff1f385027920902efc4' where movie_name='分手事件'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3ccb1f217dab252734f61d9e4134a850c99e475f' where movie_name='心中的野兽'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bb353445b939dab97237b3f89e200e40cb77afb2' where movie_name='何处是我朋友的家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:01d9112f35d6b94739079c68dda8077ab8238de3' where movie_name='两代十八岁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3994f5b36b1b232b47f656c8a6e8121ab40d7041' where movie_name='情迷翡冷翠'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:590ff06b34cd9274a950ca755e2119830b51dcfc' where movie_name='博物馆时光'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:260ab077046e620d9f995152267f7abb4680532e' where movie_name='危机七分钟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:640cb5a20b5b8824f2ed9d40884cfb5561cb9418' where movie_name='50种说赞的方式'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a973ef2e8920f209159afa807d2504e2e06b93d7' where movie_name='3个受伤的警察'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2893c25654a1f1c12828a1dc7773635b72c689dc' where movie_name='白日梦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3250f4fefa8909f09116d0111d48160d4754fd53' where movie_name='收割'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3209cf54fca76594b820123b20494be6f0225e13' where movie_name='春情花花铁达尼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:09e1824e4fad9c0d9fbd06c56782a9c79739c55d' where movie_name='小小阳光'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b67695183a6cd08f7ade057b356cc35968934311' where movie_name='心动舞台'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a934e16f2356d4420ce188deb30ed94e9c174c40' where movie_name='爱情36计'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9c84ac833c4d23c2651b8574e717e7758ff85c99' where movie_name='超级大骗子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5e8b87d46f514ff7da1e9f03f389b98ffdd5ab31' where movie_name='牡蛎农场'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:842921b8fa81523b4c3c5d87de63ac6a92436d46' where movie_name='爱情魔发师'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f0dc742b332f269d25abf21a9d2b9fe12e53c41d' where movie_name='完美第二对'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fa4e69a07b1ba1252f5cf3181cde40b2fd379363' where movie_name='欢迎光临娃娃屋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:70c9a2f2767ebe59461c3c54c1608303ab0b4585' where movie_name='津门三少爷'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ad40469731d47e3c0f4c5094aa4f0edf3a66e0cf' where movie_name='配角'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:057798bc571f76868c8b6aa2c197bebff31046d8' where movie_name='我行我素'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0d1061416c0496d8f8470f7e3d63a66eb8a97690' where movie_name='邻家女孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:34854588c4871c9a2b144ca8071b54bdd356811b' where movie_name='雄狮2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e7e09585b72e9171e64fed4efa2db703ab3563c4' where movie_name='时光与成长'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b4d6c865f78df1b3af6f71b75018e640f4def4de' where movie_name='爱情拼图'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ed9061a55f7b62b99a15a40339fe8a04385e94d9' where movie_name='公平的爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6243f77225d549a38c9b6db6670854e77e5e86c4' where movie_name='微光湖'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e8a502dda3b5ae1adb31229835a392ad3022a8df' where movie_name='谎言的诞生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dd61bb5484b62be0e982525ad9b5fe3ecaecf20b' where movie_name='无生死较量'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:405c3d59b09ddbbab4b20e9a2e1ae5e2c3cca65f' where movie_name='乔治·卡林：你们都有病'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:727ef913298bcf1e360fe00526f8009a4062bafe' where movie_name='危险性游戏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5feb1d7554a5c4c66f129e1dbaacc83c0b605287' where movie_name='无情的城市'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:98ddf0eccf493b9af076fe43559a48a6258d68b2' where movie_name='去年烟花特别多'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f70c45c207129dd680ac71df78bd420a00673656' where movie_name='粉红男郎'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6afba789881c71668d51ad16e043c2ef49c9cd66' where movie_name='顺风旅程'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b0f5e67f5298a25467ad6a14e5277503e1afbd06' where movie_name='小镇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ed312a0067973144b49db743d5ab0b8767b3cbe9' where movie_name='一片天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a6f4e0394174106ead5a7e009cfada429a1ed307' where movie_name='约翰福音'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:68b0a42a3aafe9c70582308f36505cd07f3791c9' where movie_name='舍间声响'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a5a66e9e8f2ae4ae9199e97021c17228c6b6a376' where movie_name='牛仔裤的夏天2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bba4e195111fb92c5ae1e4db57dbebebb11e8805' where movie_name='亲密文法'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f1dbebc1ae62a679a59599b879cb346c4aa839ed' where movie_name='山上的孩子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:42232a89170d8482ab7cfe1cb5f449d3bab2f637' where movie_name='垂钓劣时'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3f79e9e516d0f23076ade37dc960779e9da15d42' where movie_name='外星神犬'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:47fc7208f9def8425b9ea13c7935bb379c9047d1' where movie_name='色欲世代'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ca5d55d92e4fd979b4fd1364968bbe72a6003ac0' where movie_name='黑吃黑'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:17254a72bd1babd1504df985ce900300a38e7b36' where movie_name='叛狱无间'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a14c15d86aaccea28d12c3212678553ebac25141' where movie_name='治外法权'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d0f8ddc88fb51e7b53f1927f93be6f278bf822c1' where movie_name='终极劫钞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b694fd17c7c94d8a9c7cebc122f9b0e61e88d1d1' where movie_name='无处藏身'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b5ad0c9fb8b7ce884a9d5639d0433e2cbde6c8d' where movie_name='蝴蝶飞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:29b67933a88b69cba972c99a39a842f5b0143b52' where movie_name='检查站'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4ed76afa5bfe6fe8a1e53881027bb7140315ab7c' where movie_name='少数意见'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:87fbbc42dd06b3a33ab3d418bf6d1fba52279c06' where movie_name='杀人依赖'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b289385b92db920d3196fdfa612b363102cb5b75' where movie_name='杀人者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:326e1f522565657f2fe1d2d3b0c8c8bdc1641804' where movie_name='大刀关胜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f2cee7b9c85199c74543e54da861d7b8c7fc8a35' where movie_name='刀剑若梦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:37f3b919a17ef13d100483649a380f1d4e173371' where movie_name='快跑惊魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bac94611b564dc84dfb6b2fb8aee256fd26c2f20' where movie_name='愤怒的律师'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2be768a122013124b83fc79e2d0fc686bbaf549a' where movie_name='灭法者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0939acaf4e75ca10044b671416c24d0989003616' where movie_name='陷入麻烦的女孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:966ff644e20dfc00dd199bc802460cabf3ae395c' where movie_name='皇家师姐5'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7ee61d712cb4240f823a2556b6aebbc0ded40813' where movie_name='举报者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d40009d7e05005e746b8d53edfb5842280be3991' where movie_name='大司机'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:363d5cef6ee7cbac5fcc5243caf163b59208fa4d' where movie_name='愤怒的伦理学'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8297ecdf91326637939950b88bc5a95bd5cf0edb' where movie_name='那家伙的声音'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0adac83d076c11d563b53dd027b4a99b69ffc5a1' where movie_name='下水井'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b0d8edcddb4de8f2cb2de6aab84ecc6153b58f76' where movie_name='遭难者们'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a5bb33c60d79e5cd96b9ecface22a0e8e21cb8bb' where movie_name='迷途追凶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0fad351ee92eb58df61aa29fac1a0b470c16a9e3' where movie_name='赤发鬼刘唐'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:357f73928e0f52ccca3fb39a099769542f924dae' where movie_name='七武僧传'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:00632c5d0d304d54557c112337241f8356f1ed17' where movie_name='两个心脏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ac2f94700b935afecf6e1696976b47a6a9bc7473' where movie_name='枪口朝下'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:61ce0e85add3d0ee062474c587fc5458c52367e7' where movie_name='她们，他们'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:88fdc93b0188cba5a20ccb38d9ca2384cc70b293' where movie_name='黑暗中的触摸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c042e0b7922dc623239cd75c8ab8380c9a17a38b' where movie_name='血滴子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6c438ac1205b370d418eb49c0ec3b40bde98d446' where movie_name='90分钟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8f708208da84d20d9ffc661439761a263816651d' where movie_name='猎豹行动'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0196ade0e9727cdbfe26ddfe04c18bb7530bf8e1' where movie_name='深入虎穴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dafbebd92d90db28b12f19ef663627d878fe7a0f' where movie_name='冰雪勇士3'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:16a8f7e3bd6b5e53d499b88335f39745d99f9758' where movie_name='铁汉柔情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d28b5f20aaeae7b64815cb4be3d6345dee379364' where movie_name='西部战线'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:016bcead4c796e97793fd946ad48dc8c6a2f68a5' where movie_name='胡狼来了'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:893ff9727a3f75cb5bc57dd22e9f2a973dc23701' where movie_name='我们的社区'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:769f40942d63c686bece894435c327ffd2436722' where movie_name='诡娃娃'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3bb6c8fd9b8563c87da696f78e1d31c57df29b0b' where movie_name='卡车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0e0f509a79dda4f1e9b111b59ae3105fa56ba4db' where movie_name='忠义群英'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7dd571a87e180fb5eb02c4930b19d56787c33f04' where movie_name='钟馗伏魔：雪妖魔灵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4991968278cdb3bfd5379554e98ef04b3c9ee5cd' where movie_name='藏龙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c7f89585a78186c9a7981ef6a24f83989fd6f035' where movie_name='请在鼓掌的时候离开'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:832d000818ef044d3070a1634379fd379dd9b7c6' where movie_name='汉城大劫案'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b1ef6ab59d2ae4d981b0c1a80ac963a1e081db5f' where movie_name='刺青'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cd042d4d76b2d7d2667e41ad3479d3d25a77417e' where movie_name='变节：潜罪犯'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8681c58b31daf522df5c735159467c7499583a32' where movie_name='千机变Ⅱ花都大战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a54f46bdcc56f3d940a73772094df3f81b7b1619' where movie_name='十二星座离奇事件'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:80fef72ed0e2149ba1c7cecb855a1f45dc203cd9' where movie_name='性冷淡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b6cd919b2da71800ecfb8c446f6a9751bacffa6' where movie_name='皇家女将'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c69181c3227d5cd4204d92454b02fa7a275eb91f' where movie_name='修罗雪姬'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:caa9925f747c21e6579d474b1af9e3adf54a092e' where movie_name='社交恐惧症'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a318f61312328dd3eca3dde525411c7bfa920795' where movie_name='那家伙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d9e8887cc4821b0e87274035ab9a52e4c68ce3d8' where movie_name='绑架疑云'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:df0ebcf55c6458a0c0553c8149689819fbb3c3dc' where movie_name='战·无双'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8a5bae07ca0fc92bfea9dd81f42e50af16256220' where movie_name='神汉流氓'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2f7f4b0fddbfc0f21e203b76027404a32262eba5' where movie_name='绝色武器'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:21e5e1083003a1c2979d15c41bd0def1a9380fcf' where movie_name='白专家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:de61f7d43d07f184beb8612def3fde8491eadec7' where movie_name='追击者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ad02dcf8054d457cf79c85230db8102844c8834b' where movie_name='复仇米丽之血战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9d4a322cfc4a254eb4d5edd6a9f59411163cc21b' where movie_name='潜龙轰天3：野兽之腹'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d9b81f0c803b276f0fd02bdc858694614dc27a08' where movie_name='制服'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9f4015bb49995178fb4bd1970d9b7d0c0f2737d7' where movie_name='双眼凝视'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5c211f48ed167063c3f4da6c7a1e5dcaadc74f4f' where movie_name='与众不同的事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8b45b5ef387816e09f5bb6dc87b8aa91b55c4696' where movie_name='搭车遇狼惊魂记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1027bc9cb4176ea54966e28504f104452632f910' where movie_name='野兽之尾'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:02ec921ddd23a745fff9bda136674cc63cdfd71c' where movie_name='恶行'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ca5f377ff35763b76e0312f76a9547eae815711e' where movie_name='近打1881'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:430edcf6083aa4bf387a6ae106b1f7e10cf21ab0' where movie_name='朝鲜美女三剑客'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:074e5e0f431732707901c6707762f655d5027aaa' where movie_name='少林杀手：血钱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:03f13b48496a0440f42490028bc8443da44de7be' where movie_name='狙击速递'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a4ecbc8dbe4ae68823b62032c3ebfe7d5e87d19b' where movie_name='郑胜必失踪事件'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c372892c958a53122d95189018acc950f3727516' where movie_name='车警官'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:51c9185269fab843ff3dbf383664ea8d561db468' where movie_name='邻居'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fad26ba1c40dd5ca0cdde4dd136857531e580848' where movie_name='高速婆婆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1db867410dafa1809ca8b1177b31dfb1a75f2d21' where movie_name='近距离'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e12d3726223d7165e1689b08b9b3d9355ada79b6' where movie_name='王朝的女人·杨贵妃'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:49f33d048c06dd2aed0b8288b483405ef795641d' where movie_name='荒村公寓'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2ae35b68bfcc2777d0c9d7775ad6c20f18f2ed88' where movie_name='石将军石勇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e412f310b8c7964a486a830438d0912602692134' where movie_name='恐怖系统'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b7ea975abc6c1f37e8400753aa39947bddcab6b9' where movie_name='忍耐'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c59059dd67c39e8daa34e49aec5ffa78d3f838ca' where movie_name='寂静的世界'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ae36dc2a7304d54a8d9d7f701d83a33fd947c480' where movie_name='执法先锋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cf65802e3ad52a2e207a2593c3b4caf0920d27bf' where movie_name='查无此人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3904ed26052bb3db9f437c7503a3823e72337df2' where movie_name='以牙还牙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8ca94a521de53494cafe7ebd6c244bcd1d0aeb14' where movie_name='笔仙惊魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:47d090d0f4f235b5889509dc8f14559831ff0e68' where movie_name='时失2公里'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c3b73928ec82fac1b55ca0adf773d5d44081593d' where movie_name='召唤'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:43fb7364a342227d57b2d8e7bc8789e4863a6aa4' where movie_name='无法回头'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f3073fd40e36e825ac478e3a255ec97bec72bb14' where movie_name='孽欲之殇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4a378e4af0956ff1240574d7e31d539d53945d13' where movie_name='独家报道：良辰杀人记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6b2f394f0e5112792b1e687e86aa38e8987370a4' where movie_name='天国的邮递员'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2f80eb24f24ec51c579edd48983139bc216757f4' where movie_name='双镖'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7acb5ee80134a458b8ada4e067c99986fdb92f30' where movie_name='豆家族'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a2231707013a685514b49c37373b8125ebcaf04a' where movie_name='机动部队'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c4e1fff31d806312d7dd0f2e2d29c63ed163350c' where movie_name='惊天大贼王'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c516456ab06e137b1e53a8559012d5a39cba746e' where movie_name='血光重现'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6b74143038d1bc07f82f8204cc8ebcb3571dd11f' where movie_name='高楼惊魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4c8c5ec454c344dc76be26b065e1f26d58ab9e54' where movie_name='非常警察'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fbbeba85f2b830d65b1a12df2a9d190836643356' where movie_name='杀手假日'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:06983428a7064c5274ceaca41a9f9806849928a5' where movie_name='孪生密码'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6ce41b5535372d77b93b61b56326fd86cc0aee61' where movie_name='大武当之天地密码'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a876610b3a09f058352ee198e53296596827dfc6' where movie_name='临时爸爸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f05786c1f427425677ef0204a63e3924fe8c2c79' where movie_name='上错黑车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1c81cd45bc713af0a36f0030e26be0b8bc5882b0' where movie_name='精武家庭'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c4d6ce729bf6c21128e1b8c41c815eb129b89810' where movie_name='仇杀病房'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e08dad771797782004a02815772dfb247811bae3' where movie_name='野兽'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3c04d2bed225cf823562300679057d50afa830e7' where movie_name='床'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f11712118f022788dc1433f08ad61d251c019fdd' where movie_name='流浪杀人魔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7853e213cb34c1bb5b5842a7521d64d552f6bb6f' where movie_name='全职大盗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:16b5b61050e859d5d571be91c4f4324bdb2c8786' where movie_name='美丽的星期天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f9f91e365057e16f2ab4e1c63a987fea456337a2' where movie_name='盲凶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a9a22d656f0c66af8cae714d7a9c93866645a7aa' where movie_name='午夜凶梦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:02405aebfc590807c4f9afaacd3b7f6e32067db6' where movie_name='夜店诡谈'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:66aed3d82e95e8a382eeb9e1f808a9bd232c544e' where movie_name='血光光五人帮：传说'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:699f021d39058efcf462b3c9363ad72202ccaa5a' where movie_name='蜜月酒店杀人事件'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2307861b4a17593811a62aa894b5aa5bad72090c' where movie_name='1303大厦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0775da2c947e3fdc9884ee42e85b6a7c34b9ef50' where movie_name='山田长政：大城武士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f2c3f11f75405d30cfa7b95ceb14f9e65a88f3d0' where movie_name='笔仙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9f3f52b298717defcfdc88e982c75120334d1cea' where movie_name='查理的农场'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cad176b57ac250f65330f9020d2f9cac7df25daf' where movie_name='白虎'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:af5379d992dfd4dc2ae9ef3c03c1a376f27f7d6f' where movie_name='特别搜查总部'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d5f32f148ad44c5adc1f0d5b35fca59b42d4c6a5' where movie_name='新少林寺'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ca1ea8a285943ddd0090bc5527ec5f89bf7c7439' where movie_name='无防备都市'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:12f878b41216a79f289c9e1aa6875a0eae4f3b88' where movie_name='奶奶强盗团'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8681c58b31daf522df5c735159467c7499583a32' where movie_name='千机变'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6d09c8041cd8463f92c7332dc8db0df428439768' where movie_name='劫案迷云'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2a1b747a7e151cd79354dc80c02804a83606e644' where movie_name='六月日记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ec44238771b636eb8116c5c0e8f1fd7aa76fea03' where movie_name='死魂灵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:383144e41c4988fb3733e697a1761ad5915b694c' where movie_name='强力三班'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:403167db816a1e46e46eb79c2ac4489aa617205e' where movie_name='精武风云·陈真'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:449848dd793ad74bd53310a2fcd2944e08727bd5' where movie_name='合气道'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4d20da731a8a7cc4f3409ebbda655a6e93e08252' where movie_name='富贵吉祥'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ab05fd425b55ad9dceaa2f92996b280824268e6c' where movie_name='青眼虎李云'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dfe44d73c4ef79ef03247f6e786a44b4bfc014c1' where movie_name='假面'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:271f275f0e502daf210cfa4d54bd5bc0f56157e9' where movie_name='宿命'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e24021dfb851d294cfa0ca4ddce858ecde87dcef' where movie_name='我要做Model'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5f82a126f39d0af37bc97617024082e58095a48d' where movie_name='有特点的电影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6cb9d2270956624f568f81ec1f1f76a307de2cb3' where movie_name='超级警探'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f53b2af2bedf9b066a03217b65f5cd09cebb8d4e' where movie_name='逆转'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dd6a00fd9a91e3bb714013191250c2779dc7db36' where movie_name='下一个就是你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4e29d6fb5d3ac6a4e05cf4a2d68303efa1a14089' where movie_name='407航班'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:845c67038d09490dbea8082df4befbdae97714c5' where movie_name='陷入困境'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dd5ce45928f9a0775b00e2d2c6e81bf66608c8fd' where movie_name='刺夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:abb419a32ad6e70057203a2223f685fca57600ce' where movie_name='尸体防腐员'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9409962bbbdbc45acbeb9c0c9a9129d6e4e414c9' where movie_name='至尊无赖'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b24e622f907b879b714c9539badfb658eba8b2f8' where movie_name='机关枪女人头'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8cb06ce1d3fdc0750d33a82812e68e88f84d85ae' where movie_name='日出餐厅惊魂夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cb17dd756d3f240e5eb495008f8213f753fb6fbd' where movie_name='青春学堂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:39284a1f9bbc8cc4e019c501dfa970254c997cd0' where movie_name='菜园子张青'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d02a6a3101e50e7cf9f4ca78ab76a3fc785bb437' where movie_name='滴血双狼刀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:89c94597373562b89c8d1f8b490119d08ad83561' where movie_name='七夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ba7022cee57086e0a3d3e1cb71afd6ce446865eb' where movie_name='强袭猛攻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1e79f7d0258313b4c967d0113314b7d61eb21b27' where movie_name='圣母'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:57daea1b3b8b70c3c0dcafc70c075678a4037736' where movie_name='证人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c533ccfe5e78939497039995f9badcfd9be97398' where movie_name='烈性摔跤'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fc9135f035727c3c10a8e1ac6db60c8a7a3b944a' where movie_name='赤胆豪情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8ff558c116e829b58fd5fc823f9765530958014c' where movie_name='官能的法则'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3b64b83b8ac030ab5647e61f464e429b4fa524a1' where movie_name='斩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ab5916243ad6f35cfc444c6751f0ce1715033ff1' where movie_name='疯花血月'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a38031e0f97b5855ce44192a9767525724b59ffe' where movie_name='女儿当自强'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6871b58af21ec55b80666fbdd40589a6692996ce' where movie_name='房车奇遇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:003a7bd1ab5af1519c5488b813ebbbd2524155a1' where movie_name='神枪手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6f14a4315f6d070b7411fb2ee7fd78092c598115' where movie_name='雷横与朱仝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:88316fcb56ed216682de2c11e2781c835b3de8cc' where movie_name='死于三日之内2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0e54c50d5c03f336a3df47f90d535f68651dd460' where movie_name='恶人世界'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:97e01e5e6d27516e32e25dc61d14c880bf3905ec' where movie_name='狭路相逢'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:59881dc0d2bae7e32df1fbaf3d60f14deffe48ab' where movie_name='铁道游击队'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b5cda2bdeb9ffedac3729c7a969c620e385b7dbb' where movie_name='奴隶情人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ecd91e566df7c64a0933593996bd4455a10c666e' where movie_name='神算子蒋敬'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:113933a2f7a95700d0e25bf5414991a14310ce88' where movie_name='预知感能'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:662d14073badb0ab71cec2ac5cecc7bbc0aa7534' where movie_name='家族荣誉3：家门的复活'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1eb6bf2f9a2fbb6c460719615b71cb6d12fabf55' where movie_name='口诀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f5547733af52e31d2eb1e1f3bc4991109d4c770c' where movie_name='达妮卡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:06b19ac5464b9ce4063b8fb3a7b65a4eb12cc82e' where movie_name='午夜心跳'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1d8e01502613652b015deee0166943f3ae203011' where movie_name='死亡格斗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5ccac6b130564df26292fa17cbc807f137e17e22' where movie_name='刺陵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a1faa968c93c7816889f15aade418daae44f861d' where movie_name='谋杀缔造者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0beda9abc3742377ac62fc80bda1eb1612c7ca34' where movie_name='慈云山十三太保'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b48c557b02a1f3695057d22cba6110e3a4376932' where movie_name='海盗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0d34bc70fcb96ec183ba684fb0bf8ac98dce6d1d' where movie_name='伦敦父女档'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:af074ff0709e0bac4a2db9a4848c58de1ed54e78' where movie_name='武僧传奇之决战程子沟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:454bf9f65058ea701886ac434610e26e325c7a01' where movie_name='母牛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1a2a672cb676175f23ae9d56a377c4d033b22020' where movie_name='无物申报'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2564dc2142be8c2b4dc86b43ee73ff9f3d521c8a' where movie_name='缩水情人梦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:69624015e4e53423565a7441d6448c8d2422e535' where movie_name='离婚大战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:41058071a0699c26f85dfa41d8e99b8dc81f1e00' where movie_name='无赖正义'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fd0ad8d3ed885f897012692c1003c86f6f87147b' where movie_name='奶爸难当'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ba75d0552a6dca3e7eabcc7dcfa8ac1233e476aa' where movie_name='老公是特工'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1826856509f915489f59d985e8ec42acb3b5f95b' where movie_name='圣诞故事2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f6ac44a947e7a457db596ccaa26f957ed72b68bd' where movie_name='非我族类'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8d3554bb0eb591bdcbcf95dd282ff5004cee06c8' where movie_name='特务亲家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c1cf298a46ff5c6d1399747c096c709be2f1c318' where movie_name='假面复仇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:710385e88461193be2120d333f77076727ed5f26' where movie_name='我的天使'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8b33500657889d95ce937d0949d9f989d26b3ea2' where movie_name='祖庙闹鬼记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:41cb1b2ff9f32743ddd93d14a3f0d0e73627073f' where movie_name='狼入羊口'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a4c2850035cae630698b40dc277b6e9ed86dba39' where movie_name='OSS117之开罗谍影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:94a66c2971b234d6f474ffd6a46fb18cd5579625' where movie_name='新郎上错床'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:019fcc199407980dd636354cdbabbfbce6c5df9f' where movie_name='谁的青春不热血'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4e1bcde103f13e2c3429c80efd8dea24fb52e408' where movie_name='爷们'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e6d3bf7d7ad167fbcc488b6693dab40358e46d5e' where movie_name='天后之战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:94189e2c92d13bf1d9da63acc030c8aee236b360' where movie_name='公园男孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7dbfbc156ef0d29bac6971be016349b0104b9a93' where movie_name='法国间谍'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:84c2e98539a31475d9f7dde3c20d7a61e9eef664' where movie_name='莫惹是非'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d091c8c8fb5d0458e310e119d4f981c404ed4875' where movie_name='超级整蛊霸王'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2d40a8cd58fbcc2185c215cf8b228dbd6937f33b' where movie_name='爱情只能持续三年'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dc63d95e8f1bf5f91a1838e5555ef2bb154f0762' where movie_name='快乐的忧郁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:10fa4535219b54dcfa0a0404381a6a26aa280bc7' where movie_name='雀圣3自摸三百番'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a2a84a702858b104ca27da900cb9b86b792e10de' where movie_name='傻傻爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a719eb5562e2cd2e986a22f0888580c0342597b1' where movie_name='赌城圣约翰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:afa5e9ebc4060a75e3864b738d8da92e70b992a7' where movie_name='佛跳墙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:17f6fab409794ee11a682484b7952b011fdb8667' where movie_name='幻影车神'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:43adb8e3586683c9f824205b45d2cebead4cc530' where movie_name='古灵侦探'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:728adc8be89a94a42fad651cbe7cd1bf42369181' where movie_name='皆大欢喜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f4d4220761f46415e6df575a2b79e344b00d9497' where movie_name='一身二体'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:674f1516b25c77ffa99ac23b86b785b7506f769f' where movie_name='神探朱古力'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6db19b5bffca0ec4195abc3f84b9fc5dce4299e3' where movie_name='蓝色迷情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:67bafba7017553b03d40e205666cae61dc50a879' where movie_name='抢鱼市'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:669b85c74b22398cb8b3d4ce31965d059278301d' where movie_name='死亡地带'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a891fde7a8d0567f4137f0ae528bd662cbde06ab' where movie_name='玩转大明星'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bad4b54ffe9d78b8694e77f03dd9406819266a64' where movie_name='黑骑士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2c932e99f60e468d6b1e081c6d5f3c990bb634db' where movie_name='播音中'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b5cf209895e47b14b88a3c041a8bd2bc3de0af8a' where movie_name='替身演员'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e24080857e5dd1e57cd844f068a149c9f6d62aa6' where movie_name='渡假留香'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cf9e14e478f1c5746cad0e68dfe2464049f7bb18' where movie_name='爱后余生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:12b1d561363687d4cf857ba55b81184a1fa2f6b4' where movie_name='别喝生水'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7b2397f55cf3e1524e5d54ae6ecfabe1f6ee566f' where movie_name='老表三贱客'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d4300f466fcc28ebcb7b7eb8854bce4ec37142bd' where movie_name='露营2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4f3c89141c43b535cad65b2cef4652eeec9cf520' where movie_name='欲望迷宫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d171f199554e0ce50a0b7162f50a362bd96ccf5e' where movie_name='吸血鬼大电影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f0b775f0688223d14b3b115b74230f74beb9dd07' where movie_name='不惜一切回巴黎'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a529c71ab75804171780c3e62fdef2f442ff7ec4' where movie_name='虎猛威龙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0aeb420ae405dfcb71bc2d0c0409e95638974e0f' where movie_name='春情夏日'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5dd9f0bdf1dd891d5bdf199582f52467388cdbb8' where movie_name='连环杀手指南'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:682b6cb1fdd3806eddc76d4650f960a0fab828ee' where movie_name='笑枪走火'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ce228ceec96086ee7493009eafd43e396bbfd4fb' where movie_name='爱在战火蔓延时'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6ecfd50ccdbe1330e1ccfbcfc221f2b4ade68b9f' where movie_name='小姐好黑'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:85eeeeba9a651e60dd34f736fae67766c323f2dd' where movie_name='锡杯'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e0ae235ad37878739a675bab441bd0a343343191' where movie_name='讷伊的母亲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4bf7874e35cc56d3db243ed918d1acb1f5508c75' where movie_name='似曾相识'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e9522bbcff8195e3d41ccdbf76e2a0756ff69efe' where movie_name='低阶法则'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:489ca29bd2c9e3675ddb1c4df0bb00e2089b9a35' where movie_name='可可'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5f57f924da8ce2eaaf905499855e963fe97dfed2' where movie_name='宝莱坞劲敌'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:95c8e34d0e5d6b7c05c8fe85475c3b4cf0e86cbe' where movie_name='保镖'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4e236833d8c5465dc7816dba316fdc59897bbe69' where movie_name='保险套惹的祸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:be1566368ca71db718a8d12d03ed085fa2fab232' where movie_name='对她说'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:73550595b256a0d2169c6ef57d1c8204e9ca8249' where movie_name='柏林爱情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0cc2c10b0e7ef176b6905a78c5464a2083dbd51a' where movie_name='玉麒麟卢俊义'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a968c6b5ac707ef0e1281588f6ad600873c47728' where movie_name='一不留神'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2b998362cbb7cd22fa5ce838835206592ea899d1' where movie_name='野蛮城市'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eeeea230a31a8b1b930704676b9f4a42e1e21456' where movie_name='希腊高速公路'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:44bff00239bbd970232fdd54c3e667f2df544879' where movie_name='靓女差馆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9b9573989dbf4116d88ae9c98ffdd5ea653100a4' where movie_name='沙滩仔与周师奶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5d2dc95c9faf48443bcad2e76963c7cb8ea05cff' where movie_name='美丽的寂寞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:861cf8ca8011f87b3402528feb25a797efdd762a' where movie_name='朱迪之夏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c425171b0859089206a58ab2957434fa71d713dd' where movie_name='狗，旅行袋和爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b5cf209895e47b14b88a3c041a8bd2bc3de0af8a' where movie_name='替身演员'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dbea92ccf042b2b2aa039637a5a384fda1e197bc' where movie_name='生死拳速'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:66cfed1afd6151be6fb68b328795cf4ffffd0b7e' where movie_name='一丝偶然'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3d5ee6917d2dfb90002c63c9e9f16e75b3931f9c' where movie_name='欢乐今宵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:12dcd3d90ee152594aee2000473e258312095fa2' where movie_name='爱情披萨'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3f9bcb5a288ba5f8e96e1aee4b9ea4ecebe6fe1d' where movie_name='渴求甘露'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:201a410ff7f4de80ad25704d50ce0620ac915733' where movie_name='笨蛋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d0af22b5604f68b39fee1e7117d4b9d3b4587b3e' where movie_name='老爸上门'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c774e05bb8a225e08f6c652ecab4d5761a29383b' where movie_name='杂货店家的孩子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ed0221c4fe32a7411d0fd6adce501ce3ae05f52e' where movie_name='杀妻2人组'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ccd1ea42f62cb2b31e2f41a7bdfad46aaecc4f1e' where movie_name='木瓜沙拉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6afc051b0935af5fc624f053b80ed61da510b3a0' where movie_name='关于我母亲的一切'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a0a25b578582a107ea55f4c2dcf276ece79a7cff' where movie_name='借你的手儿牵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0e5e924b1b172089847d9023d75530c1586ddb5d' where movie_name='暮光大电影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d5650c4da1d2010c3c83504a052d8a3d4bd8262c' where movie_name='坏女人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c943e1c247b0d02f5ad6454bb764d3f7978fb020' where movie_name='爱至云开雾散时'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c0b4a5d32788f810cf5a0fd814a6deed962586e8' where movie_name='夺草奇兵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7f4c8aeb755f08380984e25ce0c54a402065494a' where movie_name='女篮辣哥'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:503762c08adfe7c03bfa8bf59bdcab4ea8c747ce' where movie_name='如歌的快板'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3093ce0e787a038d7c637fefe3a64e11243c6a66' where movie_name='希特勒完蛋了'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2afdbc16d19dff34f5ec132c456d692464eb730c' where movie_name='无人陪伴的儿童'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:357867b9052f56e4bdc6ff6e81a2c3e21d172d2a' where movie_name='做次有钱人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:14f183693f894d8dff68cbc8e428568bdcf71617' where movie_name='包皮少年'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b5a50984f83fe7477dfff248858fabd3ee1abf7' where movie_name='我是间谍'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4ba9a8a9819be52c86abb89b69620bfdaf5dac80' where movie_name='巴黎春梦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:af965a9cd5b6506ec1817778f3199a7894536845' where movie_name='挖井人的女儿'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:462e2996462b9033704de687e81679ff6199a38b' where movie_name='别墅幽灵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fecd8f7b996694c01df4046321cf751b8bbfdf1f' where movie_name='心想事成'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f73e775c111531e7aaa03b666e4a186f4e7caaf9' where movie_name='找不着北'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ed36285c71352aadb0f923324652a8981ce4a071' where movie_name='噢，糟糕！'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f9065959723d2b2ed51a5dc13ab58b1dc3a448b2' where movie_name='离家的男人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6c574ffc4d7679da2e907826bbac21b7a4d2ea23' where movie_name='比佛利山超级警探3'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bd2fe20990dfdd0331fc29b15dc38f43a59a1f6b' where movie_name='92黑玫瑰对黑玫瑰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:885c1ce3b24f6378fde9a72ea2c423d4b05ddc03' where movie_name='碧海奇缘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:745276028b52c799c719a3f470009e69448a32d6' where movie_name='小富翁里奇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:99f2c837b98bd26c1467d65469b6d34f0fb7fe88' where movie_name='与灾难调情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b570ac93d7757200a32fadc4b9645904d091fcc9' where movie_name='孤独二兄弟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:af900a13f8b6f3aee8c2040d15713f5000de5bca' where movie_name='人生回环赛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:646fe350096dbcf18b8436612ccffc96e0c479a3' where movie_name='牙医上战场'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:385a8007f7463ce8ea6968002ea73ce427d6f3ce' where movie_name='六月的月亮'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4c82a3e82e2f5206eba1eb6a5c66e5f4516ed358' where movie_name='热女郎'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5e3d953868f5a8bdcdad39fc27db402263622f26' where movie_name='阿粗和阿呆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e167c91cc46fd99874142a060523dfa9df71dd54' where movie_name='苏黎世情缘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fabaf3b998ccf73ef0cc21b19be4015a9bda50d7' where movie_name='西班牙公寓'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:138da57ce8957be0cae3a8b4f57d91e9f28d5eae' where movie_name='二者必居其一'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9133910ce9afdfa3c180ecb2e74958b1eac97d22' where movie_name='五百万美元的大丈夫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0b580fd7b2af4e1543e36b9f97b7a3fe2366c0e3' where movie_name='胖子阿伯特'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:829636c3654549d3e84a704f2155e1d140856fbe' where movie_name='梦在水面下'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7f1c1da5070c5abba6069a820ab03583994cec43' where movie_name='万诱引力'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:565046bbe5134b0728b050f884065059a11b4024' where movie_name='愿望树'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:32d5bd913623eeab1d3008bdba389018a1178f03' where movie_name='双煞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6ad5593f4097dbd8db0b5dba7c1c03422c523f41' where movie_name='终极格斗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6902db9bdebdfc391c74b36160d838c7b2f87199' where movie_name='雀圣2：自摸天后'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7508f6db9d61620c2e8b54db3a35a4fc82a72d24' where movie_name='给你一千万'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bbcf633a6c2d30fcb631a429a2c327b809be2af3' where movie_name='私密'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:579a317ea8b8e07968ac7adb2a205ca7ed2ba9c7' where movie_name='侏儒与财神'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:639375c74858eb22cdff988a1a39906d1ba8d632' where movie_name='黄金大玩家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:09fecf72d662c9765316f4e3c24e6963c3c29ab2' where movie_name='国家保安'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5da04bb22482f90acfb92784584d25ca38857530' where movie_name='节日'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c5eef24ae52760bebe192477fd53fc818e258c79' where movie_name='手拉手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4cfe9b1f7b4e811fbfc3e91665ae8a6b26ef9392' where movie_name='少妇杀手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:78b365e9c6161995ccbc376bb129eb82e7bf3d93' where movie_name='调情魔师'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:62d060d1be519419a3470454e01541b6a4992e90' where movie_name='第一个周日'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9cdb0c6837925d1369f458792f814b6aaf79ebab' where movie_name='非亲兄弟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3b61eedbc4a98cd9698721f02572c31e82eeba74' where movie_name='爱情赏味期'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5ad34f9cfb580abbbf6b9acb7579251949349522' where movie_name='把心打开'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:75fd56417cff59b5186861941118fbdaa34a3408' where movie_name='表姐，你好嘢！'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b39f1bf0aeda3c1fd35301c78ee38654966959e' where movie_name='开往春天的地铁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cb797fa08d4aae3718536b0d6eda79fae62891b2' where movie_name='所有的人都无知'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5748d2957e6168d5e4196bcfc6b680ddc8f613fa' where movie_name='人间昆虫记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:02cf2ad9d353286274c1c05f10f77a13b7aa6e40' where movie_name='每个人都有爱的权利'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:428b31a1da562dc9a62887dd1afee84d938ddbdf' where movie_name='化骨龙与千年虫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fb666900f81f5a7384d3767bf05e5926403b89cf' where movie_name='四大美人儿'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3621db885c6ee54e846d34b4b8560803510215a6' where movie_name='爱像一条鱼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8f7d1471970b3ccff9728f88e5d6dc464f053e56' where movie_name='巴蒂诺尔先生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:97ee4f34aae2c93edb8a334369259d3e17d622b8' where movie_name='最佳拍档'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aa3290c7e07b50b4b32ec845b083125fdcaf50d4' where movie_name='一生在等着你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:797484f93c4abcbc858c52a14ddbc6eb36b04ed0' where movie_name='迷途英雄'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a5aba171ddd4da0287726bf7b7cb1def32117a2b' where movie_name='再一次初恋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:304f8a15b8e9ac48941a1ab084ad8f1b38f7b46b' where movie_name='嘴巴上的吻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:df0dfad3317ae311a8f8cc4d9e62a4caf4efb7f6' where movie_name='懂得又如何'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e1e2112a9e13ebd6eaae3afd04061afd6a5d2313' where movie_name='爱尔莎和弗雷德'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1439d1c67425827e6391222f81c56758c7866003' where movie_name='调情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f7210e3e0423ceba434409e456b336b39fb8f8b5' where movie_name='安琪和托尼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9f628bd865f12a939c850bd9fca6899cc958981f' where movie_name='欢迎入柜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aea5699e1dfa387f79b81f5582208a6ac2314941' where movie_name='笑林小子2：新乌龙院'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1790c8761e9c9178cb94acd95c17a742b0b8978f' where movie_name='柏林空运'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a5fab1ad9ce0dfe480c155a591fa1f3ddf2caf3e' where movie_name='警察学校4：全民警察'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:41de711c2c441eca86b24aee8fb9bf5b84898a4f' where movie_name='赤足情缘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8c0bcad8cc124c8b1f2767ea2208d93e9e702e0b' where movie_name='意外的冬天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ab93b94d6e44da97c274d9444d65c1b49f91ac80' where movie_name='肥佬教授2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fdebc03054bf9b7d3f81bfd31df0452b3d6c9a51' where movie_name='警察学校5：迈阿密之旅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7be3419d32089e0f4d470d7c94a76e525a636d45' where movie_name='爱情向前冲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f41725b2e3e8bfcc7c48ec54492ab9700cd1ddf4' where movie_name='伍德考克先生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2275a18b631abc62bf06f9c9e0730e3068cd32df' where movie_name='不良教育'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:475c18d164da14cea236af603a2b085161eb8c20' where movie_name='追踪再现'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6a6f6288c38476949277daaa0593925de45176aa' where movie_name='罗宾汉也疯狂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:722203f4819607112d53bd568c086e32da09e7b9' where movie_name='高尔夫球也疯狂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:463c63803a1d373ad58d63c273728eb92e6a8711' where movie_name='剧场前'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a109534420cc7f775b8636604c79162ab31b9b92' where movie_name='住在车里的女人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6d0d13c742bb5e80743a0638e83bd622ca4fdf3f' where movie_name='美洲狮俱乐部'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2d9051179c37292015180bc8e32f60a540f99a30' where movie_name='斯坦·海尔辛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:df175aec8054a7468cf60606126c1815f746aba7' where movie_name='变装大师'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e0708eb2f75e19df870f17ee7edb5e290a77f89b' where movie_name='男人的未来是女人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:988f6c2b76264f499de50ed417b9abe8fe10bbc8' where movie_name='恐高症'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c7b5b98f1ff6de737a6571bb37d7a36b54eb56fd' where movie_name='Puff,'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6443b32b429f203b07280b91d77ab97818ad0dc7' where movie_name='爱情病人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d411f05a86575e88b6804951c5918b353bc1e4a5' where movie_name='快乐的噪音'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:47c3706fca601062886b49bf0e0b0ea1ddd6638e' where movie_name='做爱后动物感伤'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6512e282156e629b9dcc5fd674ba5e9723755c5c' where movie_name='爱情活动的耐久性'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c168abf3aec7e2c7afe72ef7d1d4090be152fffb' where movie_name='悲伤八月'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:73c072f2a334ed1fe1dd6c87c7ef0cbc7a317cf9' where movie_name='猪扒大联盟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f3338543958d5aac014b56983b96a5b9402a370d' where movie_name='少女小渔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ff82b9930b4bf1de870185cbd758f9c303fb7346' where movie_name='七宝奇谋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7b7f66a0efbae0f53a86b187c979d7dfe2f345a7' where movie_name='时差'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a015e2fbc0365b7167803c683e8228a079187181' where movie_name='逃亡大王'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1e0a65e7e4a9b4656783b515f9fe97239fff2224' where movie_name='动物管理员闯南亚'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:40407861d5fbe5708df0ea95420a1735b365f335' where movie_name='你无法选择自己的家人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ba40813d772bbd85b94f0efedcb2350c5f065f4e' where movie_name='一石二鸟Ⅲ'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fa7a553cde976d583690ba99d527ca0640d0d1c4' where movie_name='八月中旬的午餐'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1ecfd40a3ae4b30ba070f44761dc32f2d8cd07ca' where movie_name='肮脏爱情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b86cfac80e2dfbc5314558b8520de4c34f28932d' where movie_name='我最丑陋的真相'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5de8c9d06a6e791563e212ca844f6af465453efc' where movie_name='十兄弟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fc8904c51adba28c3e3aad101adfc5c7a7553914' where movie_name='忘不了'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:70451c77b7bdeab7589245ea7a56483e948bd998' where movie_name='江原道之力'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:26ffd888dbd34d5c7e057d39db4c9e1248d7d5ce' where movie_name='班迪和巴布莉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:71e52d07715d8df5015c74bacfc569012f2fb840' where movie_name='我的神秘之花'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:10a1b97457083d924d84fcd40a44984f34abe07c' where movie_name='毛发'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dcd4e87ff1715af76594ffe1cf8b805c43ec2ec5' where movie_name='绝世宝贝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:59635b39930571a6a97ef0c96907d3db2d28ce89' where movie_name='淘金俏冤家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d6f9404ae0aa7fd3fc5617a6c0ba65d1f9596b9a' where movie_name='私奔B计划'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:62df4d7e20578acdb92972e3504ba28508da4d3e' where movie_name='最佳拍档2：大显神通'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7aa291128947073dd4cb7560a818697f68a5babc' where movie_name='香草巧克力'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ba9caa789617bca1fb66a7b9f47f9f22b29f0c34' where movie_name='碰上爱情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6b2f898b4c0f7ad35954407f6ee1dca2a500f78b' where movie_name='美国之旅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9ee3645beaeb65313a790a484f9f9d61348f416d' where movie_name='精装追女仔之2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bd310cc9cf79e8b0874d14bac2695723568b6a99' where movie_name='红楼梦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6116cc67298df5a025d7c577b7fdb4ba0daa2af4' where movie_name='幻影车神2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:28adfdc2270704ec5790077df23bb5f065bee2da' where movie_name='吉人天相'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cf31f7d51dc08ab87e56e7c7b2e0f0e59afb0db0' where movie_name='超级明星'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:47bea3e1b5a82609b87f08b431f853d98271721d' where movie_name='电影鸭'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b189db10f632b3c8dde2339a9398f82b9b8514fe' where movie_name='耍酷一族'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:92e076b15bdbe19a0c19818fd621ae9955abca53' where movie_name='拿破仑难过美人关'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7eef9d857d8724624a9c431eb2cad425e12ade23' where movie_name='落迫贵族'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:63e0cfa17601ebe1ca3066ae23fb61faf27763e0' where movie_name='马德里1987'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:247efba3c529cc8315c0315acc55a69718fe013f' where movie_name='前女友们的幽灵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b149c1664859885ab64a14f573ff186b77265ebb' where movie_name='导轨'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:38fdf6e0f129934cb22ef74449d3492d0d14f2e6' where movie_name='奇谋妙计五福星'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b3612138de18aa3fa830cfbc4fa0a8d0fa1759b5' where movie_name='嘿咻卡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c3932055e0ed97c2b65238cb5c1fa12e8a11ee15' where movie_name='撞板风流'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6cdbf245364c7e0f7ce148468b36915798a1e251' where movie_name='物归原主'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:65f509e01c6f1eaf8db736b6a0c8be5fc9da8dc6' where movie_name='江山美人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c83886c4b9ec007e8493e0ec1e3a38318978ba16' where movie_name='警察学校2：初露锋芒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:baf8d0e59d1cb05d79a6dc1cf6aadf13feeb65f0' where movie_name='大市民'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f1ea310813e4bf81fb814b4c13479012011b4a88' where movie_name='我父亲的房子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b9645047f5793ca3bbea8bf8fcd7d0eff41a8166' where movie_name='难以破解'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e358dde77e299b6ee370af66f5f897fb2f7e91b2' where movie_name='穿越之旅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c3b86caa78cd9f4e463382acc61a2a10c9a4d9d8' where movie_name='拳坛暗影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1248370505f0d8798baf3307b3d12f0511bb6255' where movie_name='爱的支撑'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fa8ce6d889c98e522775b30eb5e4f332802b6e72' where movie_name='玛德琳'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0c751c3b1cbf92e706e59c03750fd4bab3b25184' where movie_name='终极神鹰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6b5001c9362cfb435bccf1444dd8b38846c60a4f' where movie_name='涩青298-03'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:519f4698e9a6e8190130fc85c9f63706c1f77ff3' where movie_name='高卢英雄拯救英格兰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:44df6da10e2a8e5bfb9901a1e29bec16df69db62' where movie_name='爱情与自杀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:51d5092ebd9033e62752b42131d2478647de35d4' where movie_name='深夜姐妹会'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ef84c53ec3be754e26be949cb6aa2633cf099e9f' where movie_name='现世活宝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:80606d8d4e604b86ceb6575849f56aee59cb5a0d' where movie_name='摇滚校园'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:efef3b853baeafac2847d899a03255e789de1bae' where movie_name='爱我别走'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9899234eaec9fc7a99ba9b4af879a875e97b85cc' where movie_name='奇异小子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f7b31cb8efc55ff07c12390b92dfec2eca2e8693' where movie_name='待解救的少女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d8de3f22801b27e7a75e46f7ffd50c976cadfdec' where movie_name='生命之光'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0ae5f3f2d1ff676a7330a35d0cd4ff4075881993' where movie_name='女傧相'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ed2aa2b6d1ac5f03e291971d037f290d901079eb' where movie_name='蓝宝石'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:68ed7b2d0e4ad648d3f0bb9ceca80448a961a5a6' where movie_name='情遇成都'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:652ade97b62bc0ffbb6bcd098be3e4ad8ba15d89' where movie_name='清潭菩萨'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ff834abba1b1c3a2c08c4ac0d48574a82b2c94be' where movie_name='小镇疑云'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f78ffbadd0f31870ef2f546512f65a8e1157773c' where movie_name='家庭旅馆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:850d1adff469c842f03b70d769dbaf48309e8e7a' where movie_name='夏日福星'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d3952ebbe2f76ceb2550efdc70d0083680ae5180' where movie_name='燃爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:265eb3cf14bc8aac0f7dbc1f50e51619c63630da' where movie_name='梁山伯与祝英台'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cbe7277af9b9fa19b2666cb243c44237d51e8a5f' where movie_name='梦醒时分'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1079e10c398b9ea68ef4ec2038d090e7e5b01003' where movie_name='戛纳的柔肤'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:21e7109ec6f9b2efc3f1d3e6f06a28e6db2ce21e' where movie_name='绝恋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1beddf58d3963ef0f756d55d927e4b240abe27cc' where movie_name='华盛顿广场'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:434babd2fc4588620741a1e0e127e15a1ad756d9' where movie_name='我们相爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d6dc1f7b29e1221edebda95cef0f285e1d3c73dc' where movie_name='拳坛暗影2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:83250a5b068ed02ef3006dac9091b8eb4af96163' where movie_name='伊凡“雷”帝：回到未来'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bc4664070fad61976336cdd87149703c2d3ac519' where movie_name='我的大四'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:60300a73a77b939fdebd4d6d17d869f68507d456' where movie_name='白象'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3d682b73d9cf010a09c7abb70ad332055548ec31' where movie_name='微热'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9a23a8ae1fc27fdb30d532269e4a9c2bc370cb04' where movie_name='裸眼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e74e09ca20b0815ef4bdc7cb2f208097504ea63e' where movie_name='巴塞罗那'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5c9caf81f2634d5bb5686d0f446b4f88eb2aebc3' where movie_name='街车争霸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d37651a041b71a4a257d29041fc33b67b9ae2fea' where movie_name='最后的迪斯可'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b9727b365acb609750886e7517aee5ec3f8c4d40' where movie_name='我要'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fd53d1da899d2ed7650ba5772e0a3c17c710397b' where movie_name='链·爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:705825af00e144a21794fee7b7d8aa9ccb0c5d40' where movie_name='方托马斯大战苏格兰场'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8bedd522a391308e763202abd23d8aaaaae8a2a2' where movie_name='新娘不是我'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3f4447b4aaaceab5d780e266bda5951f3de2f10e' where movie_name='不良男女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ae481294bac47811d78f8605da2c2b6ffe23b38c' where movie_name='金发女奴隶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:37920820c3aea87ae3b342c0b19597125afbbf8e' where movie_name='请吻我'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8d882c10f07dfdd519832044db5d75cbd459cb79' where movie_name='疯狂二十年华'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7624545a243ffbfbce2315155a89c28ff6b68c7d' where movie_name='A计划'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:721d467c22f54a84f77721619d775e560bd4de38' where movie_name='马尔法女孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:16c03d64da74fbd67cea85a4ca29d6d2a1a696ab' where movie_name='一部有我出镜的影片'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fe57f1920239546f6e5b57e7cdb0a532ce4e4a55' where movie_name='秦香莲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:684c9cef307ec3cabf9083109f11f2f9d683452b' where movie_name='火钳酒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0f9fd521570d3a9db714f9d5c5a8642f1aa3028e' where movie_name='醉拳2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cc0545245846b8a394734215d2c729eb1c610a4d' where movie_name='半熟少年'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ace035822fef4783886390ed27beef072e2a5d31' where movie_name='单身女孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3d818977e65feec4a4f3b0d5e9289286eba61e0a' where movie_name='真心话'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:30082f966ce4a13c44c0cd94ab8c2abd05a7e0af' where movie_name='波浪预报'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:daef083aac779de2cc2393de6655852b1225762f' where movie_name='魔鬼任务2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2bfe1164149ccfef95489a2ea580ff5aeff0d28a' where movie_name='虎警大队'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d475816484ab0cf6607e293cf0f490d76dba250e' where movie_name='死而无憾'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4d1583c32876f2d8c28c049ddb3266ed22dec769' where movie_name='男保姆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:68632849e6319eee6de01e2ed5a37efb973a01a3' where movie_name='甜蜜十一月'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:30626f6728d3b06ce8b34f2482b7be1fa92acaa4' where movie_name='停不了的爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:31f597f88b65ec293e8cd98412238be5cc7ad4ec' where movie_name='爱情至上'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a3c82dc392a965a7005ba35e555d6100d3399060' where movie_name='神探飞机头3'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d523baae7b75d459b8961ac6da24cf7e22b801d3' where movie_name='插翅难飞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:75fd56417cff59b5186861941118fbdaa34a3408' where movie_name='表姐，你好嘢！2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c86e54f391575d999e1fd29aa7f67ad2a65bff76' where movie_name='我的钱我做主'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:67607091d5f0d1eb53da35298eedf5774ab3ed70' where movie_name='一刀不剪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:206192bbdfa10b83c5fe1dee99c7ce2dedde56e4' where movie_name='布鲁克林劫案'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c1470eecd50ee2ba9e5a16cb2dd5ba1b1d7e1dea' where movie_name='无法忘记你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:366c0db4551adfa171eb3b7b2fb7f5420602748f' where movie_name='最后一次'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f076d9803d0d162689136467a3a6c2cc452b540c' where movie_name='亚当变奏曲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:55b0442435f566e67c85262c1b1619637ff9841e' where movie_name='单身公寓'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a33614df53091c677d9221c0864719ce99b675ed' where movie_name='大地的女儿'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c97e7b5bfd99428451273b804e82b8d0604e48ae' where movie_name='阿克洛什'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:606dc26f94cfd194d936a676d9a37069d0fde546' where movie_name='戏水女郎'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0b6feb85575293139971873cf2792c08196b617a' where movie_name='突然死亡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:40bf12417e36ced6e1e3ca35013952011d167d33' where movie_name='横纹刀劈扭纹柴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ada79f5d170e4c5176d360735d7ebc0f9e1d6d7a' where movie_name='伤心街角恋人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c4dff394da5e2d8e11fdcb30a9ed9b7b406d0764' where movie_name='来去天堂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:50bf44970ccc114d549f5b0c4c2e411ae3e9d570' where movie_name='情欲小镇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1c3598e9bcbe96dd746234348ec5d3db2a5e8c00' where movie_name='精装追女仔2004'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:12b1d561363687d4cf857ba55b81184a1fa2f6b4' where movie_name='别喝生水'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3b8c05864f240a0c07a0a11fcb79f2f0f3cfb431' where movie_name='鸿孕假期'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ad1eee476b185516c43280f1a410857647c5a43b' where movie_name='财神到'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b30d4738aa9b16625ac5f08bdf7d3d463bb269d3' where movie_name='玫瑰玫瑰我爱你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ecaf8f0b37bf48cc87b67dfcd723213ec87f2478' where movie_name='粉红豹系列：偷香窃玉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:65a4fe863d8c7f8960f201fe81bb2e7c09ba271c' where movie_name='血腥星期天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:58be9a34270e9c43a79d30db3bd93c1783dd4425' where movie_name='左边床,右边床'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fcca19985214c01180e22480dd57534f588f6a4c' where movie_name='结婚纪念日'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8103bf1bedc19d4219637ff73dc63ee4297594ea' where movie_name='大有前途'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3f529b281106e6a4db09aa2fabc181c4eeb0be2b' where movie_name='提姆和艾瑞克的十亿美元大电影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:46c13373344345ec520331f79ab64549975c0365' where movie_name='双面镜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:094f79fee17fecc4079ab05c64af1329b5505d4e' where movie_name='警察故事续集'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ba12209c93e8604f7e689bd819c7e2eec9c57aad' where movie_name='爱的旅馆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b55d1d1e134ad687f0a4035a92f3a1bbe3f4dc6e' where movie_name='哭笑不得'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c9536641b58ebe342a452d3669e724e5cd9b9ba7' where movie_name='麻雀变凤凰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a1a036e55abb887c2a8e16e79ff96256fa56ec2c' where movie_name='贵妃还乡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d3928c9e22d3922990d8e8cf28942820ab5be0d1' where movie_name='梦想成真'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:413caa49fcd15ccb50d13d63a5e3441f7f04db99' where movie_name='这就是英格兰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fdc44feb06e118a5c13d1b622074a5dd9c870f61' where movie_name='梁祝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2812a423f3e677a30388fd7fea068cd793974d5a' where movie_name='自然召唤'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a080dec6ff28dc8dc3ad8f7870686b31955f1248' where movie_name='梦中人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9f1ce64dae178f3d280acd2ab1d1a74b655f428e' where movie_name='日光情人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7621b6975396b9c4a0ae6da4ae1e64d8f7098dda' where movie_name='玻璃虎3'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:304e6793e9997a349978ea51dda6d9bc2847ee6c' where movie_name='医恋俏佳人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8bebabe69130256a3238766239f1f94e30a10781' where movie_name='组织者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:109a571bded66667238baa753a1943d521e637d0' where movie_name='绝种铁金刚'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:503562a2e1582052854eb6724c28677f764d6b63' where movie_name='回溯迷踪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5d420ad5ad16f9e7155715260b24077df4b99601' where movie_name='真实故事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0fe8901f9b6d9b8d111ee7bda3c9e6db551b99c0' where movie_name='鲨鱼湖泊'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d0a7c47a799a328a7aabe6a65d482fcece26e484' where movie_name='掘火者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e7754d0cb3f4ca8b9bd053396e005a32a981a592' where movie_name='恐怖面纱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:28744da786dc5f1fe73c584677a352f242458808' where movie_name='我是谁：没有绝对安全的系统'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2bb38dc6e51726435ad233cf8f225c3ea3de233a' where movie_name='阿登高地'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:328715670183186992f44891ca95f5255832945f' where movie_name='乒乓玩到家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0d3ee939f268d1d31161c8b857837b69e027fc3f' where movie_name='只是风'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:78c9ccb4c4187e4daf6f54210fd635581e40844a' where movie_name='圣殿骑士的宝藏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:707b3250fcbc14335f12e899ff29e718229b72aa' where movie_name='无头的女人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f6549740769fec2c7c844a051cc586e3c1c33a51' where movie_name='侏罗纪进攻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:05f06ca5e07c28530270eecfdc20b5c0f10f888d' where movie_name='意大利城堡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:184cd83788985ab06cb598c2a7d96b7ff7dbfb08' where movie_name='潜藏海底的生物'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0b7a09e9c5d2f16a74b707cc8a192513253f49cf' where movie_name='全民目击'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6c282366e372c118c6c122aa1970154b3eac584f' where movie_name='虚拟革命'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ca8f67b75bea8bbcaba4f6f3d3146347bcf9ddd5' where movie_name='顶级阴谋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b682cb37367aadb050b690b9fc0646098ce30e74' where movie_name='沉睡的美人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9823e43824d7fa28b0d14d1989b3fbbccc9ed836' where movie_name='江城夏日'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1378c036d387158edc100221db4951328c2d5fe2' where movie_name='铁血娇娃'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8177ad3a041e1b0d9325ae5c637316787abcf89e' where movie_name='凯门鳄'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d358462ace9cb057332f22971aa25b3fdd338c9a' where movie_name='旅鼠'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6c2fdcf7290d7adf7f4b936feba5df1d6f32f90c' where movie_name='半机械人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:80ceb1987251509949a964765fd174eda2344ace' where movie_name='第二扇窗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9216af1bd14a9693a67ec98bd537780a5b3aa30b' where movie_name='裸露在狼群'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:06dd7ca6c8b6237b8099205cbaa1e60e29214776' where movie_name='巴黎属于我们'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:46a7723783fef6df6a619416584da43bb851a816' where movie_name='凯夫角的真相'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2a0dfe4ad7691ee344fd7b9e555a2d62a694a4cd' where movie_name='黑岩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4ee0001300c0f7692438ce0c34cfd35866c8f7a0' where movie_name='不知从何处来的女孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9dd8159ce19b75cf13e940cd681c8a421a7dd5e9' where movie_name='深水区'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:914622eca51c54d0187cd9313aca9afeb057836f' where movie_name='变形机体'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4bf9d865b4af81ee4da6ef2776d7a943fc2c1ff4' where movie_name='冰岛犯罪现场'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:872b6d18e23e8ed70b3ab03436fe1a9e540855c2' where movie_name='旅程'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:082880c5757d26f273c4ef6bb759777fff7851ac' where movie_name='天赐'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:af022c0230d4af175e9cdca05a54a27f5c99edec' where movie_name='公路怪物'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:25dff2e1a7f86c932c64e1945befeefc91d74b35' where movie_name='月蚀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:554551ec5605f8fa0da9f0da8a52acf55509aba1' where movie_name='夏日痴魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c07a265ffdad4be77b8aa4fdf0d3f86935d2132d' where movie_name='猎艳'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:922c6ab91401cc8aed5869893ae8fbca07f80e53' where movie_name='哺乳期的女人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ea9bf94980bb383b798e80e3e628b19abc981d03' where movie_name='八爪狂鲨大战梭鱼翼龙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:70d427a4355811e16071e87e7aaa48c773d6b3dd' where movie_name='五月碧云天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2de44462b7080a687128f83476811774f40f12d0' where movie_name='叠影狂花2：变态狂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0f66d03c35ed3eca1184b4cb224c93a46596ef5b' where movie_name='第三个人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7c49ed5f6234e9c4dee3353a2e5bc4e2b7765ebd' where movie_name='同名的人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d3a10ef43d4e6e47755c9b8beb381e8e38fe9949' where movie_name='诸神之战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:23341c8fde7b747b5cdd4c7162e1835a58d11ccb' where movie_name='悬崖上的野餐'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9b4870b5da3ac54cd47b61b013c45b5b5e8f3ed8' where movie_name='恐怖走廊'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f89f66c04db7b655958d1d3772ec54c006946456' where movie_name='爱有来世'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7878ce497f7bf24e9293473512d77cfe1299783c' where movie_name='罗莎妈妈'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fccce0c659cf41bf318b06c8e7113eecd8b2db84' where movie_name='诸神之怒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:87d13db5f771c2017a9c9fc4d015f20e4bfde5fc' where movie_name='蛛丝马迹'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:828de87397e1e1caf3861d779344d75ce2917ac7' where movie_name='相爱的七种设计'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4651cad0724920281ea8d618aa84e6cf2998d5d7' where movie_name='雪莉：现实的愿景'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0f833a324e10e6270ab951573f6d9df925398b42' where movie_name='玩尽杀绝3：钻石计划'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7aa57538b312d1f24d053d62820d7e9971c7a041' where movie_name='极光之爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c502d2ae83fcffa894a66db9a0fb4520580930b7' where movie_name='精武战士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4d2749e46f2becab84ef0d772d3c52fac86c1059' where movie_name='沙甸鱼杀人事件'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:af49a0a243d5c7fd585e5c68a6530711c2c16f9d' where movie_name='毒药'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b46f9edc550930c48d7feca9d8ac0193cbe02e1' where movie_name='好奇害死猫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ac1f87ffa98337788273a856299d83c660cedce0' where movie_name='证明完毕'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6e2e9d4ee307fd14e5a894b9532c237e9ae57a35' where movie_name='牛仔大战恐龙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d2424d5c2992e9d0926c1c75bb7fbe9e6eac5f74' where movie_name='填补空白'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3267a7c9d5c790fd272895f87a228bf382e0eb2b' where movie_name='借兵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:81226bb563bf6d86ad54aa5987d23951e2367f33' where movie_name='理由'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e08b8d323953d26b940db3fc1ed20df44dd94756' where movie_name='邻家秘事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cc95203ecbb53f5d06ed3742437fff05fde0694a' where movie_name='消失在地图上的名字'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4648f45c5dc5ecd3858a26105aae6f96529debfb' where movie_name='致命闪玩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:80fe3e17b2619337b5f2117b7b70ccaeae3a6a57' where movie_name='分歧者：异类觉醒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8d1fb7e483d215f600e3cd94764602f94663b186' where movie_name='双重时间'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c266eeb140cfa699679272d7baab2029007d3014' where movie_name='西服'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:08b18e528cccaeb17672f47014bcadbddc7dfd79' where movie_name='修女乔安娜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:33aed318acc2b947e6034c3b68ed2c88eba29cc4' where movie_name='不肯去观音'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e27cc1c25c11c0fdf39d16afe6d046d16150b069' where movie_name='军中禁恋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ff2887cd846adb6492fbf07fc94e332ae8a8110d' where movie_name='贵妇失踪记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ad2e854c611d317c33fcb20643c25e07b74638e8' where movie_name='黑暗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d48da85f23130c04e5c752e0eeaea89870e2c771' where movie_name='漫长的告别'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6f2a68bab7976c2166389fc9fd24cf2703a14c71' where movie_name='瞄准'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5ab878c7730eebf72e3614a79edf0966653ab21b' where movie_name='棋王'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0fcff50d35070e3f81136216f81b872d5702310d' where movie_name='亡魂复活'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dc4df923e761aa7de97084d7bc2aaa60d5e94f3d' where movie_name='下一站再爱你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a2120213b5acd0bb7daa540a499b89a4f61826aa' where movie_name='孽欲杀人夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3c05cacb27374f10336c69c61b2e735ac356f2a3' where movie_name='破坏欲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8add4381a0e963333fe46f19ed268a74e79c8e4c' where movie_name='回光奏鸣曲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8ef98fd29ffd2cacddea1f3511a705f4d2985c17' where movie_name='禁入家园'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bf13bfaccd6b96526d4247ebdd9c47fbda5f96f0' where movie_name='另一个人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0f0b3e178ad4f7d47cdf2423d3a9b8a757b591c3' where movie_name='杰西警探犯罪档案：无悔追踪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e50224f1578cf28508c8a9752aa165028d590995' where movie_name='时光之尘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1bc5b71ce909b5f4181a35bacf0fcf0363a154f2' where movie_name='恐怖列车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b8030348fc18b070d539f8209de2f732ea44f586' where movie_name='忍者刺客'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ee2f9cfadbefd59c7f8497c6cc47f302d3428ff1' where movie_name='凶线'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b2f3206adf7219238201941ff3dfc930d54c236a' where movie_name='捉贼记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:866e091e974b494957575760683e434436f5e4f3' where movie_name='暂停'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d0ad626e1db178d80f0050843025f28c3b916ffb' where movie_name='开错鬼门关'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:45c06149154e653fff0bd661f0a29ec910556124' where movie_name='狂野飞车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1da8c96632deff07ae16e85a830cac9b77ad6850' where movie_name='机械战士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:45c7f1766f576877ea4f90de473110ed8fe2561b' where movie_name='纹身'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:510a1071115b7811357df3b52f012c145b0cf685' where movie_name='妖夜迷情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d9b81f0c803b276f0fd02bdc858694614dc27a08' where movie_name='制服'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:801c2644e5b034e5932049f1a5c823389e6f74d5' where movie_name='精舞门'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:68d12f38482deeb757ec12c176d827c22369475b' where movie_name='里里'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7aeee0cc2f1e13ccb4f09273af20e35b63e1bdb2' where movie_name='婴灵恶泣'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6dc07905c6a45b720e7a2e2ee35ba61c03642391' where movie_name='电子云层下'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eb90999767cc98ab09ce602a1f4e761ae6424bbb' where movie_name='直觉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:475295f47f3f9824fe45bf27b6c20302f73f0d68' where movie_name='我的舅舅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5a4136dd0d97018920d605095960002a846fcd76' where movie_name='游轮梦魇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:985c059b44cbcd0401010831efb5f72c6edc34c7' where movie_name='理查做了什么'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bc170c17734924f67426c6e743b3e3ceaa12cb31' where movie_name='阿门'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:05d24c1ec6fa3020000e77d7773ce269a2a91c62' where movie_name='恶狼游戏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9fb4946a5035c9c50e8d78d55e9aaf19d2a0d9af' where movie_name='第三者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1060a5f614b0402fda360831614ffc90f479be80' where movie_name='三十六小时谍报战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d03196318e831eb4640525528b763401aa9187ca' where movie_name='伯格曼论电影和生活'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:56e8950cfe20e1c213bfb580c5157a5e5725f3f3' where movie_name='一半艳阳，一半蓝天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:91108687f7aba32f8496164c37629976239d3e25' where movie_name='把爸爸借给你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6c6d97acc61f61353714c2320ac4fcfc18835d9a' where movie_name='图雅的婚事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f312b984933f0200514d053d134d80df905d6081' where movie_name='下一个就是你2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d30c0e68b6e4842c3ab1072d4d55925dcc1f1058' where movie_name='登机门'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:08fab55a3026b38389e7836d74a4852c0cf9a35e' where movie_name='费城实验：再生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e09dc91c2a45b3f64aee3517f7f0327a5c75ea26' where movie_name='催眠师'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:73079f6e23adca8e82de732239676a662fe50dfb' where movie_name='啐啄同时'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8df9963215de43deff48e9aa1adb5ab6fcae96f9' where movie_name='孩子不能同鬼玩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:db14e56103f02f8db785569967812840b1485207' where movie_name='狂蟒之灾4'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1439b5cd3165c86a86b48c9b4cce81e288fe88ae' where movie_name='设备'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:230c1755664d28fa99f42270006ea7e4298f94bb' where movie_name='寄生人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9d06c59c523ae46651ea436663a45462d8f930a1' where movie_name='地狱来的房客'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:36fb4fef793b263e19768e177c79b80da949ba40' where movie_name='马背上的法庭'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:65cbbb46802882a3899c940d0c7890b06ee1a8d9' where movie_name='地球防卫遗孀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:02a055f9248788a82fe9d7768b3a05e8745d2155' where movie_name='左岸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e6474807aa3d6c8c13d5c55164c22a6955e04978' where movie_name='水仙花开'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:506004a72d296da73ee2b26a9451a9279d415bee' where movie_name='等爱归来'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ffba6744f316b65f764ba809a3d99b1d9b56fd45' where movie_name='寻枪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a07522239f0c84f148d63bf32c7d6b12a4177f91' where movie_name='点对点'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b7f34f6dab7492e00dd748613bcb49170d552513' where movie_name='黄飞鸿92之龙行天下'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6e70d891f8f953ccc5405b137595a38ed32d8c42' where movie_name='诱捕2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:593447273b69f585554d3ab7fd413bd6eed98755' where movie_name='黑马'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:820b6d3580b60f4e809dd28faa4aa95c6a0970d7' where movie_name='瑞灵顿街10号'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:330fdea38c214a27f0e1dcc7350c1de65f51b6f5' where movie_name='缉毒特警'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:811c026b9a1d82aabe157a973da1c6ba5bb9c44e' where movie_name='正当防卫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a6703404d15ad95b87a8f03d79d0d6512cf46d9e' where movie_name='第五屠场'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f969975bdda619bdfa090141e8b03a12b589101d' where movie_name='赎金'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:604e2eb533809c611dd3def47ea22602e75523e9' where movie_name='阴谋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ac63a761209b7008e3bf191a744159ae13fe07ac' where movie_name='隆美尔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1ef1e72c525a2b40b3e572c453d979be9f3dcee5' where movie_name='食人鱼3DD'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:00c63c0443a496941c7fe35dae2f68545da4e663' where movie_name='神鬼教父'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9abf9f6efee73e7c08326deda39465fca1a070c4' where movie_name='鬼畜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:04ef61c1c9b1052c57daeca815cdaa1c9e135aa0' where movie_name='艳尸凶案'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:132d32e54647f5a59017751f630b4a7988cd0a7b' where movie_name='重振雄风'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dc4ee7e6f6bd85674c1723257c81c8f23879d508' where movie_name='地域无门'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:af6a9c75ef722b87ddb3c4318205060d33e3c22e' where movie_name='倾城之恋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5af605536165bd1a5cbe72a47f61c1251fef4e72' where movie_name='每天爱你8小时'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a1147329bee7ea66d887d0895a95172280cea948' where movie_name='天使之心'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3258afafa1186b0726a5a6b280a5c6434a1f0b2c' where movie_name='怪蛇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1f601cb67d880c72505ae84f8ba0e07805ddc72e' where movie_name='绝代艳后'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f80211cfbfa830edb03404cf18a256f5ca89f154' where movie_name='过界'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1b7d185097a4a0a292a3688b50d2b2c0bba60034' where movie_name='拥抱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6f64fbb58df7923007b48989c3c81e5b331f8037' where movie_name='绑架悬案'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8075923e2a579b563355e10f280e185c5c45083e' where movie_name='危险人物'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8adba4b4f5f136cbe3d427ee2d4ea554f5f142df' where movie_name='肇事逃逸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dfdd4e1afe511f9dd9230408850c3ca1203b5c80' where movie_name='瞬间'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:691de345270473ed74b90c8869999477cd3bb223' where movie_name='姐夫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:298fa208d044bf2b79ab88cafbd8a6508e8755a8' where movie_name='夜袭'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0c4dd505678dcc6f576bca5c2d1fa2c840087c37' where movie_name='量子启示录'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c4e2017d1534f11b87ac1a419b77b46e2754ea11' where movie_name='女人的阴影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3e04aa8351ba92cb660ba14bfeba3732cf66d2a7' where movie_name='班纳路'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:15d57d39dcad11be850c2050b923d0330245d986' where movie_name='狩猎者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:db79288cb728b467032a4c5670922b2e5b34167e' where movie_name='吃鸟食的男孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dffa19e82e4aa2df55176e40b7bd2c4858136efc' where movie_name='有情饮水饱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0a9025563c486fab02281195af6ea81ee70c3113' where movie_name='蜘蛛梦魇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:389889629b4153588e3cec229b11d3fa233c4073' where movie_name='致小柚莉亚：妈妈的遗言'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:65a4fe863d8c7f8960f201fe81bb2e7c09ba271c' where movie_name='血腥星期天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6242f25587692bf0d031203c5d4ea0eb2f40004e' where movie_name='希林公主'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:68fc32fb839994ecae36605f16276a94d4efa830' where movie_name='最后的直男'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:36c087b8ebded7730645164e7c82ee3ee5758a28' where movie_name='自豪与荣耀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:716209ba43a230882b73df157255e2eb3e94daaf' where movie_name='狼灾记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:700dd9bbcd12b29938485ee4bcdb1ac2191e2a8b' where movie_name='再见，我的王后'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6b5a58d9aef76966e7eb66d5ee347732047dc89c' where movie_name='葡萄的眼泪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f72c68bb9f8c8007d6d2bd3007841954c680b548' where movie_name='秘岸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4fe984a6373e20dd2893c10425f4411985fe6bb2' where movie_name='冰人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ab89877816e99209193cd9cde002f3e53c4f4827' where movie_name='未来战争2022'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cd9696ad6b90b5632fe50ecbe912dda144c89432' where movie_name='开罗宣言'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b502fa6487f162650d4f52c72217c2fccfaf7654' where movie_name='口袋里的花'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:83ed868499e0de7b9a3f54b5153c3c52eaba629b' where movie_name='希望的翅膀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1800ddbcbd5ab127f9dc7c46391d99d3a8e1a4eb' where movie_name='美好的五月'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1ea307509a281d61053b9cf385a73ef2026fc0e5' where movie_name='天才瑞普利'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0157fcc7df6086c0b2d7b322e2f577f6f6ac7324' where movie_name='惹鬼回路2：轮回再侵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d9032c219bd86e698d04ad5310266bfe78a07926' where movie_name='红柿子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5442996d5a814827baf2e7e3c9b3018a83246d62' where movie_name='水性杨花'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0f0a85c3c731cdf21f9905cba99dd8896f8050c2' where movie_name='夜车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4c4a294b729b8907f79b6ef574cb266cc24a7f2b' where movie_name='萨拉兰登和神秘时辰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4d13e1032a0f5d95e020f40dd218f21b7cdd3ada' where movie_name='街区男孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eb37645946d29e2f22e3d30a9afd1bcf5f68f2f1' where movie_name='哭泣的草原'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7597c97f0508305370989b1261159a735be58f29' where movie_name='摩托教父'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b6bade838a6b60d8d1675d4cb423ee52c8950637' where movie_name='心之归属'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:629727bf950a7fa1a697f3bea0748c858ac9106e' where movie_name='房客'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cb03afa88d252040d2ce622aa342b52cf78db9cc' where movie_name='太行山上'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7bbf36e660435747e78ccfcba3f2bc44fdfdab3b' where movie_name='由内而外'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:06e3612a0cb95238c497b6cccbbc7c5295176ad9' where movie_name='夺命回声'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3af4d4cdfbfa87b2758d71fe7ccd9692ec6ccc92' where movie_name='重返中世纪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c0ef65223a4717ea4146aa891196c9ee603db547' where movie_name='巨鳗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:adbdea50778f2c80631bfe363bdd191f45cdef6a' where movie_name='罪恶天使'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:af4e729d2da6f65162e1604e72c3929ae038fa9f' where movie_name='剪辑师'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:42473d0e79c88c3c9ed6508888beaa6dcac54eb0' where movie_name='寂静的房子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4e750842e8dd74ad3b5138787b6f0221ddf5e652' where movie_name='何日君再来'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8df4e0b80fe6ba6381c4e8a9edd5a7cb2fd0f2ee' where movie_name='红木林'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:464f7024bcf478701a22fee5862017b6116e8927' where movie_name='章鲨'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8f1c09b9e722fae0ee068f4af39a4b7ff19cc034' where movie_name='暗夜鬼叫声'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cad325da2bceeb0e215c3ca3a444d88fe8d5173d' where movie_name='死亡繁殖'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:49740935bcf3edc6a2313062d8ecca87465c5dd2' where movie_name='恐怖古堡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2c64ca3e32a6af6a1d5fbcb8f8407e9331170bd7' where movie_name='蓝色星球'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ae1a2f55c70d06a7b1556d4dfd071fdbcf77577b' where movie_name='天线'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:549cb42eb53b1d8e2f1d34297ffddb184a79757f' where movie_name='红色星球'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:91a764ce11d323ac6718a3192bbb2efc73bede97' where movie_name='危险第三情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:49c4ab2d64800bddac2aa4ba4b97a36ac41efa89' where movie_name='盗剑72小时'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6d2653d1b534e80d0c04bcb9063e60f74d8e1e90' where movie_name='小上尉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:24928a8c131787c475f92e490ba7bdcbb11bf966' where movie_name='双截棍'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9c9cc9fd6b75de61789f39a3bc9d98ff091b68b9' where movie_name='好男好女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1af2b82b56de2a10458f2ba04091161622da729b' where movie_name='恶魔咆哮2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8cc4fe04d7b985cdbf910e130b4eb297126d2008' where movie_name='熊熊爱上你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3e6fded626973ac3ce76efeea1d30ad46732b002' where movie_name='孽扣'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:260cd5deac474f982115f153c57648a183cc69b9' where movie_name='水银人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:343e06f0bfe2b4d49be7a80157d6dcd5130ac2ea' where movie_name='鬼屋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2863860e8ae674489a07b3acf266062ccae9e0fa' where movie_name='哈德逊岸边的海德公园'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5b4b146aaae185b7bc4399b46e255a05d5a8a1a2' where movie_name='变种鲨鱼人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b7e8f52327d21c64e0f7013e4b19a142d0db0133' where movie_name='鬼蟑螂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5b194e81a778566d4f1c0f641b6f5a12d5a8b846' where movie_name='尸骨无存3：零号病人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4d995d1fb15be6e195c01f795836a386f4bd7015' where movie_name='恋物'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:89c65c9357528caba49cce77684d5abc4af3dcb5' where movie_name='赌神之神'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0c1599253710213ea53e1602716c3a22f3355220' where movie_name='行运超人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8dea7c598b4512b08c6563398d057d56615bf43a' where movie_name='摩罗神'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1039f0316048d96bd947412a6bc1455cdc7b189a' where movie_name='一个都不能少'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2d19d7700cae5044e8b1ebcd3513e98d41510b33' where movie_name='破茧'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:765125c3c1187350e9a5ca11f4891272adac9809' where movie_name='隐秘而伟大'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bb5c9fd8a0c197d2ced60bd8ec0c2b035115e8a1' where movie_name='双子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:40b7886198724704965be5dd4b8e135a6e206409' where movie_name='全城通缉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:201a9fbbf3b3ff5e717b33f3bb6f1196862c9473' where movie_name='不汗党'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f03e4bfdb19c80b41bc047effa88b19cd7f78216' where movie_name='隔壁惊魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d697a883b155a0f41524fed27370451e6305ede7' where movie_name='危情营救'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a5a9bcb7088b093bae5659a092fcc4ae37c2a6ad' where movie_name='聊斋新编之画皮新娘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f9a9aeaf8b6d53081ac3d16f3fa3ee42d8cda902' where movie_name='左轮女煞星'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4c99b890665dcd92b555a81e3d42b49aa03554b5' where movie_name='执法悍将'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f3a140e63a03e60a67e8f2525571e0f595d50de9' where movie_name='破局'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2ebf6e366e6c5e4a365da1d83411f6311878dd3d' where movie_name='黑暗中的救赎'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e4a4a01c2e7220813c01087d1b5e22b06e2fee1b' where movie_name='和声'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a23ec6cf6590b4ab90fa75bdfe194d46f53d4aad' where movie_name='白领流氓3'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e7269645ea60eddb4320a836a5bcc9b999d0ea08' where movie_name='心战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:03eb8fbebec86f714ea21de4e977ae6aa3a0b052' where movie_name='丑闻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:75f60d34f2b871d46cb2a213d06b4ee31716217c' where movie_name='基隆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a988bc34e49e9364448080adac9641c2a1a75cd1' where movie_name='威基基兄弟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0064abf89aaeca00171b2d99339af6c1e56005a9' where movie_name='镖行天下之七星端砚'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:82a235a88b9b064f5a7923d620cd4e90784312ed' where movie_name='静夜之决斗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e1f1b8aa386d5fe4b9ed18576dff5b7d1cc2d846' where movie_name='白痴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:581732849c5de28b41cc21bfbf7e54337d7972f2' where movie_name='人狗奇缘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:13a8a4732300f9370ffe76fbff20f97a89d565ec' where movie_name='送信者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:672f124a4bba1ee87a3f778e59545dee8c4ee735' where movie_name='泥醉天使'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:06315ab41861273dcd78e82998a2ba84e46bbe9e' where movie_name='爱情谎言'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8e2377252c210490d9f4cf2f5790fecd80f6b3f1' where movie_name='镖行天下之瞒天过海'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0cafe209a72d42fcddb77272fd2a49298e662fb2' where movie_name='花瓣'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a9f39f8a1e70b28d866dc7e76f579dc5a4614b1d' where movie_name='野良犬'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e4907c38dccdedc110f3bad72216d08ff7c93491' where movie_name='一点巧克力'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c1a4a38361d94d0b66b469827d95886baeacf2ab' where movie_name='四月的女孩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e823f5e8307695f46bef3e6259198e3debb725c9' where movie_name='斩尽杀绝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a95cc698e2904b9e1b4116b1d9745522ca568bb6' where movie_name='康定情歌'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7f7d778ef76e9271eeb43158333002d9a7ac8202' where movie_name='死亡迷局'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:18432d1875fac496bee524cca671fbed0a83eba9' where movie_name='卡拉鹰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6070625e86285db220640faaa93eab14bf4860b1' where movie_name='鬼脸儿杜兴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e7269645ea60eddb4320a836a5bcc9b999d0ea08' where movie_name='亚历克斯·克洛斯'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0d99e6214656279d894d20d93ac4512ce6575860' where movie_name='非常主播'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1fb891e79447c316d9b953d8404df2222ba7dd26' where movie_name='塔克拉玛干'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6140addcdb530ca9c863d685b3aa6ebf099b68de' where movie_name='方糖'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5e211f12118b9bd74bdcc701c4977e2b8c57a497' where movie_name='此处与彼处'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f28d11662ca876c62394136fe80df58171c9a6aa' where movie_name='黑金风暴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:da1af1923c5e2476d59e0dc2595e50cee8aefbb3' where movie_name='汲取月光'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2e42e76a09e80c274df76742ac9466be27f5703a' where movie_name='火车大劫案'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ad97775b2b690cfc8ad229772320e04aa248003a' where movie_name='背影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e95aa3832af2e00bc25465099782d51d86929e3d' where movie_name='黑狮震雄风'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6cb32cd89f98fc8a81b72b3207f7531dba740e1b' where movie_name='血玫瑰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:393b38512b46a31c39b6a5bf82a27100d5ad2be8' where movie_name='一条龙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4294076bf35945d417f205b080b285b89f045156' where movie_name='雨月物语'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ad4e656eba1b867b1ea43ab4d7b410e3e7f9bd23' where movie_name='恋爱进行时'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:036e4e1a927ac05cc7355ec7baa6f7c226259529' where movie_name='机遇之歌'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0c7ea86a52195797f34cd18218cfa59c6300b1b8' where movie_name='世上最美的离别'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bdc4664aa6d3f46c9bfb010e70341d9d8ce74608' where movie_name='寻找金钟旭'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7ae9ceb1f2adf5da54429f4f43f86e714d504996' where movie_name='爱·回家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9fbd3231dd761d51123df51e137191680ad654a0' where movie_name='秩序的守护者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7a7448415d1949b60c947885b779b40d07b323a3' where movie_name='死亡竞赛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:acdf617f4251b2fe4163a1650f55b314e659830d' where movie_name='恶汉甜梦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:92887170053159873d9cf1bb7fdacb33f504deab' where movie_name='上帝旨意'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:14e63fb8549f6d6622ebbc16148895ddf9ff3dd2' where movie_name='顾大嫂与孙新'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:48ca053577fbb64752bbc07f13c8cb7eb7242b1f' where movie_name='电车狂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:90c2c958f22acc0b91e5d20ccb961f700790343d' where movie_name='八卦宗师'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5d9f99966802ed9c34cac16e9fde628b62a5c4c8' where movie_name='巧克力情人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:13e762b5d97997013f83db176c536832719adcd8' where movie_name='战争力量'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:113ef860337f7b785e4207793f89cfcaf960445a' where movie_name='血彩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4f7fe2a4eddefcb981ce5950b273692254fdc02b' where movie_name='武术战士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0e5fe2e1a755a3ced2d0cf0f5936e076bb30e39d' where movie_name='铁人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3c959a3ac86209f5aa1d834be3fcdfc6a9498e21' where movie_name='向左爱·向右爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:940658af68514754eb90a33c30129a9d59f8adef' where movie_name='布鲁克林警察'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:da1ff327154b9a5557937922b1ae7af0c226d0fc' where movie_name='飞来福'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8be7131e130178044719451b9173367d5eb1fd6c' where movie_name='导盲犬小Q'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:74594846494e676c4de9588fcb6f8760b513ab0c' where movie_name='惊曝内幕'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:27456bdf5cc749df0c52105b55f1cfffa12af8ee' where movie_name='一袭灰衣万缕情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:efb345c3e68fe93d5d02f5bf3856e2ad2dc7647c' where movie_name='汉密尔顿2：绑票危机'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a703f96436f425d02373d1341155eae896a35448' where movie_name='重整旗鼓'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:870c58f6c0a91c638c38868d06c942f1d5a2cb2d' where movie_name='梦幻狂杀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:29fff289b3937f60de1caa44533bf3216357d366' where movie_name='小李广花荣'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:05cdd36a2e75d39f9a2b0a393e7201a2f74bdd14' where movie_name='应许之地'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8d54b90f1dd4e3a7af779cfe6895f2e6c4c64583' where movie_name='美丽东西'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:83fb88f8de74ceee9c6068d3cf8f871f96509696' where movie_name='红髅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8fc56ffb7a0d4aaa10b1fddc9e8615ad2473a292' where movie_name='额吉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fa9d339920efd3c367ced2db7f8d5a5aaf8e2898' where movie_name='鬼狗杀手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:34959b89402bec60074ae99503e52551e7e7dc31' where movie_name='爱犬的奇迹'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6a68b815d0b9c68127ebf34515e3694d53490dcc' where movie_name='天生拳霸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:999cc8234bd2f971b694fe49dd275315e712e322' where movie_name='共犯者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:55c35c7abff8bc163fce3c2660a4f6f60459dd60' where movie_name='秘术'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aac245171c0c4c618fea0f1c6d0d096c67b200a4' where movie_name='非法入侵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6403881713f2a4067374ed548fd046dd5254a2ec' where movie_name='爱的蹦极'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6a03d7e4f307b59cd2740b25d8eca1a5a5865b3e' where movie_name='海豹干将'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:062658a84dffc97e3643beec70484622b086f8e3' where movie_name='巡弋悍将'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5176f0891a3b54fbdd70d130ca2d0a3cdf028969' where movie_name='侦探马龙'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:17a6b3b4a2ec13d12b58035df583a312f059cce0' where movie_name='宝刀未老'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:25c64e371a9402eef7dd46dee49f47c72c479022' where movie_name='余命85分'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:09f81077369f244cbfc2f79e86d2c0dda1c82698' where movie_name='越位者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f93f4549d5d8bc6062f0342ca73dffe4c14f223a' where movie_name='鸳鸯蝴蝶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:30626f6728d3b06ce8b34f2482b7be1fa92acaa4' where movie_name='停不了的爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c8fd412963036d8c2dd2564d548f18c3f5f740d9' where movie_name='美术馆旁的动物园'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e1a64f391eca4c7261ebbb5e1dde3cb9dc2bf9eb' where movie_name='极道追踪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:016e3b84e9a1147f7366044a7844df4f9cf5c9d3' where movie_name='跨跃彩虹'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bfc1f123e131f247952999da2aa371438ad7d8b6' where movie_name='曲线难题'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:11fed7a004cc5fefb1aeeee9fb75c50e0707be32' where movie_name='温柔杀戮'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:260bb137d1c70c4f8c5e82ee11ef15b93ca3ba24' where movie_name='金枪手徐宁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c758e5c778361bdd804f87b0f974783a06cd6adb' where movie_name='特务风云'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2e72ce898ff461b522a1b55d130726157710824d' where movie_name='替罪羊'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c911d245d00383cbc936c7e725b88c00952ec0e8' where movie_name='深入敌后3：哥伦比亚'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2d257c94aa247381c00b6218cb09b6de8bdda2f6' where movie_name='警察，形容词'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0ab980d6472df61772bc961ad102779ae0080afd' where movie_name='智利说不'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5275537e3f159e2861e7bd3c85b5f7174aeb5e35' where movie_name='野蛮人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fa8658f9317fa2ddd5d27522b206d1331967ba9f' where movie_name='卒迹'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:401e4a26f1820e957fc009138bf2ec88bead5b51' where movie_name='战力外搜查官SP'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f1ff33cc3cdeba80671c81027ea6803ddee03e2e' where movie_name='杀手阿一'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:78e00ccaf2c7b8e182ab0023d360b69d32dfac1a' where movie_name='因父之名'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2b8b78ffc1a38838375b1ebf3a910a759cffb451' where movie_name='青涩恋爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3c541036147cad952fd69f283c6dcdd9a36a57b7' where movie_name='雪国之劫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0041fbd0811518ce91faa73c2bfa55d35a1f544d' where movie_name='美眉校探'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c452b86e320d1bdb4dd85dfe184d566bba26b13c' where movie_name='致命替身'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dbb081ed5a8c952de4099437c1ed87dc621be0ef' where movie_name='小黄狗的窝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aecd0fe47f1bd83fc54d7c12ebe607ba09fbb6a8' where movie_name='茂山日记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8b997320bc6863023daee6b55cba1be99a5eb059' where movie_name='网上有缘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:04d3393ab801ba057c019988111c87706230daab' where movie_name='自由之丘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5274b39fe89d95ecc8d7687f94a8591ad96564d3' where movie_name='我们俩'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:160d9b7591e938b0a1519fa167522f6350dc4c0f' where movie_name='三十八度'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:28c2b8f8e7c32ebb90a9e09cc3a76755e90d893a' where movie_name='阳晖楼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5e3d5eed7b408a6c3a45cb31227dbbe431a3dcf9' where movie_name='流星蝴蝶剑'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d8836450d9235a849fb598167fd789c0f6fd4752' where movie_name='赌王之王'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:78cf73bd831522240d5b5868d0f6aebe1df4e383' where movie_name='大脑中的猫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:754f437c43ee4efbd74025c249186e124920e477' where movie_name='手到擒来'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:88a13940cf4f0ef7a1bbebffe7f9003c8247c6dd' where movie_name='生活的发现'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ebe4df155ed8e72245fea3fd2f27f3b8556e1cf3' where movie_name='死亡邮件'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6260cfad4ac66d10a10af96625ffcb47091b84f9' where movie_name='拳霸3之火云盗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3d9b933db11b7ec046ab3142416d85476dd4dab6' where movie_name='时间不会停止'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c2c922deb056a857c21bed6c037246487796d401' where movie_name='在他之后'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b2cc71a353e9898da4241998663cb183569ced11' where movie_name='法国贩毒网'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c8fe81831754209c7d2809a58569d202c983f197' where movie_name='忠犬八公物语'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f1c7604beb50849191103ec20718a6bb030695c3' where movie_name='新干线爆炸案'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f503926d2b03ec5111b7b441cc42f29b727b9357' where movie_name='不法之徒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c3d228b3d18be63a907b19f0dfa011fec9c8b4dc' where movie_name='弗兰基与爱丽丝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:308e0710b4b2090936a283aaf43835c792bf27a2' where movie_name='猪堕井的那天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:db446cca043318b250d4d26643ba40b81d63a318' where movie_name='替天行道'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a1090d6f783900a5b599f07ba7ebd133286387b2' where movie_name='女子监狱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bf788638a9c5340de11e602f01e0c8eda38bef9a' where movie_name='芝加哥大火记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:66aeb30535c5a2673d6ff28d5a93107546572151' where movie_name='彼岸花：女人们的犯罪档案'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d735c22171df5ec96093f4896952af9554cb2bd8' where movie_name='间接伤害'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1001452af16dd53128772d3e0700ce395b77c61f' where movie_name='焦裕禄'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c78ab77901a5f3889683c60293711d6ce58e3945' where movie_name='法网杀机'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ad0febd940da80cd787d78077f6ea514e43039c6' where movie_name='心的羽毛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f225e1e10e6699819b571d5105107698556aa7da' where movie_name='地下室惊魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fdd1cb73bbdf62c5149a27468681376eeead80fd' where movie_name='佐知与真由'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:33ba1f70385d66692228980f33f34bddff8c0f9d' where movie_name='绝对底线'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:da2006f5f73e61da1299e93e05531b1c9f4de382' where movie_name='朱丽叶与梁山伯'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9ed20400b4e62c52d14f2e875700ae14447dafd3' where movie_name='全金属外壳'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b1ef6ab59d2ae4d981b0c1a80ac963a1e081db5f' where movie_name='刺青'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1ebf6d99fa751b777dc4552c4d969866d6ed2e4f' where movie_name='半月交响曲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e2ea84dd821f334e05fcc44ee9588d59b50c0eef' where movie_name='恶魔之子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:84940272fd6688fe1b2c3ea848fcc5d05ef2e1f0' where movie_name='迈克尔·克莱顿'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eef859faaf8d9f315874b141b11fab6f32da7f9d' where movie_name='双城故事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:322162c4c8feb65729c0de22adbf7831143ae798' where movie_name='竭尽全力'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:504baed61ec8f6141b29866f981201c428dd93bb' where movie_name='狙击精英：重装上阵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0230cb8403ca74a68b8c1f6cb1584416a494add9' where movie_name='子狐物语'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7b29f31a24b3fc2ea6ea74017c67c9700b58836d' where movie_name='狗狗心事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:25601e9c2755d43740f0669639b452660ada452d' where movie_name='切腹'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:290d4f607cee4e33d7531b8f00c33861d299788e' where movie_name='赢家'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dd8943bd74a0674cb1e088128f35144c880d4e9f' where movie_name='你是我的命运'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:03d0b6562cd8b1d54dd7f9ac1327e8a3f6e48e7b' where movie_name='华丽人生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ce90244599b8f42b788b050a446ef8a41b3bb626' where movie_name='布鲁克林黑街'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e4836602f40999871ccfaa5d2dcbefe5ba6f705f' where movie_name='鸡蛋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:103839104f4c8cd4567fc7ded74116b2548a1380' where movie_name='悲伤电影'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:15a5597306fa7ab78d1feb733966fc7e646529ac' where movie_name='我爱天上人间'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f325a496de5ac5c84c374f81f790f0e6656a39ad' where movie_name='魔鬼警长地狱镇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c30bee5a3dd2175f85459af47d0bf1cadd1d6d7a' where movie_name='不明身份'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5bf8f588a01eba6c99320010212e7d166b963857' where movie_name='风花'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:adac1280ee10b5a249142b614003de668f668e71' where movie_name='惊魂游戏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1f1c88f3ff898d107d3d1c463cd15b6549360d11' where movie_name='黑猫白猫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f68d8dcceab0204ed77d5d44fca795c98af7ded3' where movie_name='聊斋系列之桃花劫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3d58063db5384325b8e43504f9f3fc2d3238eda8' where movie_name='天水围的日与夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:03dea05ec77ee8a67ab3d9bccd59735169210bcd' where movie_name='蓝色天空'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7f5c4b4a531ee5e377503a502139f18278f6189c' where movie_name='心之线'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9afb032feda071b179d6882aadd029c867d324d6' where movie_name='首尔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:26315e5968083ac1e170a5cf75ae905829a49389' where movie_name='一球成名'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:017882f31a88bb919cfc78f46b98197d7faa4128' where movie_name='蝴蝶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3a66376ffac497cca9160b1e70334af9a3b5df5b' where movie_name='残菊物语'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:248519b1d0767fb4c0c3a9cbf44b99ddaff8b0d0' where movie_name='痴男怨女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9aaca152fcd45ae1fee53633380e4f812cd889d2' where movie_name='神通术与小霸王'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:62711c03d7d26fcc2da0217e6799b58e4bb0a75b' where movie_name='等爱的女人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c67ef5b273e6365edfa5d8a39d2f329019d01005' where movie_name='废柴同盟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f298a37146cfbad665324558dc2cb119245e442f' where movie_name='女王蜂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bd5b8082ea379e42be1a9a1a617d731fe288b5f8' where movie_name='山椒大夫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:231856f4b523286f55281789039a7a40420dc010' where movie_name='战栗黑洞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c03b84f87f45ec5f2c5a154933a9acc59702969a' where movie_name='上车走吧'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:90bef311dd4a28ca0110bac4eeb8ebca25719510' where movie_name='混蛋3'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9440fb8593249008496f809959ba9277a9508d61' where movie_name='撒玛利亚人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c88d46d856252b60372cc25a3b48e977c61c0e06' where movie_name='爱伦的日记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:906a3ec69987483784fa6a16fd5cedd8ad4e32c1' where movie_name='我爱你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3f6901f6af2fd5e9f32e95b8ecc2501a45ed3549' where movie_name='职业大贼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5bc79feb8da8f4c545b588d0fa75313ea3c5d039' where movie_name='借你俩胆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a6e73382f0b9592ddf1dc4542c3f739ffd9741d4' where movie_name='无语问苍天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:906a3ec69987483784fa6a16fd5cedd8ad4e32c1' where movie_name='我爱你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9bffe4fed696623a73ed28edc4ea020075b74207' where movie_name='美国紫罗兰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e842d4f8a92d1de7e76603fb8c1c77303d4c2962' where movie_name='巴尔扎克与小裁缝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e62e627b54d41e547b30e83272c161cfd86a0fb3' where movie_name='飞虎雄师'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5037bf3b67c710faa16f9114022b39b9a84dc600' where movie_name='邓稼先'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:16ea63fddf7e663e821baaf1e317baaace200ca6' where movie_name='智取农场'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6bade6559ce9a941494c32b820c7367ffc2c3478' where movie_name='天生杀人狂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6eb17d2ca06cfeb4fb531b316211fd69a2cc5b75' where movie_name='地铁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:302fc21fb331524a632ee332f9f46bcf80f5ce22' where movie_name='鬼作秀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5eb81dab4ba7f7344bf401e2caefeeb0100965f9' where movie_name='戴珍珠耳环的少女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:278b3dddf766565299b8515987d25d8ce1ce0c0d' where movie_name='末日天启战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ee22c32d7c34344db8cc456bbcab90e881eb7151' where movie_name='三十九级台阶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:870300e2ee93573a3c1d0752ac4a680434ba853d' where movie_name='杀手的决定'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3ff15883243dac0300743f4b2ca7a0005913a123' where movie_name='雁南飞'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c953c87155900ad6b93f1bb7337e59e981a2e7d6' where movie_name='看谁在尖叫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5da500b0273018d93ee4edb028a239d4a7058155' where movie_name='那山那人那狗'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8dd806a950b96126e3df722105fa2142df9b94a6' where movie_name='三件事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d84367d727ec96fbe341fa1a7f499bf03f2d6776' where movie_name='警花燕子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:260dc7c63c30e6007ee9f216f9b642b6ef22cdd0' where movie_name='神鬼任务'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ba9387675233c9708c56d08670b1097881951c9a' where movie_name='彼岸花'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:23247857aa6b5d44b018e44822493c8b8d9974df' where movie_name='弗里达'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2e75eb06e65c58a5815bcab4f67abe2351442834' where movie_name='黄瓜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:21455139e13e705d1eee87b68709b93de34f7843' where movie_name='雪地黄金犬'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5db943ddd54688f1d3fd652306c75e9dc9827cb5' where movie_name='一封明信片'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b17a944a7d4042927e789e8e360b9a43ef5978fc' where movie_name='驱魔任务'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8bae426838b96e855c9c60e351f8d10e5a1cc113' where movie_name='初吻2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b75900be127129d259e020a7a71ccc8b7670c908' where movie_name='卡塔琳的秘密'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9bb791a02f7f177c804b86db24c2e40d582b0077' where movie_name='夜·上海'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c6dc394e7e4d810a3d1d7f93e0c337dfe3432870' where movie_name='消逝的星星'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8c7dfb4c6a95ab7fbf3af6af5e336bcf165b7526' where movie_name='天上的菊美'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c777614c134f8dfb3801e8ff2f00b75c2bda14e6' where movie_name='旋风小子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:78ba3dce2293559cd2b9ec685ae122072d7de7fa' where movie_name='战地新娘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:84b188edc4da7358ce0d8cd3405232f42cf38e63' where movie_name='恐怖笔记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:02561ed0eae7c901045164f6c03ae34bb4e8d0a2' where movie_name='魔鬼名单'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ccb64624ecc188e5a1b1dd4faaa566bbe12d995b' where movie_name='家族情仇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:78b9e68a9cebae3b619942d9a5e893069bb37ece' where movie_name='玻璃之城'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:91914e2d31f62203eaf53d3b1cc0772753b766fa' where movie_name='春天情书'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:40be31852bb515c607383404febefb799af2028d' where movie_name='我们的幸福时光'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:70b7470f5fc610853266a7b69a2523020378653d' where movie_name='请将我遗忘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:640ad91f2de91928eea0b328afb70d6c9e429506' where movie_name='好莱坞庄园'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ff70ffd6deb48637168eb2c2af029622cd9d87f9' where movie_name='二嫫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:38dd3d16d033fc24252bf0c76311a50a940989ab' where movie_name='雇佣兵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d723c0ce9fef217933e377fabcb6e55c5d9e9bb1' where movie_name='凶手就在门外'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:379c00badb0f7b718b3e73b81f853fbd4e4a5966' where movie_name='播种情人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:723fdfcff88609a69d447d8330e7fb3718151264' where movie_name='幽冥时代'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:57ce045a5a1418b8ed23a40cf803efcb5ea098f9' where movie_name='闺蜜大作战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aa1e27f0eee18ef045d1a0c94f344cc616f15473' where movie_name='日出日落'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c57b9953353beadf8a02496b38898dee21ffd2ac' where movie_name='爱情折扣'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0b2963666969b468d117803e9838cdf967a93037' where movie_name='十二回合'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a0f9a41f675134c52601169d6461ab2f74f812d5' where movie_name='花落花开'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:11897d10eaf9cd30ed47b5ad146042210ce02e4a' where movie_name='在七月'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:00b89915806efd92c688429e0976ef152e5c989e' where movie_name='太阳背后'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5d8294d6e93ae74e3946223b635166106ab149e5' where movie_name='转弯'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0f755f9bcf311f9dea855300450ee3ad43a9236b' where movie_name='林海雪原'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1481672093bbdd9621853704cc99485b0b3d1329' where movie_name='剃刀边缘'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e0615bf63580e4b2d7f0e444ec8a6ffdd5ded98e' where movie_name='堵车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0c8d67d6d8f1d9cbbf62e7e6d4534cbd8b14fa15' where movie_name='支手轰天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e4695dae41581d104507d95b57f7213fa15ae231' where movie_name='地铁惊魂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e386d335facb968f90e5f34988f2a00dca3a4b6d' where movie_name='阳光照耀的未来SP'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:09c464e265fd4e7cad0eff751d08b2ca7222f10f' where movie_name='杰克遇挫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f16dd117a890598e37dc4e081e5132831cd30c6a' where movie_name='冰雨'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:036896175b9888544b2bf51c875928686adfd5f3' where movie_name='平壤之约'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f11e49eeba5354a55582c144d4f891050784c0b0' where movie_name='不得安身'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fe46821c8e7d017b435830792b1042d24406d9e4' where movie_name='立春'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b0cf5d0c5c44496462ba978b2adec205728c4fe7' where movie_name='我们身边的犯罪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fed6777348acc001dafae622329d96bedd00269a' where movie_name='美国精神病人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:af4a83dc733ea4332ccd596dba6f43383492c073' where movie_name='宁静的人生'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4e728e2ad755a2fe75be7d130c3c609f6cc9e0d6' where movie_name='菊花香'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d2381eefbbe70ddfffbe2f0eddd1d1c84c54a1c2' where movie_name='面包与玫瑰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:af610e8f615fca1cc4e26de629656c0918375222' where movie_name='魔术师西蒙的爱情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:65baff437ac77cb69ae3b848397dc75e19cf8bbe' where movie_name='伦勃朗传'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:92b21e95e0d65c7cf9dc38ef6213c186707ab6fa' where movie_name='波洛克'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3ec82e5f3c24f9b115fb6119f2d25ebf29acefdd' where movie_name='罪犯'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3f993ae4876f24111d75a10726bd068b8104ca48' where movie_name='英雄之战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4c7fe7a5ee013aea25afb5f3407b508a2007fc6c' where movie_name='坏中尉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9037c1a97864acabaa5746b6539b0610c80d9a8b' where movie_name='孤岛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5963a317ffc07e5be1b1e7e30a2d9d5df3f5f08f' where movie_name='廉价航空'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1ed918a50e0a67cd7299d6fda7f9a70aa45457b4' where movie_name='杜玛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7c60a8279bce5c1b54a5ecb13f5276f9b11d0591' where movie_name='天堂的孩子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eeef2faf6582eec2c430b332cef3f5bc047dc37a' where movie_name='抗体'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6eb184b1a005addc389450ed692bc526b176d5f4' where movie_name='天罡星下凡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aa37fd1e273c1e13f5139a49631f2ccabd3b6ff3' where movie_name='以毒攻毒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b0464a8488112382e21965ada50f7333408e9dc4' where movie_name='花落莺啼春'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:28832d9b0c2faccec5c3457fb7530ec010fd5e48' where movie_name='灵异骇客'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:44b7809a02619d7ac0baa6fa4e055ef08e2763da' where movie_name='本命年'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1c339425058f7bc1532a9606fcc551394e3a6233' where movie_name='错爱双鱼座'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:610d668f9998a88432fb917452bcddd7ba7507de' where movie_name='意乱情迷'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:45d8d51cf39935b4036f85e770d371203c4edac2' where movie_name='生命太漫长'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3fbf5a232e1fa3877d107f2e24ca568fe75d68a9' where movie_name='终极尖兵'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a7491fa031287e13efafce213c76b7b15ebabe40' where movie_name='Specialist'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:efb8b5a2d711d01bc2cc53e696de3168bf248bf5' where movie_name='安娜与安娜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:095b8bc8a8cc208258f5cedae9c436e89ea2107d' where movie_name='爱我就搭火车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:45db56fb5e1154d0e561a4c2a46a2b014d55cea1' where movie_name='嘻哈青春'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c7f40f0fb8ad5a725b10dab43215d0d6dbffc36b' where movie_name='我的法兰西岁月'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3fc257eeffacdc06de742a2e13df76f7679b9380' where movie_name='丛林热'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a68baf547c240b3d4960a9d64b24c83cf4779952' where movie_name='我走我路'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a954d6590b082ba955671f753267fb924b345f84' where movie_name='夜夜夜贼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:77549f0a412959a704491c9746937033c3e61205' where movie_name='我人生中最美的一周'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eaace4cf0f6fa2caf0136158def4b16777e97951' where movie_name='致命女人香'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0d5fe919eb49267e37d523d466bf532cae9c8173' where movie_name='基地疑云'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ec1a6cf02147fba80d1a6a14384da7d66cad8a45' where movie_name='高踢少女'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0fe7ec4ea6801f03fcf386e0465aca9b1ad23742' where movie_name='喜欢您'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:165e87afb198f5c11b8964d821521a04f25dab58' where movie_name='草叶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f44452e155afba2ca4ff62dd483762c58e87ce0e' where movie_name='非常营救'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5dfa7b268f212259f9dc7d395e3791bfb95fd24d' where movie_name='半夜不要照镜子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:39cd003c5869fe91820e2b56f295402b33922b60' where movie_name='出水芙蓉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0e9abe4f5f4314cbc60b1893bd6592e3b2715ebb' where movie_name='野蛮的温柔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3c0db11fd41bc40cb4015729cd1e93b761f36395' where movie_name='茉莉花开'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:81783e640d3f07fd55e4179829d20e73f2e0b9ef' where movie_name='恋爱平安夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dd339daa2b14bb52f929c9f756780dcd3cda443c' where movie_name='大旗英雄传'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aa33339525afa3a5b8749e91686c623f65198b93' where movie_name='席德与南茜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a1ec637b4cc881633095ada45c32f39f0d53cc1f' where movie_name='狙击杀手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:147b33815e596c7681d4d1234de5c595b909d026' where movie_name='五克拉的爱情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cc1d72ed268e3b1fe71b3f376a4840f0cadd0ff7' where movie_name='残缺'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b8321cab57bb50247cee8dafe854343b1a71235' where movie_name='绝地战警2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:abef31c00483bf104f9f21321d115f6111ddbc3c' where movie_name='鹳鸟踟蹰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:89a856a2bd5ae490e36b4f6068c4508367e3d4fb' where movie_name='穿越国境'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dc7f7aeaad6f6ee6f7d05ca97f761d69fcf14ec1' where movie_name='公爵夫人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c3fdd7f4eac4e97720041e6600256525b520dd0c' where movie_name='兄弟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ba87590ff4394a0a7bff060e888a5d67173e3960' where movie_name='岁月留痕'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ebb5ded5520e90856b856a2d3bd17a0a3addb2e9' where movie_name='橡树'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:473c4b947cc1e633ab1660f27369883673f7fb7a' where movie_name='维特根斯坦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:afb435c6255d5237d63f9c2565f9e58ab09998e2' where movie_name='监狱生活'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:362130eded3915c560f247dcc98160eed42fa7c3' where movie_name='艾德·伍德'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4472cfcc2b7983956ef18355df04851b78de147e' where movie_name='春闺风月'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4151ea18ddac2ce5bae9ae6cf598ee38db01a692' where movie_name='痞子大逃亡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:192b7180d51ee835ad88c7f945083616f63b230d' where movie_name='三个未婚妈妈'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6998d7b4630155fe2809ffe5fb1afcfe5079e1eb' where movie_name='龙在江湖'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2893c25654a1f1c12828a1dc7773635b72c689dc' where movie_name='白日梦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c5103c1174d63739409369b906df1679eb9f7563' where movie_name='雨天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f9a53b26e9bc7b510aaad5d3008a51b6e43e681a' where movie_name='投奔怒海'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e02b88f6751fcbf32a0c8cc59a8c296f4501aca8' where movie_name='红松鼠杀人事件'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:906a44d4f834d9938f484862a7d07967eebdaf46' where movie_name='无赖老师'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4df407e8b1c4676b190d4e3a4489a4a9edc10f34' where movie_name='人鱼传说'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:37a2ae00adebcd41ab7431967eed936017f95895' where movie_name='记忆中的风琴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1fbe38631d1e0d08303d22ae9c0376b36663ae21' where movie_name='大门'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:049ab06364bbf616cefd574096a82bf9a4900a0f' where movie_name='越线'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3249cf9b2625102921ca6bacb4845fc0f2681550' where movie_name='嫉妒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:05cd42c232d5c3d1cf6a22694cfb61c1228b1786' where movie_name='蒙古精神'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:24d24f7d7681c73ea6a348eaf6555499f1b695d8' where movie_name='蛹'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4e3109038ab6be649a6d0e32c03c87ccf35a7bd6' where movie_name='青春韶华'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b2aad1d5d273268d9b4d9b71edaa2d1e70f28c4e' where movie_name='热血高速'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:29af5e81c97fd220de73066a083e1404c41c0248' where movie_name='爱封了'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3f70a5f261223dfc987722a93571265f6cbe6a35' where movie_name='老表，你好嘢！'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:efa2f2a1d516096818f431411d5b41468a15a980' where movie_name='受难记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a938213ceb90f9a9a4adbb355561636e4f41e2d4' where movie_name='埋伏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3be45d977cb6f45b0757a84e0c04344856e28f6e' where movie_name='飞跃地心'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e9e8f017347b607569137be0bdaecb0c1b2cc9b4' where movie_name='边城'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4c055de1030b46b5689bb1b07a82d09a82efedc6' where movie_name='虎猛警师'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ffc919a1317bf92f76f25fcc2956978dea4c36b9' where movie_name='网路末日战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:083252be1ff1d8b47ac093a140f50f8265674811' where movie_name='奥巴马新政'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cb604d70ac927fb0aab9f7c4c2babdd5adc2aa74' where movie_name='鬼作秀2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:553bff53370e78381e787480b126e7c136216ce8' where movie_name='幻想的婚礼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a100e3ff976f2142cc31d32abbc592a72f405f31' where movie_name='西便制'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9146c0e4ce63335791661fc3365cc45e8ef6c0e2' where movie_name='冷瞳'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f207063fb90300a271311b18ac8e853568684004' where movie_name='霹雳雷神'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:73db0a8db51817218cb16d90b0b54a41d02b48da' where movie_name='迷情记'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b7d26ad938c547a10a6abe5cb60e2f06ddd6da41' where movie_name='芳芳'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2d78e1fb6f7d4a23883606a697e4c24b1fbff6f3' where movie_name='暗恋99天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:27529e31666426409f5ce66d54a0ac9e14736c2f' where movie_name='镖行天下之牡丹阁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d60c22a2065245745ab826b6cc64e5edfb217fb2' where movie_name='忠狗德拉姆'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ba4a3c9058e9ebf8a128498a4e81f404175e46d9' where movie_name='血蝉'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:54b448bc64bdfb1a0a1c331a114d9a426c3b82dd' where movie_name='老师嫁老大'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:22cb04b8f8ef779fc7482a0a053540465c7d4f72' where movie_name='香奈儿'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5baef7d1fb463887ee6d84c56e976da4481150a0' where movie_name='欢迎回家，罗斯科·杰金斯'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5f125e7ffcc41b7fdb5ad58f0645323a0473e01f' where movie_name='狗日子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7c832efcfb88943b72f9f8d000a289decf60fbb9' where movie_name='赌命法则'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3e8e3b99238ffa07bee38cbafa92eabd9c59d2a6' where movie_name='永失我爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4b800c48092fcb34efdbf4df8e966a4f752a3aa6' where movie_name='永不消逝的电波'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4533b3e4e6a8086ca4071b5ec2c01cb877bd454a' where movie_name='Sweets!'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5523b6e989cfc5b0980e45d1321e0116c2ac93e5' where movie_name='战地巫师'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f2ce225e04ead62c52b8151da0a3eed101420a9f' where movie_name='警戒结束'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ed075f01bacad0f974e66aa16061c576fd073b53' where movie_name='9号谋杀案'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:496c32fc0d72ff7bd3f3aa13e444e6ae0d926ce6' where movie_name='有人在吗？'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:906a3ec69987483784fa6a16fd5cedd8ad4e32c1' where movie_name='我爱你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:28cac36c134b0796359d3a0a86060d4a485abb1f' where movie_name='天使与我同桌'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a950d27150d14802f1a7f008980186c55fc23426' where movie_name='艺术家与模特'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fe5fb77c55eeadccfc346a5c124f79860e9dbdfa' where movie_name='犀利人妻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:23107a3ccc7d57ce7f7fb19774b145c52b342e23' where movie_name='陆之鱼'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9ee63cd0563c2e11ba40723d6639288df1264eae' where movie_name='第一次的亲密接触'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6c2de5f0b5493d4055f173cd93a8f714a4196982' where movie_name='黑寡妇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1854ee69cf367a656c6ab14e26e08e6e2a351182' where movie_name='烈火战车'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:59089abd6057bf35550d7636fe2bbe16fdaa57c4' where movie_name='西部执法者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6a4ed10b12a2810c23b2cc905f0790fb9ab40711' where movie_name='家庭教师解开！杀人方程式的推理练习'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e1f1b8aa386d5fe4b9ed18576dff5b7d1cc2d846' where movie_name='白痴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9748b003bba6d2e2eb3a20e8984f32553a0a078c' where movie_name='余下的就是沉默'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:95c8e34d0e5d6b7c05c8fe85475c3b4cf0e86cbe' where movie_name='保镖'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c179f68bd3b70e785aa52c7d071db2f7c8de9be2' where movie_name='边缘战士'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8e70385d1ab88ef41f7cf80679dc1ed60a275f0f' where movie_name='我的名字是乔'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:21047cd06d188e5f598c96eca504fdc44795641d' where movie_name='山楂树之恋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:18569cf28a10e9692391d6c49b82f47333977eb3' where movie_name='猜谜杀手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ee44250c948a2fa4e0b5bd187d819df47c378cc4' where movie_name='古惑大律师'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b22597ad8234d7b4cd0d54507e60c15304873cfa' where movie_name='生命是个奇迹'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:34363b7c6ac2ce37dbf63df3bda4118738abfd99' where movie_name='基因决定我爱你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:dbaddc5ac79e8ed55efc38148e44f2a637402e8e' where movie_name='五毒'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:80839cd7d23e1b40836d0fdc04c45d19f0759181' where movie_name='战略特勤组'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:88db5c101f3121c12eaae5b26c53beba736f8878' where movie_name='魔鬼司令'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:01aa0fb1a719870552ce00215d12580980caeef2' where movie_name='黑血'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:882f0b36693930da633abb27b894c8b373861d3e' where movie_name='六颗子弹'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e18cfbaafa041d736987cf7d104d2d81747d0d06' where movie_name='蜘蛛巢城'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e3677ce920d4a60643fa81bc5bba50aeb7e3dec1' where movie_name='柏林艳史'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:154c47df7022b4637600e0da4f7c16e6164b82d8' where movie_name='单身的人上天堂'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b0df42617492991eea61fc7ac47d0d7d2087e897' where movie_name='遗愿清单'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a68d11e79324582bb4958bd31b99015482fb3fb5' where movie_name='大叔，我爱你'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bf14c5383a9c9dd260d3c7020c176fd8428dd40d' where movie_name='黑金'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9d6de548a96b4ca61cfe3f03bd91365b344d070d' where movie_name='红日'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2f9747bd3418c09ab6ac6450d0f03d0f7b9f736b' where movie_name='摇滚芭比'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:84d88a63f7eb67637d4a51ae08a875fe480748f1' where movie_name='陆小凤传奇之决战前后'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bceed486bf5e3b36925f157777bcc5c6d3af769f' where movie_name='战争游戏2：死亡代码'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:acb8071d995ffca3ba7350464e9355930fea0ea2' where movie_name='早安巴比伦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:03ab62bbad9ab3662d1b3e3ee8794adeb6d08cda' where movie_name='柠檬树'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fe639730ae9c072290b105db377b7d1efe81ea4e' where movie_name='必需品'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b3e57a55a462d1181f4260536b70eb0e9c5536f9' where movie_name='吉娅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:530a52dbb239791df7ae848daedd6f405047f433' where movie_name='世界奇妙物语'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1ffb78c99f431510f7b3f330afbb49c69bad06d3' where movie_name='韩半岛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:89c98b57054847d7ade847c06da62dc7662cb3a5' where movie_name='寂寞芳心'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8c09638e37c7743ba71a67b32db8c6aa2660fa6e' where movie_name='押解的故事'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bc9edf025462a7c951af48eb13a73c2f266c86ec' where movie_name='活死人之夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9a79cf631c1ce517242dfad94874cf27806e862a' where movie_name='老那'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:751e8a248f38b03abe2c8074f4e858cb2a438a04' where movie_name='布拉格'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:6e735c1d7c5c540a107c00f50b2c9721ade539a2' where movie_name='情欲关系'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4578f1a0b6e1bfa66313db111828d7c05cecda39' where movie_name='白玫瑰'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:411a931c1521cf7eb558a55cb50a1bea1d5c8a21' where movie_name='应召女郎'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d6ef433ddaa9aba2243e4d40efa8ec7ec89b3235' where movie_name='替身杀手'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:925302b49174855fa79e551dd3842dac97d6f353' where movie_name='境遇'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:fe47ced849ac4cd54d3f55da0fe7acf7188544b0' where movie_name='托斯卡纳艳阳下'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1ed935c6cee1385d2c9de99dc593212c01adfcbe' where movie_name='鲁迅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3dee54872b813a1ca45f2b172cb8c898b66a7495' where movie_name='20世纪的乡愁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5f69e45667ba7c581bdec0e61cf55e99cb2410ab' where movie_name='天上的恋人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9294445463c1ca55c803f5fac5459d0f46043b46' where movie_name='变态冻尸'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0302716f39e0da0652e2c7fa801d6c830d891693' where movie_name='烈火战车2：极速传说'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f57cf8eb8cac48e9ace9d6474b25b80d4b2235f7' where movie_name='终极猎杀'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:aeb65ad71d685099e81b6c3eb148441f184f5885' where movie_name='过关斩将'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8762197402571cdf6cadf9f8a8767112658b9f3f' where movie_name='圣歌'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3e3a8cccf4c22c051e69b095207609504340b1d0' where movie_name='公平游戏'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:75daf1e984adc3047a29a367088be02212ca5f31' where movie_name='庄稼之岛'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8e49be20bda345e67ccd8b6b2335eb0f458ffc06' where movie_name='布尔什维克的虚弱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2e630eaf9fc004fb818b5a58fa5d0380ccd2a04a' where movie_name='五郎八卦棍'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9f92ef84b8ac590e68ac2bea3cbdb0d2b62cffb4' where movie_name='校园鬼降疯'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:d740dfddfee77fdc45d46bf0af1836dc6a9509e0' where movie_name='女人的胜利'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:40294e493d88335bf12d1fdf1035d8c3994fc85a' where movie_name='殉难者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:745e8ca60e02ef5e5fa3ff898157847bdae47028' where movie_name='迷网杀机'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bc9edf025462a7c951af48eb13a73c2f266c86ec' where movie_name='活死人之夜'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:57336a95fdd940a9bb0a5bcbccf72f1cbc4e900d' where movie_name='同居蜜友'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:371878751ef7776c147341191b169fbcc80bc31a' where movie_name='放大'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a29ae2d18fc43b56eee1ebb33f2a7627d29627c3' where movie_name='莫扎特传'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:35e7c91b1da3e24c02e367c220f43ad829e75cb4' where movie_name='白蛇传'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:f9ed5573d3b8923581e5a58e635c62607326d742' where movie_name='伦敦'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cf99aa0ba1c835a8c7d61b115e5ec1b2754107a3' where movie_name='摇篮曲'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0ff661b8f31d540fe48cc628077434caca62499b' where movie_name='跨国银行'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7125c21ae395af08c5bf44ac1553e0c316eb13ed' where movie_name='一八九四·甲午大海战'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:52f0e6babff4e3f400970f741392893f8a91fcc3' where movie_name='难得有情郎'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9025be943e621ab8cd255bcb1123f7b3b64bee9a' where movie_name='养鬼吃人2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e5ea2fb11e5e186f21cf8e0ae75f422f85607d9e' where movie_name='苹果'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7c7423c5b067b2d1d72b3104c683e618d03d5ecd' where movie_name='小兵张嘎'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0492d1fa8194612a92aa51d4d7c2e7fb3c7b7288' where movie_name='不毛地带'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9bf88d34e423ce05a5f97b8401325b3d9d5203dd' where movie_name='狼的夏天'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:898c626c45e07c3ed6993f105e87ec5e3d85f922' where movie_name='完美情人'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8df272e8db47acfb72afc1a9bd6bdd69a04e57ae' where movie_name='地下怪物'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:111cf4208b4ad80a4784350d0548791e19e11906' where movie_name='赵氏孤儿'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:73bc09c85925e2f9c3ab3946ef272838f14c9b27' where movie_name='出笼马骝'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ba2dc82d2ce8d73195aaacb68838a3c260ad8f29' where movie_name='越位'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:7b816f01882e5b477ef7c6395cd8a202c48c0d60' where movie_name='宅男之恋'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:eca81f0790c5608e4ee86470edaa469d70b24bf2' where movie_name='幻影英雄'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a3d0c3c30dde09adc79e73547cddbf4ff3dae69e' where movie_name='通往明日之爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:0c012936a2c621e8de366e54ab35e714d7cdbc10' where movie_name='新灵犬莱西'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:824df462848e8d20e9d93efec2e10254989a8890' where movie_name='张思德'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2e1d6a287ec347201680fc3c0885c4f2837fcc19' where movie_name='孽吻'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5c248ff1a87106b393fd598a626d38185d78950f' where movie_name='挑战者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b85df20bf8048a5606b5d7f22e2a5b29aed3c438' where movie_name='乐队来访'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:83ad4fb3ab2b4510c24fdb1224ee3c08d104fcba' where movie_name='蔓延'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:2b27ba23677234c682481278143e6664751a99e2' where movie_name='不需要爱情'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3bdef77861030300066a7b8e2d9e294496ee35a2' where movie_name='蓝色果冻海'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8eb2bc0f9fcb94cc9d5749b7100d676fd8d78dca' where movie_name='非诚勿扰2'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:44ac26513c6047c6750fbc14c36e09deff429f15' where movie_name='巴士站'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b051babb74908cdef06a5510f7bf125571e308d5' where movie_name='我的恐怖女友'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a5d081de7fa9e8d602cf9c944b5d83e3551f1e60' where movie_name='浪漫主义者'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:082d8d91975ec7f46d998dfcb149153f98bd67e0' where movie_name='甘甜蜜汁'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:571becdde65580cd586b0ce38c95deb08b417483' where movie_name='荒野浪子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:1fed741615d0e0ddcacd190c18e753df110df5c8' where movie_name='他们微笑的样子'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:434904274797183abf7690cbcd444968ba72bb18' where movie_name='史前巨鸟'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:a8179bcb05042f04ef8a0d2dd966037f75cd8581' where movie_name='撒旦之外'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:8ad94ac6ba95470e2a995f680c61d3185597e2ac' where movie_name='别无所求'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:ebfbb9540ff9eeebdf514c7262376dd1390f03c0' where movie_name='一眼瞬间，再见爱'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:b34239e05e39259ddfebaccbf314cca2eb2cfd8e' where movie_name='城堡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:baca77823c05e671aa3663928eca04fff4caa50c' where movie_name='海峡'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:e2e3be03509883212933ee656ac71cb0c42a312a' where movie_name='黑狱风云'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:bfcac763c21579eed924fb04a6842cdadd8aac43' where movie_name='中华丈夫'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4382ea1c837616e3121840fcadb97fe85b04cfbb' where movie_name='雷霆战警'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:022c5c1f5c3f4038348643043a5835c9523b7b0b' where movie_name='亡命之旅'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:79fdb1172342a72d4bd580baaf8ba34fe90ddea1' where movie_name='破浪'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:9e6df143e9e13aaf95d62595c8174e700e904489' where movie_name='天才与白痴'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:877f924effd08dd7eeb2cacd0b5592d556eaa9aa' where movie_name='101次求婚'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:12af4118e53edcbb4026c0b4d37d6f8190f19832' where movie_name='侦探物语'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:c734b6f372bdb81d89ec1e4c1369d9f5b684eddc' where movie_name='迷色布局'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3094f61254751bd3530e4500495d52a6c35ae65f' where movie_name='儿子的大玩偶'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:5f43906c63df923372235f2f95b61bfd1fe511bc' where movie_name='行骗天下'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:4383b05ea9f458a52a991cd1234fd33390ba5d3b' where movie_name='金发尤物'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:cabd1e32bf24217d0d74dda4875e643d60e040ff' where movie_name='B型男友'")
+cur.execute("update movie_movie set download_link='magnet:?xt=urn:btih:3ada437d4188370cfa4cb0b9a9c4f90d49d7271f' where movie_name='重返荣耀'")
 
 
 conn.commit()
