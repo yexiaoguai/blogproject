@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'', include('movie.urls')),
     url(r'', include('questions.urls')),
     url(r'', include('webchat.urls')),
+    url(r'', include('weixin.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'webuser',
     'questions',
     'webchat',
+    'weixin',
 ]
 
 MIDDLEWARE = [
