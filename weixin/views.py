@@ -10,8 +10,14 @@ from wechat_sdk.exceptions import ParseError
 from wechat_sdk.messages import TextMessage
 
 WECHAT_TOKEN = "yeliangtoken870206"
+AppID = "wx2611ba5d5e60a7f9"
+AppSecret = ""
 
-wechat_instance = WechatBasic(token=WECHAT_TOKEN)
+wechat_instance = WechatBasic(
+    token=WECHAT_TOKEN,
+    appid=AppID,
+    appsecret=None
+    )
 
 @csrf_exempt
 def index(request):
