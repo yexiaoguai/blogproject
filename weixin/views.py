@@ -9,6 +9,8 @@ from wechat_sdk.basic import WechatBasic
 from wechat_sdk.exceptions import ParseError
 from wechat_sdk.messages import TextMessage
 
+import meizu_weather
+
 WECHAT_TOKEN = "yeliangtoken870206"
 AppID = "wx2611ba5d5e60a7f9"
 AppSecret = ""
@@ -60,6 +62,7 @@ def index(request):
                 "输入【股票】来查看大盘今天重要的数据！"
             )
             response = wechat_instance.response_text(content=reply_text)
+
         elif content == "快递":
             response =wechat_instance.response_news([
                 {
@@ -68,9 +71,14 @@ def index(request):
                 'description': '自强学堂致力于提供优质的IT技术教程, 网页制作，服务器后台编写，以及编程语言，如HTML,JS,Bootstrap,Python,Django。同时也提供大量在线实例，通过实例，学习更容易，更轻松。',
                 'url': 'http://www.ziqiangxuetang.com',}
             ])
+        elif "天气" in content:
+            city_name = content[2:]
+            reply_text = meizu_weather.get_weather_data(city_name)
+            response = wechat_instance.response_text(content=reply_text)
         else :
             reply_text = (
-                "感谢您的关注！\n输入【股票】来查看大盘今天重要的数据！"
+                "感谢您的关注！"
+                "\n输入【天气xx】来查看xx天气的信息！ 例如输入：天气福州"
                 "\n输入【快递】可以查询您的快递信息！"
                 "\n输入【help】查看更多的支持的功能"
                 "\n【<a href='http://119.29.143.106/getmovielist/'>我的电影收藏</a>】"
