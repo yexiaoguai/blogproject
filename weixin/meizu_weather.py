@@ -59,51 +59,35 @@ def get_weather_data(city_name):
     for info in city_indexes:
         if info["abbreviation"] == "gm":
             info_gm = info["content"]
-            print "感冒指数: ", info_gm
         if info["abbreviation"] == "pp":
             info_pp = info["content"]
-            print "化妆指数: ", info_pp
         if info["abbreviation"] == "zs":
             info_zs = info["content"]
-            print "中暑指数: ", info_zs
         if info["abbreviation"] == "ys":
             info_ys = info["content"]
-            print "雨伞指数: ", info_ys
         if info["abbreviation"] == "yh":
             info_yh = info["content"]
-            print "约会指数: ", info_yh
         if info["abbreviation"] == "yd":
             info_yd = info["content"]
-            print "运动指数: ", info_yd
         if info["abbreviation"] == "xq":
             info_xq = info["content"]
-            print "心情指数: ", info_xq
         if info["abbreviation"] == "xc":
             info_xc = info["content"]
-            print "洗车指数: ", info_xc
         if info["abbreviation"] == "wc":
             info_wc = info["content"]
-            print "风寒指数: ", info_wc
         if info["abbreviation"] == "uv":
             info_uv = info["content"]
-            print "紫外线强度指数: ", info_uv
         if info["abbreviation"] == "tr":
             info_tr = info["content"]
-            print "旅游指数: ", info_tr
         if info["abbreviation"] == "pl":
             info_pl = info["content"]
-            print "空气污染扩散条件指数: ", info_pl
         if info["abbreviation"] == "fs":
             info_fs = info["content"]
-            print "防晒指数: ", info_fs
         if info["abbreviation"] == "ct":
             info_ct = info["content"]
-            print "穿衣指数: ", info_ct
         if info["abbreviation"] == "ac":
             info_ac = info["content"]
-            print "空调开启指数: ", info_ac
         
-
     str_weather = "【{0}，{1}】\n【白天气温】: {2}摄氏度\n【夜间气温】: {3}摄氏度\n"\
                   "【日出时间】: {4}\n"\
                   "【日落时间】: {5}\n"\
