@@ -2,12 +2,15 @@
 #coding:utf-8
 
 import json, sys, requests
+from django.conf import settings as django_settings
 
 URL = "http://aider.meizu.com/app/weather/listWeather?cityIds="
 
 def get_cityid(city_name):
+    # 获取到头像的路径以及文件名
+    filename = django_settings.MEDIA_ROOT+"/Meizu_cities.json"
     # 从文件中读取需要更新的电影名称.
-    with open("Meizu_cities.json", "r") as f:
+    with open(filename, "r") as f:
         content = f.read()
     data = json.loads(content)
     list_city_info = data["cities"]
