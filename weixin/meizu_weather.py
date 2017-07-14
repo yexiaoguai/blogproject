@@ -18,7 +18,7 @@ def get_cityid(city_name):
         if city_info["countyname"] == city_name:
             return city_info["areaid"]
 
-    return "查询失败！"
+    return None
 
 def get_weather_meizu(city_ids):
     url = URL + city_ids
@@ -31,6 +31,8 @@ def get_weather_data(city_name):
     sys.setdefaultencoding("utf-8")
     # name = "福州"
     id = get_cityid(city_name)
+    if id == None:
+        return "天气查询失败！没有该城市！"
     content = get_weather_meizu(str(id))
 
     data = json.loads(content)
