@@ -66,11 +66,11 @@ def index(request):
                 "\n【<a href='http://119.29.143.106/getmovielist/'>我的电影收藏</a>】"
             )
             response = wechat_instance.response_text(content=reply_text)
-        elif content[:1] == u"天气":
+        elif "天气" in content:
             city_name = content[2:]
             reply_text = meizu_weather.get_weather_data(city_name)
             response = wechat_instance.response_text(content=reply_text)
-        elif content[:1] == u"翻译":
+        elif "翻译" in content:
             fy_cont = content[2:]
             reply_text = youdao_fy.get_fy(fy_cont)
             response = wechat_instance.response_text(content=reply_text)
