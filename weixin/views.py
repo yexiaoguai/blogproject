@@ -57,7 +57,6 @@ def index(request):
     if isinstance(message, TextMessage):
         # 当前的会话内容.
         content = message.content.strip()
-        print content[:1]
         if content == "帮助":
             reply_text = (
                 "\n输入【天气xx】来查看xx天气的信息！ 例如输入：天气福州"
