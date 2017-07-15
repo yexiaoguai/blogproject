@@ -9,7 +9,7 @@ from wechat_sdk.basic import WechatBasic
 from wechat_sdk.exceptions import ParseError
 from wechat_sdk.messages import TextMessage
 
-import meizu_weather, youdao_fy
+import meizu_weather, youdao_fy, tuling
 
 WECHAT_TOKEN = "yeliangtoken870206"
 AppID = "wx2611ba5d5e60a7f9"
@@ -48,41 +48,41 @@ def index(request):
     # 关注事件以及不匹配时的默认回复.
     response = wechat_instance.response_text(
         content=(
-            "感谢您的关注！\n输入【股票】来查看大盘今天重要的数据！"
-            "\n输入【快递】可以查询您的快递信息！"
-            "\n输入【help】查看更多的支持的功能"
-            "\n【<a href='http://119.29.143.106/getmovielist/'>我的电影收藏</a>】"
+            "感谢您的关注！"
+            "\n输入【天气xx】来查看xx天气的信息！ 例如输入：天气福州"
+            "\n输入【翻译xx】将英文翻译成中文，也可以将中文翻译成英文！ 例如输入：翻译你好；或者输入：翻译hello"
+            "\n输入【帮助】查看更多的支持的功能"
             ))
 
     if isinstance(message, TextMessage):
         # 当前的会话内容.
         content = message.content.strip()
-        if content == "help":
+        if content == "帮助":
             reply_text = (
                 "\n输入【天气xx】来查看xx天气的信息！ 例如输入：天气福州"
                 "\n输入【翻译xx】将英文翻译成中文，也可以将中文翻译成英文！ 例如输入：翻译你好；或者输入：翻译hello"
                 # "\n输入【快递】可以查询您的快递信息！ 例如输入：快递顺丰1234567890"
-                "\n输入【help】查看更多的支持的功能"
+                "\n输入【帮助】查看更多的支持的功能"
                 "\n【<a href='http://119.29.143.106/getmovielist/'>我的电影收藏</a>】"
             )
             response = wechat_instance.response_text(content=reply_text)
-        elif "天气" in content:
+        elif "天气" == content[:1]:
             city_name = content[2:]
             reply_text = meizu_weather.get_weather_data(city_name)
             response = wechat_instance.response_text(content=reply_text)
-        elif "翻译" in content:
+        elif "翻译" == content[:1]:
             fy_cont = content[2:]
             reply_text = youdao_fy.get_fy(fy_cont)
             response = wechat_instance.response_text(content=reply_text)
-        else :
-            reply_text = (
-                "感谢您的关注！"
-                "\n输入【天气xx】来查看xx天气的信息！ 例如输入：天气福州"
-                "\n输入【翻译xx】将英文翻译成中文，也可以将中文翻译成英文！ 例如输入：翻译你好；或者输入：翻译hello"
-                # "\n输入【快递】可以查询您的快递信息！ 例如输入：快递顺丰1234567890"
-                "\n输入【help】查看更多的支持的功能"
-                "\n【<a href='http://119.29.143.106/getmovielist/'>我的电影收藏</a>】"
-            )
-            response = wechat_instance.response_text(content=reply_text)
+        else:
+            reply_date = tuling.get_tuling(content)
+            if reply_date["code"] == 100000:
+                reply_text = reply_date["text"]
+                response = wechat_instance.response_text(content=reply_text)
+            elif reply_date["code"] == 200000:
+                reply_content = reply_date["text"]
+                reply_url = "\n【<a href='{0}'>打开页面</a>】".format(reply_date["url"])
+                reply_text = reply_content + reply_url
+                response = wechat_instance.response_text(content=reply_text)
     
     return HttpResponse(response, content_type="application/xml")
