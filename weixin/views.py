@@ -57,7 +57,7 @@ def index(request):
     if isinstance(message, TextMessage):
         # 当前的会话内容.
         content = message.content.strip()
-        print len(content)
+        print content[:1]
         if content == "帮助":
             reply_text = (
                 "\n输入【天气xx】来查看xx天气的信息！ 例如输入：天气福州"
@@ -67,11 +67,11 @@ def index(request):
                 "\n【<a href='http://119.29.143.106/getmovielist/'>我的电影收藏</a>】"
             )
             response = wechat_instance.response_text(content=reply_text)
-        elif content[:1] == "天气":
+        elif content[:1] == u"天气":
             city_name = content[2:]
             reply_text = meizu_weather.get_weather_data(city_name)
             response = wechat_instance.response_text(content=reply_text)
-        elif content[:1] == "翻译":
+        elif content[:1] == u"翻译":
             fy_cont = content[2:]
             reply_text = youdao_fy.get_fy(fy_cont)
             response = wechat_instance.response_text(content=reply_text)
