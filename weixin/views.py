@@ -14,12 +14,12 @@ import meizu_weather, youdao_fy, tuling, os, random
 
 WECHAT_TOKEN = "yeliangtoken870206"
 AppID = "wx2611ba5d5e60a7f9"
-AppSecret = ""
+AppSecret = "507b048cfdaebca74b723ee886091813"
 
 wechat_instance = WechatBasic(
     token=WECHAT_TOKEN,
     appid=AppID,
-    appsecret=None
+    appsecret=AppSecret
     )
 
 @csrf_exempt
@@ -75,7 +75,7 @@ def index(request):
             reply_text = youdao_fy.get_fy(fy_cont)
             response = wechat_instance.response_text(content=reply_text)
         elif content == "美女":
-            response = wechat_instance.response_image(media_id="eATDBMsM2OviaMp6U8PmNxhWTicKiaY2EGUFoZpDwp2OuqRBWR0ozKusPiaVYcv0E5SXq0GlZvZgamSfTOSDDckkyg")
+            response = wechat_instance.response_image(media_id="UoNRsvFGOxV2Elqwvr7wnH3OCQhzw-kv_I5k7ysZcSqOrjBICWAk7GylTmA211nN")
         else:
             reply_date = tuling.get_tuling(content)
             if reply_date["code"] == 100000:
