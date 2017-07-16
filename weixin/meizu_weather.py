@@ -49,6 +49,9 @@ def get_weather_data(city_name):
     city_25_num = city_25["pm25"]
     city_10_num = city_25["pm10"]
 
+    city_realtime = newdata["realtime"]
+    city_realtime_weather = city_realtime["weather"]
+
     city_weathers = newdata["weathers"]
     city_weather_date = city_weathers[0]["date"]
     city_weather = city_weathers[0]["weather"]
@@ -91,6 +94,7 @@ def get_weather_data(city_name):
             info_ac = info["content"]
         
     str_weather = "【{0}，{1}】\n【白天气温】: {2}摄氏度\n【夜间气温】: {3}摄氏度\n"\
+                  "【天气情况】: {15}\n"\
                   "【日出时间】: {4}\n"\
                   "【日落时间】: {5}\n"\
                   "【空气质量】: {6}\n"\
@@ -104,7 +108,7 @@ def get_weather_data(city_name):
                   "【运动指数】: {14}\n"\
                 .format(province_name, city_name, city_temp_day_c, city_temp_night_c,
                 city_sun_rise_time, city_sun_down_time, city_quality, city_aqi,
-                city_25_num, city_10_num, info_gm, info_uv, info_ct, info_pp, info_yd)
+                city_25_num, city_10_num, info_gm, info_uv, info_ct, info_pp, info_yd, city_realtime_weather)
 
     return str_weather
 

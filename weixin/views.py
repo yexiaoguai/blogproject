@@ -50,9 +50,14 @@ def index(request):
     response = wechat_instance.response_text(
         content=(
             "感谢您的关注！"
+            "您可以跟公众号机器人聊天，也可以通过以下的输入信息了解数据。"
             "\n输入【天气xx】来查看xx天气的信息！ 例如输入：天气福州"
-            "\n输入【翻译xx】将英文翻译成中文，也可以将中文翻译成英文！ 例如输入：翻译你好；或者输入：翻译hello"
+            "\n输入【翻译xx】将英文翻译成中文，也可以将中文翻译成英文！ 例如输入：翻译你好；或输入：翻译hello"
+            "\n输入【美女】查看美女图片！都是经过我精心挑选"
             "\n输入【帮助】查看更多的支持的功能"
+            "\n后续我将开发出更多数据的查询，比如说中国经济数据查询（银行拆借利率等），福州新房每日成交量，以及福州二手房均价等信息"
+            "\n当然我也会开通股票的龙虎榜信息等等！"
+            "\n【<a href='http://119.29.143.106/getmovielist/'>我的电影收藏</a>】"
             ))
 
     if isinstance(message, TextMessage):
@@ -60,9 +65,13 @@ def index(request):
         content = message.content.strip()
         if content == "帮助":
             reply_text = (
+                "您可以跟公众号机器人聊天，也可以通过以下的输入信息了解数据。"
                 "\n输入【天气xx】来查看xx天气的信息！ 例如输入：天气福州"
-                "\n输入【翻译xx】将英文翻译成中文，也可以将中文翻译成英文！ 例如输入：翻译你好；或者输入：翻译hello"
+                "\n输入【翻译xx】将英文翻译成中文，也可以将中文翻译成英文！ 例如输入：翻译你好；或输入：翻译hello"
+                "\n输入【美女】查看美女图片！都是经过我精心挑选"
                 "\n输入【帮助】查看更多的支持的功能"
+                "\n后续我将开发出更多数据的查询，比如说中国经济数据查询（银行拆借利率等），福州新房每日成交量，以及福州二手房均价等信息"
+                "\n当然我也会开通股票的龙虎榜信息等等！"
                 "\n【<a href='http://119.29.143.106/getmovielist/'>我的电影收藏</a>】"
             )
             response = wechat_instance.response_text(content=reply_text)
@@ -76,7 +85,7 @@ def index(request):
             response = wechat_instance.response_text(content=reply_text)
         elif content == "美女":
             filename = django_settings.MEDIA_ROOT+"/media_id.txt"
-            # 从文件中读取需要更新的电影名称.
+            # 从文件中读取图片的media_id.
             with open(filename, "r") as f:
                 content = f.read()
             pic_list = content.split("\n")
