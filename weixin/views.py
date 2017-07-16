@@ -4,12 +4,13 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http.response import HttpResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings as django_settings
 
 from wechat_sdk.basic import WechatBasic
 from wechat_sdk.exceptions import ParseError
 from wechat_sdk.messages import TextMessage
 
-import meizu_weather, youdao_fy, tuling
+import meizu_weather, youdao_fy, tuling, os, random
 
 WECHAT_TOKEN = "yeliangtoken870206"
 AppID = "wx2611ba5d5e60a7f9"
@@ -61,7 +62,6 @@ def index(request):
             reply_text = (
                 "\n输入【天气xx】来查看xx天气的信息！ 例如输入：天气福州"
                 "\n输入【翻译xx】将英文翻译成中文，也可以将中文翻译成英文！ 例如输入：翻译你好；或者输入：翻译hello"
-                # "\n输入【快递】可以查询您的快递信息！ 例如输入：快递顺丰1234567890"
                 "\n输入【帮助】查看更多的支持的功能"
                 "\n【<a href='http://119.29.143.106/getmovielist/'>我的电影收藏</a>】"
             )
@@ -74,6 +74,8 @@ def index(request):
             fy_cont = content[2:]
             reply_text = youdao_fy.get_fy(fy_cont)
             response = wechat_instance.response_text(content=reply_text)
+        elif content == "美女":
+            response = wechat_instance.response_image(media_id="eATDBMsM2OviaMp6U8PmNxhWTicKiaY2EGUFoZpDwp2OuqRBWR0ozKusPiaVYcv0E5SXq0GlZvZgamSfTOSDDckkyg")
         else:
             reply_date = tuling.get_tuling(content)
             if reply_date["code"] == 100000:
