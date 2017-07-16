@@ -80,7 +80,7 @@ def index(request):
             with open(filename, "r") as f:
                 content = f.read()
             pic_list = content.split("\n")
-            random_num = random.randint(0, len(content_list)-1)
+            random_num = random.randint(0, len(pic_list)-1)
             response = wechat_instance.response_image(media_id=pic_list[random_num])
         else:
             reply_date = tuling.get_tuling(content)
