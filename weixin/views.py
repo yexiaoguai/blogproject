@@ -75,7 +75,13 @@ def index(request):
             reply_text = youdao_fy.get_fy(fy_cont)
             response = wechat_instance.response_text(content=reply_text)
         elif content == "美女":
-            response = wechat_instance.response_image(media_id="zO3a2qqq29SKmpCqhaLg8apJBh_-HZEaDhqO-FQvzG7pDUBd-GamjAFrARZHuoA4")
+            filename = django_settings.MEDIA_ROOT+"/media_id.txt"
+            # 从文件中读取需要更新的电影名称.
+            with open(filename, "r") as f:
+                content = f.read()
+            pic_list = content.split("\n")
+            random_num = random.randint(0, len(content_list)-1)
+            response = wechat_instance.response_image(media_id=pic_list[random_num])
         else:
             reply_date = tuling.get_tuling(content)
             if reply_date["code"] == 100000:
