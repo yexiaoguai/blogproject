@@ -75,7 +75,7 @@ def index(request):
             reply_text = youdao_fy.get_fy(fy_cont)
             response = wechat_instance.response_text(content=reply_text)
         elif content == "美女":
-            response = wechat_instance.response_image(media_id="UoNRsvFGOxV2Elqwvr7wnH3OCQhzw-kv_I5k7ysZcSqOrjBICWAk7GylTmA211nN")
+            response = wechat_instance.response_image(media_id="zO3a2qqq29SKmpCqhaLg8apJBh_-HZEaDhqO-FQvzG7pDUBd-GamjAFrARZHuoA4")
         else:
             reply_date = tuling.get_tuling(content)
             if reply_date["code"] == 100000:
