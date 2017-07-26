@@ -10,7 +10,7 @@ from wechat_sdk.basic import WechatBasic
 from wechat_sdk.exceptions import ParseError
 from wechat_sdk.messages import TextMessage
 
-import meizu_weather, youdao_fy, tuling, os, random
+import meizu_weather, youdao_fy, tuling, os, random, sqlite3, time
 
 WECHAT_TOKEN = "yeliangtoken870206"
 AppID = "wx2611ba5d5e60a7f9"
@@ -72,7 +72,6 @@ def index(request):
                 "\n输入【帮助】查看更多的支持的功能"
                 "\n后续我将开发出更多数据的查询，比如说中国经济数据查询（银行拆借利率等），福州新房每日成交量，以及福州二手房均价等信息"
                 "\n当然我也会开通股票的龙虎榜信息等等！"
-                "\n【<a href='http://119.29.143.106/getmovielist/'>我的电影收藏</a>】"
             )
             response = wechat_instance.response_text(content=reply_text)
         elif "天气" in content:
@@ -91,6 +90,25 @@ def index(request):
             pic_list = content.split("\n")
             random_num = random.randint(0, len(pic_list)-1)
             response = wechat_instance.response_image(media_id=pic_list[random_num])
+        elif content == "房价":
+            house_db = django_settings.MEDIA_ROOT+"/house_data.db"
+            conn = sqlite3.connect(house_db)
+            cur = conn.cursor()
+
+            date = time.strftime("%Y%m%d")
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql_count)
+            houses_count = cur.fetchall()[0][2]
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql_count)
+            houses_aver_price = cur.fetchall()[0][3]
+            reply_text = 
+                "福州二手房【{0}】数据："
+                "\n挂牌出售数量：{1}"
+                "\n挂牌出售均价：{2}"
+                "\n以上数据均不包含别墅以及联排别墅。".format(date, houses_count, houses_aver_price)
+
+            response = wechat_instance.response_text(content=reply_text)
         else:
             reply_date = tuling.get_tuling(content)
             if reply_date["code"] == 100000:
