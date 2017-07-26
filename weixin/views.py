@@ -103,10 +103,10 @@ def index(request):
             cur.execute(sql_count)
             houses_aver_price = cur.fetchall()[0][3]
             reply_text = 
-                "福州二手房【{0}】数据："
-                "\n挂牌出售数量：{1}"
-                "\n挂牌出售均价：{2}"
-                "\n以上数据均不包含别墅以及联排别墅。".format(date, houses_count, houses_aver_price)
+                "福州二手房【{0}】数据：\
+                \n挂牌出售数量：{1}\
+                \n挂牌出售均价：{2}\
+                \n以上数据均不包含别墅以及联排别墅。".format(date, houses_count, houses_aver_price)
 
             response = wechat_instance.response_text(content=reply_text)
         else:
