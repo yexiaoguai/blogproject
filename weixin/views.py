@@ -97,10 +97,10 @@ def index(request):
 
             date = time.strftime("%Y%m%d")
             sql = "select * from houses_data where date = '{0}'".format(date)
-            cur.execute(sql_count)
+            cur.execute(sql)
             houses_count = cur.fetchall()[0][2]
             sql = "select * from houses_data where date = '{0}'".format(date)
-            cur.execute(sql_count)
+            cur.execute(sql)
             houses_aver_price = cur.fetchall()[0][3]
             reply_text = "福州二手房【{0}】数据：\n挂牌出售数量：{1}\n挂牌出售均价：{2}\
                 \n以上数据均不包含别墅以及联排别墅。".format(date, houses_count, houses_aver_price)
