@@ -50,12 +50,13 @@ def index(request):
     response = wechat_instance.response_text(
         content=(
             "感谢您的关注！"
-            "您可以跟公众号机器人聊天，也可以通过以下的输入信息了解数据。"
+            "您可以跟公众号机器人聊天，也可以通过以下的输入信息了解数据"
             "\n输入【天气xx】来查看xx天气的信息！ 例如输入：天气福州"
             "\n输入【翻译xx】将英文翻译成中文，也可以将中文翻译成英文！ 例如输入：翻译你好；或输入：翻译hello"
+            "\n输入【房价】查看当日福州二手房房价信息，对房价走势判断有一定的判断"
             "\n输入【美女】查看美女图片！都是经过我精心挑选"
             "\n输入【帮助】查看更多的支持的功能"
-            "\n后续我将开发出更多数据的查询，比如说中国经济数据查询（银行拆借利率等），福州新房每日成交量，以及福州二手房均价等信息"
+            "\n后续我将开发出更多数据的查询，比如说中国经济数据查询（银行拆借利率等）"
             "\n当然我也会开通股票的龙虎榜信息等等！"
             "\n【<a href='http://119.29.143.106/getmovielist/'>我的电影收藏</a>】"
             ))
@@ -65,12 +66,13 @@ def index(request):
         content = message.content.strip()
         if content == "帮助":
             reply_text = (
-                "您可以跟公众号机器人聊天，也可以通过以下的输入信息了解数据。"
+                "您可以跟公众号机器人聊天，也可以通过以下的输入信息了解数据"
                 "\n输入【天气xx】来查看xx天气的信息！ 例如输入：天气福州"
                 "\n输入【翻译xx】将英文翻译成中文，也可以将中文翻译成英文！ 例如输入：翻译你好；或输入：翻译hello"
+                "\n输入【房价】查看当日福州二手房房价信息，对房价走势判断有一定的判断"
                 "\n输入【美女】查看美女图片！都是经过我精心挑选"
                 "\n输入【帮助】查看更多的支持的功能"
-                "\n后续我将开发出更多数据的查询，比如说中国经济数据查询（银行拆借利率等），福州新房每日成交量，以及福州二手房均价等信息"
+                "\n后续我将开发出更多数据的查询，比如说中国经济数据查询（银行拆借利率等）"
                 "\n当然我也会开通股票的龙虎榜信息等等！"
             )
             response = wechat_instance.response_text(content=reply_text)
@@ -102,9 +104,28 @@ def index(request):
             sql = "select * from houses_data where date = '{0}'".format(date)
             cur.execute(sql)
             houses_aver_price = cur.fetchall()[0][1]
+            # 鼓楼区
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            gulou_count = cur.fetchall()[0][6]
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            gulou_aver_price = cur.fetchall()[0][5]
+            # 台江区
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            taijiang_count = cur.fetchall()[0][4]
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            taijiang_aver_price = cur.fetchall()[0][3]
+
             reply_text = "福州二手房【{0}】数据：\n挂牌出售数量：{1}套。\n挂牌出售均价：{2}元。\
+                \n鼓楼区二手房挂牌出售数量：{3}套。\n挂牌出售均价：{4}元。\
+                \n台江区二手房挂牌出售数量：{5}套。\n挂牌出售均价：{6}元。\
                 \n以上数据均不包含别墅。"\
-                .format(date, int(houses_count), round(houses_aver_price, 2))
+                .format(date, int(houses_count), round(houses_aver_price, 2), 
+                        int(gulou_count), round(gulou_aver_price, 2),
+                        int(taijiang_count), round(taijiang_aver_price, 2))
 
             response = wechat_instance.response_text(content=reply_text)
         else:
