@@ -118,14 +118,59 @@ def index(request):
             sql = "select * from houses_data where date = '{0}'".format(date)
             cur.execute(sql)
             taijiang_aver_price = cur.fetchall()[0][3]
+            # 晋安区
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            jinan_count = cur.fetchall()[0][8]
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            jinan_aver_price = cur.fetchall()[0][7]
+            # 仓山区
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            cangshan_count = cur.fetchall()[0][10]
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            cangshan_aver_price = cur.fetchall()[0][9]
+            # 金山
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            jinshan_count = cur.fetchall()[0][12]
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            jinshan_aver_price = cur.fetchall()[0][11]
+            # 马尾区
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            mawei_count = cur.fetchall()[0][14]
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            mawei_aver_price = cur.fetchall()[0][13]
+            # 闽侯
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            minhou_count = cur.fetchall()[0][16]
+            sql = "select * from houses_data where date = '{0}'".format(date)
+            cur.execute(sql)
+            minhou_aver_price = cur.fetchall()[0][15]
 
             reply_text = "福州二手房【{0}】数据：\n挂牌出售数量：{1}套。\n挂牌出售均价：{2}元。\
                 \n鼓楼区二手房挂牌出售数量：{3}套。\n挂牌出售均价：{4}元。\
                 \n台江区二手房挂牌出售数量：{5}套。\n挂牌出售均价：{6}元。\
+                \n晋安区二手房挂牌出售数量：{7}套。\n挂牌出售均价：{8}元。\
+                \n仓山区二手房挂牌出售数量：{9}套。\n挂牌出售均价：{10}元。\
+                \n金山二手房挂牌出售数量：{11}套。\n挂牌出售均价：{12}元。\
+                \n马尾区二手房挂牌出售数量：{13}套。\n挂牌出售均价：{14}元。\
+                \n闽侯二手房挂牌出售数量：{15}套。\n挂牌出售均价：{16}元。\
                 \n以上数据均不包含别墅。"\
                 .format(date, int(houses_count), round(houses_aver_price, 2), 
                         int(gulou_count), round(gulou_aver_price, 2),
-                        int(taijiang_count), round(taijiang_aver_price, 2))
+                        int(taijiang_count), round(taijiang_aver_price, 2),
+                        int(jinan_count), round(jinan_aver_price, 2),
+                        int(cangshan_count), round(cangshan_aver_price, 2),
+                        int(jinshan_count), round(jinshan_aver_price, 2),
+                        int(mawei_count), round(mawei_aver_price, 2),
+                        int(minhou_count), round(minhou_aver_price, 2),)
 
             response = wechat_instance.response_text(content=reply_text)
         else:
